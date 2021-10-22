@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1634863072 source:e:\ugurcoruh\rteu\lectures\2021-2022 güz ce103 - algorithms and programming i\lectures\ce103-algorithms-and-programming-i\week-2\codeblocks-hello-world-apps\hello\main.c
+	<stdio.h>
+	<stdlib.h>
+

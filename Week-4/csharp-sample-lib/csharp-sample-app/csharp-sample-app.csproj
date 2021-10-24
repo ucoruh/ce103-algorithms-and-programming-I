@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>csharp_sample_app</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="csharp-sample-lib">
+      <HintPath>..\csharp-sample-lib\bin\Debug\netcoreapp3.1\csharp-sample-lib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

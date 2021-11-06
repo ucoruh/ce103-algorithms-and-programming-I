@@ -48,6 +48,8 @@
 
 # Web Pages
 
+[Presentations - Niche Software](http://www.nichesoftware.co.nz/presentations.html)
+
 https://sandbox.cs50.io/
 
 https://www.katacoda.com/
@@ -55,11 +57,3 @@ https://www.katacoda.com/
 https://www.kodular.io/
 
 https://www.hackerrank.com/
-
-
-
-
-
-
-
-

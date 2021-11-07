@@ -1,0 +1,356 @@
+============================MODULE20=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+
+//demonstrate the static variable...
+//For VC++/VC++ .Net change the header files accordingly
+//#include   <iostream>
+//#include   <cstdlib>
+//using namespace std;
+
+#include   <iostream.h>
+#include   <stdlib.h>
+
+int funcstatic(int)
+{
+	//local variable should exist locally...
+	int sum = 0;
+	sum = sum + 10;
+	return sum;
+}
+
+
+int main()
+{
+	int r = 5, s;
+
+	//test the function calls several times...
+	cout<<"Without static keyword\n";
+	cout<<"----------------------\n\n";
+	s = funcstatic(r);
+	cout<<"1st time function call, s = "<<s<<endl;
+	s = funcstatic(r);
+	cout<<"2nd time function call, s = "<<s<<endl;
+	s = funcstatic(r);
+	cout<<"3rd time function call, s = "<<s<<endl;
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------
+
+//Program object.h, the header file
+//extern global variable
+//external to object.cpp
+extern int global1;
+
+//---class declaration part---
+class object
+{
+  public:
+  int   objectvar;
+
+  public:
+  object(void);
+  int set(int);
+  ~object(void);
+};
+//this header file cannot be compiled or run
+
+---------------------------------------------------------------------------------
+
+//The class implementation file
+//Program object.cpp
+#include <iostream.h>
+#include  "object.h"
+
+//extern...
+int global1 = 30;
+int global2 = 40;
+
+//-----class implementation part-----
+object::object(void)
+{
+  objectvar = 0;
+}
+
+int object::set(int newvalue)
+{
+  int local1 = 10;
+  //non extern with same variables name....
+  global1 = 60;
+  global2 = 70;
+
+  //Display the local variable locally...
+  cout<<"In object.cpp file, local function, local1 variable = "<<local1<<endl;
+  //Display the global variable locally...
+  cout<<"In object.cpp file, global1 variable = "<<global1<<endl;
+  cout<<"In object.cpp file, global2 variable = "<<global2<<endl;
+  return  newvalue;
+}
+
+object::~object(void)
+{
+	objectvar = 0;
+}
+
+-----------------------------------------------------------------------------------
+
+//Program mainobject.cpp, here is the main program,
+#include   <iostream.h>
+#include   <stdlib.h>
+#include   "object.h"
+
+main()
+{
+   object   FirstObject;
+   //external to object.cpp
+   extern int global2;
+   //local to this main() function...
+   int local2 = 20;
+
+   cout<<"In object.h, global1 is object.cpp external variable = "<<global1<<endl;
+   cout<<"In mainobject.cpp, global2 is object.cpp external variable = 										"<<global2<<endl;
+   cout<<"In mainobject.cpp, object value =  "<<FirstObject.set(50)<<"\n";
+   cout<<"In mainobject.cpp, local function, local2 variable = "<<local2<<endl;
+   system("pause");
+}
+
+-----------------------------------------------------------------------------------
+
+//const variable
+#include <iostream>
+#include <stdlib.h>
+
+int main()
+{
+
+	//p = 10 is a constant value, cannot be modified
+	//during the program execution...
+	const int p = 10;
+
+	cout<<"q = p + 20 = "<<(p + 20)<<" where, p = 10"<<endl;
+
+	//The following code should generate error, because
+	//we try to modify the constant value...
+	//uncomment, recompile notice the error...
+
+	//p = 15;
+	//--p;
+
+	system("pause");
+}
+
+----------------------------------------------------------------------------------
+
+//const variable
+#include <iostream>
+
+const int ArrayOne = 64;
+//The following code is legal in C++, but not in C
+char StoreChar[ArrayOne];
+
+int main()
+{
+
+}
+//No output for this example
+
+----------------------------------------------------------------------------------
+
+//a const pointer to a variable...
+#include <iostream>
+#include <stdlib.h>
+
+int main()
+{
+
+   	//declare the pointers and let they point
+   	//to something...
+	//non const pointer...
+	char *BuffOne = NULL, *BuffTwo = NULL;
+   	//a constant pointer...
+   	//assign the BuffOne pointer to PtrOne pointer
+	char *const PtrOne = BuffOne;
+
+   	//Let it point to some data...
+	*PtrOne = 'z';
+	cout<<"The value pointed by constant pointer is "<<*PtrOne<<endl;
+
+	//The following code will generate error, because we try to
+	//assign non const pointer to const pointer...
+	//PtrOne = BuffTwo;
+	
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------
+
+//a pointer to a const variable...
+#include <iostream>
+#include <stdlib.h>
+
+int main()
+{
+
+	const char *BuffOne = "Testing";
+
+	cout<<"The data pointed by BuffTwo is "<<BuffOne<<endl;
+
+	//The const pointer BuffOne assigned to the
+	//const pointer ThePtr is OK...
+	const char *ThePtr = BuffOne;
+	cout<<"The data pointed by ThePtr is "<<ThePtr<<endl;
+
+	//The following code will generate an error
+   	//cannot modify the const....
+	//*ThePtr = 'z';
+
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------
+
+//constant member function
+#include <iostream>
+#include <stdlib.h>
+
+//---Class declaration part-----
+
+class Date
+{
+   int  month;
+
+   public:
+   //we would test the month only...
+	Date (int mnt, int dy, int yr);
+   //A write function, so can't be const
+   void  SetMonth(int mnt);
+   //A read only function declaration
+   int   GetMonth() const;
+};
+
+//---Class implementation part---
+
+Date::Date(int,int,int)
+{
+}
+void  Date::SetMonth(int mnt)
+{
+	//Modify the non const member variable data
+	month = mnt;
+}
+
+//A read only function implementation
+int  Date::GetMonth() const
+{
+   //Does not modify anything
+   return  month;
+}
+
+//----main program----
+void main()
+{
+  Date    TheDate(7,4,2004);
+  //non const member function, OK
+  TheDate.SetMonth(11);
+
+  cout<<"Month of the sample date is "<<TheDate.GetMonth()<<endl;
+
+  //another dummy const object...
+  const Date BirthDate(7,4,1971);
+  //Then try to modify the const object, NOT OK
+  //BirthDate.SetMonth(5);
+
+  //const member function sending message...
+  BirthDate.GetMonth();
+  //So, the following shouldn’t have the output data...
+  cout<<"Another silly call, the month is "<<BirthDate.GetMonth()<<endl;
+
+  system("pause");
+}
+
+-------------------------------------------VC++/VC++ .Net------------------------------------------
+
+//demonstrate the static variable...
+#include <iostream>
+using namespace std;
+
+int funcstatic(int)
+{
+	//local variable should exist locally...
+	static int sum = 0;
+	sum = sum + 10;
+	return sum;
+}
+
+
+int main()
+{
+	int r = 5, s;
+
+	//test the function calls several times...
+	cout<<"Without static keyword\n";
+	cout<<"----------------------\n\n";
+	s = funcstatic(r);
+	cout<<"1st time function call, s = "<<s<<endl;
+	s = funcstatic(r);
+	cout<<"2nd time function call, s = "<<s<<endl;
+	s = funcstatic(r);
+	cout<<"3rd time function call, s = "<<s<<endl;
+	return 0;
+}
+
+============================================================================================
+

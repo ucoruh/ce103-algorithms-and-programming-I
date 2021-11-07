@@ -1,0 +1,547 @@
+==============================MODULE11=====================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+//A simple structure program example
+#include <stdio.h>
+#include <stdlib.h>
+
+struct student{
+	char id_num[6];
+	char name[11];
+	char gender;
+	int age;
+	};
+
+int main(void)
+{
+struct student studno_1;
+
+//studno_1.id_num = "A3214";	//Illegal, const char to char[]
+//studno_1.name = "Smith";	//Illegal, const char to char[]
+printf("Enter student ID num (5 max): ");
+scanf("%s", studno_1.id_num);
+printf("Enter student name (10 max): ");
+scanf("%s", studno_1.name);
+studno_1.gender = 'M';
+studno_1.age = 30;
+
+printf("\n------------------\n");
+printf("ID number: %s\n", studno_1.id_num);
+printf("Name     : %s\n", studno_1.name);
+printf("Gender   : %c\n", studno_1.gender);
+printf("Age      : %d\n", studno_1.age);
+printf("------------------\n");
+system("pause");
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//accessing structure element.  Change the
+//header files accordingly for VC++/VC++ .Net
+//#include <iostream>
+//#include <cstdlib>
+//using namespace std;
+
+#include <iostream.h>
+#include <stdlib.h>
+
+struct Card
+{
+   char  *face;  //pointer to char type
+   char  *suit;  //pointer to char type
+};
+
+void main()
+{
+     //declare the struct type variables
+     struct Card  p;
+     struct Card  *SPtr;
+
+ 	p.face = "Ace";
+ 	p.suit = "Spades";
+ 	SPtr = &p;
+       
+   cout<<"Accessing structure element:\n";
+   cout<<"\n\'SPtr->suit\'  = "<<SPtr->suit<<endl;
+   cout<<"\'SPtr->face\'  = "<<SPtr->face<<endl;
+   //for Borland... 
+   system("pause");
+}
+
+-------------------------------------------------------------------------------------------------------
+
+//Using the structure member and structure
+//pointer operators – accessing structure
+//elements styles...
+#include <iostream.h>
+#include <stdlib.h>
+
+struct Card
+{
+	char  *face;
+	char  *suit;
+};
+
+int main()
+{
+	struct Card  p;
+	struct Card  *SPtr;
+
+	p.face = "Ace";
+	p.suit = "Spades";
+	SPtr = &p;
+
+cout<<"Accessing structure element styles"<<endl;
+cout<<"----------------------------------"<<endl;
+cout<<"Style #1-use p.face:       "<<p.face<<" of "<<p.suit<<endl;
+cout<<"Style #2-use Sptr->face:   "<<SPtr->face<<" of "<<SPtr->suit<<endl;
+cout<<"Style #3-use (*Sptr).face: "<<(*SPtr).face<<" of "<<(*SPtr).suit<<endl;
+system("pause");
+return 0;
+}
+
+-------------------------------------------------------------------------------------------------------
+
+//an array structure of student information
+#include <iostream.h>
+#include <stdlib.h>
+//for C++ replace to the following header
+//#include <iostream>
+//#include <cstdlib>
+//using namespace std;
+
+struct student
+{
+	char id[6];      //student id number, max. 5 integer number
+	char name[50];   //student name, max 49 characters
+	char gender;     //student gender Male or Female
+	int  age;        //student age
+};
+
+void main()
+{
+	//declaring array of 10 element of structure type
+	//and some of the element also are arrays
+	struct student stud[10];
+	int i = 0;
+
+	cout<<"Keying in student data and then display\n";
+	cout<<"---------------------------------------\n";
+	cout<<"Enter student data\n";
+
+	for(i=0; i<2; i++)
+	{
+		//Storing the data
+		cout<<"\nID number (4 integer number) student #"<<i<<": ";
+		cin>>stud[i].id;
+		cout<<"First name student #"<<i<<": ";
+		cin>>stud[i].name;
+		cout<<"Gender (M or F) student #"<<i<<": ";
+		cin>>stud[i].gender;
+		cout<<"Age student #"<<i<<": ";
+		cin>>stud[i].age;
+}
+
+	cout<<"\n----------Display the data---------\n";
+	cout<<"You can see that the data storage\n";
+	cout<<"has been reserved for the structure!\n";
+	cout<<"------------------------------------\n";
+	for(i=0; i<2; i++)
+	{
+	//Displaying the stored data
+	cout<<"\nID number student  # "<<i<<": "<<stud[i].id;
+	cout<<"\nFirst name student # "<<i<<": "<<stud[i].name;
+	cout<<"\nGender student     # "<<i<<": "<<stud[i].gender;
+	cout<<"\nAge student        # "<<i<<": "<<stud[i].age<<"\n";
+	}
+	system("pause");
+}
+
+-----------------------------------------------------------------------------------------------------------
+
+//passing structures to functions and
+//a function returning a structure
+#include <iostream.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+
+//--------structure part--------
+struct vegetable
+{
+	char   name[30];
+	float  price;
+};
+
+//--------main program---------
+int main()
+{
+	//declare 2 structure variables
+	struct vegetable veg1, veg2;
+	//function prototype of type struct
+	struct vegetable  addname();
+	//another function prototype
+	int list_func(vegetable);
+
+	//functions call for user input...
+	veg1  =  addname();
+	veg2  =  addname();
+	cout<<"\nVegetables for sale\n";
+	
+	//function call for data display...
+	list_func(veg1);
+	list_func(veg2);
+	cout<<endl;
+    //for Borland
+	system("pause");
+	return  0;
+}
+//-------------function----------------
+//This functions returns a structure
+struct vegetable addname()
+{
+	char  tmp[20];
+	//declare a structure variable
+	struct vegetable vege;
+
+	cout<<"\nEnter name of vegetable:  ";
+	gets(vege.name);
+	cout<<"Enter price (per 100gm):  $ ";
+	gets(tmp);
+	//converts a string to float
+	vege.price = atof(tmp);
+	return (vege);
+}
+
+//structure passed from main()
+int list_func(vegetable list)
+{
+	cout<<"\nVegetable name:  "<<list.name;
+	cout<<"\nVegetable price:  $"<<list.price;
+	return 0;
+}
+
+---------------------------------------------------------------------------------------------------------
+
+//typedef and struct program example
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct TestStruct
+{
+   int    p;
+   char   q;
+   double r;
+} mine;
+
+void main()
+{
+  mine testvar; //the declaration becomes simpler
+  testvar.p = 200;
+  testvar.q = 'T';
+  testvar.r = 1.234;
+  printf("%d\n%c\n%.4f\n", testvar.p, testvar.q,testvar.r);
+  system("pause");
+}
+
+-------------------------------------------------------------------------------------------------------
+
+//typedef specifier
+#include <stdio.h>
+
+typedef struct mystructtag 
+{
+   int    x;
+   double y;
+   char*  z; 
+} mystruct;
+
+int main() 
+{
+   mystruct Test1, *Test2;
+   Test1.x = 111;
+   Test1.y = 1.111;
+   printf("Test1.x = %d\nTest1.y = %f\n", Test1.x, Test1.y);
+   
+   Test1.z = "This is a string";
+   Test2 = &Test1;
+   printf("Test1->z = %s\n", Test2->z);
+   return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------
+
+#include <iostream.h>
+#include <stdlib.h>
+
+enum days {mon = 1,tue,wed,thu,fri,sat,sun};
+
+void main()
+{
+	//declaraing enum data type
+	enum days day_count;
+
+	cout<<" Simple day count\n";
+	cout<<"    using enum\n";
+
+	for(day_count=mon;day_count<=sun;day_count++)
+	cout<<"  "<<day_count<<"\n";
+	system("pause");
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+//enum declarations
+#include <iostream>
+using namespace std;
+
+//Declare enum data type Days
+enum Days               
+{
+	monday,		//monday = 0 by default 		              
+	tuesday = 0,	//tuesday = 0 also			            
+	wednesday,	//wednesday = 1 		          
+	thursday,	//thursday = 2 		
+	friday,		//an so on.
+	saturday,
+	sunday
+};
+
+int main() 
+{
+	//try changing the tuesday constant,
+	//recompile and re run this program
+	enum Days WhatDay = tuesday;
+	switch (WhatDay)
+	{
+		case 0:
+		cout<<"It's Monday"<<endl;
+		break;
+		default:
+		cout<<"Other day"<<endl;
+	}
+return 0;
+}
+
+----------------------------------------------------------------------------------------------------------
+
+//enum definition
+#include <iostream>
+using namespace std;
+
+enum FileOpenFlags
+{
+	//defined here...
+	OpenReadOnly  = 1,
+	//using OpenReadOnly as the next initializer
+	//and so on...
+	OpenReadWrite = OpenReadOnly,
+	OpenBinary = OpenReadWrite,
+	OpenText = OpenBinary,
+	OpenShareable = OpenText
+};
+
+int main()
+{
+	return 0;
+}
+//No output
+
+-------------------------------------------------------------------------------------------------------------
+
+//enumeration data type
+#include <iostream>
+using namespace std;
+
+enum Days
+{
+    
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
+           Sunday,
+    Monday
+};
+
+int  i;
+Days d = Thursday;
+int main()
+{
+//Converted by integral promotion.
+i = d;
+cout<<"i = "<<i<<"\n";
+return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef enum {
+	FailOpenDisk = 1,
+	PathNotFound,
+	FolderCannotBeFound,
+	FileCannotBeFound,
+	FailOpenFile,
+	FileCannotBeRead,
+	DataCorrupted
+} ErrorCode;
+
+int main(void)
+{
+ErrorCode MyErrorCode;
+
+for(MyErrorCode=FailOpenDisk; MyErrorCode<=DataCorrupted; MyErrorCode++)
+	printf(" %d", MyErrorCode);
+   printf("\n");
+system("pause");
+return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+#include <iostream.h>
+#include <stdlib.h>
+
+union  sample
+{
+	int  p;
+	float q;
+	double r;
+};
+
+void main()
+{
+	//union data type
+	union sample content;
+
+	content.p = 37;
+	content.q = 1.2765;
+
+	cout<<"Display the union storage content\n";
+	cout<<"      ONLY one at a time!\n";
+	cout<<"---------------------------------\n";
+	cout<<"Integer: "<<content.p<<"\n";
+	cout<<"Float  : "<<content.q<<"\n";
+	cout<<"Double : "<<content.r<<"\n";
+	cout<<"See, some of the contents are rubbish!\n";
+
+	content.q=33.40;
+	content.r=123.94;
+
+	cout<<"\nInteger: "<<content.p<<"\n";
+	cout<<"Float  : "<<content.q<<"\n";
+	cout<<"Double : "<<content.r<<"\n";
+	cout<<"See another inactive contents, rubbish!\n";
+	cout<<"\nBetter use struct data type!!\n";
+	system("pause");
+}
+
+------------------------------------------VC++/VC++ .Net------------------------------------------------------
+
+//typedef specifier
+#include <cstdio>
+
+//typedef oldname newname
+typedef struct mystructtag 
+{
+   int   x;
+   double y;
+   char* z; 
+} mystruct;
+
+int main() 
+{
+   mystruct Test1, *Test2;
+   Test1.x = 111;
+   Test1.y = 1.111;
+   printf("Test1.x = %d\nTest1.y = %f\n", Test1.x, Test1.y);
+   
+   Test1.z = "This is a string";
+   Test2 = &Test1;
+   printf("Test1->z = %s\n",Test2->z);
+   return 0;
+}
+
+----------------------------------------G++ on Linux/Fedora------------------------------------------------
+
+///////typestruct.cpp///////////
+//typedef specifier
+#include <cstdio>
+using namespace std;
+
+//typedef oldname newname
+typedef struct mystructtag
+{
+   int   x;
+   double y;
+   char* z;
+} mystruct;
+
+int main()
+{
+   mystruct Test1, *Test2;
+   Test1.x = 111;
+   Test1.y = 1.111;
+   printf("Test1.x = %d\nTest1.y = %f\n", Test1.x, Test1.y);
+
+   Test1.z = "This is a string";
+   Test2 = &Test1;
+   printf("Test1->z = %s\n", Test2->z);
+   return 0;
+}
+
+============================================================================================================

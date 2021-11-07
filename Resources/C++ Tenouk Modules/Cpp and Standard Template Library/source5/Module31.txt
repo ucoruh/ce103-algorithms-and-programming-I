@@ -1,0 +1,1132 @@
+============================MODULE31=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+g++ are given at the end of every Module. For example if you want to
+compile C++ codes using VC++/VC++ .Net, change the header file accordingly.
+Just need some modification for the header files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+============================HERE, ALL C++ codes==========================
+
+//iterator simple example
+#include <iostream>
+#include <list>
+using namespace std;
+
+int main()
+{
+//lst, list container for character elements
+list<char> lst;
+
+//append elements from 'A' to 'Z'
+//to the list lst container
+for(char chs='A'; chs<='Z'; ++chs)
+lst.push_back(chs);
+
+//iterate over all elements and print,
+//separated by space
+list<char>::const_iterator pos;
+for(pos = lst.begin(); pos != lst.end(); ++pos)
+cout<<*pos<<' ';
+cout<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, set example
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main()
+{
+//set container of int
+//data type
+set<int> tst;
+
+//insert elements
+tst.insert(12);
+tst.insert(21);
+tst.insert(32);
+tst.insert(31);
+tst.insert(9);
+tst.insert(14);
+tst.insert(21);
+tst.insert(31);
+tst.insert(7);
+
+//iterate over all elements and print,
+//separated by space
+set<int>::const_iterator pos;
+//preincrement and predecrement are faster
+//than postincrement and postdecrement...
+for(pos = tst.begin(); pos != tst.end(); ++pos)
+cout<<*pos<<' ';
+cout<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, multiset example
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main()
+{
+//multiset container of int
+//data type
+multiset<int> tst;
+
+//insert elements
+tst.insert(12);
+tst.insert(21);
+tst.insert(32);
+tst.insert(31);
+tst.insert(9);
+tst.insert(14);
+tst.insert(21);
+tst.insert(31);
+tst.insert(7);
+
+//iterate over all elements and print,
+//separated by space
+multiset<int>::const_iterator pos;
+//preincrement and predecrement are faster
+//than postincrement and postdecrement...
+for(pos = tst.begin(); pos != tst.end(); ++pos)
+cout<<*pos<<' ';
+cout<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, map simple example
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main()
+{
+//type of the collection
+map<int, string> mp;
+
+//set container for int/string values
+//insert some elements in arbitrary order
+//notice a value with key 1...
+mp.insert(make_pair(5,"learn"));
+mp.insert(make_pair(2,"map"));
+mp.insert(make_pair(1,"Testing"));
+mp.insert(make_pair(7,"tagged"));
+mp.insert(make_pair(4,"strings"));
+mp.insert(make_pair(6,"iterator!"));
+mp.insert(make_pair(1,"the"));
+mp.insert(make_pair(3,"tagged"));
+
+//iterate over all elements and print,
+//element member second is the value
+map<int, string>::iterator pos;
+for(pos = mp.begin(); pos != mp.end(); ++pos)
+cout<<pos->second<<' ';
+cout<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, multimap simple example
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main()
+{
+//type of the collection
+multimap<int, string> mmp;
+
+//set container for int/string values
+//insert some elements in arbitrary order
+//notice a value of key 1
+mmp.insert(make_pair(5,"learn"));
+mmp.insert(make_pair(2,"map"));
+mmp.insert(make_pair(1,"Testing"));
+mmp.insert(make_pair(7,"tagged"));
+mmp.insert(make_pair(4,"strings"));
+mmp.insert(make_pair(6,"iterator!"));
+mmp.insert(make_pair(1,"the"));
+mmp.insert(make_pair(3,"tagged"));
+
+//iterate over all elements and print,
+//element member second is the value
+multimap<int, string>::iterator pos;
+for(pos = mmp.begin(); pos != mmp.end(); ++pos)
+cout<<pos->second<<' ';
+cout<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, advance()
+#include <iterator>
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+
+list<int> lst;
+for(i = 1; i <= 10; ++i)  
+lst.push_back(i);
+
+list<int>::iterator lstIter, lstpos = lst.begin();
+
+cout<<"The lst list data: ";
+for(lstIter = lst.begin(); lstIter != lst.end(); lstIter++)
+cout<<*lstIter<<" ";
+cout<<endl;
+cout<<"The the first element pointed by iterator lstpos is: "<<*lstpos<<endl;
+
+advance(lstpos, 5);
+cout<<"Advanced lstpos 5 steps forward pointing to the "<<*lstpos<<endl;
+
+advance(lstpos, -4);
+cout<<"Moved lstpos 4 steps backward pointing to the "<<*lstpos<<endl;
+
+advance(lstpos, 8);
+cout<<"Finally, the last element pointed by iterator lstpos is: "<<*lstpos<<endl;
+
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, back_inserter()
+#include <iterator>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+vector<int> vec;
+for(i = 1; i < 5; ++i)  
+vec.push_back(i);
+
+vector <int>::iterator vecIter;
+cout<<"The vector vec data: ";
+for(vecIter = vec.begin(); vecIter != vec.end(); vecIter++)
+cout<<*vecIter<<" ";
+cout<<endl;
+
+//Insertions using template function
+back_insert_iterator<vector<int> > backiter(vec);
+*backiter = 11;
+backiter++;
+*backiter = 9;
+backiter++;
+*backiter = 27;
+
+cout<<"\nOperation: *backiter = 11 then backiter++...\n";
+cout<<"New vector vec data: ";
+for(vecIter = vec.begin(); vecIter != vec.end(); vecIter++)
+cout<<*vecIter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: back_inserter(vec) = 21...\n";
+//Alternatively, insertions using the
+//back_inserter() member function
+back_inserter(vec) = 21;
+back_inserter(vec) = 17;
+back_inserter(vec) = 33;
+cout<<"New vector vec data: ";
+for(vecIter = vec.begin(); vecIter != vec.end(); vecIter++)
+cout<<*vecIter<<" ";
+cout<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, distance()
+#include <iterator>
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+
+list<int> lst;
+for(i = -1; i < 10; ++i) 
+lst.push_back(2*i);
+
+list <int>::iterator lstiter, lstpos = lst.begin();
+cout<<"The list lst data: ";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: lstpos = lst.begin()\n";
+cout<<"The first element pointed by iterator lstpos: "<<*lstpos<<endl;
+
+cout<<"\nOperation: advance(lstpos, 5)\n";
+advance(lstpos, 5);
+cout<<"lstpos is advanced 5 steps forward to point to: "<<*lstpos<<endl;
+
+list<int>::difference_type lstdiff;
+cout<<"\nOperation: lstdiff = distance(lst.begin(), lstpos)\n";
+lstdiff = distance(lst.begin(), lstpos);
+cout<<"The distance from lst.begin() to lstpos is: "<<lstdiff<<" elements"<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, front_inserter()
+#include <iterator>
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+list<int>::iterator lstiter;
+
+list<int> lst;
+for(i = -2; i<=5; ++i)
+lst.push_back(i);
+
+cout<<"The list lst data: ";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+
+//Using the template function to insert an element
+cout<<"\nOperation: ++Iter then *Iter = 12...\n";
+front_insert_iterator< list < int> > Iter(lst);
+*Iter = 21;
+++Iter;
+*Iter = 12;
+
+cout<<"New list lst data: ";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: front_inserter(lst) = 23...\n";
+//Alternatively, using the front_insert() member function
+front_inserter(lst) = 23;
+front_inserter(lst) = 9;
+
+cout<<"New list lst data: ";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, inserter()
+#include <iterator>
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+list <int>::iterator lstiter;
+
+list<int> lst;
+for(i = -3; i<=2; ++i)  
+lst.push_back(i);
+
+cout<<"The list lst data: ";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+
+//Using the template version to insert an element
+insert_iterator<list <int> > Iter(lst, lst.begin());
+*Iter = 7;
+++Iter;
+*Iter = 12;
+
+cout<<"\nOperation: *Iter = 7 then ++Iter...\n";
+cout<<"After the insertions, the list lst data: \n";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+
+//Alternatively, using the member function inserter()
+//to insert an element
+inserter(lst, lst.end()) = 31;
+inserter(lst, lst.end()) = 42;
+
+cout<<"\nOperation: inserter(lst, lst.end()) = 42...\n";
+cout<<"After the insertions, the list lst data: \n";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, operator!=
+#include <iterator>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+vector<int> vec;
+for(i = 1; i<=10; ++i)  
+vec.push_back(i);
+
+vector<int>::iterator veciter;
+cout<<"The vector vec data: ";
+for(veciter = vec.begin(); veciter != vec.end(); veciter++)
+cout<<*veciter<<" ";
+cout<<endl;
+
+//Initializing reverse_iterators to the last element
+vector<int>::reverse_iterator rvecpos1 = vec.rbegin(), rvecpos2 = vec.rbegin();
+
+cout<<"The iterators rvecpos1 and rvecpos2 points to the first\n"
+<<"element in the reversed sequence: "<<*rvecpos1<<endl;
+
+cout<<"\nOperation: rvecpos1 != rvecpos2\n";
+if(rvecpos1 != rvecpos2)
+cout<<"The iterators are not equal."<<endl;
+else
+cout<<"The iterators are equal."<<endl;
+
+rvecpos1++;
+cout<<"\nThe iterator rvecpos1 now points to the second\n"
+<<"element in the reversed sequence: "<<*rvecpos1<<endl;
+
+cout<<"\nOperation: rvecpos1 != rvecpos2\n";
+if(rvecpos1 != rvecpos2)
+cout<<"The iterators are not equal."<<endl;
+else
+cout<<"The iterators are equal."<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, operator==
+#include <iterator>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+
+vector<int> vec;
+for(i = 11; i<15; ++i)
+vec.push_back(i);
+
+vector <int>::iterator veciter;
+cout<<"The vector vec data: ";
+for(veciter = vec.begin(); veciter != vec.end(); veciter++)
+cout<<*veciter<<" ";
+cout<<endl;
+
+//Initializing reverse_iterators to the last element
+vector<int>::reverse_iterator rvecpos1 = vec.rbegin(), rvecpos2 = vec.rbegin();
+
+cout<<"\nThe iterators rvecpos1 and rvecpos2 points\nto the first"
+<<"element in the reversed sequence: "<<*rvecpos1<<endl;
+
+cout<<"\nOperation: rvecpos1 == rvecpos2\n";
+if(rvecpos1 == rvecpos2)
+cout<<"The iterators are equal."<<endl;
+else
+cout<<"The iterators are not equal."<<endl;
+
+rvecpos1++;
+cout<<"\nThe iterator rvecpos1 now points to the second\n"
+<<"element in the reversed sequence: "<<*rvecpos1<<endl;
+
+cout<<"\nOperation: rvecpos1 == rvecpos2\n";
+if(rvecpos1 == rvecpos2)
+cout<<"The iterators are equal."<<endl;
+else
+cout<<"The iterators are not equal."<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, operator<
+#include <iterator>
+#include <vector>
+#include <iostream>
+
+int main()
+{
+using namespace std;
+int i;
+vector<int> vec;
+for(i = 10; i<= 17; ++i)
+vec.push_back(i);
+
+vector<int>::iterator veciter;
+cout<<"The initial vector vec is: ";
+for(veciter = vec.begin(); veciter != vec.end(); veciter++)
+cout<<*veciter<<" ";
+cout<<endl;
+
+//Initializing reverse_iterators to the last element
+vector<int>::reverse_iterator rvecpos1 = vec.rbegin(), rvecpos2 = vec.rbegin();
+
+cout<<"The iterators rvecpos1 & rvecpos2 initially point\nto the "
+<<"first element in the reversed sequence: "
+<<*rvecpos1<<endl;
+
+cout<<"\nOperation: rvecpos1 < rvecpos2\n";
+if(rvecpos1 < rvecpos2)
+cout<<"The iterator rvecpos1 is less than"
+<<" the iterator rvecpos2."<<endl;
+else
+cout<<"The iterator rvecpos1 is not less than"
+<<" the iterator rvecpos2."<<endl;
+
+cout<<"\nOperation: rvecpos1 > rvecpos2\n";
+if(rvecpos1 > rvecpos2)
+cout<<"The iterator rvecpos1 is greater than"
+<<" the iterator rvecpos2."<<endl;
+else
+cout<<"The iterator rvecpos1 is not greater than"
+<<" the iterator rvecpos2."<<endl;
+
+cout<<"\nOperation: rvecpos2++;\n";
+rvecpos2++;
+cout<<"The iterator rvecpos2 now points to the second\n"
+<<"element in the reversed sequence: "
+<<*rvecpos2<<endl;
+
+cout<<"\nOperation: rvecpos1 < rvecpos2\n";
+if(rvecpos1 < rvecpos2)
+cout<<"The iterator rvecpos1 is less than"
+<<" the iterator rvecpos2."<<endl;
+else
+cout<<"The iterator rvecpos1 is not less than"
+<<" the iterator rvecpos2."<<endl;
+
+cout<<"\nOperation: rvecpos1 > rvecpos2\n";
+if(rvecpos1 > rvecpos2)
+cout<<"The iterator rvecpos1 is greater than"
+<<" the iterator rvecpos2."<<endl;
+else
+cout<<"The iterator rvecpos1 is not greater than"
+<<" the iterator rvecpos2."<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, operator<=
+#include <iterator>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+vector<int> vec;
+for(i = 10; i<= 15; ++i)
+vec.push_back(i);
+
+vector <int>::iterator veciter;
+cout<<"The vector vec data: ";
+for(veciter = vec.begin(); veciter != vec.end(); veciter++)
+cout<<*veciter<<" ";
+cout<<endl;
+
+vector <int>::reverse_iterator rvecpos1 = vec.rbegin()+1, rvecpos2 = vec.rbegin();
+
+cout<<"The iterator rvecpos1 points to the\n"
+<<"second element in the reversed sequence: "
+<<*rvecpos1<<endl;
+
+cout<<"The iterator rvecpos2 points to the\n"
+<<"first element in the reversed sequence: "
+<<*rvecpos2<<endl;
+
+cout<<"\nOperation: rvecpos1<=rvecpos2\n";
+if(rvecpos1<=rvecpos2)
+cout<<"The iterator rvecpos1 is less than or\n"
+<<"equal to the iterator rvecpos2."<<endl;
+else
+cout<<"The iterator rvecpos1 is greater than\n"
+<<"the iterator rvecpos2."<<endl;
+
+cout<<"\nOperation: rvecpos2++\n";
+rvecpos2++;
+cout<<"The iterator rvecpos2 now points to the second\n"
+<<"element in the reversed sequence: "<<*rvecpos2<<endl;
+
+cout<<"\nOperation: rvecpos1 <= rvecpos2\n";
+if(rvecpos1 <= rvecpos2)
+cout<<"The iterator rvecpos1 is less than or\n"
+<<"equal to the iterator rvecpos2."<<endl;
+else
+cout<<"The iterator rvecpos1 is greater than\n"
+<<"the iterator rvecpos2."<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, operator<=
+#include <iterator>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+vector<int> vec;
+for(i = 10; i<= 15; ++i)
+vec.push_back(i);
+
+vector <int>::iterator veciter;
+cout<<"The vector vec data: ";
+for(veciter = vec.begin(); veciter != vec.end(); veciter++)
+cout<<*veciter<<" ";
+cout<<endl;
+
+vector <int>::reverse_iterator rvecpos1 = vec.rbegin(), rvecpos2 = vec.rbegin();
+
+cout<<"The iterators rvecpos1 & rvecpos2 point to the\n"
+<<"second element in the reversed sequence: "
+<<*rvecpos1<<endl;
+
+cout<<"\nOperation: rvecpos2 > rvecpos1\n";
+if(rvecpos2 > rvecpos1)
+cout<<"The iterator rvecpos2 is greater than\n"
+<<"the iterator rvecpos1."<<endl;
+else
+cout<<"The iterator rvecpos2 is not greater than\n"
+<<"the iterator rvecpos1."<<endl;
+
+cout<<"\nOperation: rvecpos2++\n";
+rvecpos2++;
+cout<<"The iterator rvecpos2 now points to the second\n"
+<<"element in the reversed sequence: "<<*rvecpos2<<endl;
+
+cout<<"\nOperation: rvecpos2 > rvecpos1\n";
+if(rvecpos2 > rvecpos1)
+cout<<"The iterator rvecpos2 is greater than\n"
+<<"the iterator rvecpos1."<<endl;
+else
+cout<<"The iterator rvecpos2 is not greater than\n"
+<<"the iterator rvecpos1."<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, operator>=
+#include <iterator>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+vector<int> vec;
+for(i = 10; i<= 15; ++i)
+vec.push_back(i);
+
+vector <int>::iterator veciter;
+cout<<"The vector vec data: ";
+for(veciter = vec.begin(); veciter != vec.end(); veciter++)
+cout<<*veciter<<" ";
+cout<<endl;
+
+vector <int>::reverse_iterator rvecpos1 = vec.rbegin(), rvecpos2 = vec.rbegin();
+
+cout<<"The iterators rvecpos1 & rvecpos2 point to the\n"
+<<"second element in the reversed sequence: "
+<<*rvecpos1<<endl;
+
+cout<<"\nOperation: rvecpos2 >= rvecpos1\n";
+if(rvecpos2 >= rvecpos1)
+cout<<"The iterator rvecpos2 is greater than or\n"
+<<"equal to the iterator rvecpos1."<<endl;
+else
+cout<<"The iterator rvecpos2 is not greater than\n"
+<<"the iterator rvecpos1."<<endl;
+
+cout<<"\nOperation: rvecpos2++\n";
+rvecpos2++;
+cout<<"The iterator rvecpos2 now points to the second\n"
+<<"element in the reversed sequence: "<<*rvecpos2<<endl;
+
+cout<<"\nOperation: rvecpos2 >= rvecpos1\n";
+if(rvecpos2 >= rvecpos1)
+cout<<"The iterator rvecpos2 is greater than\n"
+<<"or equal to the iterator rvecpos1."<<endl;
+else
+cout<<"The iterator rvecpos2 is not greater than\n"
+<<"the iterator rvecpos1."<<endl;
+
+cout<<"\nOperation: rvecpos1 >= rvecpos2\n";
+if(rvecpos1 >= rvecpos2)
+cout<<"The iterator rvecpos1 is greater than\n"
+<<"or equal to the iterator rvecpos2."<<endl;
+else
+cout<<"The iterator rvecpos1 is not greater than\n"
+<<"the iterator rvecpos2."<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, operator+
+#include <iterator>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+
+vector<int> vec;
+for(i = 10; i<=15; ++i)
+vec.push_back(i);
+
+vector<int>::iterator veciter;
+cout<<"The vector vec data: ";
+for(veciter = vec.begin(); veciter != vec.end(); veciter++)
+cout<<*veciter<<" ";
+cout<<endl;
+
+vector<int>::reverse_iterator rveciter1 = vec.rbegin();
+cout<<"\nThe iterator rveciter1 initially points to\n"
+<<"the first element in the reversed sequence: "
+<<*rveciter1<<endl;
+
+cout<<"\nOperation: rveciter1 = diff + rveciter1\n";
+vector<int>::difference_type diff = 4;
+rveciter1 = diff + rveciter1;
+cout<<"The iterator rveciter1 now points to the fifth\n"
+<<"element in the reversed sequence: "
+<<*rveciter1<<endl;
+
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, operator-
+#include <iterator>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+
+vector<int> vec;
+for(i = 10; i<=15; ++i)  
+vec.push_back(i);
+
+vector<int>::iterator veciter;
+cout<<"The initial vector vec is: ";
+for(veciter = vec.begin(); veciter != vec.end(); veciter++)
+cout<<*veciter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: rvecpos1 = vec.rbegin() and rvecpos2 = vec.rbegin()\n";
+vector<int>::reverse_iterator rvecpos1 = vec.rbegin(), rvecpos2 = vec.rbegin();
+
+cout<<"The iterators rvecpos1 & rvecpos2 initially point to\n"
+<<"the first element in the reversed sequence: "<<*rvecpos1<<endl;
+
+cout<<"\nOperation: for(i = 1; i<=5; ++i) and rvecpos2++\n";
+for(i = 1; i<=5; ++i)  
+rvecpos2++;
+
+cout<<"The iterator rvecpos2 now points to the sixth\n"
+<<"element in the reversed sequence: "<<*rvecpos2<<endl;
+
+cout<<"\nOperation: diff = rvecpos2 - rvecpos1\n";
+vector<int>::difference_type diff = rvecpos2 - rvecpos1;
+cout<<"The iterators difference: rvecpos2 - rvecpos1= "<<diff<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, template class
+#include <iterator>
+#include <vector>
+#include <iostream>
+#include <list>
+using namespace std;
+
+int main()
+{
+vector<int> vec1;
+vector<char> vec2;
+list<char> lst;
+iterator_traits<vector<int>::iterator>::iterator_category cati;
+iterator_traits<vector<char>::iterator>::iterator_category catc;
+iterator_traits<list<char>::iterator>::iterator_category catlst;
+
+//both are random-access iterators
+cout<<"The type of iterator for vector<int> is\n"
+<<"identified by the tag:\n" 
+<<" "<<typeid(cati).name()<<endl;
+
+cout<<"The type of iterator for vector<char> is \n"
+<<"identified by the tag:\n" 
+<<" "<<typeid(catc).name()<<"\n";
+
+cout<<"\nOperation: typeid(cati) == typeid(catc)\n";
+if(typeid(cati) == typeid(catc))
+cout<<"The iterators type are the same."<<endl<<endl;
+else
+cout<<"The iterators type are not the same."<<endl<<endl;
+
+//But the list iterator is bidirectional, not random access
+cout<<"The type of iterator for list<char> is\n"
+<<"identified by the tag:\n" 
+<<typeid(catlst).name()<<endl;
+
+cout<<"\nOperation: typeid(vec1.begin())==typeid(vec2.begin())\n";
+if(typeid(vec1.begin()) == typeid(vec2.begin()))
+cout<<"The iterators type are the same."<<endl;
+else
+cout<<"The iterators type are not the same."<<endl;
+
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//iterator, template class
+#include <iostream>
+#include <iterator>
+#include <vector>
+#include <list>
+using namespace std;
+
+template<class ite>
+//create a function of template class type...
+void funct(ite i1, ite i2)
+{
+iterator_traits<ite>::iterator_category cat;
+cout<<"Test the iterator type...\n";
+cout<<typeid(cat).name()<<endl;
+
+//print the container data
+cout<<"The data: ";
+while(i1 != i2)
+{
+iterator_traits<ite>::value_type p;
+p = *i1;
+cout<<p<<" ";
+i1++;
+};   
+cout<<endl<<endl;
+};
+
+int main() 
+{
+//declare containers vector and list
+vector<char> vec(9, 'T');
+list<int> lst(8, 7);
+
+//function call...
+funct(vec.begin(), vec.end());
+funct(lst.begin(), lst.end());
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//insert_iterator, container_type  
+#include <iterator>
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+list<int> lst1;
+insert_iterator<list<int> >::container_type lst2 = lst1;
+inserter(lst2, lst2.end()) = 12;
+inserter(lst2, lst2.end()) = 17;
+inserter(lst2, lst2.begin()) = 24;
+inserter(lst2, lst2.begin()) = 9;
+
+list<int>::iterator veciter;
+cout<<"The list lst2 data: ";
+for(veciter = lst2.begin(); veciter != lst2.end(); veciter++)
+cout<<*veciter<<" ";
+cout<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//insert_iterator, container_reference
+#include <iterator>
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+list<int> lst;
+insert_iterator<list<int> > iivIter(lst, lst.begin());
+*iivIter = 12;
+*iivIter = 21;
+*iivIter = 9;
+*iivIter = 31;
+
+list<int>::iterator lstIter;
+cout<<"The list lst data: ";
+for(lstIter = lst.begin(); lstIter != lst.end(); lstIter++)
+cout<<*lstIter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: refirst = *(lst.begin())\n";
+insert_iterator<list<int> >::reference refirst = *(lst.begin());
+cout<<"The first element in the list lst is: "<<refirst<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//insert_iterator, insert_iterator
+#include <iterator>
+#include <list>
+#include <iostream>
+
+int main()
+{
+using namespace std;
+int i;
+list <int>::iterator lstiter;
+
+list<int> lst;
+for(i = 10; i<15; ++i)  
+lst.push_back(i);
+
+cout<<"The list lst data: ";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+
+//Using the member function to insert an element
+cout<<"\nOperation: inserter(lst, lst.begin()) = 21...";
+inserter(lst, lst.begin()) = 21;
+inserter(lst, lst.begin()) = 27;
+
+cout<<"\nAfter the insertions, the list lst data:\n";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+
+//Alternatively, using the template version
+cout<<"\nOperation: Iter(lst, lst.end()) and *Iter = 9...";
+insert_iterator< list < int> > Iter(lst, lst.end());
+*Iter = 9;
+*Iter = 33;
+
+cout<<"\nAfter the insertions, the list lst data:\n";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//insert_iterator, operator*
+#include <iterator>
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+list<int>::iterator lstiter;
+
+list<int> lst;
+for(i = 10; i<=15; ++i)  
+lst.push_back(i);
+
+cout<<"The original list lst data: ";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: Iter(lst, lst.begin()) and *Iter = 21... \n";
+insert_iterator< list < int> > Iter(lst, lst.begin());
+*Iter = 21;
+*Iter = 9;
+*Iter = 34;
+
+cout << "After the insertions, the list lst data:\n";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+return 0;
+}
+
+--------------------------------------G++--------------------------------------------
+
+//*****iteratoradvance.cpp**********
+//iterator, advance()
+#include <iterator>
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int i;
+
+list<int> lst;
+for(i = 1; i <= 10; ++i)  
+lst.push_back(i);
+
+list<int>::iterator lstIter, lstpos = lst.begin();
+
+cout<<"The lst list data: ";
+for(lstIter = lst.begin(); lstIter != lst.end(); lstIter++)
+cout<<*lstIter<<" ";
+cout<<endl;
+cout<<"The the first element pointed by iterator lstpos is: "<<*lstpos<<endl;
+
+advance(lstpos, 5);
+cout<<"Advanced lstpos 5 steps forward pointing to the "<<*lstpos<<endl;
+
+advance(lstpos, -4);
+cout<<"Moved lstpos 4 steps backward pointing to the "<<*lstpos<<endl;
+
+advance(lstpos, 8);
+cout<<"Finally, the last element pointed by iterator lstpos is: "<<*lstpos<<endl;
+
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//*******insertiterator.cpp********
+//insert_iterator, insert_iterator
+#include <iterator>
+#include <list>
+#include <iostream>
+
+int main()
+{
+using namespace std;
+int i;
+list <int>::iterator lstiter;
+
+list<int> lst;
+for(i = 10; i<15; ++i)  
+lst.push_back(i);
+
+cout<<"The list lst data: ";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+
+//Using the member function to insert an element
+cout<<"\nOperation: inserter(lst, lst.begin()) = 21...";
+inserter(lst, lst.begin()) = 21;
+inserter(lst, lst.begin()) = 27;
+
+cout<<"\nAfter the insertions, the list lst data:\n";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+
+//Alternatively, using the template version
+cout<<"\nOperation: Iter(lst, lst.end()) and *Iter = 9...";
+insert_iterator< list < int> > Iter(lst, lst.end());
+*Iter = 9;
+*Iter = 33;
+
+cout<<"\nAfter the insertions, the list lst data:\n";
+for(lstiter = lst.begin(); lstiter != lst.end(); lstiter++)
+cout<<*lstiter<<" ";
+cout<<endl;
+return 0;
+}
+
+=============================================================================================
+

@@ -1,0 +1,956 @@
+============================MODULEAA=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+If you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (It is C++ header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module 23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes, let the compiler
+decide... :o)
+==============================================================================================
+=======================Just Microsoft & Standard C Codes HERE=================================
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+// One process creates the mutex object.
+HANDLE hMutex;
+char * MName = "MyMutex";
+
+hMutex = CreateMutex(
+    NULL,     // no security descriptor
+    FALSE,    // mutex not owned
+    MName);   // object name
+
+if (hMutex == NULL)
+    printf("CreateMutex(): error: %d.\n", GetLastError());
+else
+{
+    if (GetLastError() == ERROR_ALREADY_EXISTS)
+       printf("CreateMutex(): opened existing %s mutex.\n", MName);
+    else
+       printf("CreateMutex(): new %s mutex successfully created.\n", MName);
+}
+
+ return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main() 
+{ 
+HANDLE hMutex1; 
+
+hMutex1 = OpenMutex( 
+    MUTEX_ALL_ACCESS, // request full access
+    FALSE,            // handle not inheritable
+    MName);           // object name
+
+if (hMutex1 == NULL)
+printf("OpenMutex(): error: %d.\n", GetLastError());
+else
+       printf("OpenMutex(): %s mutex opened successfully.\n", MName);
+
+return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+// One process creates the mutex object.
+HANDLE hMutex; 
+char * MName = "MyMutex";
+
+hMutex = CreateMutex( 
+    NULL,     // no security descriptor
+    FALSE,    // mutex not owned
+    MName);   // object name
+
+if (hMutex == NULL) 
+    printf("CreateMutex(): error: %d.\n", GetLastError()); 
+else
+{
+    if (GetLastError() == ERROR_ALREADY_EXISTS) 
+       printf("CreateMutex(): opened existing %s mutex.\n", MName); 
+    else 
+       printf("CreateMutex(): new %s mutex successfully created.\n", MName);
+}
+
+//=================================================================
+HANDLE hMutex1; 
+
+hMutex1 = OpenMutex( 
+    MUTEX_ALL_ACCESS, // request full access
+    FALSE,            // handle not inheritable
+    MName);           // object name
+
+if (hMutex1 == NULL)
+       printf("OpenMutex(): error: %d.\n", GetLastError());
+else
+       printf("OpenMutex(): %s mutex opened successfully.\n", MName);
+
+ return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+HANDLE CreateNewSemaphore(LPSECURITY_ATTRIBUTES lpsa, 
+    LONG cInitial, LONG cMax, LPTSTR lpszName) 
+{ 
+    HANDLE hSem; 
+
+    // Create or open a named semaphore.
+    hSem = CreateSemaphore( 
+        lpsa,         // security attributes, NULL = handle cannot be inherited
+        cInitial,     // initial count
+        cMax,         // maximum count
+        lpszName);    // semaphore name
+
+    // Close handle, and return NULL if existing semaphore opened.
+    if (hSem == NULL && GetLastError() == ERROR_ALREADY_EXISTS) 
+    {
+        CloseHandle(hSem); 
+        return NULL; 
+    }
+       else
+       {
+              printf("Checking the last error: %d.\n", GetLastError());
+              printf("CreateNewSemaphore(): New semaphore was created successfully.\n");
+       }
+
+    // If new semaphore was created, return the handle.
+    return hSem;
+}
+
+int main()
+{
+       LPSECURITY_ATTRIBUTES lpsa = NULL;
+       LONG cInitial = 0;
+       LONG cMax = 10;
+       LPTSTR lpszName = "MySemaphore";
+
+       HANDLE hSemaphore = CreateNewSemaphore(lpsa, cInitial, cMax, lpszName);
+       return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+HANDLE hEvents[2];
+DWORD i, dwEvent;
+
+// Create two event objects.
+for (i = 0; i < 2; i++)
+{
+    hEvents[i] = CreateEvent(
+        NULL,   // no security attributes
+        FALSE,  // auto-reset event object
+        FALSE,  // initial state is non-signaled (suspended)
+        NULL);  // unnamed object
+
+    if (hEvents[i] == NULL)
+    {
+        printf("CreateEvent() error: %d\n", GetLastError());
+        ExitProcess(0);
+    }
+    else
+        printf("CreateEvent() for event #%d is OK.\n", i);
+}
+
+// The creating thread waits for other threads or processes
+// to signal the event objects.
+dwEvent = WaitForMultipleObjects(
+    2,       // number of objects in array
+    hEvents, // array of objects
+    FALSE,   // wait for any object instead of all...
+    4000);   // 4000 ms wait....
+
+printf("Some verification, the return value is: %d.\n", dwEvent);
+printf("Another verification, the last error is: %d.\n", GetLastError());
+
+// Return value indicates which event is signaled.
+switch (dwEvent)
+{
+    // hEvent[0] was signaled.
+    case WAIT_OBJECT_0 + 0: // 0 + 0 = 0
+	printf("Event #%d is signaled.\n", dwEvent);
+       // TODO: Perform tasks required by this event...
+       break;
+    // hEvent[1] was signaled.
+    case WAIT_OBJECT_0 + 1: // 0 + 1 = 1
+	printf("Event #%d is signaled.\n", dwEvent);
+       // TODO: Perform tasks required by this event...
+       break;
+    // Return value is invalid.
+    default: 
+	printf("Wait error: %d\n", GetLastError());
+// Exit peacefully or use customize error message...
+ExitProcess(0);
+}
+     return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main(int argc, char argv[])
+{
+DWORD dwWaitStatus;
+HANDLE dwChangeHandles[2];
+char * DirName = "F:\\myproject"; // file
+char * DirName1 = "F:\\";         // directory
+
+// Watch the F:\myproject directory for file creation and deletion. 
+dwChangeHandles[0] = FindFirstChangeNotification( 
+    DirName,                       // directory to watch 
+    FALSE,                         // do not watch the subtree 
+    FILE_NOTIFY_CHANGE_FILE_NAME); // watch file name changes 
+
+if (dwChangeHandles[0] == INVALID_HANDLE_VALUE)
+       ExitProcess(GetLastError());
+else
+       printf("FindFirstChangeNotification() for file change is OK.\n");
+
+// Watch the F:\\ subtree for directory creation and deletion. 
+dwChangeHandles[1] = FindFirstChangeNotification( 
+    DirName1,                      // directory to watch 
+    TRUE,                          // watch the subtree 
+    FILE_NOTIFY_CHANGE_DIR_NAME);  // watch directory name changes 
+
+if (dwChangeHandles[1] == INVALID_HANDLE_VALUE) 
+    ExitProcess(GetLastError());
+else
+    printf("FindFirstChangeNotification() for directory change is OK.\n");
+
+// Again...some messages
+if (dwChangeHandles[0] != INVALID_HANDLE_VALUE && dwChangeHandles[1] != INVALID_HANDLE_VALUE)
+{
+       printf("\nI'm monitoring any file deletion/creation in %s and\n", DirName);
+       printf("I'm monitoring any directory deletion/creation in %s.\n", DirName1);
+}
+
+// Change notification is set. Now wait on both notifications 
+// handles and refresh accordingly. 
+while (TRUE) 
+{
+    // Wait for notification.
+    dwWaitStatus = WaitForMultipleObjects(2, dwChangeHandles, FALSE, INFINITE); 
+
+    switch (dwWaitStatus) 
+    {
+        case 0: // WAIT_OBJECT_0
+            // A file was created or deleted in F:\myproject. 
+            // Refresh this directory and restart the change notification.
+            // May call application define function here...
+            if (FindNextChangeNotification(dwChangeHandles[0]) == FALSE) 
+                ExitProcess(GetLastError());
+            else
+               printf("File created/deleted in %s.\n", DirName);
+            break;
+
+        case 1: // WAIT_OBJECT_0 + 1
+
+            // A directory was created or deleted in F:\. 
+            // Refresh the directory tree and restart the change notification.
+            // May call application define function here...
+            if (FindNextChangeNotification(dwChangeHandles[1]) == FALSE) 
+                ExitProcess(GetLastError());
+            else
+               printf("Directory was deleted/created in %s.\n", DirName1);
+            break; 
+
+            default:
+              printf("FindNextChangeNotification(): Invalid return value.\n");
+              ExitProcess(GetLastError());
+       }
+}
+
+     // May close the handles...
+     // FindCloseChangeNotification(dwChangeHandles[0]);
+     // FindCloseChangeNotification(dwChangeHandles[1]);
+     return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+HANDLE hMutex; 
+
+// Create a mutex with no initial owner...
+hMutex = CreateMutex( 
+       NULL,           // no security attributes
+       FALSE,          // initially not owned
+       "MutexToProtectSomeData"); // name of mutex
+
+if (hMutex == NULL) 
+{
+	// Check for error...
+	printf("CreateMutex() failed, error: %d.\n", GetLastError());
+}
+else
+	printf("CreateMutex() is OK.\n");
+
+return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+BOOL FunctionToWriteSomeData(HANDLE hMutex) 
+{ 
+    DWORD dwWaitResult; 
+
+     // Request the ownership of mutex...
+     dwWaitResult = WaitForSingleObject( 
+        hMutex,   // handle to mutex
+        5000L);   // five-second time-out interval
+
+    switch (dwWaitResult) 
+    {
+        // The thread got the mutex ownership...
+        case WAIT_OBJECT_0:
+            // Simple structured exception handling...
+            __try {
+                    printf("the mutex is signaled.\n");
+                    // TODO: Write some data...
+                   } 
+
+            __finally { 
+                // Release the ownership of the mutex object.
+                if (!ReleaseMutex(hMutex)) 
+                { 
+                    // Deal with error.
+                    printf("ReleaseMutex() failed.\n");
+                    ExitProcess(0);
+                 } 
+                break; 
+            } 
+
+        // Cannot get the mutex ownership due to time-out.
+        case WAIT_TIMEOUT:
+              printf("time-out interval elapsed, and the object's state is non-signaled.\n");
+              return FALSE; 
+
+        // Got the ownership of the abandoned mutex object.
+        case WAIT_ABANDONED:
+              printf("the mutex is set to non-signaled.\n");
+              return FALSE; 
+    }
+    return TRUE; 
+}
+
+//===========================================================
+int main()
+{
+       HANDLE hMutex; 
+
+       // Create a mutex with no initial owner.
+       hMutex = CreateMutex( 
+              NULL,                       // no security attributes
+              FALSE,                      // initially not owned
+              "MutexToProtectSomeData");  // name of mutex
+
+       if (hMutex == NULL) 
+       {
+		  // Check for error...
+              printf("CreateMutex() failed, error: %d.\n", GetLastError());
+       }
+       else
+              printf("CreateMutex() is OK.\n");
+
+              // Write some data function call...
+              BOOL Test = FunctionToWriteSomeData(hMutex);
+              // Verify the returned value
+              printf("The function returned value: %d.\n", Test);
+
+	return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+       HANDLE hSemaphore;
+       LONG cMax = 15;
+
+       // Create a semaphore with initial and max. counts of 15...
+       hSemaphore = CreateSemaphore(
+              NULL,   // no security attributes
+              cMax,   // initial count
+              cMax,   // maximum count
+              NULL);  // unnamed semaphore
+
+       if (hSemaphore == NULL) 
+       {
+              printf("CreateSemaphore() failed, error: %d.\n", GetLastError());
+              // Check for error...
+       }
+       else
+              printf("CreateSemaphore() is OK.\n");
+
+       return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+HANDLE hSemaphore;
+LONG cMax = 10;
+LONG cPreviousCount = 0;
+
+// Create a semaphore with initial and maximum counts of 10.
+hSemaphore = CreateSemaphore( 
+    NULL,   // no security attributes
+    cMax,   // initial count
+    cMax,   // maximum count
+    "MySemaphore");  // named semaphore
+
+if (hSemaphore == NULL) 
+{
+    // Check for error.
+    printf("CreateSemaphore() failed error: %d.\n", GetLastError());
+}
+else
+    printf("CreateSemaphore() is OK.\n");
+
+//==================================================================
+DWORD dwWaitResult;
+
+// Try to enter the semaphore gate.
+dwWaitResult = WaitForSingleObject(
+        hSemaphore,   // handle to semaphore
+        0L);          // zero-second time-out interval
+
+switch (dwWaitResult)
+{
+// The semaphore object was signaled.
+case WAIT_OBJECT_0:
+printf("The semaphore was signaled, do other task...\n");
+// OK to open another window...
+break;
+
+case WAIT_ABANDONED:
+printf("The semaphore was non-signaled, just exit.\n");
+// Cannot open another window...
+break;
+
+// Semaphore was non-signaled, so a time-out occurred.
+case WAIT_TIMEOUT:
+printf("The time-out interval elapsed, the semaphore was non-signaled, just exit.\n");
+// Cannot open another window.
+break; 
+}
+
+//==================================================================
+
+// Increment the count of the semaphore.
+if (!ReleaseSemaphore( 
+        hSemaphore,  // handle to semaphore
+        1,           // increase count by one
+        NULL))       // not interested in previous count
+{
+printf("ReleaseSemaphore() failed, error: %d.\n", GetLastError());
+// Deal with the error.
+}
+else
+       printf("ReleaseSemaphore() is OK.\n");
+
+       return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+#define NUMTHREADS 4 
+
+HANDLE hGlobalWriteEvent; 
+
+HANDLE hReadEvents[NUMTHREADS], hThread;
+DWORD i, IDThread;
+
+void ThreadFunction(LPVOID lpParam) 
+{
+    DWORD dwWaitResult;
+    HANDLE hEvents[2]; 
+
+    hEvents[0] = *(HANDLE*)lpParam;  // thread's read event
+    hEvents[1] = hGlobalWriteEvent; 
+
+    dwWaitResult = WaitForMultipleObjects( 
+        2,            // number of handles in array
+        hEvents,      // array of event handles
+        TRUE,         // wait till all are signaled
+        INFINITE);    // indefinite wait
+ 
+    printf("\nIn ThreadFunction()...\n");
+    switch (dwWaitResult) 
+    {
+        // Both event objects were signaled.
+        case WAIT_OBJECT_0:
+		printf("Both event objects were signaled.\n");
+		// Read from the shared buffer...
+		break;
+
+        // An error occurred.
+        default: 
+		printf("Wait error: %d\n", GetLastError()); 
+		ExitThread(0); 
+    }
+
+    // Set the read event to signaled.
+    if (!SetEvent(hEvents[0])) 
+    { 
+        printf("SetEvent(), setting the read event to signaled failed.\n");
+	  // Error exit.
+    }
+    else
+       printf("SetEvent(), setting the read event to signaled is OK.\n");
+}
+
+//===============================================================
+void WriteToBuffer(void) 
+{
+    DWORD dwWaitResult, i; 
+
+    printf("\nIn WriteToBuffer()...\n");
+    // Reset hGlobalWriteEvent to non-signaled, to block readers...
+    if (!ResetEvent(hGlobalWriteEvent)) 
+     { 
+		printf("ResetEvent(hGlobalWriteEvent) failed.\n");
+		// Error exit.
+    }
+    else
+	printf("ResetEvent(hGlobalWriteEvent) is OK.\n");
+
+    // Wait for all reading threads to finish reading...
+    dwWaitResult = WaitForMultipleObjects( 
+        NUMTHREADS,   // number of handles in array
+        hReadEvents,  // array of read-event handles
+        TRUE,         // wait until all are signaled
+        INFINITE);    // indefinite wait
+
+    switch (dwWaitResult) 
+    {
+        // All read-event objects were signaled...
+        case WAIT_OBJECT_0:
+		printf("All read-event objects were signaled.\n");
+		// Write to the shared buffer...
+		break;
+
+        // An error occurred...
+        default: 
+            printf("Wait error: %d\n", GetLastError()); 
+            ExitProcess(0); 
+    } 
+
+    // Set hGlobalWriteEvent to signaled...
+    if (!SetEvent(hGlobalWriteEvent)) 
+    {
+        // Error exit.
+    }
+
+    // Set all read events to signaled...
+    for (i = 0; i < NUMTHREADS; i++) 
+    {
+       if (!SetEvent(hReadEvents[i])) 
+        { 
+		printf("SetEvent(), setting read event %d to signaled failed.\n", i);
+		// Error exit.
+        }
+       else
+              printf("SetEvent(), read event %d signaled.\n", i);
+     }
+}
+
+//===============================================================
+void CreateEventsAndThreads(void) 
+{
+    // Create a manual-reset event object. The master thread sets 
+    // this to non-signaled when it writes to the shared buffer...
+    printf("In CreateEventsAndThreads()...\n");
+    hGlobalWriteEvent = CreateEvent( 
+        NULL,         // no security attributes
+        TRUE,         // manual-reset event
+        TRUE,         // initial state is signaled
+        "MasterThWriteEvent"  // object name
+        ); 
+
+    if (hGlobalWriteEvent == NULL) 
+    { 
+		printf("CreateEvent() failed, error: %d.\n", GetLastError());
+		// error exit...
+    }
+    else
+       printf("CreateEvent(), master thread with manual reset is OK.\n\n");
+
+    // Create multiple threads and an auto-reset event object 
+    // for each thread. Each thread sets its event object to 
+    // signaled when it is not reading from the shared buffer...
+    printf("Multiple threads with auto-reset event object for each thread...\n");
+    for (i = 0; i < NUMTHREADS; i++) 
+    {
+        // Create the auto-reset event.
+        hReadEvents[i] = CreateEvent( 
+            NULL,     // no security attributes
+            FALSE,    // auto-reset event
+            TRUE,     // initial state is signaled
+            NULL);    // object not named
+
+        if (hReadEvents[i] == NULL) 
+        {
+		printf("CreateEvent() failed.\n");
+		// Error exit.
+        }
+       else
+              printf("CreateEvent() #%d is OK.\n", i);
+
+        hThread = CreateThread(NULL, 0, 
+            (LPTHREAD_START_ROUTINE) ThreadFunction, 
+            &hReadEvents[i],  // pass event handle
+            0, &IDThread);
+
+        if (hThread == NULL) 
+        {
+		  // Error exit.
+              printf("CreateThread() failed, error: %d.\n", GetLastError());
+        }
+       else
+              printf("CreateThread() #%d is OK.\n\n", i);
+    }
+}
+
+int main()
+{
+       CreateEventsAndThreads();
+       WriteToBuffer();
+       return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+// Global variable
+CRITICAL_SECTION CriticalSection; 
+
+// Application defined function...
+DWORD WINAPI ThreadProc(LPVOID lpParameter)
+{
+       // TODO: Other tasks...
+       printf("In ThreadProc(), application defined function...\n");
+       printf("EnterCriticalSection() and LeaveCriticalSection().\n");
+
+       // Request ownership of the critical section.
+       EnterCriticalSection(&CriticalSection); 
+
+    // TODO: For example, access the shared resource...
+
+    // Release ownership of the critical section.
+    LeaveCriticalSection(&CriticalSection);
+
+    // TODO: Other tasks...
+       return 0;
+}
+
+int main()
+{
+       // TODO: Other tasks...
+       printf("In main()...\n");
+       printf("InitializeCriticalSectionAndSpinCount() and after\n");
+       printf("return from function call use DeleteCriticalSection()...\n\n");
+
+       // Initialize the critical section one time only...
+    if (!InitializeCriticalSectionAndSpinCount(&CriticalSection, 0x80000400))
+       printf("InitializeCriticalSectionAndSpinCount() failed, error: %d.\n", GetLastError());
+        // just return or other error processing...
+    else
+	printf("InitializeCriticalSectionAndSpinCount() is OK.\n");
+
+    // Release resources used by the critical section object.
+    DeleteCriticalSection(&CriticalSection);
+
+    return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+HANDLE gDoneEvent;
+
+VOID CALLBACK TimerRoutine(PVOID lpParam, BOOL TimerOrWaitFired)
+{
+    if (lpParam == NULL)
+    {
+        printf("TimerRoutine()'s lpParam is NULL.\n");
+    }
+    else
+    {
+        // lpParam points to the argument; in this case it is an int...
+        printf("Timer routine called. Parameter is %d.\n", *(int*)lpParam);
+    }
+
+    SetEvent(gDoneEvent);
+}
+
+int main()
+{
+    HANDLE hTimer = NULL;
+    HANDLE hTimerQueue = NULL;
+    int arg = 123;
+
+    // Use an event object to track the TimerRoutine() execution...
+    gDoneEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+    if (!gDoneEvent)
+    {
+	printf("CreateEvent() failed, error: %d.\n", GetLastError());
+	return 1;
+    }
+    else
+       printf("CreateEvent() is OK.\n");
+
+    // Create the timer queue...
+    hTimerQueue = CreateTimerQueue();
+    if (!hTimerQueue)
+    {
+       printf("CreateTimerQueue() failed, error: %d.\n", GetLastError());
+       //May just return/exit with error code...
+        return 2;
+    }
+    else
+       printf("CreateTimerQueue() is OK.\n");
+
+    // Set a timer to call the timer routine in 10 seconds...
+    if (!CreateTimerQueueTimer(&hTimer, hTimerQueue, (VOID CALLBACK)TimerRoutine, &arg, 10000, 0, 0))
+    {
+       printf("CreateTimerQueueTimer() failed, error: %d.\n", GetLastError());
+       //May just return/exit with error code...
+       return 3;
+    }
+    else
+       printf("CreateTimerQueueTimer() is OK and do the related task...\n");
+
+    // TODO: Do other useful work here...
+
+    printf("Call timer routine in 10 seconds...\n");
+
+    // Wait for the timer-queue thread to complete using an event 
+    // object. The thread will signal the event at that time...
+    if (WaitForSingleObject(gDoneEvent, INFINITE) != WAIT_OBJECT_0)
+       printf("WaitForSingleObject() failed, error: %d.\n", GetLastError());
+    else
+       printf("WaitForSingleObject() is OK.\n");
+
+    // Delete all timers in the timer queue...
+    if (!DeleteTimerQueue(hTimerQueue))
+       printf("DeleteTimerQueue() failed, error: %d.\n", GetLastError());
+    else
+       printf("DeleteTimerQueue() is OK.\n");
+
+    return 0;
+}
+
+----------------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+    HANDLE hTimer = NULL;
+    LARGE_INTEGER liDueTime;
+
+    liDueTime.QuadPart=-100000000;
+
+    // Create a waitable timer.
+    hTimer = CreateWaitableTimer(NULL, TRUE, "WaitableTimer");
+    if (!hTimer)
+    {
+	printf("CreateWaitableTimer() failed, error: %d.\n", GetLastError());
+	return 1;
+    }
+    else
+	printf("CreateWaitableTimer() is OK.\n");
+       // Next step...
+	printf("Waiting for 10 seconds...\n");
+
+    // Set a timer to wait for 10 seconds.
+    if (!SetWaitableTimer(hTimer, &liDueTime, 0, NULL, NULL, 0))
+    {
+	printf("SetWaitableTimer() failed, error: %d.\n", GetLastError());
+	return 2;
+    }
+    else
+	printf("SetWaitableTimer() is OK.\n");
+
+    // Wait for the timer.
+    if (WaitForSingleObject(hTimer, INFINITE) != WAIT_OBJECT_0)
+	printf("WaitForSingleObject() failed, error: %d.\n", GetLastError());
+    else
+	printf("Timer was signaled.\n");
+
+    return 0;
+}
+
+----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+#include <malloc.h>
+
+// Structure to be used for a list item. Typically, the first member 
+// is of type SLIST_ENTRY. Additional members are used for data. 
+// Here, the data is simply a signature for testing purposes. 
+typedef struct _PROGRAM_ITEM {
+    SLIST_ENTRY ItemEntry;
+    ULONG Signature; 
+} PROGRAM_ITEM, *PPROGRAM_ITEM;
+
+int main()
+{
+    ULONG Count;
+    PSLIST_ENTRY FirstEntry, ListEntry;
+    SLIST_HEADER ListHead;
+    PPROGRAM_ITEM ProgramItem;
+
+    // Initialize the list header.
+    InitializeSListHead(&ListHead);
+
+    // Insert 10 items into the list.
+    for (Count = 1; Count <= 10; Count += 1)
+    {
+        ProgramItem = (PPROGRAM_ITEM)malloc(sizeof(*ProgramItem));
+        ProgramItem->Signature = Count;
+        FirstEntry = InterlockedPushEntrySList(&ListHead, &ProgramItem->ItemEntry); 
+    }
+
+    // Remove 10 items from the list.
+    for (Count = 10; Count >= 1; Count -= 1)
+    {
+        ListEntry = InterlockedPopEntrySList(&ListHead);
+        free(ListEntry);
+    }
+
+    // Flush the list and verify that the items are gone.
+    ListEntry = InterlockedFlushSList(&ListHead);
+    FirstEntry = InterlockedPopEntrySList(&ListHead);
+    if (FirstEntry != NULL)
+    {
+        printf("InterlockedPopEntrySList() failed, error: List is not empty.");
+    }
+    else
+       printf("InterlockedPopEntrySList() is OK, list is empty.\n");
+
+   return 0;
+}
+
+===================================================================================================
+
+

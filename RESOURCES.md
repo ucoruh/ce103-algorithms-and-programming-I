@@ -57,3 +57,15 @@ https://www.katacoda.com/
 https://www.kodular.io/
 
 https://www.hackerrank.com/
+
+
+
+# Tools
+
+Markdown Slides with VsCode + Marktext
+
+https://marp.app/
+
+https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode
+
+https://marktext.app/

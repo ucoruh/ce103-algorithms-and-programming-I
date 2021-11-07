@@ -1,0 +1,742 @@
+=============================MODULE3=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+
+//Demonstrate unary operators prefix and postfix modes
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream.h>
+int  main(){int a, b; a  =  b  =  5; printf("postfix mode and prefix mode example\n"); printf("initial value, a = b = 5\n"); printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);
+//Some comment here
+printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);printf("\n");system("pause");return 0;}
+
+
+--------------------------------------------------------------------------------------------------------------
+
+//Demonstrate unary operators prefix and postfix modes
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream.h>
+int  main(){int a, b; a  =  b  =  5; printf("postfix mode and prefix mode example\n"); printf("initial value, a = b = 5\n"); printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);/*Another comment here*/
+//Some comment here
+printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b); /*Another comment here*/printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);printf("\n");system("pause");return 0;}
+
+-----------------------------------------------------------------------------------------------------------------
+
+//Demonstrate unary operators prefix and postfix modes
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream.h>
+
+int  main()
+{
+	int	a, b;
+	//set a and b both equal to 5
+	a  =  b  =  5;
+	//print them, decrementing each time 
+	//use prefix mode for b, postfix mode for a
+
+  	printf("postfix mode and prefix mode example\n");
+   	printf("initial value, a = b = 5\n");
+
+	printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);
+	printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);
+	printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);
+	printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);
+	printf("\npostfix mode, a-- = %d  prefix mode, --b = %d", a--, --b);
+   	printf("\n");
+
+	system("pause");
+	return 0;
+  }	
+
+--------------------------------------------------------------------------------------------------------------
+
+//Format specifier example
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	printf("My name is %s and I am %d  years old.\n", "John", 25);
+	printf("Examples of the decimal points %f\t%.3f\t%.2f\t\n",1.7885,1.7885,1.7885);
+	printf("Examples of characters\n");
+	printf(" %c \n %c \n %c\n", 'A', 'B', 'a');
+
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------------
+
+//Modulus operator example in C version.
+//Inputs a number of seconds, and converts to hours, minutes
+//and seconds.
+#include <stdio.h>
+#include <stdlib.h>
+
+//#define preprocessor directive, define constants,
+//every occurrence of the SEC_PER_MIN token
+//in the program will be replaced with 60
+#define  SECS_PER_MIN     60
+#define  SECS_PER_HOUR    3600
+
+int main()
+{
+unsigned seconds, minutes, hours, secs_left, mins_left;
+
+//Prompting user to input the number of seconds
+printf("Enter number of seconds  < 65000 :  ");
+
+//Read and store the data input by user
+scanf("%d", &seconds);
+
+//Do the modulus operation
+hours  	  =  seconds  /  SECS_PER_HOUR;
+minutes   =  seconds  /  SECS_PER_MIN;
+mins_left =  minutes  %  SECS_PER_MIN;
+secs_left =  seconds % SECS_PER_MIN;
+
+//Display the result
+printf("%u seconds is equal to  ", seconds);
+printf("%u hours, %u minutes, and %u seconds\n", hours, mins_left, secs_left);
+
+system("pause");
+return 0;
+}
+
+--------------------------------------------------------------------------------------------------------------
+
+//Modulus operator example.
+//Inputs a number of seconds, and converts to hours,
+//minutes and seconds.
+
+#include   <iostream.h>
+#include   <stdlib.h>
+//For VC++ .Net use the following processor directives
+//comment out the previous #include…
+//#include <iostream>
+//#include <cstdlib>
+//using namespace std;
+
+//Define constants
+#define  SECS_PER_MIN     60
+#define  SECS_PER_HOUR    3600
+
+void main()
+{
+	unsigned int seconds, minutes, hours, secs_left, mins_left;
+
+	//Prompting user to input the number of seconds
+	cout<<"Enter number of seconds  < 65000 :  ";
+	cin>>seconds;
+
+	hours  	 =  seconds  /  SECS_PER_HOUR;
+	minutes   =  seconds  /  SECS_PER_MIN;
+	mins_left =  minutes  %  SECS_PER_MIN;
+	secs_left =  seconds % SECS_PER_MIN;
+
+	cout<<seconds<<" seconds is equal to  "<<hours<<" hours, "<<mins_left<<" minutes, "<<secs_left<<" seconds"<<endl;
+	system("pause");
+}
+
+------------------------------------------------------------------------------------------------------------------
+
+//Demonstrate the use of the if statements
+#include <stdio.h>
+#include <stdlib.h>
+
+int main ( )
+{
+	int x, y;
+	//Input the two values to be tested
+	printf("\nInput an integer value for x: ");
+	scanf("%d", &x);
+	printf("Input an integer value for y: ");
+	scanf("%d", &y);
+
+	//Test values and print result
+	if (x == y)
+	{
+	    printf("\nx  is equal to y");
+	}
+
+	if (x > y)
+	{
+	    printf("\nx is greater than y");
+	}
+
+	if (x < y)
+	{
+	   printf("\nx is smaller than y");
+	}
+	printf("\n\n");
+
+	system("pause");
+	return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+
+//Demonstrates the use of if-else statement
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int x, y;
+
+	//Input two values to be tested
+	printf("\nInput an integer value for x: ");
+	scanf("%d", &x);
+	printf("Input an integer value for y: ");
+	scanf("%d", &y);
+
+	//Test values and print result
+	if (x == y)
+	{
+	   printf("\nx is equal to y");
+	}
+	else
+	if (x > y)
+	{
+	  printf("\nx is greater than y ");
+	}
+	else
+	{
+	  printf("\nx is smaller than y ");
+	}
+	printf("\n\n");
+
+	system("pause");
+	return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------
+
+//Demonstrate the evaluation of relational expression
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int  a;
+
+	a =  (5 == 5);
+	//Evalutes to 1, TRUE
+	printf ("\na = (5 == 5)\n  Then a = %d\n", a);
+
+	a = (5 != 5);
+	//Evaluates to 0, FALSE
+	printf ("\na = (5 != 5)\n  Then a = %d\n", a);
+
+	a = (12 == 12) + (5 != 1);
+	//Evaluates to 1 + 1, TRUE
+	printf("\na = (12 == 12) + (5 != 1)\n  Then a = %d\n", a);
+
+	system("pause");
+	return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+//Initialize variables and note that c is not less than d,
+//which is one of the conditions to test for
+//therefore the entire expression should be evaluated as false
+      
+int main()
+{
+	int  a = 5, b = 6, c = 5, d = 1;
+	int  x;
+
+	//Evaluate the expression without parentheses
+	x = a < b || a < c && c < d;	//Form 1
+	printf("Given expression:\n");
+	printf("x = a < b || a < c && c < d\n");
+	printf("Without parentheses the expression evaluates as %d", x);
+
+	//Evaluate the expression with parentheses
+	x = (a < b || a < c) && (c < d);	//Form 2
+	printf("\n\nWith parentheses:\n");
+	printf("x = (a < b || a < c) && (c < d)\n");
+	printf("With parentheses the expression evaluates as %d\n", x);
+
+	system("pause");
+	return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+int a = 3, b = 4;
+
+printf("Initially: a = 3, b = 4\n");
+printf("\na += b ---> a = a + b = %d\n",a+=b);
+printf("a last value = %d\n",a);
+printf("\na *= b ---> a = a * b = %d\n",a*=b);
+printf("a last value = %d\n",a);
+printf("\na -= b ---> a = a - b = %d\n",a-=b);
+printf("a last value = %d\n",a);
+printf("\na/=b ---> a = a / b = %d\n",a/=b);
+printf("a last value = %d\n",a);
+printf("\na-=(b+1)---> a = a - (b + 1) = %d\n",a-=(b+1));
+printf("a last value = %d\n",a);
+
+system("pause");
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+int a, b = 4, c= 50;
+
+//here b is less than c, so the statement
+//(b>c) is false, then 200 should be assigned
+//to a, reflected through the output
+a = (b>c) ? 100 : 200;
+printf("Given: b = 4, c= 50\n");
+printf("The statement:a = (b>c) ? 100 : 200\n");
+printf("will be evaluated to a = %d\n", a);
+
+system("pause");
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------
+
+//bitwise operators
+#include   <stdlib.h>
+#include   <stdio.h>
+
+//function prototype…
+void DisplayBits(unsigned);
+
+int main()
+{
+unsigned p;
+
+printf("Enter an unsigned integer: ");
+scanf("%u", &p);
+
+//function call
+DisplayBits(p);
+
+return  0;
+}
+
+//function definition…
+void DisplayBits(unsigned number)
+{
+	unsigned q;
+	//2 byte, 16 bits position
+	//operated bit by bit and hide/mask other bits
+	//using left shift operator
+	//start with 10000000 00000000
+	unsigned DisplayMask = 1<<15;
+
+	printf("%7u = ", number);
+	for(q = 1; q < 16; q++)
+	{
+		//combining variable number with variable DisplayMask
+		putchar(number & DisplayMask ? '1':'0');
+		//number variable is left shifted one bit
+		number<<= 1;
+		//separate by 8 bits position (1 byte)
+		if(q % 8 == 0)
+		putchar(' ');
+	}
+	putchar('\n');
+
+	system("pause");
+}
+
+----------------------------------------------------------------------------------------------------------------------
+
+//bitwise operators
+#include  <stdlib.h>
+#include  <stdio.h>
+
+//function prototype, you will learn later
+void BitwiseOp(unsigned int);
+
+int main()
+{
+	unsigned int  num1, num2, num3, mask, SetBit;
+
+	num1 = 7535;
+	mask = 1;
+
+	printf("The result of ANDing the following numbers\n");
+	printf("using the bitwise AND, & is\n");
+	//Display in normal and binary representation
+	BitwiseOp(num1);
+	BitwiseOp(mask);
+	printf("   ------------------------\n");
+	//function call, bitwise AND operation
+	BitwiseOp(num1 & mask);
+
+	num1 = 15;
+	SetBit = 241;
+	printf("\nThe result of inclusive ORing the following numbers\n");
+	printf("using the bitwise inclusive OR, | is\n");
+	BitwiseOp(num1);
+	BitwiseOp(SetBit);
+	printf("   ------------------------\n");
+	//function call, bitwise inclusive OR operation
+	BitwiseOp(num1 | SetBit);
+
+	num1 = 249;
+	num2 = 299;
+	printf("\nThe result of exclusive ORing the following numbers\n");
+	printf("using the bitwise exclusive OR, ^ is\n");
+	BitwiseOp(num1);
+	BitwiseOp(num2);
+	printf("   ------------------------\n");
+	//function call, bitwise exclusive OR operation
+	BitwiseOp(num1 ^ num2);
+
+	num3 = 21321;
+	printf("\nThe One's complement of\n");
+	BitwiseOp(num3);
+	printf("          |||||||| ||||||||\n");
+	//One's complement operation
+	//function call, bitwise negate operation
+	BitwiseOp(~num3);
+	system("pause");
+	return 0;
+}
+
+//function definition…
+void BitwiseOp(unsigned int value)
+{
+	unsigned int  p;
+	//Two 8 bits, 16 position, shift to left
+	unsigned int  DisplayMask = 1 << 15;
+
+	printf("%7u = ", value);
+	
+	//Loop for all bit...
+	for(p=1; p<=16; p++)
+	{
+		//if TRUE set to '1', otherwise set to '0'
+		putchar(value & DisplayMask ? '1':'0');
+		//shift to left bit by bit
+		//equal to: value << + 1 statement
+		value <<= 1;
+		
+		if(p % 8 == 0)
+		  //put a space…
+		  putchar(' ');
+	}
+	putchar('\n');
+ }
+
+-----------------------------------------------------------------------------------------------------------------
+
+//program copying from standard input,
+//keyboard to standard output, console
+//using pre defined functions
+//getchar() and putchar(), defined in
+//stdio.h header file
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+int count;
+
+//gives some prompt...
+printf("Enter a line of text:\n");
+printf("Press \'S\' to stop.\n");
+
+//get character from standard input
+//store in variable count
+count = getchar();
+
+//while the S is not encountered...
+while(count != 'S')
+{
+//put character on the standard output
+putchar(count);
+//carry on getting character from the standard input
+count = getchar();
+}
+
+system("pause");
+return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+//copying from standard input,
+//keyboard to standard output, console
+//using pre defined functions
+//getchar() and putchar() with End Of File, EOF
+//EOF is system dependent
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+int count;
+
+//gives some prompt...
+printf("Enter a line of text:\n");
+printf("EOF to stop.\n");
+
+//get character from standard input
+//store in variable count
+count = getchar();
+
+//while the End Of File is not encountered...
+while(count != EOF)
+{
+//put character on the standard output
+putchar(count);
+//carry on getting character from the standard input
+count = getchar();
+}
+
+system("pause");
+return 0;
+}
+
+----------------------------------------------------------------------------------------------------------------
+
+//creating a working program skeleton…
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+//printf("Some prompt here...\n");
+
+int count, charnum = 0;
+while ((count = getchar()) != EOF)
+{
+if(count != ' ')
+++charnum;
+}
+printf("test the output here...\n");
+
+system("pause");
+return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+//Add other functionalities by following the
+//simple steps in program development…
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+//printf("Some prompt here...\n");
+
+//-----In the process: declare and initialize ----------
+//-----each variable used------------------------
+//-----Third: compile and run----------------
+//-----Fourth: If there are errors, recompile and rerun----
+//-----Finally, if there is no error, complete other part of-----
+//-----the program, such as comments etc-------------
+int count, charnum = 0, linenum = 0;
+
+printf("Enter several line of texts.\n");
+printf("Press Carriage Return then EOF to end.\n\n");
+
+//-------------First: build the loop-----------
+//while storing the character process
+//not equal to the End Of File...
+while((count = getchar()) != EOF)
+{
+//do the character count
+if(count != ' ')
+++charnum;
+//and the line count...
+if(count == '\n')
+{
+++linenum;
+charnum = charnum -1;
+}
+}
+//----------Second: test the output---------------
+printf("The number of line = %d\n", linenum);
+printf("The number of char = %d\n", charnum);
+
+system("pause");
+return 0;
+}
+
+------------------------------------------------VC++/VC++ .Net----------------------------------------------------------
+
+//Add other functionalities by following the
+//simple steps in program development…
+#include <cstdio>
+
+int main()
+{
+//printf("Some prompt here...\n");
+
+//-----In the process: declare and initialize ----------
+//-----each variable used------------------------
+//-----Third: compile and run----------------
+//-----Fourth: If there are errors, recompile and rerun----
+//-----Finally, if there is no error, complete other part of-----
+//-----the program, such as comments etc-------------
+int count, charnum = 0, linenum = 0;
+
+printf("Enter several line of texts.\n");
+printf("Press Carriage Return then EOF to end.\n\n");
+
+//-------------First: build the loop-----------
+//while storing the character process
+//not equal to the End Of File...
+while((count = getchar()) != EOF)
+{
+//do the character count
+if(count != ' ')
+  ++charnum;
+//and the line count...
+if(count == '\n')
+{
+  ++linenum;
+  charnum = charnum -1;
+}
+}
+//----------Second: test the output---------------
+printf("The number of line = %d\n", linenum);
+printf("The number of char = %d\n", charnum);
+return 0;
+}
+
+---------------------------------------------------gcc-------------------------------------------------------------
+
+/******-cpoundassig.c-*******/
+#include <stdio.h>
+
+int main()
+{
+int a = 10, b = 20;
+
+printf("Initially: a = 3, b = 4\n");
+printf("\na += b ---> a = a + b = %d\n", a+=b);
+printf("a last value = %d\n", a);
+printf("\na *= b ---> a = a * b = %d\n", a*=b);
+printf("a last value = %d\n", a);
+printf("\na -= b ---> a = a - b = %d\n", a-=b);
+printf("a last value = %d\n", a);
+printf("\na/=b ---> a = a / b = %d\n", a/=b);
+printf("a last value = %d\n", a);
+printf("\na-=(b+1)---> a = a - (b + 1) = %d\n", a-=(b+1));
+printf("a last value = %d\n", a);
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------
+
+/*bitwise operators*/
+/******--bitwise.c--******/
+#include   <stdio.h>
+
+/*function prototype.*/
+void DisplayBits(unsigned);
+
+int main()
+{
+ unsigned p;
+
+ printf("Enter an unsigned integer: ");
+ scanf("%u", &p);
+
+ //function call
+ DisplayBits(p);
+ return 0;
+}
+
+/*function definition.*/
+void DisplayBits(unsigned number)
+{
+        unsigned q;
+        /*2 byte, 16 bits position*/
+        /*operated bit by bit and hide/mask other bits*/
+        /*using left shift operator*/
+        /*start with 10000000 00000000*/
+        unsigned DisplayMask = 1<<15;
+
+        printf("%7u = ", number);
+        for(q = 1; q < 16; q++)
+        {
+                /*combining variable number with variable DisplayMask*/
+                putchar(number & DisplayMask ? '1':'0');
+                /*number variable is left shifted one bit*/
+                number<<= 1;
+                /*separate by 8 bits position (1 byte)*/
+                if(q % 8 == 0)
+                  putchar(' ');
+        }
+        putchar('\n');
+}
+
+=============================================================================================================

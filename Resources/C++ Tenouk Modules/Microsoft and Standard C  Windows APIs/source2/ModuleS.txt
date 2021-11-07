@@ -1,0 +1,391 @@
+============================MODULES========================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+If you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (It is C++ header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module 23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes, let the compiler
+decide... :o)
+==============================================================================================
+=======================Just Microsoft & Standard C Codes HERE=================================
+
+// mythread.cpp
+// compile with: /MT /D "_X86_" /c for Visual C++/.Net
+#include <windows.h>
+/* _beginthread, _endthread */
+#include <process.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+/* Function prototypes... */
+void Bounce(void *ch);
+void CheckKey(void *dummy);
+
+/* GetRandom() returns a random integer between min and max. */
+#define GetRandom(min, max) ((rand() % (int)(((max) + 1) - (min))) + (min))
+
+/* Global repeat flag and video variable */
+BOOL repeat = TRUE;
+/* Handle for console window */
+HANDLE hStdOut;
+/* Console information structure */
+CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+int main(int argc, char *argv[])
+{
+    CHAR    ch = 'A';
+    hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+if (hStdOut == INVALID_HANDLE_VALUE)
+  printf("GetStdHandle() failed, error: %d.\n", GetLastError());
+else
+  printf("GetStdHandle() is OK.\n");
+
+/* Get display screen's text row and column information. */
+if (GetConsoleScreenBufferInfo(hStdOut, &csbi) == 0)
+  printf("GetConsoleScreenBufferInfo() failed, error: %d.\n", GetLastError());
+else
+  printf("GetConsoleScreenBufferInfo() is OK.\n");
+
+printf("--------ENJOY THE SHOW-------\n");
+    /* Launch CheckKey() thread to check for terminating keystroke. */
+    _beginthread(CheckKey, 0, NULL);
+
+    /* Loop until CheckKey() terminates program. */
+    while(repeat)
+    {
+        /* On first loops, launch character threads. */
+        _beginthread(Bounce, 0, (void *) (ch++));
+ 
+        /* Wait one second between loops. */
+        Sleep(1000L);
+    }
+       return 0;
+}
+
+/* CheckKey() - Thread to wait for a keystroke, and then clear repeat flag. */
+void CheckKey(void *dummy)
+{
+    printf("Press any key to stop.\n");
+    _getch();
+    /* _endthread implied */
+    repeat = 0;
+ 
+}
+
+/* Bounce - Thread to create and control a colored letter that moves
+ * around on the screen.
+ * Params: ch - the letter to be moved */
+
+void Bounce(void *ch)
+{
+    /* Generate letter and color attribute from thread argument. */
+    char    blankcell = 0x20;
+    char    blockcell = (char) ch;
+    BOOL    first = TRUE;
+   COORD   oldcoord, newcoord;
+   DWORD   result;
+
+    /* Seed random number generator and get initial location. */
+    srand(_threadid);
+    printf("Thread ID: %d.\n", _threadid);
+    newcoord.X = GetRandom(0, csbi.dwSize.X + 2);
+    newcoord.Y = GetRandom(0, csbi.dwSize.Y - 4);
+
+    while(repeat)
+    {
+        /* Pause between loops. */
+        Sleep(100L);
+
+        /* Blank out our old position on the screen, and draw new letter. */
+        if(first)
+            first = FALSE;
+        else
+            WriteConsoleOutputCharacter(hStdOut, &blankcell, 1, oldcoord, &result);
+
+       WriteConsoleOutputCharacter(hStdOut, &blockcell, 1, newcoord, &result);
+
+        /* Increment the coordinate for next placement of the block. */
+        oldcoord.X = newcoord.X;
+        oldcoord.Y = newcoord.Y;
+        newcoord.X += GetRandom(-2, 2);
+        newcoord.Y += GetRandom(-2, 2);
+
+        /* Correct placement (and beep) if about to go off the screen. */
+        if (newcoord.X < 0)
+            newcoord.X = 1;
+        else if (newcoord.X == csbi.dwSize.X)
+            newcoord.X = csbi.dwSize.X - 4;
+        else if (newcoord.Y < 0)
+            newcoord.Y = 1;
+        else if (newcoord.Y == csbi.dwSize.Y)
+            newcoord.Y = csbi.dwSize.Y - 4;
+
+        /* If not at a screen border, continue, otherwise beep. */
+        else
+            continue;
+        Beep(((char) ch - 'A') * 100, 175);
+    }
+    /* _endthread given to terminate */
+    _endthread();
+}
+
+----------------------------------------------------------------------------------------------
+
+// mythread.cpp
+// compile with: /MT – Multithreaded, Visual C++/.Net
+#include <windows.h>
+#include <stdio.h>
+#include <conio.h>
+#include <process.h>
+ 
+unsigned Counter; 
+ 
+unsigned __stdcall SecondThreadFunc(void* pArguments)
+{
+    printf("In second thread...\n");
+ 
+    while (Counter < 1000000)
+        Counter++;
+ 
+    _endthreadex(0);
+    return 0;
+} 
+ 
+int main(int argc, char *argv[])
+{ 
+    HANDLE hThread;
+    unsigned threadID;
+ 
+    printf("Creating second thread...\n");
+    printf("Thread ID: %d.\n", threadID);
+ 
+    // Create the second thread.
+    hThread = (HANDLE)_beginthreadex(NULL, 0, &SecondThreadFunc, NULL, 0, &threadID);
+ 
+    // Wait until second thread terminates. If you comment out the line
+    // below, Counter will not be correct because the thread has not
+    // terminated, and Counter most likely has not been incremented to
+    // 1000000 yet.
+    WaitForSingleObject(hThread, INFINITE);
+    printf("Counter should be 1000000; it is-> %d\n", Counter);
+    // Destroy the thread object.
+    CloseHandle(hThread);
+       return 0;
+}
+----------------------------------------------------------------------------------------------
+
+// mythread.cpp
+// compile with: /MT – Multithreaded, Visual C++/.Net
+#include <windows.h>
+#include <stdio.h>
+#include <conio.h>
+#include <process.h>
+
+unsigned Counter; 
+
+unsigned __stdcall SecondThreadFunc(void* pArguments)
+{
+    printf("In second thread...\n");
+
+    while (Counter < 1000000)
+        Counter++;
+
+    _endthreadex(0);
+    return 0;
+} 
+
+int main(int argc, char *argv[])
+{ 
+    HANDLE hThread;
+    unsigned threadID;
+
+    printf("Creating second thread...\n");
+    printf("Thread ID: %d.\n", threadID);
+
+    // Create the second thread.
+    hThread = (HANDLE)_beginthreadex(NULL, 0, &SecondThreadFunc, NULL, 0, &threadID);
+
+    // Wait until second thread terminates. If you comment out the line
+    // below, Counter will not be correct because the thread has not
+    // terminated, and Counter most likely has not been incremented to
+    // 1000000 yet.
+    WaitForSingleObject(hThread, INFINITE);
+    printf("Counter should be 1000000; it is-> %d\n", Counter);
+    // Destroy the thread object.
+    CloseHandle(hThread);
+       return 0;
+}
+
+----------------------------------------------------------------------------------------------
+
+#include <windows.h>
+#include <stdio.h>
+
+CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+int main()
+{
+HANDLE hStdOut; 
+    LPTSTR lpszString = "Testing a character StRiNg"; 
+    DWORD cWritten; 
+    BOOL fSuccess; 
+    COORD coord; 
+    WORD wColors[3]; 
+
+hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+if (hStdOut == INVALID_HANDLE_VALUE)
+    printf("GetStdHandle() failed, error: %d.\n", GetLastError());
+else
+    printf("GetStdHandle() is OK.\n");
+
+/* Get display screen's text row and column information. */
+if (GetConsoleScreenBufferInfo(hStdOut, &csbi) == 0)
+    printf("GetConsoleScreenBufferInfo() failed, error: %d.\n", GetLastError());
+else
+    printf("GetConsoleScreenBufferInfo() is OK.\n");
+
+    /* Write a string of characters to a screen buffer. */
+    coord.X = 10;            // start at tenth cell 
+    coord.Y = 10;            //   of tenth row      
+    fSuccess = WriteConsoleOutputCharacter( 
+        hStdOut,              // screen buffer handle 
+        lpszString,           // pointer to source string 
+        lstrlen(lpszString),  // length of string 
+        coord,                // first cell to write to 
+        &cWritten);           // actual number written 
+    if (! fSuccess) 
+        printf("WriteConsoleOutputCharacter() failed.\n");
+    else
+        printf("WriteConsoleOutputCharacter() is OK.\n");
+
+    /* Write a string of colors to a screen buffer. */
+    wColors[0] = BACKGROUND_RED;
+    wColors[1] =  BACKGROUND_GREEN;
+    /* for white - BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE; */
+    wColors[2] = BACKGROUND_BLUE;
+
+    for (;fSuccess && coord.X < 50; coord.X += 3)
+    {
+        fSuccess = WriteConsoleOutputAttribute(
+            hStdOut,          // screen buffer handle
+            wColors,          // pointer to source string
+            3,                // length of string
+            coord,            // first cell to write to
+            &cWritten);       // actual number written
+    }
+    if (! fSuccess) 
+        printf("WriteConsoleOutputAttribute() failed.\n");
+    else
+       printf("WriteConsoleOutputAttribute() is OK.\n");
+
+       return 0;
+}
+
+----------------------------------------------------------------------------------------------
+
+#include <windows.h>
+#include <stdio.h>
+
+CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+int main()
+{
+    HANDLE hStdOut; 
+    DWORD cWritten; 
+    BOOL fSuccess; 
+    COORD coord; 
+    WORD wColor; 
+    CHAR chFillChar;
+
+hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+if (hStdOut == INVALID_HANDLE_VALUE)
+       printf("GetStdHandle() failed, error: %d.\n", GetLastError());
+else
+       printf("GetStdHandle() is OK.\n");
+
+/* Get display screen's text row and column information. */
+if (GetConsoleScreenBufferInfo(hStdOut, &csbi) == 0)
+       printf("GetConsoleScreenBufferInfo() failed, error: %d.\n", GetLastError());
+else
+       printf("GetConsoleScreenBufferInfo() is OK.\n");
+
+    // Fill a 30-by-20-character screen buffer with the space character. 
+    coord.X = 0;            // start at 0th cell 
+    coord.Y = 6;            //   of sixth row 
+    chFillChar = ' '; 
+
+    fSuccess = FillConsoleOutputCharacter( 
+        hStdOut,          // screen buffer handle 
+        chFillChar,       // fill with spaces 
+        30*20,            // number of cells to fill 
+        coord,            // first cell to write to 
+        &cWritten);       // actual number written 
+
+       if (! fSuccess) 
+           printf("WriteConsoleOutputCharacter() failed.\n");
+       else
+          printf("WriteConsoleOutputCharacter() is OK.\n");
+
+    // Set 30-by-20-character screen buffer colors to white text on red. 
+    wColor = BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE; 
+
+    fSuccess = FillConsoleOutputAttribute( 
+        hStdOut,          // screen buffer handle 
+        wColor,           // color to fill with 
+        30*20,            // number of cells to fill 
+        coord,            // first cell to write to 
+        &cWritten);       // actual number written 
+
+       if (!fSuccess) 
+          printf("WriteConsoleOutputAttribute() failed.\n");
+       else
+          printf("WriteConsoleOutputAttribute() is OK.\n");
+       return 0;
+}
+
+====================================================================================================

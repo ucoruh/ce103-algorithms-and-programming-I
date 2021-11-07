@@ -1,0 +1,1167 @@
+============================MODULE27=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+g++ are given at the end of every Module. For example if you want to
+compile C++ codes using VC++/VC++ .Net, change the header file accordingly.
+Just need some modification for the header files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+============================HERE, ALL C++ codes==========================
+
+//vector example
+#include <iostream>
+//vector header file
+#include <vector>
+using namespace std;
+
+int main()
+{
+//vector container for integer elements
+//declaration
+vector<int> coll;
+
+//append elements with values 1 to 10
+for(int i=1; i<=10; ++i) 
+	coll.push_back(i);
+
+//print all elements separated by a space
+for(i=0; i<coll.size(); ++i) 
+	cout<<coll[i]<<' ';
+
+cout<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+//vector, operators
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+    
+//vector container for integer elements
+//declaration
+vector<int> vec1, vec2, vec3;
+
+cout<<"vec1 data: ";
+//append elements with values 1 to 10
+for(int i=1; i<=10; ++i) 
+	vec1.push_back(i);
+//print all elements separated by a space
+for(i=0; i<vec1.size(); ++i) 
+	cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"vec2 data: ";
+//append elements with values 1 to 10
+for(i=11; i<=20; ++i) 
+	vec2.push_back(i);
+//print all elements separated by a space
+for(i=0; i<vec2.size(); ++i) 
+	cout<<vec2[i]<<' ';
+cout<<endl;
+
+cout<<"vec3 data: ";
+//append elements with values 1 to 10
+for(i=1; i<=10; ++i) 
+	vec3.push_back(i);
+//print all elements separated by a space
+for(i=0; i<vec3.size(); ++i) 
+	cout<<vec3[i]<<' ';
+cout<<"\n\n";
+
+cout<<"Operation: vec1 != vec2"<<endl; 
+if(vec1 != vec2)
+      cout<<"vec1 and vec2 is not equal."<<endl;
+else
+      cout<<"vec1 and vec2 is equal."<<endl;
+
+cout<<"\nOperation: vec1 == vec3"<<endl;
+if(vec1 == vec3)
+      cout<<"vec1 and vec3 is equal."<<endl;
+else
+      cout<<"vec1 and vec3 is not equal."<<endl;
+
+cout<<"\nOperation: vec1 < vec2"<<endl;
+if(vec1 < vec2)
+      cout<<"vec1 less than vec2."<<endl;
+else
+      cout<<"vec1 is not less than vec2."<<endl;
+
+cout<<"\nOperation: vec2 > vec1"<<endl;
+if(vec2 > vec1)
+      cout<<"vec2 greater than vec1."<<endl;
+else
+      cout<<"vec2 is not greater than vec1."<<endl;
+
+cout<<"\nOperation: vec2 >= vec1"<<endl;
+if(vec2 >= vec1)
+      cout<<"vec2 greater or equal than vec1."<<endl;
+else
+      cout<<"vec2 is not greater or equal than vec1."<<endl;
+
+cout<<"\nOperation: vec1 <= vec2"<<endl;
+if(vec1 <= vec2)
+      cout<<"vec1 less or equal than vec2."<<endl;
+else
+      cout<<"vec1 is not less or equal than vec2."<<endl;
+   return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector constructors
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int>::iterator vec0Iter, vec1Iter, vec2Iter, vec3Iter, vec4Iter, vec5Iter;
+
+//Create an empty vector vec0
+vector <int> vec0;
+
+//Create a vector vec1 with 10 elements of default value 0
+vector <int> vec1(10);
+
+//Create a vector vec2 with 7 elements of value 13
+vector <int> vec2(7, 13);
+
+//Create a vector vec3 with 5 elements of value 3 and with the allocator 
+//of vector vec2
+vector <int> vec3(5, 3, vec2.get_allocator());
+
+//vector vec4, a copy of vector vec2
+vector <int> vec4(vec2);
+
+//Create a vector vec5 by copying the range of vec4[_First, _Last)
+vector <int> vec5(vec4.begin() + 1, vec4.begin() + 3);
+
+cout<<"Operation: vector <int> vec0\n";
+cout<<"vec0 data: ";
+for(vec0Iter = vec0.begin(); vec0Iter != vec0.end(); vec0Iter++)
+cout<<" "<<*vec0Iter;
+cout<<endl;
+
+cout<<"\nOperation: vector <int> vec1(10)\n";
+cout<<"vec1 data: ";
+for(vec1Iter = vec1.begin(); vec1Iter != vec1.end(); vec1Iter++)
+cout<<" "<<*vec1Iter;
+cout<<endl;
+
+cout<<"\nOperation: vector <int> vec2(7, 13)\n";
+cout<<"vec2 data: ";
+for(vec2Iter = vec2.begin(); vec2Iter != vec2.end(); vec2Iter++)
+cout<<" "<<*vec2Iter;
+cout<<endl;
+
+cout<<"\nOperation: vector <int> vec3(5, 3, vec2.get_allocator())\n";
+cout<<"vec3 data: ";
+for(vec3Iter = vec3.begin(); vec3Iter != vec3.end(); vec3Iter++)
+cout<<" "<<*vec3Iter;
+cout<<endl;
+
+cout<<"\nOperation: vector <int> vec4(vec2)\n";
+cout<<"vec4 data: ";
+for(vec4Iter = vec4.begin(); vec4Iter != vec4.end(); vec4Iter++)
+cout<<" "<<*vec4Iter;
+cout<<endl;
+
+cout<<"\nOperation: vector <int> vec5(vec4.begin()+1, vec4.begin()+3)\n";
+cout<<"vec5 data: ";
+for(vec5Iter = vec5.begin(); vec5Iter != vec5.end(); vec5Iter++)
+cout<<" "<<*vec5Iter;
+cout<<endl;   
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, assign()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec2;
+vector <int>::iterator Iter;
+   
+vec2.push_back(1);
+vec2.push_back(5);
+vec2.push_back(3);
+vec2.push_back(4);
+vec2.push_back(5);
+vec2.push_back(3);
+vec2.push_back(7);
+vec2.push_back(8);
+vec2.push_back(4);
+
+cout<<"Operation: vec2.begin() and vec2.end()"<<endl;
+cout<<"vec2 data: ";
+for(Iter = vec2.begin(); Iter != vec2.end(); Iter++)
+cout<<*Iter<<" ";
+cout<<"\n\n";
+
+cout<<"Operation: vec2.assign(vec2.begin()+1, vec2.begin()+3)"<<endl;
+vec2.assign(vec2.begin()+2, vec2.begin()+8);
+cout<<"vec2 data: ";
+for(Iter = vec2.begin(); Iter != vec2.end(); Iter++)
+cout<<*Iter<<" ";
+cout<<"\n\n";
+
+cout<<"Operation: vec2.assign(5, 7)"<<endl;
+vec2.assign(5, 7);
+cout<<"vec2 data: ";
+for(Iter = vec2.begin(); Iter != vec2.end(); Iter++)
+cout<<*Iter<<" ";
+cout<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, at()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec1;
+
+vec1.push_back(1);
+vec1.push_back(7);
+vec1.push_back(4);
+vec1.push_back(3);
+
+//print all elements separated by a space
+cout<<"The vec1 data: ";
+for(int i=0; i<vec1.size(); ++i) 
+	cout<<vec1[i]<<' ';
+
+cout<<"\n\nOperation: vec1.at(position)";
+const int &x = vec1.at(1);
+int &y = vec1.at(3);
+int &z = vec1.at(0);
+cout<<"\nThe 2nd element is "<<x<<endl;
+cout<<"The 4th element is "<<y<<endl;
+cout<<"The 1st element is "<<z<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, back() and front()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec1, vec2;
+vec1.push_back(12);
+vec1.push_back(10);
+vec1.push_back(7);
+
+//print all elements separated by a space
+cout<<"vec1 data: ";
+for(int i=0; i<vec1.size(); ++i) 
+	cout<<vec1[i]<<' ';
+cout<<endl;
+
+
+int& x = vec1.back();
+const int& y = vec1.front();
+
+cout<<"\nOperation: x = vec1.back()\n";
+cout<<"The last integer of vec1 is "<<x<<endl;
+
+cout<<"Operation: y = vec1.front()\n";
+cout<<"The 1st integer of vec1 is "<<y<<endl;
+
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, begin()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec1;
+vector <int>::iterator vec1_Iter;
+
+vec1.push_back(21);
+vec1.push_back(12);
+vec1.push_back(32);
+
+cout<<"vec1 data: ";
+for(int i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"\nOperation: vec1.begin()\n";
+vec1_Iter = vec1.begin();
+cout<<"The first element of vec1 is "<<*vec1_Iter<<endl;
+
+cout<<"\nOperation: *vec1_Iter = 10\n";
+*vec1_Iter = 10;
+cout<<"new vec1 data: ";
+for(i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"Operation: vec1.begin()\n";
+vec1_Iter = vec1.begin();
+cout<<"The first element of vec1 is now "<<*vec1_Iter<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, capacity()
+//and size()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec1;
+
+vec1.push_back(3);
+vec1.push_back(1);
+vec1.push_back(6);
+
+cout<<"vec1 data: ";
+for(int i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"Operation: vec1.capacity()\n";
+cout<<"The length of storage allocated is "<<vec1.capacity()<<"."<<endl;
+
+vec1.push_back(10);
+vec1.push_back(12);
+vec1.push_back(4);
+
+cout<<"\nnew vec1 data: ";
+for(i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"The length of storage allocated is now "<<vec1.capacity()<<"."<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, clear(), empty()
+//and size()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec1;
+
+vec1.push_back(10);
+vec1.push_back(20);
+vec1.push_back(30);
+
+cout<<"vec1 data: ";
+for(int i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"The size of vec1 is "<<vec1.size()<<endl;
+
+cout<<"\nOperation: vec1.empty()"<<endl;
+if(vec1.empty())
+cout<<"vec1 is empty"<<endl;
+else
+cout<<"vec1 is not empty"<<endl;
+
+cout<<"\nOperation: vec1.clear()"<<endl;
+vec1.clear();
+cout<<"The size of vec1 after clearing is "<<vec1.size()<<endl;
+
+cout<<"\nOperation: vec1.empty()"<<endl;
+if(vec1.empty())
+cout<<"vec1 is empty"<<endl;
+else
+cout<<"vec1 is not empty"<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, begin(), end()
+#include <vector>
+#include <iostream>
+
+int main( )
+{
+   using namespace std;
+   vector <int> vec1;
+   vector <int>::iterator vec1_Iter;
+   
+   vec1.push_back(9);
+   vec1.push_back(2);
+   vec1.push_back(7);
+   vec1.push_back(3);
+
+   cout<<"Operation: vec1.begin() and vec1.end()"<<endl;
+   cout<<"vec1 data: ";
+   for(vec1_Iter = vec1.begin(); vec1_Iter != vec1.end(); vec1_Iter++)
+      cout<<*vec1_Iter<<' ';
+   cout<<endl;
+   return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, erase(), begin()
+//and end()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec1;
+vector <int>::iterator Iter;
+vec1.push_back(3);
+vec1.push_back(7);
+vec1.push_back(22);
+vec1.push_back(5);
+vec1.push_back(12);
+vec1.push_back(17);
+
+cout<<"Original vec1 data: ";
+for(Iter = vec1.begin(); Iter != vec1.end(); Iter++)
+cout<<" "<<*Iter;
+cout<<endl;
+
+cout<<"\nOperation: erase(vec1.begin()"<<endl;
+vec1.erase(vec1.begin());
+cout<<"New vec1 data: ";
+for(Iter = vec1.begin(); Iter != vec1.end(); Iter++)
+  cout<<" "<<*Iter;
+cout<<endl;
+
+cout<<"\nOperation: vec1.erase(vec1.begin()+1, vec1.begin()+3)"<<endl;
+vec1.erase(vec1.begin() + 1, vec1.begin() + 3);
+cout<<"New vec1 data: ";
+for(Iter = vec1.begin(); Iter != vec1.end(); Iter++)
+   cout<<" "<<*Iter;
+cout<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, insert()
+//begin(), end()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec1;
+vector <int>::iterator Iter;
+vec1.push_back(12);
+vec1.push_back(100);
+vec1.push_back(9);
+vec1.push_back(21);
+
+cout<<"Original vec1 data: ";
+for(Iter = vec1.begin(); Iter != vec1.end(); Iter++)
+cout<<" "<<*Iter;
+cout<<endl;
+
+cout<<"\nOperation: vec1.insert(vec1.begin()+1, 17)"<<endl;
+vec1.insert(vec1.begin()+1, 17);
+cout<<"New vec1 data: ";
+for(Iter = vec1.begin(); Iter != vec1.end(); Iter++)
+cout<<" "<<*Iter;
+cout<<endl;
+
+cout<<"\nOperation: vec1.insert(vec1.begin()+2, 3, 24)"<<endl;
+vec1.insert(vec1.begin()+2, 3, 24);
+cout<<"New vec1 data: ";
+for(Iter = vec1.begin(); Iter != vec1.end(); Iter++)
+cout<<" "<<*Iter;
+cout<<endl;
+
+cout<<"\nOperation: vec1.insert(vec1.begin()+1, \n"
+"   vec1.begin()+2, vec1.begin()+4)"<<endl;
+vec1.insert(vec1.begin()+1, vec1.begin()+2, vec1.begin()+4);
+cout<<"New vec1 data: ";
+for(Iter = vec1.begin(); Iter != vec1.end(); Iter++)
+cout<<" "<<*Iter;
+cout<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, max_size()
+#include <vector>
+#include <iostream>
+using namespace std; 
+
+int main()
+{
+vector <int> vec1;
+vector <int>::size_type i;
+
+i = vec1.max_size();   
+cout<<"The max possible length of the vector is "<<i<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, pop_back(), back()
+//and push_back()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec1;
+
+vec1.push_back(4);
+vec1.push_back(7);
+vec1.push_back(3);
+
+cout<<"vec1 data: ";
+for(int i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"\nOperation: vec1.back()\n";
+cout<<vec1.back()<<endl;
+
+cout<<"\nOperation: push_back(2)\n";
+vec1.push_back(2);
+cout<<vec1.back()<<endl;
+
+cout<<"New vec1 data: ";
+for(i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"\nOperation: vec1.pop_back()\n";
+vec1.pop_back();
+cout<<vec1.back()<<endl;
+
+cout<<"New vec1 data: ";
+for(i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, rbegin()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec1;
+vector <int>::iterator vec1_Iter;
+vector <int>::reverse_iterator vec1_rIter;
+
+vec1.push_back(10);
+vec1.push_back(7);
+vec1.push_back(3);
+
+cout<<"vec1 data: ";
+for(int i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"\nOperation: vec1.begin()\n";
+vec1_Iter = vec1.begin();
+cout<<"The first element of vec1 is "<<*vec1_Iter<<endl;
+
+cout<<"\nOperation: vec1.rbegin()\n";
+vec1_rIter = vec1.rbegin();
+cout<<"The first element of the reversed vec1 is "<<*vec1_rIter<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, rend()
+//and rbegin()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec1;
+vector <int>::reverse_iterator vec1_rIter;
+
+vec1.push_back(7);
+vec1.push_back(3);
+vec1.push_back(4);
+vec1.push_back(1);
+
+cout<<"Operation: vec1.rbegin() and vec1.rend()\n";
+cout<<"vec1 data: ";
+for(vec1_rIter = vec1.rbegin(); vec1_rIter != vec1.rend(); vec1_rIter++)
+      cout<<*vec1_rIter<<' ';
+cout<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, resize()
+//and size()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{ 
+vector <int> vec1;
+vec1.push_back(40);
+vec1.push_back(20);
+vec1.push_back(10);
+vec1.push_back(12);
+
+cout<<"vec1 data: ";
+for(int i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+//resize to 5 and add data at the end...
+cout<<"\nOperation: vec1.resize(5,30)\n";
+vec1.resize(5,30);
+cout<<"The size of vec1 is "<<vec1.size()<<endl;
+cout<<"The value of the last object is "<<vec1.back()<<endl;
+cout<<"\nNew vec1 data: ";
+for(i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"\nOperation: vec1.resize(4)\n";
+vec1.resize(4);
+
+cout<<"\nNew vec1 data: ";
+for(i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"\nThe new size of vec1 is "<<vec1.size()<<endl;
+cout<<"The value of the last object is "<<vec1.back()<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, reserve()
+//capacity() and size()
+#include <vector>
+#include <iostream>
+using namespace std; 
+
+int main()
+{
+vector <int> vec1;
+
+vec1.push_back(4);
+vec1.push_back(2);
+vec1.push_back(10);
+
+cout<<"vec1 data: ";
+for(int i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"\nOperation: vec1.capacity()"<<endl;
+cout<<"Current capacity of vec1 = "<<vec1.capacity()<<endl;
+cout<<"\nOperation: vec1.reserve(10)"<<endl;
+vec1.reserve(10);
+
+cout<<"Current capacity of vec1 = "<<vec1.capacity()<<endl;
+cout<<"\nOperation: vec1.size()"<<endl;
+cout<<"Current size of vec1 = "<<vec1.size()<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector, swap()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec1, vec2;
+
+vec1.push_back(4);
+vec1.push_back(7);
+vec1.push_back(2);
+vec1.push_back(12);
+
+cout<<"vec1 data: ";
+for(int i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+vec2.push_back(11);
+vec2.push_back(21);
+vec2.push_back(30);
+
+cout<<"vec2 data: ";
+for(i=0; i<vec2.size(); ++i) 
+cout<<vec2[i]<<' ';
+cout<<endl;
+
+cout<<"The number of elements in vec1 = "<<vec1.size()<<endl;
+cout<<"The number of elements in vec2 = "<<vec2.size()<<endl;
+cout<<endl;
+
+cout<<"Operation: vec1.swap(vec2)\n"<<endl;
+vec1.swap(vec2);
+cout<<"The number of elements in v1 = "<<vec1.size()<<endl;
+cout<<"The number of elements in v2 = "<<vec2.size()<<endl;
+
+cout<<"vec1 data: ";
+for(i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"vec2 data: ";
+for(i=0; i<vec2.size(); ++i) 
+cout<<vec2[i]<<' ';
+cout<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector operator[]
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int> vec1;
+
+vec1.push_back(10);
+vec1.push_back(9);
+vec1.push_back(8);
+vec1.push_back(12);
+
+cout<<"vec1 data: ";
+for(int i=0; i<vec1.size(); ++i) 
+cout<<vec1[i]<<' ';
+cout<<endl;
+
+cout<<"Operation: int& j = vec1[2]\n";
+int& j = vec1[2];
+cout<<"The third integer of vec1 is "<<j<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------
+
+//vector_bool, flip()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+_Bvector vecbool;
+
+vecbool.push_back(1);
+vecbool.push_back(0);
+
+cout<<"The vector is: "<<vecbool.front()<<" "<<vecbool.back()<<endl;
+cout<<"\nOperation: vecbool.flip()\n";
+vecbool.flip();
+cout<<"The flipped vector is: "<<vecbool.front()<<" "<<vecbool.back()<<endl;
+return 0;
+}
+
+--------------------------------------------------------------------------------------
+
+//vector_bool, swap()
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+_Bvector vec1, vec2;
+
+vec1.push_back(0);
+vec1.push_back(0);
+vec2.push_back(1);
+vec2.push_back(1);
+
+cout<<"The vector vec1 is: "<<vec1.front()<<" "<<vec1.back()<<endl;
+cout<<"The vector vec2 is: "<<vec2.front()<<" "<<vec2.back()<<endl;
+
+cout<<"Operation: swap(vec1, vec2);\n";
+swap(vec1, vec2);
+cout<<"After swapping, vec1 is: "<<vec1.front()<<" "<<vec1.back()<<endl;
+cout<<"After swapping, vec2 is: "<<vec2.front()<<" "<<vec2.back()<<endl;
+return 0;
+}
+
+-------------------------------------------------------------------------------------------
+
+//simple deque example
+#include <iostream>
+#include <deque>
+using namespace std;
+
+int main()
+{
+//deque container for floating-point elements
+//declaration
+deque<float> elem, elem1;
+
+//insert the elements each at the front
+cout<<"push_front()\n";
+for(int i=1; i<=10; ++i) 
+//insert at the front
+elem.push_front(i*(1.2));
+
+//print all elements separated by a space
+for(i=0; i<elem.size(); ++i) 
+cout<<elem[i]<<' ';
+cout<<endl;
+
+//insert the elements each at the back
+cout<<"\npush_back()\n";
+//insert at the back
+for(i=1; i<=10; ++i) 
+elem1.push_back(i*(1.2));
+
+//print all elements separated by a space
+for(i=0; i<elem1.size(); ++i) 
+cout<<elem1[i]<<' ';
+cout<<endl;
+
+return 0;
+}
+
+--------------------------------------------------------------------------------------------------
+
+//deque, constructors
+#include <deque>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+deque <int>::iterator deq0Iter, deq1Iter, deq2Iter, deq3Iter, deq4Iter, deq5Iter, deq6Iter;
+
+//Create an empty deque deq0
+deque <int> deq0;
+
+//Create a deque deq1 with 10 elements of default value 0
+deque <int> deq1(10);
+
+//Create a deque deq2 with 7 elements of value 10
+deque <int> deq2(7, 10);
+
+//Create a deque deq3 with 4 elements of value 2 and with the 
+//allocator of deque deq2
+deque <int> deq3(4, 2, deq2.get_allocator());
+
+//Create a copy, deque deq4, of deque deq2
+deque <int> deq4(deq2);
+
+//deque deq5 a copy of the deq4[_First, _Last) range
+deq4Iter = deq4.begin();
+deq4Iter++;
+deq4Iter++;
+deq4Iter++;
+deque <int> deq5(deq4.begin(), deq4Iter);
+
+//Create a deque deq6 by copying the range deq4[_First, _Last) and 
+//the allocator of deque deq2
+deq4Iter = deq4.begin();
+deq4Iter++;
+deq4Iter++;
+deq4Iter++;
+deque <int> deq6(deq4.begin(), deq4Iter, deq2.get_allocator());
+
+//------------------------------------
+cout<<"Operation: deque <int> deq0\n";
+cout<<"deq0 data: ";
+for(deq0Iter = deq0.begin(); deq0Iter != deq0.end(); deq0Iter++)
+cout<<*deq0Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: deque <int> deq1(10)\n";
+cout<<"deq1 data: ";
+for(deq1Iter = deq1.begin(); deq1Iter != deq1.end(); deq1Iter++)
+cout<<*deq1Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: deque <int> deq2(7, 3)\n"; 
+cout<<"deq2 data: ";
+for(deq2Iter = deq2.begin(); deq2Iter != deq2.end(); deq2Iter++)
+cout<<*deq2Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: deque <int> deq3(4, 2, deq2.get_allocator())\n";
+cout<<"deq3 data: ";
+for(deq3Iter = deq3.begin(); deq3Iter != deq3.end(); deq3Iter++)
+cout<<*deq3Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: deque <int> deq4(deq2);\n";
+cout<<"deq4 data: ";
+for(deq4Iter = deq4.begin(); deq4Iter != deq4.end(); deq4Iter++)
+cout<<*deq4Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation1: deq4Iter++...\n";
+cout<<"Operation2: deque <int> deq5(deq4.begin(), deq4Iter)\n";
+cout<<"deq5 data: ";
+for(deq5Iter = deq5.begin(); deq5Iter != deq5.end(); deq5Iter++)
+cout << *deq5Iter<<" ";
+cout << endl;
+
+cout<<"\nOperation1: deq4Iter = deq4.begin() and deq4Iter++...\n";
+cout<<"Operation2: deque <int> deq6(deq4.begin(), \n"
+"      deq4Iter, deq2.get_allocator())\n";
+cout<<"deq6 data: ";
+for(deq6Iter = deq6.begin(); deq6Iter != deq6.end(); deq6Iter++)
+cout<<*deq6Iter<<" ";
+cout<<endl;
+return 0;
+}
+
+-----------------------------------------G++ on Fedora---------------------------------------------
+
+//*******vector.cpp*********
+//vector constructors
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+vector <int>::iterator vec0Iter, vec1Iter, vec2Iter, vec3Iter, vec4Iter, vec5Iter;
+
+//Create an empty vector vec0
+vector <int> vec0;
+
+//Create a vector vec1 with 10 elements of default value 0
+vector <int> vec1(10);
+
+//Create a vector vec2 with 7 elements of value 13
+vector <int> vec2(7, 13);
+
+//Create a vector vec3 with 5 elements of value 3 and with the allocator 
+//of vector vec2
+vector <int> vec3(5, 3, vec2.get_allocator());
+
+//vector vec4, a copy of vector vec2
+vector <int> vec4(vec2);
+
+//Create a vector vec5 by copying the range of vec4[_First, _Last)
+vector <int> vec5(vec4.begin() + 1, vec4.begin() + 3);
+
+cout<<"Operation: vector <int> vec0\n";
+cout<<"vec0 data: ";
+for(vec0Iter = vec0.begin(); vec0Iter != vec0.end(); vec0Iter++)
+cout<<" "<<*vec0Iter;
+cout<<endl;
+
+cout<<"\nOperation: vector <int> vec1(10)\n";
+cout<<"vec1 data: ";
+for(vec1Iter = vec1.begin(); vec1Iter != vec1.end(); vec1Iter++)
+cout<<" "<<*vec1Iter;
+cout<<endl;
+
+cout<<"\nOperation: vector <int> vec2(7, 13)\n";
+cout<<"vec2 data: ";
+for(vec2Iter = vec2.begin(); vec2Iter != vec2.end(); vec2Iter++)
+cout<<" "<<*vec2Iter;
+cout<<endl;
+
+cout<<"\nOperation: vector <int> vec3(5, 3, vec2.get_allocator())\n";
+cout<<"vec3 data: ";
+for(vec3Iter = vec3.begin(); vec3Iter != vec3.end(); vec3Iter++)
+cout<<" "<<*vec3Iter;
+cout<<endl;
+
+cout<<"\nOperation: vector <int> vec4(vec2)\n";
+cout<<"vec4 data: ";
+for(vec4Iter = vec4.begin(); vec4Iter != vec4.end(); vec4Iter++)
+cout<<" "<<*vec4Iter;
+cout<<endl;
+
+cout<<"\nOperation: vector <int> vec5(vec4.begin()+1, vec4.begin()+3)\n";
+cout<<"vec5 data: ";
+for(vec5Iter = vec5.begin(); vec5Iter != vec5.end(); vec5Iter++)
+cout<<" "<<*vec5Iter;
+cout<<endl;   
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------------
+
+//********deque.cpp*********
+//deque, constructors
+#include <deque>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+deque <int>::iterator deq0Iter, deq1Iter, deq2Iter, deq3Iter, deq4Iter, deq5Iter, deq6Iter;
+
+//Create an empty deque deq0
+deque <int> deq0;
+
+//Create a deque deq1 with 10 elements of default value 0
+deque <int> deq1(10);
+
+//Create a deque deq2 with 7 elements of value 10
+deque <int> deq2(7, 10);
+
+//Create a deque deq3 with 4 elements of value 2 and with the 
+//allocator of deque deq2
+deque <int> deq3(4, 2, deq2.get_allocator());
+
+//Create a copy, deque deq4, of deque deq2
+deque <int> deq4(deq2);
+
+//deque deq5 a copy of the deq4[_First, _Last) range
+deq4Iter = deq4.begin();
+deq4Iter++;
+deq4Iter++;
+deq4Iter++;
+deque <int> deq5(deq4.begin(), deq4Iter);
+
+//Create a deque deq6 by copying the range deq4[_First, _Last) and 
+//the allocator of deque deq2
+deq4Iter = deq4.begin();
+deq4Iter++;
+deq4Iter++;
+deq4Iter++;
+deque <int> deq6(deq4.begin(), deq4Iter, deq2.get_allocator());
+
+//------------------------------------
+cout<<"Operation: deque <int> deq0\n";
+cout<<"deq0 data: ";
+for(deq0Iter = deq0.begin(); deq0Iter != deq0.end(); deq0Iter++)
+cout<<*deq0Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: deque <int> deq1(10)\n";
+cout<<"deq1 data: ";
+for(deq1Iter = deq1.begin(); deq1Iter != deq1.end(); deq1Iter++)
+cout<<*deq1Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: deque <int> deq2(7, 3)\n"; 
+cout<<"deq2 data: ";
+for(deq2Iter = deq2.begin(); deq2Iter != deq2.end(); deq2Iter++)
+cout<<*deq2Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: deque <int> deq3(4, 2, deq2.get_allocator())\n";
+cout<<"deq3 data: ";
+for(deq3Iter = deq3.begin(); deq3Iter != deq3.end(); deq3Iter++)
+cout<<*deq3Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: deque <int> deq4(deq2);\n";
+cout<<"deq4 data: ";
+for(deq4Iter = deq4.begin(); deq4Iter != deq4.end(); deq4Iter++)
+cout<<*deq4Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation1: deq4Iter++...\n";
+cout<<"Operation2: deque <int> deq5(deq4.begin(), deq4Iter)\n";
+cout<<"deq5 data: ";
+for(deq5Iter = deq5.begin(); deq5Iter != deq5.end(); deq5Iter++)
+cout << *deq5Iter<<" ";
+cout << endl;
+
+cout<<"\nOperation1: deq4Iter = deq4.begin() and deq4Iter++...\n";
+cout<<"Operation2: deque <int> deq6(deq4.begin(), \n"
+"      deq4Iter, deq2.get_allocator())\n";
+cout<<"deq6 data: ";
+for(deq6Iter = deq6.begin(); deq6Iter != deq6.end(); deq6Iter++)
+cout<<*deq6Iter<<" ";
+cout<<endl;
+return 0;
+}
+
+=================================================================================
+

@@ -1,0 +1,334 @@
+============================MODULE30=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+g++ are given at the end of every Module. For example if you want to
+compile C++ codes using VC++/VC++ .Net, change the header file accordingly.
+Just need some modification for the header files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+============================HERE, ALL C++ codes==========================
+
+
+//stack, pop(), push()
+//size() and top()
+#include <stack>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+stack <int> st1, st2;
+
+//push data element on the stack
+st1.push(21);
+int j=st1.top();
+cout<<j<<' ';
+st1.push(9);
+j=st1.top();
+cout<<j<<' ';
+st1.push(12);
+j=st1.top();
+cout<<j<<' ';
+st1.push(31);
+j=st1.top();
+cout<<j<<' '<<endl;
+
+stack <int>::size_type i;
+i = st1.size();
+cout<<"The stack length is "<<i<<endl;
+
+i = st1.top();
+cout<<"The element at the top of the stack is "<<i<<endl;
+
+st1.pop();
+
+i = st1.size();
+cout<<"After a pop, the stack length is "<<i<<endl;
+
+i = st1.top();
+cout<<"After a pop, the element at the top of the stack is "<<i<<endl;
+return 0;
+}
+
+-------------------------------------------------------------------------------------------
+
+//stack, constructor
+#include <stack>
+#include <vector>
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+//Declares stack with default deque base container
+stack <char> deq1;
+
+//Explicitly declares a stack with deque base container
+stack <char, deque<char> > deq2;
+
+//Declares a stack with vector base containers
+stack <int, vector<int> > vec;
+
+//Declares a stack with list base container
+stack <int, list<int> > lst;
+cout<<endl;
+
+   return 0;
+}
+//no output
+
+-------------------------------------------------------------------------------------------
+
+//queue, back(), push(), front()
+#include <queue>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+queue <int> que1;
+
+que1.push(11);
+que1.push(13);
+
+int& x = que1.back();
+const int& y = que1.front();
+
+cout<<"The integer at the back of queue que1 is "<<x<<endl;
+cout<<"The integer at the front of queue que1 is "<<y<<endl;
+return 0;
+}
+
+-------------------------------------------------------------------------------------------
+
+//queue, front()
+#include <queue>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+queue <int> que;
+
+que.push(9);
+que.push(12);
+que.push(20);
+que.push(15);
+
+queue <int>::size_type x;
+x = que.size();
+cout<<"The queue length is "<<x<<endl;
+
+int& y = que.back();
+int& z = que.front();
+cout<<"The integer at the back of queue que is "<<y<<endl;
+cout<<"The integer at the front of queue que is "<<z<<endl;
+return 0;
+}
+
+-------------------------------------------------------------------------------------------
+
+//queue, pop()
+#include <queue>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+queue <int> que;
+
+que.push(21);
+que.push(9);
+que.push(13);
+
+queue <int>::size_type i;
+i = que.size();
+cout<<"The queue length is "<<i<<endl;
+
+i = que.front();
+cout<<"The element at the front of the queue is "<<i<<endl;
+
+que.pop();
+i = que.size();
+cout<<"After a pop the queue length is "<<i<<endl;
+
+i = que.front();
+cout<<"After a pop, the element at the front of the queue is "<<i<<endl;
+return 0;
+}
+
+-------------------------------------------------------------------------------------------
+
+//queue, push()
+#include <queue>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+queue <int> que;
+
+que.push(23);
+que.push(15);
+que.push(32);
+
+queue <int>::size_type i;
+i = que.size();
+cout<<"The queue length is "<<i<<endl;
+i = que.front();
+cout<<"The element at the front of the queue is "<<i<<endl;
+return 0;
+}
+
+-------------------------------------------------------------------------------------------
+
+//queue, constructor
+#include <queue>
+#include <vector>
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+//Declares queue with default deque base container
+queue <char> que;
+
+//Explicitly declares a queue with deque base container
+queue <char, deque<char> > que1;
+
+//These lines don't cause an error, even though they
+//declares a queue with a vector base container
+queue <int, vector<int> > que2;
+que2.push(12);
+//but the following would cause an error because vector has 
+//no pop_front() member function
+//que2.pop();
+
+//Declares a queue with list base container
+queue <int, list<int> > que3;
+cout<<endl;
+
+return 0;
+}
+//no output
+
+-------------------------------------G++------------------------------------------------------
+
+//*******stackpopush.cpp*******
+//stack, pop(), push()
+//size() and top()
+#include <stack>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+stack <int> st1, st2;
+
+//push data element on the stack
+st1.push(21);
+int j=st1.top();
+cout<<j<<' ';
+st1.push(9);
+j=st1.top();
+cout<<j<<' ';
+st1.push(12);
+j=st1.top();
+cout<<j<<' ';
+st1.push(31);
+j=st1.top();
+cout<<j<<' '<<endl;
+
+stack <int>::size_type i;
+i = st1.size();
+cout<<"The stack length is "<<i<<endl;
+
+i = st1.top();
+cout<<"The element at the top of the stack is "<<i<<endl;
+
+st1.pop();
+
+i = st1.size();
+cout<<"After a pop, the stack length is "<<i<<endl;
+
+i = st1.top();
+cout<<"After a pop, the element at the top of the stack is "<<i<<endl;
+return 0;
+}
+
+-------------------------------------------------------------------------------------------
+
+//*****queuepop.cpp*******
+//queue, pop()
+#include <queue>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+queue <int> que;
+
+que.push(21);
+que.push(9);
+que.push(13);
+
+queue <int>::size_type i;
+i = que.size();
+cout<<"The queue length is "<<i<<endl;
+
+i = que.front();
+cout<<"The element at the front of the queue is "<<i<<endl;
+
+que.pop();
+i = que.size();
+cout<<"After a pop the queue length is "<<i<<endl;
+
+i = que.front();
+cout<<"After a pop, the element at the front of the queue is "<<i<<endl;
+return 0;
+}
+
+=============================================================================================

@@ -1,0 +1,664 @@
+=============================MODULE5=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+
+//Using the integer conversion specifiers
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+      printf("Various format for integer printing\n");
+      printf("-------------------------------------\n");
+      printf("%d\n",  455);
+      printf("%i\n",  455);  //i same as d in printf()
+      printf("%d\n",  +455);
+      printf("%d\n",  -455);
+      printf("%hd\n",  32000);
+      printf("%ld\n",  2000000000L);
+      printf("%o\n",  455);
+      printf("%u\n",  455);
+      printf("%u\n",  -455);
+      //-455 is read by %u and converted to the unsigned
+      //value 4294966841 by 4 bytes integer
+      printf("%x\n",  455);
+      printf("%X\n",  455);
+
+      system("pause");
+      return 0;
+}
+
+-------------------------------------------------------------------------------
+
+//Printing floating-point numbers with
+//floating-point conversion specifiers
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+      printf("Printing floating-point numbers with\n");
+      printf("floating-point conversion specifiers.\n");
+      printf("Compare the output with source code\n\n");
+      printf("1.  %e\n", 1234567.89);
+      printf("2.  %e\n", +1234567.89);
+      printf("3.  %e\n", -1234567.89);
+      printf("4.  %E\n", 1234567.89);
+      printf("5.  %f\n", 1234567.89);
+      printf("6.  %g\n", 1234567.89);
+      printf("7.  %G\n", 1234567.89);
+
+      system("pause");
+      return 0;
+}
+
+---------------------------------------------------------------------------------
+
+//Printing strings and characters
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+char character = 'A';
+char string[]  =  "This is a string";
+char *stringPtr = "This is also a string";
+
+printf("---------------------------------\n");
+printf("---Character and String format---\n");
+printf("---------------------------------\n\n");
+printf("%c <--This one is character\n", character);
+printf("\nLateral string\n");
+printf("%s\n", "This is a string");
+printf("\nUsing array name, the pointer to the first array's element\n");
+printf("%s\n", string);
+printf("\nUsing pointer, pointing to the first character of string\n");
+printf("%s\n", stringPtr);
+
+system("pause");
+return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//Using the p, n, and % conversion specifiers
+#include <stdio.h>
+#include <stdlib.h>
+   
+int main()
+{
+	int  *ptr;
+	//pointer variable
+	int  x  =  12345, y;
+	
+	ptr = &x;
+
+	//assigning address of variable x to variable ptr
+	printf("\nUsing the p, n, and %% conversion specifiers.\n");
+	printf("Compare the output with the source code\n");
+	printf("-----------------------------------------------\n\n");
+	printf("The value of pointer ptr is %p\n", ptr);
+	printf("The address of variable x is %p\n\n", &x);
+	printf("Total characters printed on this line is:%n", &y);
+	printf(" %d\n\n", y);
+
+	y = printf("This line has 28 characters\n");
+	
+	printf("%d characters were printed\n\n", y);
+	printf("Printing a %% in a format control string\n");
+
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------
+
+//Printing integers right-justified
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	printf("   Printing integers right-justified.\n");
+	printf("Compare the output with the source code\n");
+	printf("---------------------------------------\n\n");
+	printf("%4d\n",  1);
+	printf("%4d\n",  12);
+	printf("%4d\n",  123);
+	printf("%4d\n",  1234);
+	printf("%4d\n\n",  12345);
+	printf("%4d\n",   -1);
+	printf("%4d\n",   -12);
+	printf("%4d\n",   -123);
+	printf("%4d\n",   -1234);
+	printf("%4d\n",   -12345);
+
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------
+
+//Using precision while printing integers,
+//floating-point numbers and strings
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int     i = 873;
+    float   f =  123.94536;
+    char s[] = "Happy Birthday";
+    printf("Using precision while printing integers,\n");
+    printf("  floating-point numbers, and strings.\n");
+    printf("Compare the output with the source code\n");
+    printf("----------------------------------------\n\n");
+    printf("Using precision for integers\n");
+    printf("\t%.4d\n\t%.9d\n\n", i, i);
+    printf("Using precision for floating-point numbers\n");
+    printf("\t%.3f\n\t%.3e\n\t%.3g\n\n", f, f, f);
+    printf("Using precision for strings\n");
+    printf("\t%.11s\n", s);
+
+    system("pause");
+    return 0;
+
+}
+
+-----------------------------------------------------------------------------------
+
+//Right justifying and left justifying values
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+		printf("Right justifying and left justifying values.\n");
+		printf("  Compare the output with the source code.\n");
+		printf("--------------------------------------------\n\n");
+		printf("%10s%10d%10c%10f\n\n", "hello", 7, 'a', 1.23);
+		printf("%-10s%-10d%-10c%-10f\n", "hello", 7, 'a', 1.23);
+
+		system("pause");
+		return 0;
+}
+
+-----------------------------------------------------------------------------------
+
+//Printing numbers with and without the + flag
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	printf("Printing numbers with and without the + flag.\n");
+	printf("   Compare the output with the source code\n");
+	printf("---------------------------------------------\n\n");
+	printf("%d\n%d\n", 786, -786);
+	printf("%+d\n%+d\n", 786, -786);
+
+	system("pause");
+	return 0;
+}
+
+-----------------------------------------------------------------------------------
+
+//Printing a space before signed values
+//not preceded by + or -
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	printf("Printing a space before signed values\n");
+	printf("      not preceded by + or -n\n");
+	printf("--------------------------------------\n\n");
+	printf("% d\n% d\n", 877,  -877);
+
+	system("pause");
+	return 0;
+}
+
+-----------------------------------------------------------------------------------
+
+//o, x, X, and any floating-point specifier
+#include <stdio.h >
+#include <stdlib.h>
+
+int main()
+{
+	int    c  = 1427;
+	float  p  =  1427.0;
+
+	printf("o, x, X, and any floating-point specifiers\n");
+	printf("Compare the output with the source code\n");
+	printf("-----------------------------------------\n\n");
+	printf("%#o\n", c);
+	printf("%#x\n", c);
+	printf("%#X\n", c);
+	printf("\n%#g\n", p);
+	printf("%#G\n", p);
+
+	system("pause");
+	return 0;
+}
+
+-----------------------------------------------------------------------------------
+
+//Printing with the 0 (zero) flag fills in leading zeros
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	printf("Printing with the 0 (zero) flag fills in leading zeros\n");
+	printf("       Compare the output with the source code\n");
+	printf("-------------------------------------------------------\n\n");
+	printf("%+09d\n", 762);
+	printf("%09d", 762);
+	printf("\n");
+
+	system("pause");
+	return 0;
+}
+
+-----------------------------------------------------------------------------------
+
+//Reading integers
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int  a, b, c, d, e, f, g;
+
+	printf("Reading integers from standard input\n");
+	printf("------------------------------------\n\n");
+	printf("Enter seven integers separated by space: ");
+	scanf("%d%i%i%i%o%u%x", &a, &b, &c, &d, &e, &f, &g);
+	printf("The input displayed as decimal integers is: \n");
+	printf("%d %d %d %d %d %d %d\n",  a, b, c, d, e, f, g);
+
+	system("pause");
+	return 0;
+}
+
+------------------------------------------------------------------------------------
+
+//Reading floating-point numbers
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+  float   a,  b,  c;
+
+  printf("   Reading floating-point numbers\n");
+  printf("Compare the output with the source code.\n");
+  printf("----------------------------------------\n\n");
+  printf("Enter three floating-point numbers, separated by space: \n");
+  scanf("%e%f%g", &a, &b, &c);
+
+  printf("Here are the numbers entered in plain\n");
+  printf("floating-point notation:\n");
+  printf("%f %f %f\n", a, b, c);
+
+  system("pause");
+  return 0;
+ }
+
+------------------------------------------------------------------------------------
+
+ //Reading characters and strings
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	char  x,  y[20];
+
+	printf("Enter a string:  ");
+	scanf("%c%s", &x, y);
+	printf("The input was: \n");
+	printf("the character  \"%c\"  ", x);
+	printf("and the string \"%s\"\n", y);
+
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------
+
+//input data with a field width
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int    x,  y;
+
+	printf("Enter a six digit integer:  ");
+	scanf("%2d%d", &x, &y);
+	printf("The integers input were %d and %d\n", x, y);
+
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------
+
+//Reading and discarding characters from the input stream
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int    month1, day1, year1, month2, day2, year2;
+
+	printf("Enter a date in the form mm-dd-yy:  ");
+	//pad 0 for two fields and discarding the - characters....
+	scanf("%d%*c%d%*c%d",  &month1, &day1, &year1);
+	printf("month  =  %02d  day = %02d  year  =  %02d\n\n", month1, day1, year1);
+	printf("Enter a date in the form mm/dd/yy:  ");
+	//pad 0 for two fields and discarding the / characters...
+	scanf("%d%*c%d%*c%d", &month2, &day2, &year2);
+	printf("month = %02d  day  =  %02d   year  =  %02d\n", month2, day2, year2);
+
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------------
+
+//concatenating the << operator
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+
+	cout<<"47 plus 54 is "<<(47 + 54)<<endl;
+	cout<<"Welcome to C++ stream\n";
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------------
+
+//printing the address stored in a char * variable
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+	char * string = "pointer testing";
+
+	cout<<"\nThe string is: "<<string
+		<<"\nValue of (void *) string, the address is: "
+		<<(void *)string <<endl;
+
+	system("pause");
+	return 0;
+}
+
+----------------------------------------------------------------------------------------
+
+//stream extraction operator
+//input from keyboard with cin
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+	int x, y;
+
+	cout<<"Enter two integers: ";
+	cin>>x>>y;
+	cout<<"Sum of "<<x<<" and "<<y<<" is "<<(x + y)<<endl;
+
+	system("pause");
+	return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+//stream extraction operator
+//variation of cin
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+	int x, y;
+
+	cout<<"Enter two integers: ";
+	cin>>x>>y;
+	cout<<x<<(x == y?" is " : " is not ")<<"equal to "<<y<<endl;
+
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------
+
+//stream extraction operator
+//variation of cin
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+	int mark, HighMark = -1;
+
+	cout<<"Enter grade(eof -Ctrl+Z- to stop): ";
+	while(cin>>mark)
+	{
+		if(mark>HighMark)
+		HighMark = mark;
+		cout<<"Enter grade(eof -Ctrl+Z- to stop): ";
+	}
+	cout<<"\nHighest grade is: "<<HighMark<<endl;
+
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------------------
+
+//Simple stream input/output
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+	cout<<"Enter your age:  ";
+	
+	int   myAge;
+	cin>>myAge;
+	cout<<"Enter your friend's age: ";
+	
+	int  friendAge;
+	cin>>friendAge;
+
+	if(myAge > friendAge)
+		cout<<"You are older.\n";
+	else
+	if(myAge < friendAge)
+		cout<<"You are younger.\n";
+	else
+	cout<<"You and your friend are the same age.\n";
+
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------------------
+
+//Some of the cout usage
+#include <stdlib.h>
+#include <iostream.h>
+
+void main(void)
+{
+	int q, s = 0, t = 0;
+
+	q = 10*(s + t);
+
+	cout<<"Enter 2 integer numbers,"
+             " separated by space: ";
+	//using the " for breaking literal strings
+	cin>>s>>t;
+
+	   q = 10*(s + t);
+
+	cout<<"simple mathematics calculation, just for demo"<<'\n';
+	//using '\n' for newline
+	cout<<"q = 10(s + t) = "<<q<<endl;
+	//using endl for new line
+	cout<<"That all folks!!"<<"\n";
+	cout<<"Study the source code and the output\n";
+
+	system("pause");
+}
+
+---------------------------------------------------------------------------------------------
+
+//cout and cin example for function call and array
+#include <stdlib.h>
+#include <iostream.h>
+
+float simple_calc(float);
+
+void main(void)
+{
+	float x = 3, y[4], sum=0;
+	int i;
+	
+	cout<<"Square of 3 is: "<<simple_calc(x)<<'\n';
+	//cout with function call
+
+	cout<<"Study the source code and the output"<<endl;
+
+	for (i=1; i<5; i++)
+	{
+		cout<<"Enter arrays' data #"<<i<<" : ";
+		cin>>y[i];
+		sum = sum + y[i];
+		//array
+	}
+	cout<<"Sum of the arrays' data is:  "<<sum<<endl;
+	cout<<"Press Enter key to quit\n";
+
+	system("pause");
+}
+
+float simple_calc(float x)
+{
+	float   p;
+	p = (x * x);
+	return p;
+}
+
+--------------------------------------------VC++/VC++ .Net---------------------------------------------------
+
+//Printing floating-point numbers with
+//floating-point conversion specifiers
+
+#include <cstdio>
+
+main()
+{
+      printf("Printing floating-point numbers with\n");
+      printf("floating-point conversion specifiers.\n");
+      printf("Compare the output with source code\n\n");
+      printf("1.  %e\n", 1234567.89);
+      printf("2.  %e\n", +1234567.89);
+      printf("3.  %e\n", -1234567.89);
+      printf("4.  %E\n", 1234567.89);
+      printf("5.  %f\n", 1234567.89);
+      printf("6.  %g\n", 1234567.89);
+      printf("7.  %G\n", 1234567.89);
+}
+
+--------------------------------------------------GCC-----------------------------------------------------
+
+/*Using the p, n, and % conversion specifiers*/
+/*****************module5.c*******************/
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+        int  *ptr;
+        /*pointer variable*/
+        int  x  =  12345, y;
+
+        ptr = &x;
+
+        /*assigning address of variable x to variable ptr*/
+        printf("\nUsing the p, n, and %% conversion specifiers.\n");
+        printf("Compare the output with the source code\n");
+        printf("-----------------------------------------------\n\n");
+        printf("The value of pointer ptr is %p\n", ptr);
+        printf("The address of variable x is %p\n\n", &x);
+        printf("Total characters printed on this line is:%n", &y);
+        printf(" %d\n\n", y);
+
+        y = printf("This line has 28 characters\n");
+
+        printf("%d characters were printed\n\n", y);
+        printf("Printing a %% in a format control string\n");
+        return 0;
+}
+
+=============================================================================================================

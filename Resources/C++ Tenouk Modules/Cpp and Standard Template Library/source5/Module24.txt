@@ -1,0 +1,682 @@
+============================MODULE24=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=======================BUT HERE ALL C++ codes============================
+
+#include <iostream>
+using namespace std;
+
+//function template declaration and definition
+template <class any_data_type>
+any_data_type MyMax(any_data_type Var1, any_data_type Var2)
+{
+return Var1> Var2 ? Var1:Var2;
+}
+
+int main()
+{
+	cout<<"MyMax(10,20) = "<<MyMax(10,20)<<endl;
+	cout<<"MyMax('Z','p') = "<<MyMax('Z','p')<<endl;
+	cout<<"MyMax(1.234,2.345) = "<<MyMax(1.234,2.345)<<endl;
+	
+	//some logical error here?
+	cout<<"\nLogical error, comparing pointers not the string..."<<endl;
+	char* p = "Function";
+		char* q = "Template";
+		
+cout<<"Address of *p = "<<&p<<endl;
+		cout<<"Address of *q = "<<&q<<endl;
+cout<<"MyMax(\"Function\",\"Template\") = "<<MyMax(p,q)<<endl;
+cout<<"Should use Specialization, shown later..."<<endl;
+	return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//If you notice, other than the red color line of code, it is same as normal class, isn’t it?
+
+template <class any_data_type>
+class MyStack
+{
+private:
+//number of the stack’s element
+int size;
+//top position
+int top;
+//data type pointer
+any_data_type* StackPtr;
+
+public:
+//constructor...
+MyStack(int =10);
+//destructor...
+~MyStack(){delete [] StacKPtr;}
+//put in data...
+int push(const any_data_type&);
+//take out data...
+int pop(any_data_type&);
+//test the emptiness...
+int IsEmpty() const {return top == -1;}
+//test the fullness...
+int IsFull() const {return top == size – 1;}
+};
+
+-------------------------------------------------------------------------------------
+
+//Another example of the template declaration:
+
+template <class any_data_type>
+class Vector
+{
+private:
+any_data_type *buffer;
+//copy constructor
+Vector<any_data_type>   (const Vector <any_data_type> &Var1)
+//overloaded assignment operator
+Vector<any_data_type>& operator=(const Vector<any_data_type>& Var2)
+//destructor
+~Vector<any_data_type>();
+//other member functions…
+any_data_type& operator [ ] (unsigned int index);
+const any_data_type& operator [ ] (unsigned int index) const;
+}
+
+----------------------------------------------------------------------------------------
+
+//simple class template program example
+//------declaration and definition part--------
+template <class any_data_type>
+class MyStack
+{
+private:
+//number of the stack's element
+int size;
+//top position
+int top;
+//data type pointer
+any_data_type* StackPtr;
+
+public:
+//constructor...
+MyStack(int =10);
+//destructor...
+~MyStack(){delete [] StacKPtr;}
+//put in data...
+int push(const any_data_type&);
+//take out data...
+int pop(any_data_type&);
+//test the emptiness...
+int IsEmpty() const {return top == -1;}
+//test the fullness...
+int IsFull() const {return top == size - 1;}
+
+};
+
+//----the main() program--------
+int main()
+{
+return 0;
+}
+
+----------------------------------------------------------------------------------------------
+
+//normal class
+class MyClass
+{
+//...
+//but, have template member function...
+template <class any_data_type>
+void MemberFunct(any_data_type)
+{};
+};
+
+int main()
+{
+return 0;
+}
+
+------------------------------------------------------------------------------------------------
+
+template <class any_data_type>
+class MyClass
+{
+//...
+//nested class template
+template <class another_data_type>
+class NestedClass
+{};
+//...
+};
+
+int main()
+{
+	return 0;
+}
+
+-------------------------------------------------------------------------------------------------
+
+#include <iostream>
+using namespace std;
+
+//-------class template declaration part---
+//-------test.h-----
+template <class any_data_type>
+class Test
+{
+public:
+//constructor
+Test();
+//destructor
+~Test();
+//function template
+any_data_type Data(any_data_type);
+};
+
+template <class any_data_type>
+any_data_type Test<any_data_type>::Data(any_data_type Var0)
+{return Var0;}
+
+//------class template definition part--------
+//----should be in the same header file with--
+//----the class template declaration------
+//constructor
+template <class any_data_type>
+Test<any_data_type>::Test()
+{cout<<"Constructor, allocate..."<<endl;}
+
+//destructor
+template <class any_data_type>
+Test<any_data_type>::~Test()
+{cout<<"Destructor, deallocate..."<<endl;}
+
+//--------main program--------
+int main()
+{
+Test<int> Var1;
+Test<double> Var2;
+Test<char> Var3;
+Test<char*> Var4;
+
+cout<<"\nOne template fits all data type..."<<endl;
+cout<<"Var1, int = "<<Var1.Data(100)<<endl;
+cout<<"Var2, double = "<<Var2.Data(1.234)<<endl;
+cout<<"Var3, char = "<<Var3.Data('K')<<endl;
+cout<<"Var4, char* = "<<Var4.Data("The class template")<<"\n\n";
+return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+#include <iostream>
+using namespace std;
+
+//-------class template declaration part---
+//-------test.h file-----
+template <class any_data_type>
+class Test
+{
+public:
+//constructor
+Test();
+//destructor
+~Test();
+//function template
+any_data_type Data(any_data_type);
+};
+
+template <class any_data_type>
+any_data_type Test<any_data_type>::Data(any_data_type Var0)
+{return Var0;}
+
+//------class template definition part--------
+//----should be in the same header file with--
+//----the class template declaration------
+//constructor
+template <class any_data_type>
+Test<any_data_type>::Test()
+{cout<<"Constructor, allocate..."<<endl;}
+
+//destructor
+template <class any_data_type>
+Test<any_data_type>::~Test()
+{cout<<"Destructor, deallocate..."<<endl;}
+//do not run this program
+//make sure there is no error such as typo etc
+
+------------------------------------------------------------------------------------------------
+
+//And the main() program is shown below.
+
+//----test.cpp file------------
+//---compile and run this program----
+//--------main program--------
+int main()
+{
+Test<int> Var1;
+Test<double> Var2;
+Test<char> Var3;
+Test<char*> Var4;
+
+cout<<"\nOne template fits all data type..."<<endl;
+cout<<"Var1, int = "<<Var1.Data(100)<<endl;
+cout<<"Var2, double = "<<Var2.Data(1.234)<<endl;
+cout<<"Var3, char = "<<Var3.Data('K')<<endl;
+cout<<"Var4, char* = "<<Var4.Data("The class template")<<"\n\n";
+return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+#include <iostream>
+using namespace std;
+
+template <class any_data_type>
+class Test
+{
+public:
+	//constructor
+	Test(){};
+	//destructor
+	~Test(){};
+	//member function templates...
+	any_data_type Funct1(any_data_type Var1)
+	{return Var1;}
+	any_data_type Funct2(any_data_type Var2)
+	{return Var2;}
+};
+
+//do some testing
+int main()
+{
+//Implicit instantiation generates class Test<int>...
+Test<int> Var1;
+//Implicit instantiation generates class Test<double>...
+Test<double> Var2;
+
+cout<<"Implicit instantiation..."<<endl;
+//and generates function Test<int>::Funct1()
+cout<<"Var1 = "<<Var1.Funct1(200)<<endl;
+//and generates function Test<double>::Funct2()
+cout<<"Var2 = "<<Var2.Funct2(3.123)<<endl;
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------
+
+#include <iostream>
+using namespace std;
+
+template <class any_data_type>
+class Test
+{
+public:
+	//constructor
+	Test(){};
+	//destructor
+	~Test(){};
+	//member functions...
+	any_data_type Funct1(any_data_type Var1)
+	{return Var1;}
+	any_data_type Funct2(any_data_type Var2)
+	{return Var2;}
+};
+
+//explicit instantiation of class Test<int>
+template class Test<int>;
+//explicit instantiation of class Test<double>
+template class Test<double>;
+
+//do some testing
+int main()
+{
+Test<int> Var1;
+Test<double> Var2;
+cout<<"Var1 = "<<Var1.Funct1(200)<<endl;
+cout<<"Var2 = "<<Var2.Funct2(3.123)<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------------------------------
+
+//implicit instantiation
+#include <iostream>
+using namespace std;
+
+template <class any_data_type>
+any_data_type MyMax(any_data_type Var1, any_data_type Var2)
+{
+	return Var1 > Var2 ? Var1:Var2;
+}
+
+//do some testing
+int main()
+{
+int p;
+char q;
+p = MyMax(100, 200);
+q = MyMax('k', 'K');
+
+//implicit instantiation of MyMax(int, int)
+cout<<"MyMax(100, 200) = "<<p<<endl;
+//implicit instantiation of MyMax(char, char)
+cout<<"MyMax('k', 'K') = "<<q<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+//explicit instantiation
+#include <iostream>
+using namespace std;
+
+template <class any_data_type>
+any_data_type Test(any_data_type Var1)
+{
+	return Var1;
+}
+
+//explicit instantiation of Test(int)
+template int Test<int>(int);
+
+//do some testing
+int main()
+{
+cout<<"Var1 = "<<Test(100)<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+#include <iostream>
+using namespace std;
+
+template <class any_data_type>
+class TestVirt
+{
+public:
+	virtual any_data_type TestFunct(any_data_type Var1)
+	{return Var1;}
+};
+
+//do some testing
+int main()
+{
+//implicit instantiation of TestVirt<int>
+TestVirt<int> Var1;
+
+cout<<"Var1.TestFunct(100) = "<<Var1.TestFunct(100)<<endl;
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+template <class any_data_type>
+inline any_data_type MyMax(const any_data_type& Var1, const any_data_type& Var2)
+{ 
+cout<<"Checking..."<<endl;
+return Var1 < Var2 ? Var2 : Var1;
+}
+
+//do some testing
+int main()
+{
+int Highest = MyMax(7, 20);
+char p = MyMax('x' , 'r');
+string Str1 = "Class", Str2 = "Template";
+string MaxStr = MyMax(Str1, Str2);
+
+cout<<"The bigger between 7 and 20 is "<<Highest<<endl;
+cout<<"The bigger between 'x' and 'r' is "<<p<<endl;
+cout<<"The bigger between \""<<Str1<<"\" and \""<<Str2<<"\" is "<<MaxStr<<"\n\n";
+
+const char *Var3 = "Class";
+const char *Var4 = "Template";
+const char *q = MyMax(Var3, Var4);
+
+cout<<"Logical error, comparing the pointer, not the string..."<<endl;
+cout<<"Address of the *Var3 = "<<&Var3<<endl;
+cout<<"Address of the *Var4 = "<<&Var4<<endl;
+cout<<"The bigger between \""<<Var3<<"\" and \""<<Var4<<"\" is "<<q<<endl; 
+cout<<"Need specialization here..."<<endl;
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+//for strcmp()
+#include <cstring>
+using namespace std;
+
+//primary template, for all type
+template <class any_data_type>
+any_data_type MyMax(const any_data_type Var1, const any_data_type Var2)
+{
+	cout<<"Primary template..."<<endl;
+	return Var1 < Var2 ? Var2 : Var1;
+}
+
+//specialization for const char *, empty parameter list
+template <>
+const char *MyMax(const char *Var1, const char *Var2)
+{
+	cout<<"Specialization..."<<endl;
+	//comparison for const char *
+	return (strcmp(Var1, Var2)<0) ? Var2 : Var1;
+}
+
+//do some testing
+int main()
+{
+//call primary
+int Highest = MyMax(7, 20);
+//call primary
+char p = MyMax('x' , 'r');
+string Str1 = "Class", Str2 = "Template";
+//call primary
+string MaxStr = MyMax(Str1, Str2);
+
+cout<<"The bigger between 7 and 20 is "<<Highest<<endl;
+cout<<"The bigger between 'x' and 'r' is "<<p<<endl;
+cout<<"The bigger between \""<<Str1<<"\" and \""<<Str2<<"\" is "<<MaxStr<<"\n\n";
+
+//call specialization
+const char *Var3 = "Class";
+const char *Var4 = "Template";
+const char *q = MyMax(Var3, Var4);
+cout<<"The bigger between \""<<Var3<<"\" and \""<<Var4<<"\" is "<<q<<endl; 
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------
+
+#include <iostream>
+using namespace std;
+
+//general, justice for all type:-)
+template <class any_data_type> 
+any_data_type Test(any_data_type Var1)
+{return Var1;}
+
+//partial specialization for all pointers type
+template <class any_data_type> 
+any_data_type * Test(any_data_type *Var2)
+{return Var2;}
+
+//specialization, just for const char *
+template <>
+const char * Test(const char *Var3)
+{return Var3;}
+
+//do some testing
+int main()
+{
+int p = 5;
+//calls Test(any_data_type
+int q = Test(p);
+double r = Test(3.1234);
+
+cout<<"General types = "<<q<<endl;
+cout<<"General types = "<<r<<endl;
+
+//calls Test(any_data_type*)
+int *s = Test(&p);
+char *t = "Partial lor!";
+cout<<"Partial types = "<<s<<endl;
+cout<<"Partial types = "<<t<<endl;
+
+//calls Test(const char *)
+const char *u = Test("Specialized!");
+cout<<"Specialization type = "<<u<<endl;
+return 0;
+}
+
+-------------------------------------------------------------------------------------------------------
+
+#include <iostream>
+using namespace std;
+
+template <class any_data_type>
+any_data_type MyMax(any_data_type Var1, any_data_type Var2)
+{
+return Var1 > Var2 ? Var1:Var2;
+}
+
+//specialization of MyMax() for char *
+template<>
+char* MyMax(char* Var3, char* Var4)
+{
+	return strcmp(Var3,Var4)> 0 ? Var3:Var4;
+}
+
+int main()
+{
+	cout<<"MyMax(10,20) = "<<MyMax(10,20)<<endl;
+	cout<<"MyMax('Z','p') = "<<MyMax('Z','p')<<endl;
+	cout<<"MyMax(1.234,2.345) = "<<MyMax(1.234,2.345)<<endl;
+	char* Var3 = "Function";
+	char* Var4 = "Template";
+	cout<<"\nTesting...."<<endl;
+	cout<<"Address of *Var3 = "<<&Var3<<endl;
+	cout<<"Address of *Var4 = "<<&Var4<<endl;
+
+	cout<<"MyMax(\"Function\",\"Template\") = "<<MyMax(Var3,Var4)<<endl;
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+template <class any_data_type>
+class MyClass 
+{
+typename any_data_type::another_data_type * ptr;
+//...
+};
+
+int main()
+{
+return 0;
+}
+
+------------------------------------------------G++ on Fedora------------------------------------------------------
+
+//*******template.cpp**********
+#include <iostream>
+#include <string>
+//for strcmp()
+#include <cstring>
+using namespace std;
+
+//primary template, for all type
+template <class any_data_type>
+any_data_type MyMax(const any_data_type Var1, const any_data_type Var2)
+{
+	cout<<"Primary template..."<<endl;
+	return Var1 < Var2 ? Var2 : Var1;
+}
+
+//specialization for const char *, empty parameter list
+template <>
+const char *MyMax(const char *Var1, const char *Var2)
+{
+	cout<<"Specialization..."<<endl;
+	//comparison for const char *
+	return (strcmp(Var1, Var2)<0) ? Var2 : Var1;
+}
+
+//do some testing
+int main()
+{
+//call primary
+int Highest = MyMax(7, 20);
+//call primary
+char p = MyMax('x', 'r');
+string Str1 = "Class", Str2 = "Template";
+//call primary
+string MaxStr = MyMax(Str1, Str2);
+
+cout<<"The bigger between 7 and 20 is "<<Highest<<endl;
+cout<<"The bigger between 'x' and 'r' is "<<p<<endl;
+cout<<"The bigger between \""<<Str1<<"\" and \""<<Str2<<"\" is "<<MaxStr<<"\n\n";
+
+//call specialization
+const char *Var3 = "Class";
+const char *Var4 = "Template";
+const char *q = MyMax(Var3, Var4);
+cout<<"The bigger between \""<<Var3<<"\" and \""<<Var4<<"\" is "<<q<<endl; 
+return 0;
+}
+
+==========================================================================================================

@@ -1,0 +1,963 @@
+===============================MODULE12====================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+//Program start.cpp.  For VC++/VC++ .Net, change
+//the header files accordingly...
+//#include  <iostream>
+//#include  <cstdlib>
+//using namespace std;
+#include  <iostream.h>
+#include  <stdlib.h> 
+
+struct   item	//struct data type
+{
+     int  keep_data;
+};
+
+void main()
+{
+   item   John_cat, Joe_cat, Big_cat;
+   int   garfield;   //normal variable
+
+   John_cat.keep_data = 10;      //assigning data
+   Joe_cat.keep_data = 11;
+   Big_cat.keep_data = 12;
+   garfield = 13;
+
+  //Displaying data
+  cout<<"Data value for John_cat is "<<John_cat.keep_data<<"\n";
+  cout<<"Data value for Joe_cat is  "<<Joe_cat.keep_data <<"\n";
+  cout<<"Data value for Big_cat is  "<<Big_cat.keep_data<<"\n";
+  cout<<"Data value for garfield is "<<garfield<<"\n";
+  cout<<"Press Enter key to quit\n";
+  system("pause"); //just for screen snapshot
+}
+
+---------------------------------------------------------------------------------------------------------
+
+//Program class.cpp using class instead of struct
+#include <iostream.h>
+#include <stdlib.h>
+
+//--------Class declaration part------------
+class item
+{
+     int  keep_data;    //private by default, it is public in struct
+     public:	     //public part
+     void  set(int enter_value);
+     int  get_value(void);
+};
+
+//--------Class implementation part---------
+void  item::set(int enter_value)
+{
+     keep_data = enter_value;
+}
+
+int  item::get_value(void)
+{
+     return  keep_data;
+}
+
+//-------main program------------
+void main()
+{
+	    item    John_cat,  Joe_cat,  Big_cat;  
+     	    //three objects instantiated
+	    int   garfield;    //normal variable
+
+	    John_cat.set(10);   //assigning data
+	    Joe_cat.set(11);
+	    Big_cat.set(12);
+	    garfield = 13;
+  
+	//John_cat.keep_data = 100;	 
+	//Joe_cat.keep_data = 110;	 
+	//This is illegal cause keep_data now, is private by default
+
+cout<<"Accessing data using class\n";
+cout<<"-------------------------\n";
+cout<<"Data value for John_cat is "<<John_cat.get_value()<<"\n";
+cout<<"Data value for Joe_cat is "<<Joe_cat.get_value()<<"\n";
+cout<<"Data value for Big_cat is "<<Big_cat.get_value()<<"\n";
+cout<<"\nAccessing data normally\n";
+cout<<"---------------------------\n";
+cout<<"Data value for garfield is "<<garfield<<"\n";
+
+system("pause");
+}
+
+--------------------------------------------------------------------------------------------------------------
+
+//Program robject.cpp
+#include <iostream.h>
+#include <stdlib.h>
+
+//--------function prototype------------
+int  area(int rectangle_height, int rectangle_width);
+
+struct  rectangle
+{
+   int  height;  //public
+   int  width;   //public
+};
+
+struct  pole
+{
+   int  length;   //public
+   int  depth;    //public
+};
+
+//----------rectangle area-------------
+int surface_area(int rectangle_height, int rectangle_width)
+{
+   return   (rectangle_height * rectangle_width);
+}
+
+//--------main program---------
+void main()
+{
+    rectangle	      wall,  square;
+    pole	      lamp_pole;
+
+   wall.height = 12;     //assigning data
+   wall.width  = 10;
+   square.height  =  square.width  =  8;
+
+   lamp_pole.length  =  50;
+   lamp_pole.depth  =  6;
+
+  cout<<"Area of wall = height x width, OK!"<< "\n";
+  cout<<"-------------------------------------"<< "\n";
+  cout<<"----> Area of the wall is "<<surface_area(wall.height, wall.width)<< "\n\n";
+  cout<<"Area of square = height x width, OK!"<< "\n";
+  cout<<"-------------------------------------"<< "\n";
+  cout<<"----> Area of square is "<<surface_area(square.height,square.width)<<"\n\n";
+  cout<<"Non related area?"<<"\n = height of square x width of the wall?"<<"\n";
+  cout<<"-------------------------------------"<< "\n";
+  cout<<"----> Non related surface area is "<<surface_area(square.height,wall.width)<<"\n\n";
+  cout<<"Wrong surface area =  height of square"<<"\nx depth of lamp pole?"<<"\n";
+  cout<<"-------------------------------------"<< "\n";
+  cout<<"---->Wrong surface area is "<<surface_area(square.height,lamp_pole.depth)<<"\n";
+  
+  system("pause");
+}
+
+----------------------------------------------------------------------------------------------------------------------
+
+//Program classobj.cpp - using class instead of struct
+#include <iostream.h>
+#include <stdlib.h>
+
+//---------a simple class declaration part-----------
+class  rectangle
+ {
+   //private by default, member variables
+   int height;
+   int width;
+   public:
+   //public, with two methods
+   int area(void);
+   void initialize(int, int);
+};
+
+//-----------class implementation part--------------
+int rectangle::area(void)
+{
+  return (height * width);
+}
+
+void  rectangle::initialize(int initial_height, int initial_width)
+{
+   height = initial_height;
+   width = initial_width;
+}
+
+//normal structure - compare the usage with class
+struct  pole
+{
+     int  length;  //public
+     int  depth;   //public
+};
+
+//-------main program------------
+void main()
+{
+  rectangle 	wall, square;
+  pole	      lamp_pole;
+
+  //wall.height = 12;
+  //wall.width  = 10;
+  //square.height  =  square.width  =  8;
+  //these 3 lines invalid now, private, access only through methods
+
+  wall.initialize(12,10);    //access data through method
+  square.initialize(8,8);
+  lamp_pole.length  =  50;  //normal struct data access
+  lamp_pole.depth  =  6;
+
+  cout<<"Using class instead of struct\n";
+  cout<<"access through method area()\n";
+  cout<<"------------------------------\n";
+  cout<<"Area of the wall-->wall.area() = "<<wall.area()<< "\n\n";
+  cout<<"Area of the square-->square.area()= "<<square.area()<<"\n\n";
+
+  //cout<<"---->Non related surface area is "<<surface_area(square.height,wall.width)<<"\n\n";
+  //cout<<"---->Wrong area is "<surface_area(square.height,lamp_pole.depth)<<"\n";
+  //-----illegal directly access the private data
+
+ system("pause");
+}
+
+-----------------------------------------------------------------------------------------------------------------------
+
+//Program consdest.cpp - using class instead of struct
+//with constructor and destructor
+#include <iostream.h>
+#include <stdlib.h>
+
+//----------a simple class declaration part-----------
+class  rectangle
+{
+  //private by default, member variables
+  int height;
+  int width;
+  //public
+  public:
+  rectangle(void);         //constructor
+  int area(void);	 	   
+  void initialize(int, int);    
+  ~rectangle(void);        //destructor
+};
+
+//--------------Implementation part------------
+rectangle::rectangle(void)
+//constructor implementation
+{
+    height = 6;
+    width = 6;
+}
+
+int rectangle::area(void)
+{
+   return (height * width);
+}
+
+void  rectangle::initialize(int initial_height, int initial_width)
+{
+   height = initial_height;
+   width = initial_width;
+}
+
+//----destructor implementation-----
+rectangle::~rectangle(void)
+{
+   height = 0;
+   width = 0;
+}
+
+//normal structure - compare with class usage
+struct  pole
+{
+   int  length;
+   int  depth;
+};
+
+//---------main program-------
+void main()
+{
+  rectangle 	wall, square;
+  pole	      lamp_pole;
+
+
+ cout<<"Using class instead of struct, using DEFAULT VALUE\n";
+ cout<<"supplied by constructor, access through method area()\n";
+ cout<<"---------------------------------------------------\n\n";
+ cout<<"Area of the wall-->wall.area() = "<<wall.area()<< "\n\n";
+ cout<<"Area of the square-->square.area() = "<<square.area()<<"\n\n";
+ //	wall.height = 12;
+ //	wall.width  = 10;
+ //	square.height  =  square.width  =  8;
+ //These 3 lines, invalid now, private access only through methods
+
+  wall.initialize(12,10);     //override the constructor values
+  square.initialize(8,8);
+  lamp_pole.length  =  50;
+  lamp_pole.depth  =  6;
+
+ cout<<"Using class instead of struct, USING ASSIGNED VALUE\n";
+ cout<<"access through method area()\n";
+ cout<<"----------------------------------------------------\n";
+ cout<<"Area of the wall-->wall.area() = "<<wall.area()<<"\n\n";
+ cout<<"Area of the square-->square.area()= "<<square.area()<<"\n\n";
+
+ //cout<<"----> Non related surface area is "<<surface_area(square.height,wall.width)<<"\n\n";
+ //cout<<"---->Wrong area is "<surface_area(square.height,lamp_pole.depth)<<"\n";
+ 
+ system("pause");
+}
+
+-------------------------------------------------------------------------------------------------------------------
+
+//Program wall1.cpp
+#include  <iostream.h>
+#include  <stdlib.h>
+
+//-------a simple class, declaration part--------
+class  wall
+{
+   int  length;
+   int  width;
+   //private by default
+   public:
+   wall(void);
+   //constructor declaration
+   void   set(int new_length, int new_width);
+   //method
+   int   get_area(void){return (length * width);}
+   //destructor method
+   ~wall(void);
+   //destructor declaration
+};
+
+//----------implementation part-------------
+wall::wall(void)
+{  length = 8;
+   width = 8;
+}
+//This method will set a wall size to the two input
+//parameters by default or initial value,
+
+void  wall::set(int  new_length, int  new_width)
+{
+  length = new_length;
+  width = new_width;
+}
+
+wall::~wall(void)
+//destructor implementation
+{   length = 0;
+    width = 0;
+}
+
+//--------main program-------
+void  main()
+{
+  wall   small, medium, big;
+  //three objects instantiated of type class wall
+
+  small.set(5, 7);
+  //new length and width for small wall
+  big.set(15, 20);
+  //new length and width for big wall
+  //the medium wall uses the default
+  //values supplied by constructor (8,8)
+
+  cout<<"Using new value-->small.set(5, 7)\n";
+  cout<<"   Area of the small wall is = "<<small.get_area()<<"\n\n";
+  cout<<"Using default/initial value-->medium.set(8, 8)\n";
+  cout<<"   Area of the medium wall is = "<<medium.get_area()<<"\n\n";
+  cout<<"Using new value-->big.set(15, 20)\n";
+  cout<<"   Area of the big wall is = "<<big.get_area()<<"\n";
+  
+  system("pause");
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+//Program wall.h, the header file
+
+//--------class declaration part---------------
+class wall
+{
+  int   length;
+  int   width;
+  public:
+  wall(void);
+  //constructor method
+  void set(int new_length, int new_width);
+  //method
+  int  get_area(void) {return (length * width);}
+  //destructor method
+  ~wall(void);
+  //destructor
+};
+
+//this header file cannot be compiled or run
+
+-----------------------------------------------------------------------------------------------------------------
+
+//Program wall.cpp, this is implementation file
+
+#include  "wall.h"
+
+wall::wall(void)
+//constructor implementation
+{
+   length = 8;
+   width = 8;
+}
+
+//This method implementation will set a
+//wall size to the two input parameters
+
+void wall::set(int new_length, int new_width)
+{
+   length = new_length;
+   width = new_width;
+}
+
+wall::~wall(void)
+//destructor implementation
+{
+   length = 0;
+   width = 0;
+}
+
+//This implementation program should be compiled
+//without error, generating object file but can't be
+//run because there is no main() entry point.
+
+--------------------------------------------------------------------------------------------------------------
+
+//Program wall2.cpp here are the main program,
+//the actual program that programmer create
+
+#include   <iostream.h>
+#include   <stdlib.h>
+#include   "wall.h"
+//user defined header file containing
+//class declaration
+
+main()
+{
+   wall   small, medium, large;
+   //three objects instantiated of class wall
+
+   small.set(5, 7);
+   large.set(15, 20);
+   //the medium wall uses the values 
+   //supplied by the constructor
+
+   cout<<"In this part, we have divided our program into\n";
+   cout<<"three parts.\n"<<"1. Declaration part, wall.h\n";
+   cout<<"2. Implementation part, wall.cpp\n"<<"3. Main program, wall2.cpp\n";
+   cout<<"The output just from the 3rd part i.e. the main \n";
+   cout<<"program is same as the previous program, as follows\n";
+   cout<<"----------------------------------------------------\n\n";
+   cout<<"Area of the small wall surface is = "<<small.get_area()<<"\n";
+   cout<<"Area of the medium wall surface is = "<<medium.get_area()<<"\n";
+   cout<<"area of the big wall surface is =  "<<large.get_area()<<"\n";
+
+   system("pause");
+} 
+
+-----------------------------------------------------------------------------------------------------------------
+
+#include <iostream.h>
+#include <stdlib.h>
+
+union Num
+{
+   int      ValueI;
+   float    ValueF;
+   double   ValueD;
+   char	ValueC;
+};
+
+void main()
+{
+	//Optional union keyword
+	//ValueI = 100
+	Num TestVal = {100};
+
+	cout<<"\nInteger = "<<TestVal.ValueI<<endl;
+	TestVal.ValueF = 2.123L;
+	cout<<"Float = "<<TestVal.ValueF<<endl;
+	cout<<"Uninitialzed double = "<<TestVal.ValueD<<endl;
+	cout<<"Some rubbish???"<<endl;
+	TestVal.ValueC = 'U';
+	cout<<"Character = "<<TestVal.ValueC<<endl;
+
+	system("pause");
+}
+
+-------------------------------------------------------------------------------------------------------------------
+
+#include <iostream.h>
+#include <stdlib.h>
+
+struct Num
+{
+   int      ValueI;
+   float    ValueF;
+   double   ValueD;
+   char	ValueC;
+};
+
+void main()
+{
+	struct Num TestVal = {100};
+
+	cout<<"\nInteger = "<<TestVal.ValueI<<endl;
+	TestVal.ValueF = 2.123L;
+	cout<<"Float = "<<TestVal.ValueF<<endl;
+	cout<<"Uninitialzed double = "<<TestVal.ValueD<<endl;
+	cout<<"Better than union"<<endl;
+	TestVal.ValueC = 'U';
+	cout<<"Character = "<<TestVal.ValueC<<endl;
+
+	system("pause");
+}
+
+--------------------------------------------------------------------------------------------------------------------
+
+//Creating simple class, STEP #1
+#include  <iostream.h>
+#include  <stdlib.h>
+
+//--------class, declaration part------
+class line
+{
+
+   public:
+   line(void);
+   ~line(void);
+};
+
+//------class implementation part-------
+line::line(void)
+{}
+
+line::~line(void)
+{}
+
+//-------main program----------
+int main()
+{
+  line   LineOne;
+
+  cout<<"Just program skeleton\n";
+
+  system("pause");
+  return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------------
+
+//Creating simple class, STEP #2
+#include  <iostream.h>
+#include  <stdlib.h>
+
+//--------class, declaration part------
+class line
+{
+   char*  color;
+   int  pattern;
+   public:
+   line(void);
+   char*   LineColor(char*){ return  color = "GREEN";};
+   int	LinePattern(int pattern){return pattern;};
+   ~line(void);
+};
+
+//----class implementation part-----
+line::line(void)
+{
+   //constructor’s value…
+	pattern = 12;
+}
+
+line::~line(void)
+{
+   color = NULL;
+   pattern = 0;
+}
+
+//----------main program----------
+void main()
+{
+  line   LineOne;
+  int x = 10;
+
+  cout<<"Simple Line attribute class\n";
+  cout<<"Using some user supplied value\n";
+  cout<<"------------------------------"<<"\n";
+  cout<<"Line's Color        ----> "<<LineOne.LineColor("")<<"\n";
+  cout<<"Line's pattern type ----> "<<LineOne.LinePattern(x)<<"\n";
+  system("pause");
+}
+
+---------------------------------------------------------------------------------------------------------------------
+
+//Creating simple class, STEP #3, complete
+#include  <iostream.h>
+#include  <stdlib.h>
+
+//--------class, declaration part------
+class line
+{
+	char*  color;
+	float  weight;
+	float  length;
+	char * arrow;
+
+	public:
+	line(void);
+	char* LineColor(char* color){return color;};
+	float LineWeight(float weight){return weight;};
+	float LineLength(float length){return length;};
+	char *LineArrow(char* arrow){return arrow = "YES";};
+	~line(void);
+};
+
+//------implementation part-------
+line::line(void)
+{
+	//constructors or initial values…
+	weight = 0.25;
+	length = 10;
+}
+
+line::~line(void)
+{
+	color = NULL;
+	weight = 0;
+	length = 0;
+	arrow = NULL;
+}
+
+//---------main program----------
+void main()
+{
+	line   LineOne;
+
+	float x = 1.25, y = 2.25;
+	char newcolor[10] = "BLUE", *colorptr;
+
+	cout<<"Line attributes, very simple\n";
+	cout<<"     class example\n";
+	cout<<"----------------------------"<<"\n";
+
+	colorptr = newcolor;
+	//just for testing the new attribute values...
+	cout<<"\nAs normal variables....."<<endl;
+	cout<<"Test the new line weight = "<<x<<endl;
+	cout<<"Test the new line length = "<<y<<endl;
+	cout<<"Test the new line color is = "<<colorptr<<endl;
+
+	cout<<"\nUsing class......."<<endl;
+	cout<<"New line's color  ----> "<<LineOne.LineColor(colorptr)<<"\n";
+	cout<<"New line's weight ----> "<<LineOne.LineWeight(x)<<" unit"<<"\n";
+	cout<<"New line's length ----> "<<LineOne.LineLength(y)<<" unit""\n";
+	cout<<"Line's arrow      ----> "<<LineOne.LineArrow(" ")<<"\n\n";
+
+	system("pause");
+
+------------------------------------------------------------------------------------------------------------------
+
+//testing the constructor and destructor
+#include <iostream.h>
+#include <stdlib.h>
+
+//----class declaration part--------
+class TestConsDest
+{
+	//member variable...
+	public:
+	int TestVar;
+
+	//member functions, constructor and destructor...
+	public:
+	TestConsDest();
+	int DisplayValue();
+	~TestConsDest();
+};
+
+//----------class implementation part------------
+//constructor...
+TestConsDest::TestConsDest()
+{
+ 	//test how the constructor was invoked...
+	//static-retain the previous value…
+	static int x=1;
+ 	cout<<"In Constructor, pass #"<<x<<endl;
+ 	x++;
+}
+
+//simple function returning a value...
+int TestConsDest::DisplayValue()
+{
+	return TestVar = 100;
+}
+
+//destructor...
+TestConsDest::~TestConsDest()
+{
+ 	//test how destructor was invoked...
+	static int y=1;
+ 	cout<<"In Destructor, pass #"<<y<<endl;
+ 	y++;
+ 	//explicitly...
+ 	TestVar = 0;
+}
+
+//----------main program-----------
+int main()
+{
+	//instantiate two objects...
+	//constructor should be invoked...
+	//with proper memory allocation...
+	TestConsDest Obj1, Obj2;
+
+	cout<<"Reconfirm the allocation for Obj2 = "<<&Obj2<<endl;
+	cout<<"Default constructor value assigned = "<<Obj1.DisplayValue()<<endl;
+	cout<<"In main(), testing..."<<endl;
+	cout<<"What about Obj1 allocation? = "<<&Obj1<<endl;
+	cout<<"Default constructor value assigned = "<<Obj1.DisplayValue()<<endl;
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------------
+
+//class skeleton program
+//as summary...
+#include <iostream.h>
+#include <stdlib.h>
+
+//----The base class declaration---
+class BaseClass
+{
+//---member variables declaration---
+//declare all your variables here
+//with optional access restrictions
+public:
+	int p;
+
+//this keyword will be explained later...
+protected:
+	float q;
+
+private:
+	char r;
+
+//---member functions or methods---
+//define your functions here
+//also with optional access restrictions
+public:
+	//constructor
+	BaseClass();
+	//destructor
+	~BaseClass();
+
+private:
+	int Funct1();
+
+protected:
+	void Funct2();
+};
+
+//---class implementation part------
+//define your functions or method here
+BaseClass::BaseClass()
+{ }
+
+int BaseClass::Funct1()
+{return 0;}
+
+//constructor implementation
+void BaseClass::Funct2()
+{}
+
+//destructor implementation
+BaseClass::~BaseClass()
+{}
+
+//the main program
+//start instantiate objects here...
+int main(void)
+{
+	cout<<"------class test message----"<<endl;
+	cout<<"This just a class skeleton..."<<endl;
+	cout<<"It just simple, think simple!"<<endl;
+
+	system("pause");
+	return 0;
+}
+
+-------------------------------------------VC++/VC++ .Net-------------------------------------------------------
+
+//Program class.cpp using class instead of struct
+#include <iostream>
+using namespace std;
+
+//--------Class declaration part------------
+class item
+{
+    //private by default, it is public in struct
+	int  keep_data;
+    //public part
+	public:
+    void  set(int enter_value);
+    int  get_value(void);
+};
+
+//--------Class implementation part---------
+void item::set(int enter_value)
+{
+  keep_data = enter_value;
+}
+
+int item::get_value(void)
+{
+  return  keep_data;
+}
+
+//-------main program------------
+void main()
+{
+    //three objects instantiated
+    item    John_cat, Joe_cat, Big_cat;  
+    //normal variable
+    int   garfield;
+
+    //assigning data
+    John_cat.set(111);
+    Joe_cat.set(222);
+    Big_cat.set(333);
+    garfield = 444;
+    
+    //John_cat.keep_data = 100;	 
+    //Joe_cat.keep_data = 110;	 
+    //These are illegal because keep_data now, is private by default
+
+cout<<"Accessing data using class\n";
+cout<<"==========================\n";
+cout<<"Data value for John_cat is "<<John_cat.get_value()<<"\n";
+cout<<"Data value for Joe_cat is "<<Joe_cat.get_value()<<"\n";
+cout<<"Data value for Big_cat is "<<Big_cat.get_value()<<"\n";
+cout<<"\nAccessing data normally\n";
+cout<<"=======================\n";
+cout<<"Data value for garfield is "<<garfield<<"\n";
+}
+
+---------------------------------------G++ on Linux/Fedora-----------------------------------------------
+
+/////////-simpleclass.cpp-////////
+///////FEDORA 3, g++ x.x.x////////
+/////Creating a simple class/////
+#include <iostream>
+using namespace std;
+
+//--------class, declaration part------
+class line
+{
+        char*  color;
+        float  weight;
+        float  length;
+        char * arrow;
+
+        public:
+        line(void);
+        char* LineColor(char* color){return color;};
+        float LineWeight(float weight){return weight;};
+        float LineLength(float length){return length;};
+        char *LineArrow(char* arrow){return arrow = "YES";};
+        ~line(void);
+};
+
+//------implementation part-------
+line::line(void)
+{
+        //constructors or initial values.
+        weight = 0.25;
+        length = 10;
+}
+
+line::~line(void)
+{
+        color = NULL;
+        weight = 0;
+        length = 0;
+        arrow = NULL;
+}
+
+//-----------main program------------
+int main()
+{
+        line   LineOne;
+
+        float x = 1.25, y = 2.25;
+        char newcolor[10] = "BLUE", *colorptr;
+
+        cout<<"Line attributes, very simple\n";
+        cout<<"     class example\n";
+        cout<<"----------------------------"<<"\n";
+
+        colorptr = newcolor;
+        //just for testing the new attribute values...
+        cout<<"\nAs normal variables....."<<endl;
+        cout<<"Test the new line weight = "<<x<<endl;
+        cout<<"Test the new line length = "<<y<<endl;
+        cout<<"Test the new line color is = "<<colorptr<<endl;
+
+        cout<<"\nUsing class......."<<endl;
+        cout<<"New line's color  ----> "<<LineOne.LineColor(colorptr)<<"\n";
+        cout<<"New line's weight ----> "<<LineOne.LineWeight(x)<<" unit"<<"\n";
+        cout<<"New line's length ----> "<<LineOne.LineLength(y)<<" unit""\n";
+        cout<<"Line's arrow      ----> "<<LineOne.LineArrow(" ")<<"\n\n";
+
+        return 0;
+}
+
+=============================================================================================================

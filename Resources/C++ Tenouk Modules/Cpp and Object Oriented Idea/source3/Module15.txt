@@ -1,0 +1,1291 @@
+============================MODULE15=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+
+//Program inherit1.cpp.  For VC++/VC++ .Net change the
+//change the header files accordingly...
+//#include <iostream>
+//#include <cstdlib>
+//using namespace std;
+
+#include <iostream.h>
+#include <stdlib.h>
+
+//---class declaration part---
+class vehicle
+{
+  //This variable will be automatically
+  //inherited by all the derived class but not outside the
+  //base and derived class of vehicle
+   protected:
+	int    wheels;
+	double weight;
+ public:
+    void  initialize(int input_wheels, double input_weight);
+    int  get_wheels(void)        {return wheels;}
+    double  get_weight(void)     {return weight;}
+    double  wheel_load(void)  {return (weight/wheels);}
+};
+
+//---derived class declaration part---
+class car : public vehicle
+{
+  int passenger_load;
+  public:
+   void initialize(int input_wheels, double input_weight, int people = 4);
+   int passengers(void)
+   {
+      return passenger_load;
+    }
+};
+
+class truck : public vehicle
+{
+  int     passenger_load;
+  double  payload;
+  public:
+  void    init_truck(int  how_many = 4, double  max_load = 24000.0);
+  double  efficiency(void);
+  int     passengers(void)        {return  passenger_load;}
+};
+
+//----The main program------
+int main()
+{
+   vehicle  unicycle;
+   unicycle.initialize(1, 12.5);
+
+   cout<<"Using base class, vehicle\n";
+   cout<<"-------------------------\n";
+   cout<<"The unicycle has " <<unicycle.get_wheels()<<" wheel.\n";
+   cout<<"The unicycle's wheel loading is "<<unicycle.wheel_load()<<" kg on the single tire.\n";
+   cout<<"The unicycle weighs "<<unicycle.get_weight()<<" kg.\n\n";
+
+   car  sedan_car;
+   sedan_car.initialize(4, 3500.0, 5);
+
+   cout<<"Using derived class, car\n";
+   cout<<"------------------------\n";
+   cout<<"The sedan car carries "<<sedan_car.passengers()<<" passengers.\n";
+   cout<<"The sedan car weighs "<<sedan_car.get_weight()<<" kg.\n";
+   cout<<"The sedan's car wheel loading is "<<sedan_car.wheel_load()<<" kg per tire.\n\n";
+
+   truck trailer;
+   trailer.initialize(18, 12500.0);
+   trailer.init_truck(1, 33675.0);
+
+   cout<<"Using derived class, truck\n";
+   cout<<"--------------------------\n";
+   cout<<"The trailer weighs "<< trailer.get_weight()<< " kg.\n";
+   cout<<"The trailer's efficiency is "<<100.0 * trailer.efficiency()<<" %.\n";
+   
+   system("pause");
+   return 0;
+}
+
+//-----base and derived class implementation part----
+//initialize to any data desired, own by base class
+void vehicle::initialize(int input_wheels, double input_weight)
+{
+   wheels = input_wheels;
+   weight = input_weight;
+}
+
+//initialize() method own by derived car class
+void car::initialize(int input_wheels, double input_weight, int people)
+{
+  //class base variables used by derived car class,
+  //because of the protected keyword
+    passenger_load = people;
+    wheels = input_wheels;
+    weight = input_weight;
+}
+
+void truck::init_truck(int how_many, double max_load)
+{
+     passenger_load = how_many;
+     payload = max_load;
+}
+
+double truck::efficiency(void)
+{
+   return payload / (payload + weight);
+}
+
+---------------------------------------------------------------------------------------------------
+
+//program inherit2.cpp
+#include  <iostream.h>
+#include  <stdlib.h>
+
+//-----base and derived class declaration part----
+class vehicle
+{
+	  //protected:
+          //Note this is removed, so it is private now
+	  int     wheels;
+	  double  weight;
+	  public:         //public specifier
+	  void    initialize(int input_wheels, double input_weight);
+	  int     get_wheels(void)        {return wheels;}
+	  double  get_weight(void)     {return weight;}
+	  double  wheel_load(void)  {return (weight/wheels);}
+};
+
+class car : public vehicle
+{
+   int   passenger_load;
+   public:
+   void  initialize(int input_wheels, double input_weight, int people = 4);
+   int    passengers(void)        {return passenger_load;}
+};
+
+class truck : public vehicle
+{
+   int  passenger_load;
+   double  payload;
+   public:
+   void  init_truck(int how_many = 4, double max_load = 24000.0);
+   double efficiency(void);
+   int passengers(void)        {return  passenger_load;}
+};
+
+//------main program-------
+int main()
+{
+   vehicle unicycle;
+   unicycle.initialize(1, 12.5);
+
+   cout<<"Using base class, vehicle\n";
+   cout<<"-------------------------\n";
+   cout<<"The unicycle has "<<unicycle.get_wheels()<<" wheel.\n";
+   cout<<"The unicycle's wheel load is "<<unicycle.wheel_load()<<" kg on the single tire.\n";
+   cout<<"The unicycle weighs "<<unicycle.get_weight()<<" kg.\n\n";
+
+   car sedan_car;
+   sedan_car.initialize(4, 3500.0, 5);
+
+   cout<<"Using derived class, car\n";
+   cout<<"------------------------\n";
+   cout<<"The sedan car carries "<<sedan_car.passengers()<<" passengers.\n";
+   cout<<"The sedan car weighs "<<sedan_car.get_weight()<< " kg.\n";
+   cout<<"The sedan car's wheel loading is "<<sedan_car.wheel_load()<<" kg per tire.\n\n";
+
+   truck trailer;
+   trailer.initialize(18, 12500.0);
+   trailer.init_truck(1, 33675.0);
+
+   cout<<"Using derived class, truck\n";
+   cout<<"--------------------------\n";
+   cout<<"The trailer weighs "<<trailer.get_weight()<<" kg.\n";
+   cout<<"The trailer's efficiency is "<<100.0 * trailer.efficiency()<<" %.\n";
+   
+   system("pause");
+   return 0;
+}
+
+//-------base and derived class implementation part----
+// initialize to any data desired, this method own by base class
+void vehicle::initialize(int input_wheels, double input_weight)
+{
+     wheels = input_wheels;
+     weight = input_weight;
+}
+
+//This method own by derived class
+void car::initialize(int input_wheels, double input_weight, int people)
+{
+   passenger_load = people;
+
+  //This variable are invalid anymore because both wheels
+  //and weight are private now.
+  //wheels = input_wheels;
+  //weight = input_weight;
+  vehicle::initialize(input_wheels, input_weight);
+  //Added statement, using base class method instead of derived class
+}
+
+void truck::init_truck(int how_many, double max_load)
+{
+   passenger_load = how_many;
+   payload = max_load;
+}
+  
+double truck::efficiency(void)
+{
+  //Changed from program inherit1.cpp, from weight to get_weight()
+    return payload / (payload + get_weight());
+}
+
+-----------------------------------------------------------------------------------------------------
+
+//Program inherit3.cpp
+#include  <iostream.h>
+#include  <stdlib.h>
+
+//------base and derived class declaration part-----
+class  vehicle
+{
+  protected:
+   int  wheels;
+   double  weight;
+  public:
+   void   initialize(int input_wheels, double input_weight);
+   int    get_wheels(void)      {return  wheels;}
+   double get_weight(void)      {return  weight;}
+   double wheel_load(void)      {return  (weight/wheels);}
+};
+
+//public keyword changed to private - private inheritance
+class car : private vehicle
+{
+   int   passenger_load;
+   public:
+   void initialize(int input_wheels, double input_weight, int people = 4);
+   int passengers(void)        {return  passenger_load;}
+};
+
+//public keyword change to private - private inheritance
+class truck : private vehicle
+{
+   int  passenger_load;
+   double payload;
+   public:
+   void init_truck(int how_many = 4, double max_load = 24000.0);
+   double efficiency(void);
+   int passengers(void)        {return  passenger_load;}
+};
+
+//------main program------
+int main()
+{
+   vehicle unicycle;
+   unicycle.initialize(1, 12.5);
+
+   cout<<"Using base class, vehicle with public methods\n";
+   cout<<"---------------------------------------------\n";
+   cout<<"The unicycle has "<<unicycle.get_wheels()<<" wheel.\n";
+   cout<<"The unicycle's wheel load is "<<unicycle.wheel_load()<<" kg on the single tire.\n";
+   cout<<"The unicycle weighs "<<unicycle.get_weight()<<" kg.\n\n";
+
+   car sedan_car;
+   sedan_car.initialize(4, 3500.0, 5);
+
+   cout<<"\nThese two are public-->sedan_car.initialize(4,3500.0,5)\n";
+   cout<<"and  sedan_car.passengers()\n";
+   cout<<"-------------------------------------------------------\n";
+   cout<<"The sedan car carries "<<sedan_car.passengers()<<" passengers.\n";
+   //methods get_weight() and wheel_load() not available
+   //because we use private inheritance
+   //cout<<"The sedan car weighs "<<sedan_car.get_weight()<<" kg.\n";
+   //cout<<"The sedan car's wheel loading is "<<sedan_car.wheel_load()<<" kg per tire.\n\n";
+
+  truck trailer;
+  //trailer.initialize(18, 12500.0);
+  //this method is private now
+  trailer.init_truck(1, 33675.0);
+
+  cout<<"\nThese are public-->trailer.init_truck(1, 33675.0),\n";
+  cout<<"trailer.efficiency() and trailer.passengers()\n";
+  cout<<"--------------------------------------------------\n";
+  cout<<"\nOthers are private...\n";
+  //methods get_weight() and efficiency() not available
+  //because we use private inheritance
+  //cout<<"The trailer weighs "<<trailer.get_weight()<<" kg.\n";
+  //cout<<"The trailer's efficiency is "<<100.0 * trailer.efficiency()<<" %.\n";
+  
+  system("pause");
+  return  0;
+}
+
+//----class implementation part-----
+// initialize to any data desired, method own by base class
+void vehicle::initialize(int input_wheels, double input_weight)
+{
+   wheels = input_wheels;
+   weight = input_weight;
+}
+
+//method own by derived class
+void car::initialize(int input_wheels, double input_weight, int people)
+{  //wheels and weight still available because of the protected keyword
+   passenger_load = people;
+   wheels = input_wheels;
+   weight = input_weight;
+}
+
+void truck::init_truck(int how_many, double max_load)
+{
+   passenger_load = how_many;
+   payload = max_load;
+}
+
+double truck::efficiency(void)
+{
+    return (payload / (payload + weight));
+}
+
+-----------------------------------------------------------------------------------------------
+
+//Program inherit3.cpp
+#include  <iostream.h>
+#include  <stdlib.h>
+
+//----base and derived class declaration part-----
+class  vehicle
+{
+  protected:
+   int  wheels;
+   double  weight;
+  public:
+   void   initialize(int input_wheels, double input_weight);
+   int    get_wheels(void)      {return  wheels;}
+   double get_weight(void)      {return  weight;}
+   double wheel_load(void)      {return  (weight/wheels);}
+};
+
+//public keyword changed to private - private inheritance
+class car : private vehicle
+{
+   int   passenger_load;
+   public:
+   void initialize(int input_wheels, double input_weight, int people = 4);
+   int passengers(void)        {return  passenger_load;}
+};
+
+//public keyword change to private - private inheritance
+class truck : private vehicle
+{
+   int  passenger_load;
+   double payload;
+   public:
+   void init_truck(int how_many = 4, double max_load = 24000.0);
+   double efficiency(void);
+   int passengers(void)        {return  passenger_load;}
+};
+
+//-----main program------
+int main()
+{
+   vehicle unicycle;
+   unicycle.initialize(1, 12.5);
+
+   cout<<"Using base class, vehicle with public methods\n";
+   cout<<"---------------------------------------------\n";
+   cout<<"The unicycle has "<<unicycle.get_wheels()<<" wheel.\n";
+   cout<<"The unicycle's wheel load is "<<unicycle.wheel_load()<<" kg on the single tire.\n";
+   cout<<"The unicycle weighs "<<unicycle.get_weight()<<" kg.\n\n";
+
+   car sedan_car;
+   sedan_car.initialize(4, 3500.0, 5);
+
+   cout<<"\nThese two are public-->sedan_car.initialize(4,3500.0,5)\n";
+   cout<<"and  sedan_car.passengers()\n";
+   cout<<"-------------------------------------------------------\n";
+   cout<<"The sedan car carries "<<sedan_car.passengers()<<" passengers.\n";
+   //methods get_weight() and wheel_load() not available
+   //because we use private inheritance
+   //cout<<"The sedan car weighs "<<sedan_car.get_weight()<<" kg.\n";
+   //cout<<"The sedan car's wheel loading is "<<sedan_car.wheel_load()<<" kg per tire.\n\n";
+
+  truck trailer;
+  //trailer.initialize(18, 12500.0);
+  //this method is private now
+  trailer.init_truck(1, 33675.0);
+
+  cout<<"\nThese are public-->trailer.init_truck(1, 33675.0),\n";
+  cout<<"trailer.efficiency() and trailer.passengers()\n";
+  cout<<"--------------------------------------------------\n";
+  cout<<"\nOthers are private...\n";
+  //methods get_weight() and efficiency() not available
+  //because we use private inheritance
+  //cout<<"The trailer weighs "<<trailer.get_weight()<<" kg.\n";
+  //cout<<"The trailer's efficiency is "<<100.0 * trailer.efficiency()<<" %.\n";
+  
+  system("pause");
+  return  0;
+}
+
+//----class implementation part----
+// initialize to any data desired, method own by base class
+void vehicle::initialize(int input_wheels, double input_weight)
+{
+   wheels = input_wheels;
+   weight = input_weight;
+}
+
+//method own by derived class
+void car::initialize(int input_wheels, double input_weight, int people)
+{  //wheels and weight still available because of the protected keyword
+   passenger_load = people;
+   wheels = input_wheels;
+   weight = input_weight;
+}
+
+void truck::init_truck(int how_many, double max_load)
+{
+   passenger_load = how_many;
+   payload = max_load;
+}
+
+double truck::efficiency(void)
+{
+    return (payload / (payload + weight));
+}
+
+-------------------------------------------------------------------------------------------
+
+//Program inherit4.cpp
+#include <iostream.h>
+#include <stdlib.h>
+
+//-----base and derived class declaration part-----
+class vehicle
+{
+   protected:
+   int     wheels;
+   double  weight;
+   public:
+   vehicle(void)
+   {
+   wheels = 7; weight = 11111.0;
+   cout<<"Constructor's value of the base class, vehicle"<<'\n';
+   cout<<"----------------------------------------------\n";
+   }
+   void    initialize(int input_wheels, double input_weight);
+   int     get_wheels(void)        {return  wheels;}
+   double  get_weight(void)     {return  weight;}
+   double  wheel_load(void)  {return  (weight/wheels);}
+};
+
+//public inheritance
+class car : public vehicle  //public inheritance
+{
+  int     passenger_load;
+  public:
+  car(void)
+  {
+  passenger_load = 4;
+  cout<<"Constructor's value of the derived class, car"<<'\n';
+  cout<<"---------------------------------------------\n";
+  }
+  void    initialize(int input_wheels, double input_weight, int people = 4);
+  int     passengers(void)        {return  passenger_load;}
+};
+
+class truck : public vehicle   //public inheritance
+{
+   int      passenger_load;
+   double   payload;
+   public:
+   truck(void)
+   {
+   passenger_load = 3;payload = 22222.0;
+   cout<<"Constructor's value of the derived class, truck"<<'\n';
+   cout<<"-----------------------------------------------\n";
+   }
+   void     init_truck(int how_many = 4, double max_load = 24000.0);
+   double   efficiency(void);
+   int      passengers(void)        {return passenger_load;}
+};
+
+//-------main program-------
+int main()
+{
+   vehicle unicycle;
+
+  //unicycle.initialize(1, 12.5);
+  //use default constructor value, so no need the
+  //initialization code for object unicycle anymore.
+  cout<<"The unicycle has "<<unicycle.get_wheels()<<" wheel.\n";
+  cout<<"The unicycle's wheel loading is "<<unicycle.wheel_load()<<" kg on the single tire.\n";
+  cout<<"The unicycle weighs "<<unicycle.get_weight()<<" kg.\n\n";
+
+  car sedan_car;
+  // use base class initialize() method
+  // sedan_car.initialize(4, 3500.0, 5);
+  cout<<"The sedan car carries "<<sedan_car.passengers()<<" passengers.\n";
+  cout<<"The sedan car weighs "<<sedan_car.get_weight()<<" kg.\n";
+  cout<<"The sedan car's wheel loading is "<<sedan_car.wheel_load()<<" kg per tire.\n\n";
+
+  truck trailer;
+  //use base class initialize() method with default data
+  //trailer.initialize(18, 12500.0);
+  //trailer.init_truck(1, 33675.0);
+  cout<<"The trailer weighs "<<trailer.get_weight()<<" kg.\n";
+  cout<<"The trailer's efficiency is "<<100.0 * trailer.efficiency()<<" %.\n";
+  
+  system("pause");
+  return 0;
+}
+
+//------class implementation part----
+// initialize to any data desired
+void vehicle::initialize(int input_wheels, double input_weight)
+//base class method
+{
+   wheels = input_wheels;
+   weight = input_weight;
+}
+
+void car::initialize(int input_wheels, double input_weight, int people)
+//derived class method
+{
+   passenger_load = people;
+   wheels = input_wheels;
+   weight = input_weight;
+}
+
+void truck::init_truck(int how_many, double max_load)
+{
+    passenger_load = how_many;
+    payload = max_load;
+}
+
+double truck::efficiency(void)
+{
+    return (payload / (payload + weight));
+}
+
+-----------------------------------------------------------------------------------------------------------
+
+//Program inherit5.cpp
+#include  <iostream.h>
+#include  <stdlib.h>
+
+//-----base and derived class declaration part----
+class  vehicle
+{
+   protected:
+   int      wheels;
+   double   weight;
+   public:
+   vehicle(void)
+    {
+      wheels = 7; weight = 11111.0;
+      cout<<"It is me!, Constructor #1, own by base class"<<'\n';
+    }
+
+   vehicle(int input_wheels, double input_weight)
+    {
+      wheels = input_wheels; weight = input_weight;
+      cout<<"It is me!, Constructor #2, own by base class"<<'\n';
+    }
+
+   void initialize(int input_wheels, double input_weight);
+   int get_wheels(void)        {return wheels;}
+   double get_weight(void)     {return weight;}
+   double wheel_load(void)     {return (weight/wheels);}
+};
+
+class car : public vehicle
+{
+   int passenger_load;
+   public:
+   car(void)
+    {
+    passenger_load = 4; cout<<"It is me!, Constructor #3, derived class, car"<<'\n';
+    }
+
+   car(int people, int input_wheels, double input_weight):vehicle(input_wheels, input_weight), passenger_load(people)
+   {
+   cout<<"It is me!, Constructor #4, derived class, car"<<'\n';
+   }
+
+  void initialize(int input_wheels, double input_weight, int people = 4);
+  int passengers(void)        {return passenger_load;}
+};
+
+class truck : public vehicle
+{
+   int   passenger_load;
+   double   payload;
+   public:
+   truck(void)
+    {
+       passenger_load = 3;
+       payload = 22222.0;
+    }
+   //the following code should be in one line.... 
+   truck(int people, double load, int input_wheels, double weight):vehicle(input_wheels,input_weight),passenger_load(people), payload(load)
+	 {  
+
+        cout<<"It is me!, Constructor #5, derived class, car"<<'\n';  
+     }
+   void    init_truck(int  how_many = 4, double  max_load = 24000.0);
+   double  efficiency(void);
+   int     passengers(void)        {return  passenger_load;}
+};
+
+//-----main program------
+int  main()
+{
+   vehicle  unicycle(1, 12.5);
+
+  // unicycle.initialize(1, 12.5);
+  cout<<"The unicycle has "<<unicycle.get_wheels()<<" wheel.\n";
+  cout<<"The unicycle's wheel load is "<<unicycle.wheel_load()<<
+                                                " kg on the single tire.\n";
+  cout<<"The unicycle weighs "<<unicycle.get_weight()<<" kg.\n\n";
+
+  //Constructor in the car class called to construct an object,
+  //after base class constructor called
+  car  sedan_car(5, 4, 3500.0);
+
+  //constructor in the car class called to construct object
+  //sedan_car.initialize(4, 3500.0, 5);
+  cout<<"The sedan car carries "<<sedan_car.passengers()<<" passengers.\n";
+  cout<<"The sedan car weighs "<<sedan_car.get_weight()<<" kg.\n";
+  cout<<"The sedan car's wheel load is "<<sedan_car.wheel_load()<<" kg per tire.\n\n";
+
+  //Constructor in the base class called to construct an object
+  truck  trailer(1, 33675.0, 18, 12500.0);
+
+  //trailer.initialize(18, 12500.0);
+  //trailer.init_truck(1, 33675.0);
+  cout<<"The trailer weighs "<<trailer.get_weight()<<" kg.\n";
+  cout<<"The trailer's efficiency is "<<100.0 * trailer.efficiency()<<" %.\n";
+  
+  system("pause");
+  return  0;
+}
+
+//----base and derived class implementation part------
+// initialize to any data desired
+void vehicle::initialize(int input_wheels, double input_weight)
+{
+   wheels = input_wheels;
+   weight = input_weight;
+}
+
+void car::initialize(int input_wheels, double input_weight, int people)
+{
+   passenger_load = people;
+   wheels = input_wheels;
+   weight = input_weight;
+}
+
+void truck::init_truck(int how_many, double max_load)
+{
+    passenger_load = how_many;
+    payload = max_load;
+}
+
+double truck::efficiency(void)
+{
+    return (payload / (payload + weight));
+}
+
+------------------------------------------------------------------------------------------------------------
+
+//Program inherit6.cpp
+#include  <iostream.h>
+
+#include  <stdlib.h>
+
+//-----base and derived class declaration part----
+class  vehicle
+{
+  protected:
+  int      wheels;
+  double   weight;
+  public:
+  vehicle(void)   
+  {    wheels = 7; weight = 11111.0;
+       cout<<"Constructor #1, own by base class"<<'\n';}
+  vehicle(int input_wheels, double input_weight)
+  {    wheels = input_wheels; weight = input_weight;
+       cout<<"Constructor #2, own by base class"<<'\n';}
+
+  void initialize(int input_wheels, double input_weight);
+  int get_wheels(void)        {return wheels;}
+  double get_weight(void)     {return weight;}
+  double wheel_load(void)     {return (weight/wheels);}
+};
+
+class car : public vehicle
+{
+   int passenger_load;
+   public:
+   car(void)
+   {passenger_load = 4; cout<<"Constructor #3, derived class, car"<<"\n\n";}
+
+   car(int people, int input_wheels, double input_weight):vehicle(input_wheels, input_weight),passenger_load(people)
+    {cout<<"Constructor #4 derived class, car"<<'\n'; }
+
+   void initialize(int input_wheels, double input_weight, int people = 4);
+   int passengers(void)        {return passenger_load;}
+};
+
+class truck : public vehicle
+{
+   int   passenger_load;
+   double   payload;
+   public:
+   truck(void)
+   {passenger_load = 3;
+    payload = 22222.0;}
+
+   truck(int people, double load, int input_wheels, double 
+                                    input_weight):vehicle(input_wheels, 
+                                      input_weight),passenger_load(people), 
+                                            payload(load)
+	    {        }
+   void   init_truck(int  how_many = 4, double  max_load = 24000.0);
+   double efficiency(void);
+   int    passengers(void)        {return  passenger_load;}
+};
+
+//-----main program-----
+int  main()
+{
+  vehicle    unicycle;
+
+  unicycle.initialize(1, 12.5);
+
+  cout<<"The unicycle has " <<unicycle.get_wheels()<<" wheel.\n";
+  cout<<"The unicycle's wheel load is "<<unicycle.wheel_load()<<" kg on the single tire.\n";
+  cout<<"The unicycle weighs "<<unicycle.get_weight()<<" kg.\n\n";
+
+  car sedan_car[3];
+  //an array of object with 3 elements
+  int index;
+  //variable used for counter
+  for (index = 0 ; index < 3 ; index++)
+  //count and execute
+   {
+     sedan_car[index].initialize(4, 3500.0, 5);
+     cout<<"Count no. #" <<index<<'\n';
+     cout<<"The sedan car carries "<<sedan_car[index].passengers()<<" passengers.\n";
+     cout<<"The sedan car weighs "<<sedan_car[index].get_weight()<<" kg.\n";
+     cout<<"The sedan car's wheel load is "<<sedan_car[index].wheel_load()<<" kg per tire.\n\n";
+   }
+
+  truck  *trailer;   //pointer
+
+  trailer = new truck;   
+  //initialize to point to something...point to an object
+
+   if (trailer == NULL)
+     {
+         cout<<"Memory allocation failed\n";
+         exit(EXIT_FAILURE);
+     }
+      trailer->initialize(18, 12500.0);
+      trailer->init_truck(1, 33675.0);
+  cout<<"The trailer weighs " << trailer->get_weight()<<" kg.\n";
+  cout<<"The trailer's efficiency is "<<100.0 * trailer->efficiency()<<" %.\n";
+
+  delete trailer;
+  //deallocate the object
+
+  
+  system("pause");
+  return  0;
+ }
+
+//-----base and derived class implementation part----
+// initialize to any data desired
+void vehicle::initialize(int input_wheels, double input_weight)
+{
+   wheels = input_wheels;
+   weight = input_weight;
+}
+
+void car::initialize(int input_wheels, double input_weight, int people)
+{
+    passenger_load = people;
+    wheels = input_wheels;
+    weight = input_weight;
+}
+
+void truck::init_truck(int how_many, double max_load)
+{
+    passenger_load = how_many;
+    payload = max_load;
+}
+
+double truck::efficiency(void)
+{
+    return (payload / (payload + weight));
+}
+
+
+-------------------------------------------------------------------------------------------------
+
+//Using friend function...
+#include <iostream.h>
+#include <stdlib.h>
+
+class SampleFriend 
+{
+   //private member variable
+   int i;
+   friend int friend_funct(SampleFriend *, int);
+   //friend_funct is not private,
+   //even though it's declared in the private section
+   public:
+   //constructor
+   SampleFriend(void) { i = 0;};
+   int member_funct(int);
+};
+
+//implementation part, both functions access private int i
+int friend_funct(SampleFriend *xptr, int a)
+{
+  return xptr->i = a;
+}
+
+int SampleFriend::member_funct(int a)
+{
+	return i = a;
+}
+
+main()
+{
+	SampleFriend xobj;
+	//note the difference in function calls
+
+	cout<<"\nfriend_funct(&xobj, 10) is "<<friend_funct(&xobj, 10)<<"\n\n";
+	cout<<"xobj.member_funct(10) is "<<xobj.member_funct(10)<<endl;
+	system("pause");
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//inheritance again...
+//notice the sequence of the constructor
+//and destructor, and private, public,
+//protected usage...
+#include <iostream.h>
+#include <stdlib.h>
+
+class Base
+{
+      //available for this class member functions ONLY...
+		private:
+      int BaseVar;
+      int NewX;
+      int ExtraBaseVar;
+
+      //available to this and derived classes...
+      protected:
+      int BaseVarOne;
+
+      //available to the derived and outside classes...
+      public:
+      Base();
+      Base(int NewX);
+      ~Base();
+      public:
+      int SetBaseData();
+      int ShowBaseData(){return BaseVar;}
+      int SimilarNameFunct();
+};
+
+class DerivedOne:public Base
+{
+      //available to this class member functions ONLY...
+      private:
+      int DerivedOneVar;
+      int ExtraDerivedVar;
+      
+      //available to the derived and outside classes...
+      public:
+      DerivedOne();
+      ~DerivedOne();
+      
+      //available to the derived and outside classes...
+      public:
+      void SetDerivedOneData();
+      int ShowDerivedOneData()
+      {
+      	//BaseVarOne is base class protected member
+      	//variable, available to this derived class...
+      	return (DerivedOneVar + BaseVarOne);
+      }
+      int SimilarNameFunct();
+};
+
+//base class constructor...
+Base::Base()
+{
+	BaseVar = 100;
+	//constructor counter...
+	static int p;
+	cout<<"Invoking base class constructor #"<<p<<endl;
+	p++;
+}
+
+//another base class constructor...
+Base::Base(int)
+{
+	//constructor counter...
+	static int t;
+	cout<<"Invoking 2nd base class constructor #"<<t<<endl;
+	t++;
+	BaseVar = NewX;
+}
+
+//base class member function...
+int Base::SetBaseData()
+{	return NewX = 230;}
+
+int Base::SimilarNameFunct()
+{return ExtraBaseVar = 170;}
+
+//base class destructor...
+Base::~Base()
+{
+	//destructor counter...
+	static int q;
+	cout<<"Invoking base class destructor #"<<q<<endl;
+	q++;
+}
+
+//derived class constructor...
+DerivedOne::DerivedOne()
+{
+	DerivedOneVar = 200;
+	//this member variable is inherited from protected base class
+	BaseVarOne = 250;
+	
+	//constructor counter...
+	static int r;
+	cout<<"Invoking derived class constructor #"<<r<<endl;
+	r++;
+}
+
+//derived class destructor...
+DerivedOne::~DerivedOne()
+{
+	//destructor counter...
+	static int s;
+	cout<<"Invoking derived class destructor #"<<s<<endl;
+	s++;
+}
+
+void DerivedOne::SetDerivedOneData()
+{}
+
+//same member function name as base class
+//it is valid since they are from different class
+int DerivedOne::SimilarNameFunct()
+{return ExtraDerivedVar = 260;}
+
+void main()
+{
+      //instantiate objects with class types...
+      Base ObjOne, ObjFour;
+      DerivedOne ObjTwo, ObjFive;
+
+      Base ObjThree;
+
+      cout<<"Base class data = "<<ObjOne.ShowBaseData()<<endl;
+      cout<<"SimilarNameFunct() of base class = "<<ObjFour.SimilarNameFunct()<<endl;
+      cout<<"DerivedOne class data = "<<ObjTwo.ShowDerivedOneData()<<endl;
+      cout<<"SimilarNameFunct() of derived class = "<<ObjFive.SimilarNameFunct()<<endl;
+      cout<<"Another base class data = "<<ObjThree.SetBaseData()<<endl;
+
+      system("pause");
+}
+
+---------------------------------------------VC++/VC++ .Net--------------------------------------------
+
+//Program inherit3.cpp
+#include  <iostream>
+using namespace std;
+
+//-----base and derived class declaration part-----
+class vehicle
+{
+  protected:
+  int wheels;
+  double weight;
+
+  public:
+   void   initialize(int input_wheels, double input_weight);
+   int    get_wheels(void)      {return  wheels;}
+   double get_weight(void)      {return  weight;}
+   double wheel_load(void)      {return  (weight/wheels);}
+};
+
+//public keyword changed to private - private inheritance
+class car : private vehicle
+{
+   int   passenger_load;
+
+   public:
+   void initialize(int input_wheels, double input_weight, int people = 4);
+   int passengers(void)        {return  passenger_load;}
+};
+
+//public keyword change to private - private inheritance
+class truck : private vehicle
+{
+   int  passenger_load;
+   double payload;
+   public:
+   void init_truck(int how_many = 4, double max_load = 24000.0);
+   double efficiency(void);
+   int passengers(void)        {return  passenger_load;}
+};
+
+//-----main program----
+int main()
+{
+   vehicle unicycle;
+   unicycle.initialize(1, 12.5);
+
+   cout<<"Using base class, vehicle with public methods\n";
+   cout<<"---------------------------------------------\n";
+   cout<<"The unicycle has "<<unicycle.get_wheels()<<" wheel.\n";
+   cout<<"The unicycle's wheel load is "<<unicycle.wheel_load()<<" kg on the single tire.\n";
+   cout<<"The unicycle weighs "<<unicycle.get_weight()<<" kg.\n\n";
+
+   car sedan_car;
+   sedan_car.initialize(4, 3500.0, 5);
+
+   cout<<"\nThese two are public-->sedan_car.initialize(4,3500.0,5)\n";
+   cout<<"           and  sedan_car.passengers()\n";
+   cout<<"-------------------------------------------------------\n";
+   cout<<"The sedan car carries "<<sedan_car.passengers()<<" passengers.\n";
+   //methods get_weight() and wheel_load() not available
+   //because we use private inheritance
+   //cout<<"The sedan car weighs "<<sedan_car.get_weight()<<" kg.\n";
+   //cout<<"The sedan car's wheel loading is "<<sedan_car.wheel_load()<<" kg per tire.\n\n";
+
+   truck trailer;
+  //trailer.initialize(18, 12500.0);
+  //this method is private now
+  trailer.init_truck(1, 33675.0);
+
+  cout<<"\nThese are public-->trailer.init_truck(1, 33675.0),\n";
+  cout<<" trailer.efficiency() and trailer.passengers()\n";
+  cout<<"--------------------------------------------------\n";
+  cout<<"\nOthers are private...\n";
+  //methods get_weight() and efficiency() not available
+  //because we use private inheritance
+  //cout<<"The trailer weighs "<<trailer.get_weight()<<" kg.\n";
+  //cout<<"The trailer's efficiency is "<<100.0 * trailer.efficiency()<<" %.\n";
+  return 0;
+}
+
+//-----class implementation part------
+// initialize to any data desired, method own by base class
+void vehicle::initialize(int input_wheels, double input_weight)
+{
+   wheels = input_wheels;
+   weight = input_weight;
+}
+	
+//method own by derived class
+void car::initialize(int input_wheels, double input_weight, int people)
+{  //wheels and weight still available because of the protected keyword
+   passenger_load = people;
+   wheels = input_wheels;
+   weight = input_weight;
+}
+
+void truck::init_truck(int how_many, double max_load)
+{
+   passenger_load = how_many;
+   payload = max_load;
+}
+
+double truck::efficiency(void)
+{
+    return (payload / (payload + weight));
+}
+
+-----------------------------------------------G++ on Linux/Fedora-------------------------------------------------
+
+/////-herit.cpp-///////////////////////
+//notice the sequence of the constructor
+//and destructor, and the use of private,
+//public and protected. The inheritance...
+//////-FEDORA 3, g++ x.x.x-/////////////
+#include <iostream>
+using namespace std;
+
+class Base
+{
+      //available for this class member functions ONLY...
+      private:
+      int BaseVar;
+      int NewX;
+      int ExtraBaseVar;
+
+      //available to this and derived classes...
+      protected:
+      int BaseVarOne;
+
+      //available to the derived and outside classes...
+      public:
+      Base();
+      Base(int NewX);
+      ~Base();
+      public:
+      int SetBaseData();
+      int ShowBaseData(){return BaseVar;}
+      int SimilarNameFunct();
+};
+
+class DerivedOne:public Base
+{
+      //available to this class member functions ONLY...
+      private:
+      int DerivedOneVar;
+      int ExtraDerivedVar;
+
+      //available to the derived and outside classes...
+      public:
+      DerivedOne();
+      ~DerivedOne();
+
+      //available to the derived and outside classes...
+      public:
+      void SetDerivedOneData();
+      int ShowDerivedOneData()
+      {
+        //BaseVarOne is base class protected member
+        //variable, available to this derived class...
+        return (DerivedOneVar + BaseVarOne);
+      }
+      int SimilarNameFunct();
+};
+
+//base class constructor...
+Base::Base()
+{
+        BaseVar = 100;
+        //constructor counter...
+        static int p;
+        cout<<"Invoking base class constructor #"<<p<<endl;
+        p++;
+}
+
+//another base class constructor...
+Base::Base(int)
+{
+        //constructor counter...
+        static int t;
+        cout<<"Invoking 2nd base class constructor #"<<t<<endl;
+        t++;
+        BaseVar = NewX;
+}
+
+//base class member function...
+int Base::SetBaseData()
+{return NewX = 230;}
+
+int Base::SimilarNameFunct()
+{return ExtraBaseVar = 170;}
+
+//base class destructor...
+Base::~Base()
+{
+        //destructor counter...
+        static int q;
+        cout<<"Invoking base class destructor #"<<q<<endl;
+        q++;
+}
+
+//derived class constructor...
+DerivedOne::DerivedOne()
+{
+        DerivedOneVar = 200;
+        //this member variable is inherited from protected base class
+        BaseVarOne = 250;
+
+        //constructor counter...
+        static int r;
+        cout<<"Invoking derived class constructor #"<<r<<endl;
+        r++;
+}
+
+//derived class destructor...
+DerivedOne::~DerivedOne()
+{
+        //destructor counter...
+        static int s;
+        cout<<"Invoking derived class destructor #"<<s<<endl;
+        s++;
+}
+
+void DerivedOne::SetDerivedOneData()
+{}
+
+//same member function name as base class
+//it is valid since they are from different class
+int DerivedOne::SimilarNameFunct()
+{return ExtraDerivedVar = 260;}
+
+int main()
+{
+      //instantiate objects with class types...
+      Base ObjOne, ObjFour;
+      DerivedOne ObjTwo, ObjFive;
+
+      Base ObjThree;
+
+      cout<<"Base class data = "<<ObjOne.ShowBaseData()<<endl;
+      cout<<"SimilarNameFunct() of base class = "<<ObjFour.SimilarNameFunct()<<endl;
+      cout<<"DerivedOne class data = "<<ObjTwo.ShowDerivedOneData()<<endl;
+      cout<<"SimilarNameFunct() of derived class = "<<ObjFive.SimilarNameFunct()<<endl;
+      cout<<"Another base class data = "<<ObjThree.SetBaseData()<<endl;
+      return 0;
+}
+
+=========================================================================================================
+
+

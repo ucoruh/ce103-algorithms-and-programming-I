@@ -1,3 +1,57 @@
-site_name: ce103 algorithms and programming I
+site_name: "ce103 algorithms and programming I"
 theme:
-    name: readthedocs
+    name: material
+    logo: assets/images/favicon.png
+    favicon: images/favicon.png
+    palette:
+        primary: teal
+        accent: pink
+    language: en
+    feature:
+        tabs: true
+    font:
+        text: Roboto
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  
+extra:
+  analytics:
+    provider: google
+    property: G-DGZ815VN23
+extra:
+  analytics: 
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! Help us improve this page by
+            using our <a href="..." target=_blank>feedback form</a>.
+extra:
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+extra:
+  consent:
+    cookies:
+      analytics: Google Analytics 
+      custom: Custom cookie
+

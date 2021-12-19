@@ -118,15 +118,34 @@ This course does not require a coursebook. If necessary, you can use the followi
 [Mathematics in R Markdown](https://rpruim.github.io/s341/S19/from-class/MathinRmd.html)
 
 $$
-a_n = \text{Homework or Exam Points}
-
-
+\operatorname{a_n}  = \text{Homework or Exam Points}
 $$
 
 $$
-HW_n = Homework or Project Points
+\operatorname{HW_n} = Homework or Project Points
 $$
 
 $$
 \sum_{n=1}^{10} n^2
 $$
+
+
+<script src="//katacoda.com/embed.js"></script>
+<div id="my-element-1" 
+	style="display:inline; height:1000px"
+    data-katacoda-env="node"
+    data-katacoda-layout="editor-terminal"
+    data-katacoda-port="3000"
+    data-katacoda-filename="app.js" style="border: 2px solid #ccc;" >
+var http = require('http');
+var requestListener = function (req, res) {
+res.writeHead(200);
+res.end('Hello, World!');
+}
+
+var server = http.createServer(requestListener);
+server.listen(3000, function() { console.log("Listening on port 3000")});
+</div>
+</div>
+
+

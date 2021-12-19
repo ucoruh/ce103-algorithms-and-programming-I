@@ -25,8 +25,6 @@ extra:
   analytics:
     provider: google
     property: G-DGZ815VN23
-extra:
-  analytics: 
     feedback:
       title: Was this page helpful?
       ratings:
@@ -41,7 +39,6 @@ extra:
           note: >- 
             Thanks for your feedback! Help us improve this page by
             using our <a href="..." target=_blank>feedback form</a>.
-extra:
   consent:
     title: Cookie consent
     description: >- 
@@ -49,9 +46,6 @@ extra:
       as to measure the effectiveness of our documentation and whether users
       find what they're searching for. With your consent, you're helping us to
       make our documentation better.
-extra:
-  consent:
     cookies:
-      analytics: Google Analytics 
-      custom: Custom cookie
+      analytics: Google Analytics
 

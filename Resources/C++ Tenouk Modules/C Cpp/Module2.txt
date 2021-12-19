@@ -1,0 +1,1176 @@
+==============================MODULE2======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+//Data types program example.  Change the header files
+//accordingly for VC++/VC++ .Net
+//#include <iostream>
+//#include <cstdlib>
+//using namespace std;
+
+#include <iostream.h>
+#include <stdlib.h>
+
+//main() function
+int main()	
+{
+  int	a = 3000;    //positive integer data type
+  float b = 4.5345;  //float data type
+  char  c = 'A';     //char data type
+  long	d = 31456;   //long positive integer data type
+  long	e = -31456;  //long -ve integer data type
+  int	f =  -145;   //-ve integer data type
+  short	g = 120;     //short +ve integer data type
+  short	h = -120;    //short -ve integer data type
+  double   i = 5.1234567890;  	//double float data type
+  float	j = -3.24;   //float data type
+
+  cout<<"Welcome Ladies and Gentlemen!!\n";
+  cout<<"Here are the list of the C/C++ data type\n";
+  cout<<"\n1.  This is positive integer number (int):\t\t"<<a;
+  cout<<"\n2.  This is positive float number (float):\t\t"<<b;
+  cout<<"\n3.  This is negative float number(float):\t\t"<<j;
+  cout<<"\n4.  This is character data (char):\t\t\t"<<c;
+  cout<<"\n5.  This is long positive integer number(long):\t\t"<<d;
+  cout<<"\n6.  This is long negative integer number(long):\t\t"<<e;
+  cout<<"\n7.  This is negative integer number(int):\t\t"<<f;
+  cout<<"\n8.  This is short positive integer number(short):\t"<<g;
+  cout<<"\n9.  This is short negative integer number(short):\t"<<h;
+  cout<<"\n10.  This is double positive float number(double):\t"<<i;
+  cout<<"\n11.\'This is lateral string\'";
+  cout<<"\n\t---do you understand?----\n ";
+
+  system("pause");
+  return 0;
+}
+
+-------------------------------------------------------------------------------------------------
+
+//Another data type program example
+#include <iostream.h>
+#include <stdlib.h>
+
+//main( ) function
+void main()
+{
+   int		p = 2000;      //positive integer data type
+   short int	q = -120;      //variation
+   unsigned short int r = 121;   //variation
+   float		s = 21.566578; //float data type
+   char		t = 'r';       //char data type
+   long		u = 5678;      //long positive integer data type
+   unsigned long  v = 5678;      //variation
+   long		w = -5678;     //-ve long integer data type
+   int		x =  -171;     //-ve integer data type
+   short		y = -71;       //short -ve integer data type
+   unsigned short  z = 99;        //variation
+   double          a = 88.12345;  //double float data type
+   float           b = -3.245823; //float data type
+
+cout<<"\t--Data type again--\n";
+cout<<"\t-------------------\n";
+cout<<"\n1.   \"int\" sample: \t\t"<<p;
+cout<<"\n2.   \"short\" int sample: \t"<<q;
+cout<<"\n3.   \"unsigned short int\" sample: "<<r;
+cout<<"\n4.   \"float\" sample: \t\t"<<s;
+cout<<"\n5.   \"char\" sample: \t\t"<<t;
+cout<<"\n6.   \"long\" sample: \t\t"<<u;
+cout<<"\n7.   \"unsigned long\" sample: \t"<<v;
+cout<<"\n8.   negative \"long\" sample: \t"<<w;
+cout<<"\n9.   negative \"int\" sample: \t"<<x;
+cout<<"\n10.  negative \"short\" sample: \t"<<y;
+cout<<"\n11.  unsigned \"short\" sample: \t"<<z;
+cout<<"\n12.  \"double\" sample: \t\t"<<a;
+cout<<"\n13.  negative \"float\" sample: \t"<<b<<endl;
+system("pause");
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+//Program to calculate the circumference and area of circle
+#include <iostream.h>
+#include <stdlib.h>
+//define identifier PI with constant
+#define  PI   3.14159    
+//define identifier TWO with constant
+#define  TWO  2.0	  
+
+int main()
+{
+float   area, circumference, radius;
+
+cout<<"\nEnter the radius of the circle in meter: ";
+cin>>radius;
+
+area = PI * radius * radius;
+//circle area =  PI*radius*radius
+
+circumference = TWO * PI * radius;
+//circumference = 2*PI*radius
+cout<<"\nCircumference = "<<circumference<<" meter";
+//circle circumference
+cout<<"\nCircle area =  "<<area<<" square meter"<<endl;
+//circle area
+system("pause");
+return 0;
+}
+
+-------------------------------------------------------------------------------------------------------
+
+//Using cout from iostream.h header file
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+cout<<"Hello there.\n";
+cout<<"Here is 7: "<<7<<"\n";
+//other than escape sequence \n used for new line, endl...
+cout<<"\nThe manipulator endl writes a new line to the screen.\n"<<endl;
+cout<<"Here is a very big number:\t" << 10000 << endl;
+cout<<"Here is the sum of 10 and 5:\t" << (10+5) << endl;
+cout<<"Here's a fraction number:\t" << (float) 7/12 << endl;
+//simple type casting, from int to float
+cout<<"And a very very big number:\t" << (double) 7000 * 7000<< endl;
+//another type casting, from int to double
+cout<<"\nDon't forget to replace existing words with yours...\n";
+cout<<"I want to be a programmer!\n";
+system("pause");
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------
+
+//Comment in C/C++, using /*  */ or //
+//the // only for C++ compiler
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+/* this is a comment
+and it extends until the closing
+star-slash comment mark */
+cout<<"Hello World! How are you?\n";
+
+//this comment ends at the end of the line
+//so, new comment line need new double forward slash
+cout<<"That is the comment in C/C++ program!\n";
+cout<<"They are ignored by compiler!\n";
+
+//double slash comments can be alone on a line
+/* so can slash-star comments */
+
+/********************************/
+system("pause");
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------
+
+//By using predefined sizeof() function,
+//displaying the data type size, 1 byte = 8 bits
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+cout<<"The size of an int is:\t\t"<<sizeof(int)<<" bytes.\n";
+cout<<"The size of a short int is:\t"<<sizeof(short)<<" bytes.\n";
+cout<<"The size of a long int is:\t"<<sizeof(long)<<" bytes.\n";
+cout<<"The size of a char is:\t\t"<<sizeof(char)<<" bytes.\n";
+cout<<"The size of a float is:\t\t"<<sizeof(float)<<" bytes.\n";
+cout<<"The size of a double is:\t"<<sizeof(double)<<" bytes.\n";
+cout<<"The size of a bool is:\t\t"<<sizeof(bool)<<" bytes.\n";
+
+system("pause");
+return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+//Demonstration the use of variables
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+unsigned short int   Width = 7, Length;
+Length = 10;
+
+//create an unsigned short and initialize with result
+//of multiplying Width by Length
+unsigned short int Area  = Width * Length;
+
+cout<<"Width:\t"<<Width<<"\n";
+cout<<"Length: "<<Length<<endl;
+cout<<"Area: \t"<<Area<<endl;
+
+system("pause");
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------
+
+//To calculate the total amount of money earned in n days
+#include <iostream.h>
+#include <stdlib.h>
+
+int main( )
+{
+int  n;
+int  total, rate= 20;
+
+cout<<"Enter number of days worked:  ";
+cin>>n;
+
+total = n * rate;
+
+cout<<"\n----------------------------";
+cout<<"\n|   For rate RM20 per day   |";
+cout<<"\n----------------------------";
+cout<<"\n";
+cout<<"\nFor "<<n<<" days of work, you have earned $ ";
+cout<<total<<endl;
+
+system("pause");
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------
+
+//Printing characters base on their
+//respective integer numbers
+
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+cout<<"For integer number from 32 till 127,\n";
+cout<<"their representation for\n";
+cout<<"characters is shown below\n\n";
+cout<<"integer	  character\n";
+cout<<"-------------------\n";
+
+for (int i = 32; i<128; i++)
+//display up to 127...
+cout<<i<<"    "<<(char) i<<"\n";
+//simple typecasting, from int to char
+
+system("pause");
+return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+/*Sample Boolean tests with bool, true, and false.*/
+#include <iostream.h>
+#include <stdlib.h>
+
+//non main function
+bool func()
+{
+//Function returns a bool type
+return NULL;
+//NULL is converted to Boolean false, same
+//as statement 'return false;'
+}
+
+int main()
+{
+bool val = false;  // Boolean variable
+int i = 1;         // i is neither Boolean-true nor Boolean-false
+int g = 5;
+float j = 3.02;    // j is neither Boolean-true nor Boolean-false
+
+cout<<"Given the test value: "<<endl;
+cout<<"bool val = false "<<endl;
+cout<<"int i = 1 "<<endl;
+cout<<"int g = 5 "<<endl;
+cout<<"float j = 3.02 "<<endl;
+cout<<"\nTESTING\n";
+
+//Tests on integers
+if(i == true)
+  cout<<"True: value i is 1"<<endl;
+if(i == false) 
+  cout<<"False: value i is 0"<<endl;
+if(g)
+  cout << "g is true."<<endl;
+else
+  cout << "g is false."<<endl;
+
+//To test j's truth value, cast it to bool type.
+if(bool(j) == true)
+  cout<<"Boolean j is true."<<endl;
+
+//Test Boolean function returns value
+val = func();
+
+if(val == false)
+  cout<<"func() returned false."<<endl;
+
+if(val == true)
+  cout<<"func() returned true."<<endl;
+
+system("pause");
+return false;
+//false is converted to 0
+}
+
+----------------------------------------------------------------------------------------------------
+
+//Testing the escape sequences
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+
+printf("Testing the escape sequences:\n");
+printf("-----------------------------\n");
+
+printf("The audible bell	--->\'\\a\' \a\a\a\n");
+printf("The backspace   	--->\'\\b\' \bTesting\n");
+printf("The formfeed, printer	--->\'\\f\' \fTest\n");
+printf("The newline     	--->\'\\n\' \n\n");
+printf("The carriage return	--->\'\\r\' \rTesting\n");
+printf("The horizontal tab	--->\'\\t\' \tTesting\t\n");
+printf("The vertical tab	--->\'\v\' \vTesting\n");
+printf("The backslash		--->\'\\\\' \\Testing\\\n");
+printf("The single quote	--->\'\'\'  \'Testing\'\'\'\n");
+printf("The double quote	--->\'\"\'  \"Testing\"\"\n");
+printf("The question mark	--->\'\?\'  \?Testing\?\n");
+printf("Some might not working isn't it?\n");
+
+system("pause");
+return 0;
+}
+
+-------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+int num;
+
+printf("Conversion...\n");
+printf("Start with any character and\n");
+printf("Press Enter, EOF to stop\n");
+
+num = getchar();
+
+printf("Character Integer Hexadecimal Octal\n");
+
+while(getchar() != EOF)
+{
+  printf("   %c       %d       %x       %o\n",num,num,num,num);
+  ++num;
+}
+
+system("pause");
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/*convert decimal to binary function*/
+void dectobin();
+		
+int main()
+{
+char chs = 'Y';
+
+do
+{
+  dectobin();
+  printf("Again? Y, others to exit: ");
+  
+  chs = getchar();
+  
+  scanf("%c", &chs);
+}while ((chs == 'Y') || (chs == 'y'));
+
+return 0;
+}
+
+void dectobin()
+{
+  int input;
+
+  printf("Enter decimal number: ");
+  scanf("%d", &input);
+
+  if (input < 0)
+    printf("Enter unsigned decimal!\n");
+
+/*for the mod result*/
+int i;
+/*count the binary digits*/
+int count = 0;
+/*storage*/
+int binbuff[64]; 
+
+do
+{
+/* Modulus 2 to get the remainder of 1 or 0*/
+i = input%2; 
+/* store the element into the array */
+binbuff[count] = i;
+/* Divide the input by 2 for binary decrement*/
+input = input/2; 
+/* Count the number of binary digit*/
+count++;
+/*repeat*/
+}while (input > 0);
+
+/*prints the binary digits*/
+printf ("The binary representation is: ");
+
+do
+{
+  printf("%d", binbuff[count - 1]);
+  count--;
+  
+  if(count == 8)
+     printf(" ");
+} while (count > 0);
+
+printf ("\n");
+}
+
+-------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+/*for strlen*/
+#include <string.h>
+
+/*convert bin to decimal*/
+void bintodec()
+{
+  char buffbin[100];
+  char *bin;
+  int i=0;
+  int dec = 0;
+  int bcount;
+
+printf("Please enter the binary digits, 0 or/and 1.\n");
+printf("Your binary digits: ");
+bin = gets(buffbin); 
+
+i=strlen(bin);
+
+for (bcount=0; bcount<i; ++bcount)
+  /*if bin[bcount] is equal to 1, then 1 else 0 */
+  dec=dec*2+(bin[bcount]=='1'? 1:0); 
+printf("\n");
+printf("The decimal value of %s is %d\n", bin, dec);
+}
+
+int main(void)
+{
+  bintodec();
+  
+  return 0;
+}
+
+-------------------------------------------------------------------------------------------------------
+
+/*Playing with binary, decimal, hexadecimal
+and octal conversion*/
+#include <stdio.h>
+#include <stdlib.h>
+/*strlen*/
+#include <string.h>
+
+/*octal conversion function*/
+void octal(char *octa, int *octares); 
+/*hexadecimal conversion function */
+void hexadecimal(char *hexa, int *hexares); 
+/*decimal conversion function */
+void decimal(char *deci, int *decires); 
+
+/*convert binary to decimal*/
+void bintodec(void);		
+
+/* convert decimal to binary*/
+void decnumtobin (int *dec);		
+
+int main()
+{	
+  /* Yes or No value to continue with program */
+  char go;
+  /* Yes or No value to proceed to Binary to Decimal function */
+  char binY; 
+
+  char choice1;
+  char choice2;
+
+  /* numtest, value to test with, and pass to functions*/
+  int numtest; 
+  /* value to convert to binary, and call decnumtobin function*/
+  int bintest; 
+  
+  int flag;
+  flag = 0;
+  go = 'y';
+
+do
+{
+  printf("Enter the base of ur input(d=dec, h=hex, o=octal): ");
+  scanf("%c", &choice1);
+  getchar();
+  printf("\n");
+
+  printf("The entered Number: ");
+ /*If decimal number*/
+if ((choice1 == 'd') || (choice1 == 'D'))
+{
+  scanf("%d", &numtest);
+  getchar();
+}
+
+/*If hexadecimal number*/
+else if ((choice1 == 'h') || (choice1 == 'H'))
+{
+  scanf("%x", &numtest);
+  getchar();
+}
+
+/*If octal number*/
+else if ((choice1 == 'o') || (choice1 == 'O'))
+{
+  scanf("%o", &numtest);
+  getchar();
+}
+
+/*If no match*/ 
+else 
+{ 
+  flag = 1; 
+  printf("Only d, h or o options!\n");
+  printf("Program exit...\n");
+  exit(0);
+}
+
+/*Firstly convert the input 'number' to binary*/
+bintest = numtest;
+decnumtobin(&bintest);
+
+/*output the hex, decimal or octal*/
+printf("\n");
+printf("Next, enter the base of ur output (d=dec, h=hex, o=octal): ");
+scanf("%c", &choice2);
+getchar();
+
+/*If decimal number*/
+if ((choice2 == 'd') || (choice2 == 'D')) 
+  decimal (&choice1, &numtest);
+
+/*If hexadecimal number*/
+else if ((choice2 == 'h') || (choice2 == 'H'))
+  hexadecimal (&choice1, &numtest);
+
+/*If octal number*/
+else if ((choice2 == 'o') || (choice2 == 'O'))
+  octal (&choice1, &numtest);
+
+/*if nothing matched*/
+else 
+{
+  flag = 1; 
+  system("cls");
+  printf("Only d, h or o options!");
+  printf("\nProgram exit...");
+  exit(0);
+}
+                                 				
+printf("\n\nAn OPTION\n");
+printf("=========\n");
+printf("Do you wish to do the binary to decimal conversion?");
+printf("\n Y for Yes, and N for no : ");
+scanf("%c", &binY);
+getchar();
+
+/*If Yes...*/
+if ((binY == 'Y') || (binY == 'y'))
+
+/*Do the binary to decimal conversion*/
+bintodec();
+
+/*If not, just exit*/
+else if ((binY != 'y') || (binY != 'Y'))
+{
+  flag = 1; 
+  printf("\nProgram exit...\n");
+  exit(0); 
+}
+
+printf("\n\n");
+printf("The program is ready to exit...\n");
+printf("Start again? (Y for Yes) : ");
+scanf("%c", &go);
+getchar();
+
+/*initialize to NULL*/
+numtest = '\0';
+choice1 = '\0';
+choice2 = '\0';
+}
+while ((go == 'y') || (go == 'Y')); 
+printf("-----FINISH-----\n");
+
+return 0;
+}
+
+/*===================================================*/
+void decimal(char *deci, int *decires)
+{
+  int ans = *decires;
+  char ch = *deci;
+
+  if ((ch == 'd') || (ch == 'D'))
+    printf("\nThe number \"%d\" in decimal is equivalent to \"%d\" in decimal.\n", ans, ans);
+  else if ((ch == 'h') || (ch == 'H'))
+    printf("\nThe number \"%X\" in hex is equivalent to \"%d\" in decimal.\n", ans, ans);
+  else if ((ch == 'o') || (ch == 'O'))
+    printf("\nThe number \"%o\" in octal is equivalent to \"%d\" in decimal.\n", ans, ans);
+}
+
+/*======================================================*/
+void hexadecimal(char *hexa, int *hexares)
+{
+  int ans = *hexares;
+  char ch = *hexa;
+
+  if ((ch == 'd') || (ch == 'D'))
+    printf("\nThe number \"%d\" in decimal is equivalent to \"%X\" in hexadecimal.\n", ans, ans);
+  else if ((ch == 'h') || (ch == 'H'))
+    printf("\nThe number \"%X\" in hex is equivalent to \"%X\" in hexadecimal.\n", ans, ans);
+  else if ((ch == 'o') || (ch == 'O'))
+    printf("\nThe number \"%o\" in octal is equivalent to \"%X\" in hexadecimal.\n", ans, ans);
+}
+
+/*========================================================*/
+void octal(char *octa, int *octares)
+{
+  int ans = *octares;
+  char ch = *octa;
+
+if ((ch == 'd') || (ch == 'D'))
+  printf ("\nThe number \"%d\" in decimal is equivalent to \"%o\" in octal.\n", ans, ans);
+else if ((ch == 'h') || (ch == 'H'))
+  printf("\nThe number \"%X\" in hex is equivalent to \"%o\" in octal. \n", ans, ans);
+else if ((ch == 'o') || (ch == 'O'))
+  printf("\nThe number \"%o\" in octal is equivalent to \"%o\" in octal.\n", ans, ans);
+}
+
+void bintodec(void)
+{
+  char buffbin[1024];
+  char *binary;
+  int i=0;
+  int dec = 0;
+  int z;
+
+  printf("Please enter the binary digits, 0 or 1.\n");
+  printf("Your binary digits: ");
+  binary = gets(buffbin); 
+
+i=strlen(binary);
+
+for(z=0; z<i; ++z)
+
+/*if Binary[z] is equal to 1, then 1 else 0 */
+ dec=dec*2+(binary[z]=='1'? 1:0); 
+ printf("\n");
+ printf("The decimal value of %s is %d", binary, dec);
+ printf("\n");
+}
+
+void decnumtobin (int *dec)
+{
+int input = *dec;
+int i;
+int count = 0;
+int binary[64]; 
+
+do
+{
+  /* Modulus 2 to get 1 or a 0*/
+  i = input%2; 
+  /* Load Elements into the Binary Array */
+  binary[count] = i;
+  /* Divide input by 2 for binary decrement */
+  input = input/2; 
+  /* Count the binary digits*/
+  count++; 
+}while (input > 0);
+
+/* Reverse and output binary digits */
+printf ("The binary representation is: ");
+do
+{
+  printf ("%d", binary[count - 1]);
+  count--;
+} while (count > 0);
+
+printf ("\n");
+}
+
+---------------------------------------------------------------------------------------------------------
+
+/*Playing with binary, decimal, hexadecimal
+and octal conversion*/
+#include <stdio.h>
+#include <stdlib.h>
+/*strlen()*/
+#include <string.h>
+
+/*decimal conversion function */
+void decimal(char *deci, int *decires); 
+
+/* convert decimal to binary*/
+void decnumtobin (int *dec);		
+int main()
+{	
+/* Yes or No value to continue with program */
+char go;
+
+char choice1;
+char choice2;
+/*numtest, value to test with, and pass to functions*/
+int numtest; 
+/*value to convert to binary, and call decnumtobin function*/
+int bintest; 
+
+int flag;
+flag = 0;
+go = 'y';
+
+do
+{
+printf ("Enter the h for hex input: ");
+scanf("%c", &choice1);
+getchar();
+printf ("\n");
+printf ("Enter your hex number lor!: ");
+
+/*If hexadecimal number*/
+if ((choice1 == 'h') || (choice1 == 'H'))
+{
+  scanf ("%x", &numtest);
+  getchar();
+}
+else 
+{ 
+  flag = 1; 
+  printf ("Only h!\n");
+  printf("Program exit...\n");
+  exit(0);
+}
+    
+/*Firstly convert the input 'number' to binary*/
+bintest = numtest;
+decnumtobin(&bintest);
+
+/*output the hex, decimal or octal*/
+printf ("\n");
+printf ("Enter the d for decimal output: ");
+scanf ("%c", &choice2);
+getchar();
+
+/*If decimal number*/
+if ((choice2 == 'd') || (choice2 == 'D')) 
+decimal(&choice1, &numtest);
+
+/*else...*/
+else 
+{
+  flag = 1; 
+  printf("Only d!");
+  printf("\nProgram exit...");
+  exit(0);
+}
+ 
+printf ("\n\n");
+printf ("The program is ready to exit...\n");
+printf ("Start again? (Y for Yes) : ");
+scanf ("%c", &go);
+getchar();
+
+ /*initialize to NULL*/
+ numtest = '\0';
+ choice1 = '\0';
+ choice2 = '\0';
+}
+while ((go == 'y') || (go == 'Y')); 
+
+printf ("-----FINISH-----\n");
+return 0;
+}
+
+/*===================================================*/
+void decimal(char *deci, int *decires)
+{
+  int ans = *decires;
+  char ch = *deci;
+
+if ((ch == 'h') || (ch == 'H'))
+  printf ("\nThe number \"%X\" in hex is equivalent to \"%d\" in decimal.\n", ans, ans);
+}
+
+void decnumtobin (int *dec)
+{
+int input = *dec;
+int i;
+int count = 0;
+int binary[128]; 
+
+do
+{
+/* Modulus 2 to get 1 or a 0*/
+i = input%2; 
+/* Load Elements into the Binary Array */
+binary[count] = i;
+/* Divide input by 2 for binary decrement */
+input = input/2; 
+/* Count the binary digits*/
+count++; 
+}while (input > 0);
+
+/* Reverse and output binary digits */
+printf ("The binary representation is: ");
+
+do
+{
+printf ("%d", binary[count - 1]);
+count--;
+
+if(count == 4)
+printf(" ");
+} while (count > 0);
+printf ("\n");
+}
+
+-----------------------------------------------------------------------------------------------------------------------
+
+/*Playing with hexadecimal and ascii*/
+#include <stdio.h>
+#include <stdlib.h>
+/*strlen*/
+#include <string.h>
+
+/*decimal conversion function */
+void decimal(int *decires); 
+/*convert decimal to binary*/
+void decnumtobin (int *dec);
+
+int main()
+{	
+/*Program continuation...*/
+char go;
+
+/* numtest, value to test with, and pass to functions*/
+int numtest; 
+/* value to convert to binary, and call decnumtobin function*/
+int bintest; 
+int flag = 0;
+go = 'y';
+
+do
+{
+printf("Playing with hex and ASCII\n");
+printf("==========================\n");
+printf("For hex, 0(0) - 1F(32) are non printable/control characters!\n");
+printf("For hex > 7F(127) they are extended ASCII characters that are\n");
+printf("platform dependent!\n\n");
+printf("Enter the hex input: ");
+scanf("%x", &numtest);
+getchar();
+
+/*Firstly convert the input 'number' to binary*/
+bintest = numtest;
+decnumtobin(&bintest);
+
+decimal (&numtest);
+printf("\nStart again? (Y for Yes) : ");
+scanf ("%c", &go);
+getchar();
+
+/*initialize to NULL*/
+numtest = '\0';
+}
+while ((go == 'y') || (go == 'Y')); 
+printf("-----FINISH-----\n");
+return 0;
+}
+
+/*===================================================*/
+void decimal(int *decires)
+{
+  int ans = *decires;
+  
+  /*If < decimal 32...*/
+  if(ans < 32)
+{
+printf("hex < 20(32) equivalent to non printable/control ascii characters\n");
+switch(ans)
+{
+case 0:{printf("hex 0 is NULL ascii");}break;
+case 1:{printf("hex 1 is SOH-start of heading ascii");}break;
+case 2:{printf("hex 2 is STX-start of text ascii");}break;
+case 3:{printf("hex 3 is ETX-end of text ascii");}break;
+case 4:{printf("hex 4 is EOT-end of transmission ascii");}break;
+case 5:{printf("hex 5 is ENQ-enquiry ascii");}break;
+case 6:{printf("hex 6 is ACK-acknowledge ascii");}break;
+case 7:{printf("hex 7 is BEL-bell ascii");}break;
+case 8:{printf("hex 8 is BS-backspace ascii");}break;
+case 9:{printf("hex 9 is TAB-horizontal tab ascii");}break;
+case 10:{printf("hex A is LF-NL line feed, new line ascii");}break;
+case 11:{printf("hex B is VT-vertical tab ascii");}break;
+case 12:{printf("hex C is FF-NP form feed, new page ascii");}break;
+case 13:{printf("hex D is CR-carriage return ascii");}break;
+case 14:{printf("hex E is SO-shift out ascii");}break;
+case 15:{printf("hex F is SI-shift in ascii");}break;
+case 16:{printf("hex 10 is DLE-data link escape ascii");}break;
+case 17:{printf("hex 11 is DC1-device control 1 ascii");}break;
+case 18:{printf("hex 12 is DC2-device control 2 ascii");}break;
+case 19:{printf("hex 13 is DC3-device control 3 ascii");}break;
+case 20:{printf("hex 14 is DC4-device control 4 ascii");}break;
+case 21:{printf("hex 15 is NAK-negative acknowledge ascii");}break;
+case 22:{printf("hex 16 is SYN-synchronous idle ascii");}break;
+case 23:{printf("hex 17 is ETB-end of trans. block ascii");}break;
+case 24:{printf("hex 18 is CAN-cancel ascii");}break;
+case 25:{printf("hex 19 is EM-end of medium ascii");}break;
+case 26:{printf("hex 1A is SUB-substitute ascii");}break;
+case 27:{printf("hex 1B is ESC-escape ascii");}break;
+case 28:{printf("hex 1C is FS-file separator ascii");}break;
+case 29:{printf("hex 1D is GS-group separator ascii");}break;
+case 30:{printf("hex 1E is RS-record separator ascii");}break;
+case 31:{printf("hex 1F is US-unit separator ascii");}break;
+}
+}
+else
+ printf ("\nThe number \"%X\" in hex is equivalent to \"%c\" ascii character.\n", ans, ans);
+}
+
+void decnumtobin (int *dec)
+{
+  int input = *dec;
+  int i;
+  int count = 0;
+  int binary[128]; 
+
+do
+{
+/* Modulus 2 to get 1 or a 0*/
+i = input%2; 
+/* Load Elements into the Binary Array */
+binary[count] = i;
+/* Divide input by 2 for binary decrement */
+input = input/2; 
+/* Count the binary digits*/
+count++; 
+}while (input > 0);
+
+/* Reverse and output binary digits */
+printf("The binary representation is: ");
+
+do
+{
+printf("%d", binary[count - 1]);
+count--;
+if(count == 4)
+printf(" ");
+} while (count > 0);
+
+printf("\n");
+}
+
+----------------------------------------------VC++/VC++ .Net-------------------------------------------------
+
+#include <cstdio>
+
+int main()
+{
+int num;
+
+printf("Conversion...\n");
+printf("Start with any character and\n");
+printf("Press Enter, EOF to stop\n");
+
+num = getchar();
+
+printf("Character Integer Hexadecimal Octal\n");
+while(getchar() != EOF)
+{
+printf("   %c       %d       %x       %o\n",num,num,num,num);
+++num;
+}
+return 0;
+}
+
+---------------------------------------------------------------------------------------------------
+
+/*Another data type program example*/
+#include <stdio.h>
+
+/*main function*/
+int main()
+{
+/*declare and initialized variables*/
+   int                  p = 2000;       /*positive integer data type*/
+   short int            q = -120;      /*variation*/
+   unsigned short int   r = 121;       /*variation*/
+   float                s = 21.566578; /*float data type*/
+   char                 t = 'r';        /*char data type*/
+   long                 u = 5678;       /*long positive integer data type*/
+   unsigned long        v = 5678;      /*variation*/
+   long                 w = -5678;      /*-ve long integer data type*/
+   int                  x =  -171;      /*-ve integer data type*/
+   short                y = -71;        /*short -ve integer data type*/
+   unsigned short       z = 99;         /*variation*/
+   double               a = 88.12345;  /*double float data type*/
+   float                b = -3.245823;  /*float data type*/
+
+printf("\t--Data type again--\n");
+printf("\t-------------------\n");
+printf("\n1.   \"int\" sample: \t\t %d, the data size: %d bytes", p, sizeof(p));
+printf("\n2.   \"short\" int sample: \t %d, the data size: %d bytes", q, sizeof(q));
+printf("\n3.   \"unsigned short int\" sample: %d, the data size: %d bytes", r, sizeof(r));
+printf("\n4.   \"float\" sample: \t\t %.7f, the data size: %d bytes", s, sizeof(s));
+printf("\n5.   \"char\" sample: \t\t %c, the data size: %d byte", t, sizeof(t));
+printf("\n6.   \"long\" sample: \t\t %d, the data size: %d bytes", u, sizeof(u));
+printf("\n7.   \"unsigned long\" sample: \t %d, the data size: %d bytes", v, sizeof(v));
+printf("\n8.   negative \"long\" sample: \t %d, the data size: %d bytes", w, sizeof(w));
+printf("\n9.   negative \"int\" sample: \t %d, the data size: %d bytes", x, sizeof(x));
+printf("\n10.  negative \"short\" sample: \t %d, the data size: %d bytes", y, sizeof(y));
+printf("\n11.  unsigned \"short\" sample: \t %d, the data size: %d bytes", z, sizeof(z));
+printf("\n12.  \"double\" sample: \t\t %.4f, the data size: %d bytes", a, sizeof(a));
+printf("\n13.  negative \"float\" sample: \t %.5f, the data size: %d bytes\n", b, sizeof(b));
+return 0;
+}
+
+----------------------------------------------------gcc---------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/*convert decimal to binary function*/
+void dectobin();
+
+int main()
+{
+char chs = 'Y';
+
+do
+{
+dectobin();
+printf("Again? Y, others to exit: ");
+chs = getchar();
+scanf("%c", &chs);
+}while ((chs == 'Y') || (chs == 'y'));
+return 0;
+}
+
+void dectobin()
+{
+int input;
+
+printf("Enter decimal number: ");
+scanf("%d", &input);
+
+if (input < 0)
+  printf("Enter unsigned decimal!\n");
+
+/*for the mod result*/
+int i;
+/*count the binary digits*/
+int count = 0;
+/*storage*/
+int binbuff[64];
+
+do
+{
+/* Modulus 2 to get the remainder of 1 or 0*/
+i = input%2;
+/* store the element into the array */
+binbuff[count] = i;
+/* Divide the input by 2 for binary decrement*/
+input = input/2;
+/* Count the number of binary digit*/
+count++;
+/*repeat*/
+}while (input > 0);
+
+/*prints the binary digits*/
+printf("The binary representation is: ");
+
+do
+{
+printf("%d", binbuff[count - 1]);
+count--;
+if(count == 8)
+printf(" ");
+} while (count > 0);
+
+printf ("\n");
+}
+
+=====================================================================================================

@@ -1,0 +1,2 @@
+javac Magnifier.java
+pause

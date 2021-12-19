@@ -1,0 +1,1153 @@
+============================MODULEU========================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+If you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (It is C++ header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module 23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes, let the compiler
+decide... :o)
+==============================================================================================
+=======================Just Microsoft & Standard C Codes HERE=================================
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+
+    ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
+    ZeroMemory(&pi, sizeof(pi));
+
+    // Start the child process. If not OK... 
+    if(!CreateProcess("C:\\WINDOWS\\system32\\cmd.exe", // module name. 
+        NULL,    // Command line. 
+        NULL,    // Process handle not inheritable. 
+        NULL,    // Thread handle not inheritable. 
+        FALSE,   // Set handle inheritance to FALSE. 
+        0,       // No creation flags. 
+        NULL,    // Use parent's environment block. 
+        NULL,    // Use parent's starting directory. 
+        &si,     // Pointer to STARTUPINFO structure.
+        &pi)     // Pointer to PROCESS_INFORMATION structure.
+    )
+       // Then, give some prompt...
+       printf("\nSorry! CreateProcess() failed.\n\n");
+
+   //else, give some prompt...
+   else
+   {
+       printf("\nWell, CreateProcess() looks OK.\n");
+       printf("exit after 5000 ms...\n\n");
+   }
+
+    // Wait until child process exits after 5000 ms.
+    WaitForSingleObject(pi.hProcess, 5000);
+    printf("\n");
+
+    // Close process and thread handles. 
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
+
+    return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+#include <conio.h>
+
+DWORD WINAPI MyThreadFunction(LPVOID lpParam) 
+{
+    printf("The parameter: %d.\n", *(DWORD*)lpParam);
+    return 0; 
+}
+
+int main(void) 
+{
+    DWORD dwThreadId, dwThrdParam = 1; 
+    HANDLE hThread; 
+
+       // Let try a loop...
+       for(int x = 1; x <= 5; x++)
+       {
+    hThread = CreateThread( 
+        NULL,             // default security attributes 
+        0,                // use default stack size  
+        MyThreadFunction, // thread function 
+        &dwThrdParam,     // argument to thread function 
+        0,                // use default creation flags 
+        &dwThreadId);     // returns the thread identifier 
+
+   // Check the return value for success. If something wrong... 
+   if (hThread == NULL) 
+         printf("CreateThread() failed, error: %d.\n", GetLastError());
+   //else, gives some prompt...
+   else 
+   {
+          printf("It seems the CreateThread() is OK lol!\n");
+          printf("The thread ID: %d.\n", dwThreadId);
+   }
+
+   if (CloseHandle(hThread) != 0)
+          printf("Handle to thread closed successfully.\n");
+       } // end for loop...
+  return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+#include <psapi.h>
+
+void PrintProcessNameAndID(DWORD processID)
+{
+    // Initialize or default to "unknown"
+    char szProcessName[MAX_PATH] = "<unknown>";
+
+    // Get a handle to the process.
+    HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID);
+
+    // Get the process name.
+    if (hProcess != NULL)
+    {
+        HMODULE hMod;
+        DWORD cbNeeded;
+
+        if (EnumProcessModules(hProcess, &hMod, sizeof(hMod), &cbNeeded))
+        {
+            GetModuleBaseName(hProcess, hMod, szProcessName, sizeof(szProcessName));
+        }
+    }
+
+    // Print the process name and identifier.
+    printf("%-30s   %5u\n", szProcessName, processID);
+
+    CloseHandle(hProcess);
+}
+
+int main()
+{
+    // Get the list of process identifiers.
+    DWORD aProcesses[1024], cbNeeded, cProcesses;
+    unsigned int i;
+
+    // If fail...
+    if (!EnumProcesses(aProcesses, sizeof(aProcesses), &cbNeeded))
+        return 1; // or print some meaningful message...
+    else
+        printf("Enumprocesses() is OK.\n");
+
+    // Calculate how many process identifiers were returned.
+    cProcesses = cbNeeded / sizeof(DWORD);
+
+    // Print the name and process identifier for each process.
+    printf("Process Name                 Process ID\n");
+    printf("============                 ==========\n");
+    for (i = 0; i < cProcesses; i++)
+        PrintProcessNameAndID(aProcesses[i]);
+
+       return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+#include <psapi.h>
+
+void PrintModules(DWORD processID)
+{
+    HMODULE hMods[1024];
+    HANDLE hProcess;
+    DWORD cbNeeded;
+    unsigned int i;
+
+    // Print the process identifier.
+    printf("\nProcess ID: %u\n", processID);
+
+    // Get a list of all the modules in this process.
+    hProcess = OpenProcess(PROCESS_QUERY_INFORMATION |
+                                    PROCESS_VM_READ,
+                                    FALSE, processID);
+    if (hProcess == NULL)
+        return;
+
+    if (EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded))
+    {
+        for (i = 0; i < (cbNeeded / sizeof(HMODULE)); i++)
+        {
+            char szModPathName[MAX_PATH];
+
+            // Get the full path to the module's file.
+            if (GetModuleFileNameEx(hProcess, hMods[i], szModPathName, sizeof(szModPathName)))
+            {
+                // Print the module name and handle value.
+                printf("\t%s (0x%08X)\n", szModPathName, hMods[i]);
+            }
+            else
+                printf("GetModuleFileNameEx() failed!.\n");
+        }
+    }
+
+    CloseHandle(hProcess);
+}
+
+int main()
+{
+    // Get the list of process identifiers.
+    DWORD aProcesses[2048], cbNeeded, cProcesses;
+    unsigned int i;
+
+    printf("Listing all the process's module...\n");
+    // If fail...
+    if (!EnumProcesses(aProcesses, sizeof(aProcesses), &cbNeeded))
+        printf("EnumProcesses() failed!.\n");
+    else
+        printf("EnumProcesses() is OK!.\n");
+
+    // Calculate how many process identifiers were returned.
+    cProcesses = cbNeeded / sizeof(DWORD);
+
+   // Print the name of the modules for each process.
+   for (i = 0; i < cProcesses; i++)
+        PrintModules(aProcesses[i]);
+
+   return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <tlhelp32.h>
+#include <stdio.h>
+
+// Function prototypes...
+BOOL ListProcessModules(DWORD dwPID);
+void printError(TCHAR* msg);
+
+int main(int argc, char argv[])
+{
+       // 0 means current process, this program...
+       ListProcessModules(0);
+
+       return 0;
+}
+
+BOOL ListProcessModules(DWORD dwPID) 
+{
+  HANDLE hModuleSnap = INVALID_HANDLE_VALUE;
+  MODULEENTRY32 me32;
+
+  //  Take a snapshot of all modules in the specified process.
+  hModuleSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, dwPID);
+  if(hModuleSnap == INVALID_HANDLE_VALUE)
+  {
+    printError("CreateToolhelp32Snapshot()");
+    return (FALSE);
+  }
+
+  //  Set the size of the structure before using it. 
+  me32.dwSize = sizeof(MODULEENTRY32); 
+
+  //  Retrieve information about the first module, 
+  //  and exit if unsuccessful
+  printf("\n******************************************\n");
+  printf("*   List of module for current process   *\n");
+  printf("******************************************");
+  if(!Module32First(hModuleSnap, &me32)) 
+  {
+    printError("Module32First()");  // Show cause of failure
+    CloseHandle(hModuleSnap);       // Must clean up the snapshot object
+    return (FALSE);
+  }
+
+  //  Now walk the module list of the process,
+  //  and display information about each module
+  do
+  {
+    printf("\n\n     MODULE NAME:     %s",           me32.szModule);
+    printf("\n     executable     = %s",             me32.szExePath);
+    printf("\n     process ID     = 0x%08X",         me32.th32ProcessID);
+    printf("\n     ref count (g)  =     0x%04X",     me32.GlblcntUsage);
+    printf("\n     ref count (p)  =     0x%04X",     me32.ProccntUsage);
+    printf("\n     base address   = 0x%08X", (DWORD) me32.modBaseAddr);
+    printf("\n     base size      = %d\n",           me32.modBaseSize);
+
+  } while (Module32Next(hModuleSnap, &me32));
+
+  // Do not forget to clean up the snapshot object.
+  CloseHandle(hModuleSnap);
+  return (TRUE);
+}
+
+void printError(TCHAR* msg)
+{
+  DWORD eNum;
+  TCHAR sysMsg[256];
+  TCHAR* p;
+
+  eNum = GetLastError();
+  FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+         NULL, eNum, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
+         sysMsg, 256, NULL);
+
+  // Trim the end of the line and terminate it with a null
+  p = sysMsg;
+  while ((*p > 31) || (*p == 9))
+    ++p;
+  do { *p-- = 0; }
+       while ((p >= sysMsg) && ((*p == '.') || (*p < 33)));
+
+  // Display the message...
+  printf("\n  WARNING: %s failed with error %d (%s)\n", msg, eNum, sysMsg);
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <tlhelp32.h>
+#include <stdio.h>
+
+// Function prototypes...
+BOOL GetProcessList();
+BOOL ListProcessModules(DWORD dwPID);
+BOOL ListProcessThreads(DWORD dwOwnerPID);
+void printError(TCHAR* msg);
+
+int main(int argc, char argv[])
+{
+  GetProcessList();
+  return 0;
+}
+
+// =================Get the processes=====================
+BOOL GetProcessList()
+{
+  HANDLE hProcessSnap;
+  HANDLE hProcess;
+  PROCESSENTRY32 pe32;
+  DWORD dwPriorityClass;
+
+  // Take a snapshot of all processes in the system.
+  hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+  if(hProcessSnap == INVALID_HANDLE_VALUE)
+  {
+    printError("CreateToolhelp32Snapshot (of processes)");
+    return(FALSE);
+  }
+
+  // Set the size of the structure before using it.
+  pe32.dwSize = sizeof(PROCESSENTRY32);
+
+  // Retrieve information about the first process,
+  // and exit if unsuccessful
+  printf("\n\n*********************************");
+  printf("\nList of process & their info...\n");
+  printf("*********************************");
+
+  if (!Process32First(hProcessSnap, &pe32))
+  {
+    printError("Process32First()");  // Show cause of failure
+    CloseHandle(hProcessSnap);       // Must clean up the snapshot object
+    return (FALSE);
+  }
+
+  // Now walk the snapshot of processes, and
+  // display information about each process in turn
+  do
+  {
+    printf("\n\n===========================================================");
+    printf("\nPROCESS NAME:  %s", pe32.szExeFile);
+    printf("\n-----------------------------------------------------------");
+
+    // Retrieve the priority class.
+    dwPriorityClass = 0;
+    // OpenProcess() with all possible access rights for a process object,
+    // handle cannot be inherited and Identifier of the process to open...
+    hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pe32.th32ProcessID);
+    if (hProcess == NULL)
+      printError("OpenProcess()");
+    else
+    {
+      dwPriorityClass = GetPriorityClass(hProcess);
+      if (!dwPriorityClass)
+        printError("GetPriorityClass()");
+      CloseHandle(hProcess);
+    }
+ 
+   printf("\n  Name of the exe   = %s", pe32.szExeFile);
+    printf("\n  Parent process ID = 0x%08X", pe32.th32ParentProcessID);
+    printf("\n  Process ID        = 0x%08X", pe32.th32ProcessID);
+    printf("\n  Thread count      = %d",   pe32.cntThreads);
+    printf("\n  Priority Base     = %d", pe32.pcPriClassBase);
+
+    if(dwPriorityClass)
+      printf("\n  Priority Class    = %d", dwPriorityClass);
+
+    // List the modules and threads associated with this process
+    ListProcessModules(pe32.th32ProcessID);
+    ListProcessThreads(pe32.th32ProcessID);
+
+  } while (Process32Next(hProcessSnap, &pe32));
+
+  // Don't forget to clean up the snapshot object!
+  CloseHandle(hProcessSnap);
+  return (TRUE);
+}
+
+// =================List the process modules=====================
+BOOL ListProcessModules(DWORD dwPID)
+{
+  HANDLE hModuleSnap = INVALID_HANDLE_VALUE;
+  MODULEENTRY32 me32;
+
+  // Take a snapshot of all modules in the specified process.
+  hModuleSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, dwPID);
+  if(hModuleSnap == INVALID_HANDLE_VALUE)
+  {
+    printError("CreateToolhelp32Snapshot(of modules)");
+    return (FALSE);
+  }
+
+  // Set the size of the structure before using it...
+  me32.dwSize = sizeof(MODULEENTRY32);
+
+  // Retrieve information about the first module,
+  // and exit if unsuccessful
+  printf("\n\n*****************************************");
+  printf("\nList of process module & their info...\n");
+  printf("*****************************************");
+
+  if (!Module32First(hModuleSnap, &me32))
+  {
+    printError("Module32First()");  // Show cause of failure
+    CloseHandle(hModuleSnap);       // Must clean up the snapshot object
+    return (FALSE);
+  }
+
+  // Now walk the module list of the process,
+  // and display information about each module...
+  do
+  {
+    printf("\n\n   MODULE NAME:     %s",           me32.szModule);
+    printf("\n     executable     = %s",           me32.szExePath);
+    printf("\n     process ID     = 0x%08X",       me32.th32ProcessID);
+    printf("\n     ref count (g)  =     0x%04X",   me32.GlblcntUsage);
+    printf("\n     ref count (p)  =     0x%04X",   me32.ProccntUsage);
+    printf("\n     base address   = %p",           me32.modBaseAddr);
+    printf("\n     base size      = %d",           me32.modBaseSize);
+
+  } while(Module32Next(hModuleSnap, &me32));
+
+  // Don't forget to clean up the snapshot object.
+  CloseHandle(hModuleSnap);
+  return (TRUE);
+}
+
+// =================List the process threads=====================
+BOOL ListProcessThreads(DWORD dwOwnerPID) 
+{
+  HANDLE hThreadSnap = INVALID_HANDLE_VALUE; 
+  THREADENTRY32 te32; 
+
+  // Take a snapshot of all running threads  
+  hThreadSnap = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0); 
+  if (hThreadSnap == INVALID_HANDLE_VALUE) 
+    return (FALSE); 
+
+  // Fill in the size of the structure before using it. 
+  te32.dwSize = sizeof(THREADENTRY32); 
+
+  // Retrieve information about the first thread,
+  // and exit if unsuccessful
+  printf("\n\n*****************************************");
+  printf("\nList of process thread & their info...\n");
+  printf("*****************************************");
+  if(!Thread32First(hThreadSnap, &te32)) 
+  {
+    printError("Thread32First()");  // Show cause of failure
+    CloseHandle(hThreadSnap);       // Must clean up the snapshot object
+    return (FALSE);
+  }
+
+  // Now walk the thread list of the system,
+  // and display information about each thread
+  // associated with the specified process
+  do 
+  {
+    if (te32.th32OwnerProcessID == dwOwnerPID)
+    {
+      printf("\n\n     THREAD ID    = 0x%08X", te32.th32ThreadID); 
+      printf("\n     base priority  = %d", te32.tpBasePri); 
+      printf("\n     delta priority = %d", te32.tpDeltaPri); 
+    }
+  } while (Thread32Next(hThreadSnap, &te32)); 
+
+  // Don't forget to clean up the snapshot object.
+  CloseHandle(hThreadSnap);
+  return (TRUE);
+}
+
+void printError(TCHAR* msg)
+{
+  DWORD eNum;
+  TCHAR sysMsg[256];
+  TCHAR* p;
+
+  eNum = GetLastError();
+  FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+         NULL, eNum, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
+         sysMsg, 256, NULL);
+
+  // Trim the end of the line and terminate it with a null
+  p = sysMsg;
+  while ((*p > 31) || (*p == 9))
+    ++p;
+  do { *p-- = 0; }
+  while ((p >= sysMsg) && ((*p == '.') || (*p < 33)));
+
+  // Display the message
+  printf("\n  WARNING: %s failed with error %d (%s)", msg, eNum, sysMsg);
+}
+
+-----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+#define THREADCOUNT 5
+
+DWORD dwTlsIndex; 
+
+// Function declarations and definitions...
+VOID ErrorExit(LPTSTR lpszMessage)
+{
+   fprintf(stderr, "%s\n", lpszMessage);
+   ExitProcess(0);
+}
+
+void MyCommonFunction(void)
+{ 
+   LPVOID lpvData;
+
+   // Retrieve a data pointer for the current thread...
+   lpvData = TlsGetValue(dwTlsIndex);
+
+   if ((lpvData == 0) && (GetLastError() != 0))
+       ErrorExit("TlsGetValue() error!\n");
+   else
+       printf("TlsGetValue() is OK.\n");
+
+   // Use the data stored for the current thread...
+   printf("Common: thread %d: lpvData = %lx\n\n", GetCurrentThreadId(), lpvData);
+}
+
+DWORD WINAPI MyThreadFunc(void)
+{
+   LPVOID lpvData;
+
+   // Initialize the TLS index for this thread.
+   lpvData = (LPVOID) LocalAlloc(LPTR, 256);
+
+   if (!TlsSetValue(dwTlsIndex, lpvData))
+       ErrorExit("TlsSetValue() error!\n");
+   else
+       printf("TlsSetValue() is OK.\n");
+
+   printf("Thread %d: lpvData = %lx\n", GetCurrentThreadId(), lpvData);
+
+   MyCommonFunction();
+
+   // Release the dynamic memory before the thread returns...
+   lpvData = TlsGetValue(dwTlsIndex);
+   if (lpvData != 0)
+      LocalFree((HLOCAL) lpvData);
+
+   return 0;
+}
+
+DWORD main(void)
+{
+   DWORD IDThread;
+   HANDLE hThread[THREADCOUNT];
+   int i;
+
+   printf("Thread count is: %d\n", THREADCOUNT);
+
+   // Allocate a TLS index...
+   if ((dwTlsIndex = TlsAlloc()) == -1)
+      ErrorExit("TlsAlloc() failed");
+   else
+      printf("\nTlsAlloc() is OK.\n\n");
+
+   // Create multiple threads...
+   for (i = 0; i < THREADCOUNT; i++)
+   {
+      hThread[i] = CreateThread(NULL,           // no security attributes 
+         0,                                     // use default stack size 
+         (LPTHREAD_START_ROUTINE) MyThreadFunc, // thread function 
+         NULL,                                  // no thread function argument 
+         0,                                     // use default creation flags 
+         &IDThread);                            // returns thread identifier 
+
+   // Check the return value for success...
+   if (hThread[i] == NULL)
+       ErrorExit("CreateThread() error.\n");
+   else
+       printf("hThread[%d] is OK.\n", i);
+   }
+
+   for (i = 0; i < THREADCOUNT; i++)
+       WaitForSingleObject(hThread[i], INFINITE);
+
+   if (TlsFree(dwTlsIndex) == 0)
+       printf("TlsFree() failed!\n");
+   else
+       printf("TlsFree() is OK!\n");
+
+   return 0;
+}
+-----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+#define BUFSIZE 4096
+
+HANDLE hChildStdinRd, hChildStdinWr, hChildStdinWrDup, 
+   hChildStdoutRd, hChildStdoutWr, hChildStdoutRdDup, 
+   hInputFile, hStdout; 
+
+// Prototypes...
+BOOL CreateChildProcess(VOID);
+VOID WriteToPipe(VOID);
+VOID ReadFromPipe(VOID);
+VOID MyErrorExit(LPTSTR);
+VOID ErrMsg(LPTSTR, BOOL);
+
+// This program takes a single command-line argument, the name of a text file
+DWORD main(int argc, char *argv[])
+{
+   SECURITY_ATTRIBUTES saAttr; 
+   BOOL fSuccess; 
+
+   // Set the bInheritHandle flag so pipe handles are inherited.
+   saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
+   saAttr.bInheritHandle = TRUE;
+   saAttr.lpSecurityDescriptor = NULL;
+
+   // Get the handle to the current STDOUT.
+   hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+
+   // Create a pipe for the child process's STDOUT.
+   if (!CreatePipe(&hChildStdoutRd, &hChildStdoutWr, &saAttr, 0))
+      MyErrorExit("CreatePipe(), a pipe for the child process's STDOUT creation failed\n");
+   else
+      printf("CreatePipe(), a pipe for the child process's STDOUT creation is OK.\n");
+
+    // Create noninheritable read handle and close the inheritable read handle. 
+    fSuccess = DuplicateHandle(GetCurrentProcess(), hChildStdoutRd,
+        GetCurrentProcess(), &hChildStdoutRdDup , 0,
+        FALSE, DUPLICATE_SAME_ACCESS);
+    if (!fSuccess)
+       {
+              MyErrorExit("DuplicateHandle() for noninheritable read handle failed");
+              CloseHandle(hChildStdoutRd);
+       }
+       else
+              printf("DuplicateHandle() for noninheritable read handle is OK.\n");
+
+   // Create a pipe for the child process's STDIN. 
+   if (!CreatePipe(&hChildStdinRd, &hChildStdinWr, &saAttr, 0)) 
+      MyErrorExit("A pipe for the child process's STDIN creation failed\n");
+   else
+      printf("A pipe for the child process's STDIN creation is OK.\n");
+
+   // Duplicate the write handle to the pipe so it is not inherited. 
+   fSuccess = DuplicateHandle(GetCurrentProcess(), hChildStdinWr, 
+      GetCurrentProcess(), &hChildStdinWrDup, 0, 
+      FALSE,                  // not inherited 
+      DUPLICATE_SAME_ACCESS); 
+
+   if (!fSuccess)
+      MyErrorExit("DuplicateHandle() for the write handle to the pipe failed");
+   else
+      printf("DuplicateHandle() for the write handle to the pipe is OK.\n");
+
+   CloseHandle(hChildStdinWr);
+
+   // Now create the child process.
+   fSuccess = CreateChildProcess();
+   if (! fSuccess)
+      MyErrorExit("CreateChildProcess(), a child process failed");
+   else
+      printf("CreateChildProcess(), a child process is OK.\n");
+
+   // Get a handle to the parent's input file.
+   printf("Getting a handle to the parent's input file.\n");
+   if (argc == 1)
+          MyErrorExit("Please specify an input file!");
+   else
+          printf("An input file is %s\n.", argv[1]);
+
+   hInputFile = CreateFile(argv[1], GENERIC_READ, 0, NULL, 
+      OPEN_EXISTING, FILE_ATTRIBUTE_READONLY, NULL); 
+
+   if (hInputFile == INVALID_HANDLE_VALUE)
+          MyErrorExit("CreateFile(), open existing failed\n");
+   else
+          printf("CreateFile(), open existing %s is OK.\n", argv[1]);
+
+   // Write to pipe that is the standard input for a child process.
+   printf("Try writing to pipe...\n");
+   WriteToPipe(); 
+
+   // Read from pipe that is the standard output for child process.
+   printf("Try reading from pipe...\n");
+   ReadFromPipe(); 
+
+   return 0; 
+} 
+
+//================================================================
+BOOL CreateChildProcess() 
+{
+   PROCESS_INFORMATION piProcInfo; 
+   STARTUPINFO siStartInfo;
+   BOOL bFuncRetn = FALSE; 
+
+   // Set up members of the PROCESS_INFORMATION structure. 
+   ZeroMemory(&piProcInfo, sizeof(PROCESS_INFORMATION));
+
+   // Set up members of the STARTUPINFO structure. 
+   ZeroMemory(&siStartInfo, sizeof(STARTUPINFO));
+   siStartInfo.cb = sizeof(STARTUPINFO); 
+   siStartInfo.hStdError = hChildStdoutWr;
+   siStartInfo.hStdOutput = hChildStdoutWr;
+   siStartInfo.hStdInput = hChildStdinRd;
+   siStartInfo.dwFlags |= STARTF_USESTDHANDLES;
+
+   // Create the child process. 
+   bFuncRetn = CreateProcess(NULL, // Use the following command line
+         "c:\\Windows\\system32\\systeminfo.exe",       // command line 
+      NULL,          // process security attributes 
+      NULL,          // primary thread security attributes 
+      TRUE,          // handles are inherited 
+      0,             // creation flags 
+      NULL,          // use parent's environment 
+      NULL,          // use parent's current directory 
+      &siStartInfo,  // STARTUPINFO pointer 
+      &piProcInfo);  // receives PROCESS_INFORMATION 
+
+   if (bFuncRetn == 0) 
+      MyErrorExit("CreateProcess() for child failed.");
+   else 
+   {
+printf("CreateProcess for child is OK.\n");
+CloseHandle(piProcInfo.hProcess);
+CloseHandle(piProcInfo.hThread);
+return bFuncRetn;
+   }
+}
+
+//================================================================
+VOID WriteToPipe(VOID)
+{
+   DWORD dwRead, dwWritten;
+   CHAR chBuf[BUFSIZE];
+
+   // Read from a file and write its contents to a pipe.
+   printf("In WriteToPipe(), try to read from a file and write its contents to a pipe.\n");
+   for (;;) // More read control should be implemented here such as EOF etc...
+   {
+      if (!(ReadFile(hInputFile, chBuf, BUFSIZE, &dwRead, NULL) || dwRead == 0))
+         printf("ReadFile() failed.\n");
+         break; 
+
+      if (!WriteFile(hChildStdinWrDup, chBuf, dwRead, &dwWritten, NULL))
+         printf("WriteFile() failed.\n");
+         break; 
+        } 
+
+   // Close the pipe handle so the child process stops reading. 
+   if (!CloseHandle(hChildStdinWrDup)) 
+      MyErrorExit("Close pipe failed"); 
+}
+
+//================================================================
+VOID ReadFromPipe(VOID)
+{
+   DWORD dwRead, dwWritten;
+   CHAR chBuf[BUFSIZE];
+
+   // Close the write end of the pipe before reading from the read end of the pipe.
+   if (!CloseHandle(hChildStdoutWr))
+      MyErrorExit("CloseHandle() failed");
+   else
+      printf("CloseHandle() is OK.\n");
+
+   // Read output from the child process, and write to parent's STDOUT.
+   printf("In ReadFromPipe(), try to read output from the child process, and write to parent's STDOUT.\n");
+   for (;;) // More read control should be implemented here such as EOF etc...
+   {
+      if (!ReadFile(hChildStdoutRdDup, chBuf, BUFSIZE, &dwRead, NULL) || dwRead == 0)
+        printf("ReadFile() failed.\n");
+        break;
+
+      if (!WriteFile(hStdout, chBuf, dwRead, &dwWritten, NULL))
+         printf("WriteFile() failed.\n");
+         break;
+        }
+}
+
+//================================================================
+VOID MyErrorExit(LPTSTR lpszMessage)
+{
+   fprintf(stderr, "%s\n", lpszMessage);
+   // Exit peacefully...
+   ExitProcess(0);
+}
+
+-----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+#define BUFSIZE 4096 
+
+int main(void) 
+{
+   CHAR chBuf[BUFSIZE]; 
+   DWORD dwRead, dwWritten; 
+   HANDLE hStdin, hStdout; 
+   BOOL fSuccess; 
+
+   hStdout = GetStdHandle(STD_OUTPUT_HANDLE); 
+   hStdin = GetStdHandle(STD_INPUT_HANDLE);
+
+   if ((hStdout == INVALID_HANDLE_VALUE) || (hStdin == INVALID_HANDLE_VALUE))
+       // Exit with error...
+       ExitProcess(1);
+   else
+	printf("GetStdHandle() for standard input and output is OK.\n"); 
+
+   for (;;) // May use other program control here to stop automatically :o)
+   {
+      // Read from standard input. 
+      fSuccess = ReadFile(hStdin, chBuf, BUFSIZE, &dwRead, NULL); 
+      if (!(fSuccess || dwRead == 0))
+         {
+		printf("ReadFile(), from standard input failed.\n");
+		break;
+         }
+      else
+              printf("ReadFile(), from standard input is OK.\n");
+
+      // Write to standard output...
+      fSuccess = WriteFile(hStdout, chBuf, dwRead, &dwWritten, NULL); 
+      if (!fSuccess)
+         {
+		printf("WriteFile(), to standard output failed.\n");
+            break;
+         }
+      else
+            printf("WriteFile(), to standard output is OK.\n");
+   }
+   return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+// Make sure do not exceed the maximum of the environment block size
+// supported by your Windows OS version...else there will be an error
+// message...
+#define BUFSIZE 1024
+
+void MyErrorExit(LPTSTR lpszMessage) 
+{
+   fprintf(stderr, "%s\n", lpszMessage);
+   // Exit peacefully...
+   ExitProcess(0); 
+}
+
+int main()
+{
+LPTSTR lpszCurrentVariable;
+TCHAR tchNewEnv[BUFSIZE]; 
+BOOL fSuccess;
+
+STARTUPINFO siStartInfo;
+PROCESS_INFORMATION piProcInfo;
+
+ZeroMemory(&siStartInfo, sizeof(siStartInfo));
+siStartInfo.cb = sizeof(siStartInfo);
+ZeroMemory(&piProcInfo, sizeof(piProcInfo));
+
+// Copy environment strings into an environment block.
+lpszCurrentVariable = tchNewEnv;
+
+if (lstrcpy(lpszCurrentVariable, "MyTestVersion=SP 2.0") == NULL)
+       MyErrorExit("lstrcpy() for new environment string failed.");
+else
+       printf("lstrcpy() for new environment string is OK.\n");
+
+lpszCurrentVariable += lstrlen(lpszCurrentVariable) + 1;
+
+if (lstrcpy(lpszCurrentVariable, "MyTestSetting=TestValue") == NULL) 
+       MyErrorExit("lstrcpy() for new environment string failed.");
+else
+       printf("lstrcpy() for new environment string is OK.\n");
+
+// Terminate the block with a NULL byte. 
+lpszCurrentVariable += lstrlen(lpszCurrentVariable) + 1;
+
+*lpszCurrentVariable = '\0'; 
+
+// Create the child process, specifying a new environment block. 
+fSuccess = CreateProcess(NULL, "c:\\windows\\system32\\mem.exe", NULL, NULL, TRUE, 0, 
+   (LPVOID) tchNewEnv,        // new environment block, here just 2 entries, a dummy... 
+   NULL, &siStartInfo, &piProcInfo); 
+
+if (!fSuccess) 
+       MyErrorExit("CreateProcess(), with new environment block failed.");
+else
+       printf("CreateProcess(), with new environment block is OK.\n");
+ 
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h> 
+#include <stdio.h>
+#define BUFSIZE 4029
+
+void MyErrorExit(LPTSTR lpszMessage) 
+{
+   fprintf(stderr, "%s\n", lpszMessage);
+   // Exit peacefully...
+   ExitProcess(0); 
+}
+
+int main()
+{
+LPTSTR lpszOldValue; 
+TCHAR tchBuf[BUFSIZE]; 
+BOOL fSuccess; 
+STARTUPINFO siStartInfo;
+PROCESS_INFORMATION piProcInfo;
+
+ZeroMemory(&siStartInfo, sizeof(siStartInfo));
+siStartInfo.cb = sizeof(siStartInfo);
+ZeroMemory(&piProcInfo, sizeof(piProcInfo));
+
+// lpszOldValue gets current value of "MYTESTVAR", or NULL if "MYTESTVAR" 
+// environment variable does not exist. Set "MYTESTVAR" to new value ("mynewstringvalue"), 
+// create child process, then use SetEnvironmentVariable() to restore 
+// original value of "MYTESTVAR". If lpszOldValue is NULL, the "MYTESTVAR" 
+// variable will be deleted. 
+lpszOldValue = ((GetEnvironmentVariable("MYTESTVAR", tchBuf, BUFSIZE) > 0) ? tchBuf : NULL); 
+
+// Set a new value for the child process to inherit, "mynewstringvalue". 
+if (!SetEnvironmentVariable("MYTESTVAR", "mynewstringvalue")) 
+       MyErrorExit("SetEnvironmentVariable() for child process failed.");
+else
+       printf("SetEnvironmentVariable() for child process is OK.\n");
+
+// Create a child process.
+fSuccess = CreateProcess(NULL, "c:\\windows\\system32\\mem.exe", NULL, NULL, TRUE, 0, 
+   NULL,     // inherit parent's environment 
+   NULL, &siStartInfo, &piProcInfo); 
+if (!fSuccess) 
+       MyErrorExit("CreateProcess(), child failed."); 
+else
+       printf("CreateProcess(), child is OK.\n");
+
+// Restore the parent's environment. 
+if (!SetEnvironmentVariable("MYTESTVAR", lpszOldValue)) 
+       MyErrorExit("SetEnvironmentVariable(), restore the parent's environment variables failed.");
+else
+       printf("CreateProcess(), restore the parent's environment variables is OK.\n");
+
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h> 
+#include <stdio.h>
+
+void MyErrorExit(LPTSTR lpszMessage) 
+{
+   fprintf(stderr, "%s\n", lpszMessage);
+   // Exit peacefully...
+   ExitProcess(0); 
+}
+
+int main(int argc, char argv[])
+{
+LPTSTR lpszVariable;
+LPVOID lpvEnv;
+
+// Get a pointer to the environment block.
+lpvEnv = GetEnvironmentStrings();
+
+// If the returned pointer is NULL, exit.
+if (lpvEnv == NULL)
+   MyErrorExit("GetEnvironmentStrings() failed.");
+else
+   printf("GetEnvironmentStrings() is OK.\n\n");
+
+// Variable strings are separated by NULL byte, and the block is 
+// terminated by a NULL byte.
+for (lpszVariable = (LPTSTR) lpvEnv; *lpszVariable; lpszVariable++)
+{
+   while (*lpszVariable)
+      putchar(*lpszVariable++);
+   putchar('\n');
+}
+
+if(FreeEnvironmentStrings((LPSTR)lpvEnv) == 0)
+    printf("GetEnvironmentStrings() failed.\n");
+else
+    printf("\nGetEnvironmentStrings() is OK.\n");
+
+return 0;
+}
+-----------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+HANDLE hEvents[2];
+DWORD i, dwEvent;
+
+// Create two event objects.
+for (i = 0; i < 2; i++) 
+{
+    hEvents[i] = CreateEvent(
+        NULL,   // no security attributes
+        FALSE,  // auto-reset event object
+        FALSE,  // initial state is non-signaled
+        NULL);  // unnamed object
+
+    if (hEvents[i] == NULL)
+    {
+        printf("CreateEvent() error: %d\n", GetLastError());
+        ExitProcess(0);
+    }
+    else
+       printf("CreateEvent() #%d is OK.\n", i);
+}
+
+// The creating thread waits for other threads or processes
+// to signal the event objects.
+dwEvent = WaitForMultipleObjects( 
+    2,           // number of objects in array
+    hEvents,     // array of objects
+    FALSE,       // wait for any
+    5000);       // 5000 ms
+
+// Return value indicates which event is signaled.
+switch (dwEvent)
+{
+    // hEvent[0] was signaled.
+    case WAIT_OBJECT_0 + 0:
+              {
+                     // TODO: Perform tasks required by this event.
+                     printf("hEvent[%d] was signaled.\n", i);
+                     break;
+              }
+
+    // hEvent[1] was signaled.
+    case WAIT_OBJECT_0 + 1:
+              {
+                   // TODO: Perform tasks required by this event.
+                   printf("hEvent[%d] was signaled.\n", i);
+                   break;
+              }
+
+    // Return value is invalid.
+    default:
+        printf("Wait error: %d\n", GetLastError());
+        // Exit peacefully...
+        ExitProcess(0);
+}
+return 0;
+}
+
+====================================================================================================

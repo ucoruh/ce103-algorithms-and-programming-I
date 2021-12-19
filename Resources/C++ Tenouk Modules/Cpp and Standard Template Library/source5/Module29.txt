@@ -1,0 +1,782 @@
+============================MODULE29=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+g++ are given at the end of every Module. For example if you want to
+compile C++ codes using VC++/VC++ .Net, change the header file accordingly.
+Just need some modification for the header files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+============================HERE, ALL C++ codes==========================
+
+
+//map, constructor
+//compiled with VC++ 7.0
+//or .Net
+#include <map>
+#include <iostream>
+using namespace std;
+
+int main( )
+{
+
+   typedef pair<int, int> Int_Pair;
+   map<int, int>::iterator mp0_Iter, mp1_Iter, mp3_Iter, mp4_Iter, mp5_Iter, mp6_Iter;
+   map<int, int, greater<int> >::iterator mp2_Iter;
+
+   //Create an empty map mp0 of key type integer
+   map <int, int> mp0;
+
+   //Create an empty map mp1 with the key comparison
+   //function of less than, then insert 6 elements
+   map <int, int, less<int> > mp1;
+   mp1.insert(Int_Pair(1, 13));
+   mp1.insert(Int_Pair(3, 23));
+   mp1.insert(Int_Pair(3, 31));
+   mp1.insert(Int_Pair(2, 23));
+   mp1.insert(Int_Pair(6, 15));
+   mp1.insert(Int_Pair(9, 25));
+
+   //Create an empty map mp2 with the key comparison
+   //function of greater than, then insert 3 elements
+   map <int, int, greater<int> > mp2;
+   mp2.insert(Int_Pair(3, 12));
+   mp2.insert(Int_Pair(1, 31));
+   mp2.insert(Int_Pair(2, 21));
+
+   //Create a map mp3 with the 
+   //allocator of map mp1
+   map <int, int>::allocator_type mp1_Alloc;
+   mp1_Alloc = mp1.get_allocator();
+   map <int, int> mp3(less<int>(), mp1_Alloc);
+   mp3.insert(Int_Pair(1, 10));
+   mp3.insert(Int_Pair(2, 12));
+
+   //Create a copy, map mp4, of map mp1
+   map <int, int> mp4(mp1);
+
+   //Create a map mp5 by copying the range mp1[_First, _Last)
+   map <int, int>::const_iterator mp1_PIter, mp1_QIter;
+   mp1_PIter = mp1.begin();
+   mp1_QIter = mp1.begin();
+   mp1_QIter++;
+   mp1_QIter++;
+   map <int, int> mp5(mp1_PIter, mp1_QIter);
+
+   //Create a map mp6 by copying the range mp4[_First, _Last)
+   //and with the allocator of map mp2
+   map <int, int>::allocator_type mp2_Alloc;
+   mp2_Alloc = mp2.get_allocator();
+   map <int, int> mp6(mp4.begin(), ++mp4.begin(), less<int>(), mp2_Alloc);
+
+   //--------------------------------------------------------
+   cout<<"Operation: map <int, int> mp0\n";
+   cout<<"mp0 data: ";
+   for(mp0_Iter = mp0.begin(); mp0_Iter != mp0.end(); mp0_Iter++)
+      cout<<" "<<mp0_Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation1: map <int, int, less<int> > mp1\n";
+   cout<<"Operation2: mp1.insert(Int_Pair(1, 13))...\n";
+   cout<<"mp1 data: ";
+   for(mp1_Iter = mp1.begin(); mp1_Iter != mp1.end(); mp1_Iter++)
+      cout<<" "<<mp1_Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation1: map <int, int, greater<int> > mp2\n";
+   cout<<"Operation2: mp2.insert(Int_Pair(3, 12))...\n";
+   cout<<"mp2 data: ";
+   for(mp2_Iter = mp2.begin(); mp2_Iter != mp2.end(); mp2_Iter++)
+      cout<<" "<<mp2_Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation1:  map <int, int> mp3(less<int>(), mp1_Alloc)\n";
+   cout<<"Operation2: mp3.insert(Int_Pair(1, 10))...\n";
+   cout<<"mp3 data: ";
+   for(mp3_Iter = mp3.begin(); mp3_Iter != mp3.end(); mp3_Iter++)
+      cout<<" "<<mp3_Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation: map <int, int> mp4(mp1)\n";
+     cout<<"mp4 data: ";
+   for(mp4_Iter = mp4.begin(); mp4_Iter != mp4.end(); mp4_Iter++)
+      cout<<" "<<mp4_Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation: map <int, int> mp5(mp1_PIter, mp1_QIter)\n";
+   cout<<"mp5 data: ";
+   for(mp5_Iter = mp5.begin(); mp5_Iter != mp5.end(); mp5_Iter++)
+      cout<<" "<<mp5_Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation: map <int, int> mp6(mp4.begin(), \n++mp4.begin(), less<int>(), mp2_Alloc);\n";
+   cout<<"mp6 data: ";
+   for(mp6_Iter = mp6.begin(); mp6_Iter != mp6.end(); mp6_Iter++)
+      cout<<" "<<mp6_Iter->second;
+   cout<<endl;
+   return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------
+
+//multimap, constructor or ctor
+//compiled with VC++ 7.0 or .Net
+//notice the duplicate key and data element
+#include <map>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   typedef pair<int, int> Int_Pair;
+   multimap<int, int>::iterator mmp0Iter, mmp1Iter, mmp3Iter, mmp4Iter, mmp5Iter, mmp6Iter;
+   multimap<int, int, greater<int> >::iterator mmp2Iter;
+
+   //Create an empty multimap mmp0 of key type integer
+   multimap <int, int> mmp0;
+
+   //Create an empty multimap mmp1 with the key comparison
+   //function of less than, then insert 6 elements
+   multimap<int, int, less<int> > mmp1;
+   mmp1.insert(Int_Pair(2, 2));
+   mmp1.insert(Int_Pair(2, 21));
+   mmp1.insert(Int_Pair(1, 5));
+   mmp1.insert(Int_Pair(3, 12));
+   mmp1.insert(Int_Pair(5, 32));
+   mmp1.insert(Int_Pair(4, 21));
+
+   //Create an empty multimap mmp2 with the key comparison
+   //function of greater than, then insert 4 elements
+   multimap <int, int, greater<int> > mmp2;
+   mmp2.insert(Int_Pair(1, 11));
+   mmp2.insert(Int_Pair(2, 10));
+   mmp2.insert(Int_Pair(2, 11));
+   mmp2.insert(Int_Pair(3, 12));
+
+   //Create a multimap mmp3 with the 
+   //allocator of multimap mmp1
+   multimap <int, int>::allocator_type mmp1_Alloc;
+   mmp1_Alloc = mmp1.get_allocator();
+   multimap <int, int> mmp3(less<int>(), mmp1_Alloc);
+   mmp3.insert(Int_Pair(3, 12));
+   mmp3.insert(Int_Pair(1, 21));
+
+   //multimap mmp4, a copy of multimap mmp1
+   multimap <int, int> mmp4(mmp1);
+
+   //Create a multimap mmp5 by copying the range mmp1[_First, _Last)
+   multimap <int, int>::const_iterator mmp1_PIter, mmp1_QIter;
+   mmp1_PIter = mmp1.begin();
+   mmp1_QIter = mmp1.begin();
+   mmp1_QIter++;
+   mmp1_QIter++;
+   multimap <int, int> mmp5(mmp1_PIter, mmp1_QIter);
+
+   //Create a multimap mmp6 by copying the range mmp4[_First, _Last)
+   //and with the allocator of multimap mmp2
+   multimap <int, int>::allocator_type mmp2_Alloc;
+   mmp2_Alloc = mmp2.get_allocator();
+   multimap <int, int> mmp6(mmp4.begin(), ++mmp4.begin(), less<int>(), mmp2_Alloc);
+
+   
+   //--------------------------------------------------------
+   cout<<"Operation: multimap <int, int> mmp0\n";
+   cout<<"mmp0 data: ";
+   for(mmp0Iter = mmp0.begin(); mmp0Iter != mmp0.end(); mmp0Iter++)
+      cout<<" "<<mmp0Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation1: multimap<int, int, less<int> > mmp1\n";
+   cout<<"Operation2: mmp1.insert(Int_Pair(2, 2))...\n";
+   cout<<"mmp1 data: ";
+   for(mmp1Iter = mmp1.begin(); mmp1Iter != mmp1.end(); mmp1Iter++)
+      cout<<" "<<mmp1Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation1: multimap <int, int, greater<int> > mmp2\n";
+   cout<<"Operation2:  mmp2.insert(Int_Pair(1, 11))...\n";
+   cout<<"mmp2 data: ";
+   for(mmp2Iter = mmp2.begin(); mmp2Iter != mmp2.end(); mmp2Iter++)
+      cout<<" "<<mmp2Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation1: multimap <int, int> mmp3(less<int>(), mmp1_Alloc)\n";
+   cout<<"Operation2: mmp3.insert(Int_Pair(3, 12))...\n";
+   cout<<"mmp3 data: ";
+   for(mmp3Iter = mmp3.begin(); mmp3Iter != mmp3.end(); mmp3Iter++)
+      cout<<" "<<mmp3Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation: multimap <int, int> mmp4(mmp1)\n";
+   cout<<"mmp4 data: ";
+   for(mmp4Iter = mmp4.begin(); mmp4Iter != mmp4.end(); mmp4Iter++)
+      cout<<" "<<mmp4Iter->second;
+   cout << endl;
+
+   cout<<"\nOperation: multimap <int, int> mmp5(mmp1_PIter, mmp1_QIter)\n";
+   cout<<"mmp5 data: ";
+   for(mmp5Iter = mmp5.begin(); mmp5Iter != mmp5.end(); mmp5Iter++)
+      cout<<" "<<mmp5Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation: multimap <int, int> mmp6(mmp4.begin(), \n++mmp4.begin(), less<int>(), mmp2_Alloc)\n";
+   cout<<"mmp6 data: ";
+   for(mmp6Iter = mmp6.begin(); mmp6Iter != mmp6.end(); mmp6Iter++)
+      cout<<" "<<mmp6Iter->second;
+   cout<<endl;
+	return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------------
+
+//hash_map, constructor
+//compiled with visual C++ 7.0
+//or VC.Net, some warnings
+#include <hash_map>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+typedef pair <int, int> Int_Pair;
+hash_map <int, int>::iterator hmp0_Iter, hmp1_Iter, hmp3_Iter, hmp4_Iter, hmp5_Iter, hmp6_Iter;
+hash_map <int, int, hash_compare<int, greater<int> > >::iterator hmp2_Iter;
+
+//Create an empty hash_map hmp0 of key type integer
+hash_map <int, int> hmp0;
+
+//Create an empty hash_map hmp1 with the key comparison
+//function of less than, then insert 4 elements
+hash_map <int, int, hash_compare <int, less<int> > > hmp1;
+hmp1.insert(Int_Pair(1, 13));
+hmp1.insert(Int_Pair(3, 51));
+hmp1.insert(Int_Pair(7, 22));
+hmp1.insert(Int_Pair(2, 31));
+
+//Create an empty hash_map hmp2 with the key comparison
+//function of greater than, then insert 4 elements
+//no duplicate key...
+hash_map <int, int, hash_compare <int, greater<int> > > hmp2;
+hmp2.insert(Int_Pair(1, 17));
+hmp2.insert(Int_Pair(2, 20));
+hmp2.insert(Int_Pair(4, 13));
+hmp2.insert(Int_Pair(3, 34));
+
+
+//Create a hash_map hmp3 with the 
+//hash_map hmp1 allocator
+//notice the duplicate key...
+hash_map <int, int>::allocator_type hmp1_Alloc;
+hmp1_Alloc = hmp1.get_allocator();
+hash_map <int, int> hmp3(less<int>(), hmp1_Alloc);
+hmp3.insert(Int_Pair(2, 17));
+hmp3.insert(Int_Pair(1, 12));
+hmp3.insert(Int_Pair(2, 15));
+hmp3.insert(Int_Pair(1, 22));
+
+//Create a hash_map hm5 by copying the range hm1[_First, _Last)
+hash_map <int, int>::const_iterator hmp1_PIter, hmp1_QIter;
+hmp1_PIter = hmp1.begin( );
+hmp1_QIter = hmp1.begin( );
+hmp1_QIter++;
+hmp1_QIter++;
+hash_map <int, int> hmp5(hmp1_PIter, hmp1_QIter);
+
+//Create a hash_map hm6 by copying the range hm2[_First, _Last)
+//and with the allocator of hash_map hm2
+hash_map <int, int>::allocator_type hmp2_Alloc;
+hmp2_Alloc = hmp2.get_allocator();
+hash_map <int, int> hmp6(hmp2.begin(), ++hmp2.begin(), less<int>(), hmp2_Alloc);
+
+
+//------------------------------------
+cout<<"Operation: hash_map <int, int> hmp0\n";
+cout<<"hmp0 data: ";
+for(hmp0_Iter = hmp0.begin(); hmp0_Iter != hmp0.end(); hmp0_Iter++)
+cout<<hmp0_Iter->second<<" ";
+cout<<endl;
+
+cout<<"\nOperation1: hash_map<int, int, \nhash_compare<int, less<int> > > hmp1\n";
+cout<<"Operation2: hmp1.insert(Int_Pair(1, 13))...\n";
+cout<<"hmp1 data: ";
+for(hmp1_Iter = hmp1.begin(); hmp1_Iter != hmp1.end(); hmp1_Iter++)
+cout<<hmp1_Iter->second<<" ";
+cout<<endl;
+
+cout<<"\nOperation1: hash_map<int, int, \nhash_compare<int, greater<int> > > hmp2\n";
+cout<<"Operation2: hmp2.insert(Int_Pair(1, 17))...\n";
+cout<<"hmp2 data: ";
+for(hmp2_Iter = hmp2.begin(); hmp2_Iter != hmp2.end(); hmp2_Iter++)
+cout<<hmp2_Iter->second<<" ";
+cout<<endl;
+
+cout<<"\nOperation1: hash_map<int, int> hmp3(less<int>(), hmp1_Alloc)\n";
+cout<<"Operation2: hmp3.insert(Int_Pair(2, 17))...\n";
+cout<<"hmp3 data: ";
+for(hmp3_Iter = hmp3.begin(); hmp3_Iter != hmp3.end(); hmp3_Iter++)
+cout<<hmp3_Iter->second<<" ";
+cout<<endl;
+
+cout<<"\nOperation: hash_map<int, int> hmp5(hmp1_PIter, hmp1_QIter)\n";
+cout<<"hmp5 data: ";
+for(hmp5_Iter = hmp5.begin(); hmp5_Iter != hmp5.end(); hmp5_Iter++)
+cout<<hmp5_Iter->second<<" ";
+cout<<endl;
+
+cout<<"\nOperation: hash_map<int, int> hmp6(hmp2.begin(), \n++hmp2.begin(), less<int>(), hmp2_Alloc);\n";
+cout<<"hmp6 data: ";
+for(hmp6_Iter = hmp6.begin(); hmp6_Iter != hmp6.end(); hmp6_Iter++)
+cout<<hmp6_Iter->second <<" ";
+cout<<endl;
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------
+
+//hash_multimap, constructor
+//compiled with VC7.0 or .Net
+//a lot of warning messages:-)
+#include <hash_map>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   typedef pair <int, int> Int_Pair;
+   hash_multimap <int, int>::iterator hmp0_Iter, hmp1_Iter, hmp3_Iter, hmp4_Iter, hmp5_Iter;
+   hash_multimap <int, int, hash_compare <int, greater<int> > >::iterator hmp2_Iter;
+
+   //Create an empty hash_multimap hmp0 of key type integer
+   hash_multimap <int, int> hmp0;
+
+   //Create an empty hash_multimap hmp1 with the key comparison
+   //function of less than, then insert 6 elements
+   hash_multimap <int, int, hash_compare <int, less<int> > > hmp1;
+   hmp1.insert(Int_Pair(3, 12));
+   hmp1.insert(Int_Pair(2, 30));
+   hmp1.insert(Int_Pair(1, 22));
+   hmp1.insert(Int_Pair(7, 41));
+   hmp1.insert(Int_Pair(4, 9));
+   hmp1.insert(Int_Pair(7, 30));
+
+   //Create an empty hash_multimap hmp2 with the key comparison
+   //function of greater than, then insert 2 elements
+   hash_multimap <int, int, hash_compare <int, greater<int> > > hmp2;
+   hmp2.insert(Int_Pair(2, 13));
+   hmp2.insert(Int_Pair(1, 17));
+
+   //Create a hash_multimap hmp3 with the 
+   //allocator of hash_multimap hmp1
+   hash_multimap <int, int>::allocator_type hmp1_Alloc;
+   hmp1_Alloc = hmp1.get_allocator();
+   hash_multimap <int, int> hmp3(less<int>(),hmp1_Alloc);
+   hmp3.insert(Int_Pair(2, 13));
+   hmp3.insert(Int_Pair(4, 10));
+
+   //Create a hash_multimap hmp4 by copying the range hmp1[_First, _Last)
+   hash_multimap <int, int>::const_iterator hmp1_PIter, hmp1_QIter;
+   hmp1_PIter = hmp1.begin();
+   hmp1_QIter = hmp1.begin();
+   hmp1_QIter++;
+   hmp1_QIter++;
+   hmp1_QIter++;
+   hash_multimap <int, int> hmp4(hmp1_PIter, hmp1_QIter);
+
+   //Create a hash_multimap hmp5 by copying the range hmp2[_First, _Last)
+   //and with the allocator of hash_multimap hmp2
+   hash_multimap <int, int>::allocator_type hmp2_Alloc;
+   hmp2_Alloc = hmp2.get_allocator();
+   hash_multimap <int, int> hmp5(hmp2.begin(), ++hmp2.begin(), less<int>(), hmp2_Alloc);
+
+   //----------------------------------------------------
+   cout<<"Operation: hash_multimap <int, int> hmp0\n";
+   cout<<"hmp0 data: ";
+   for(hmp0_Iter = hmp0.begin(); hmp0_Iter != hmp0.end(); hmp0_Iter++)
+      cout<<hmp0_Iter->second<<" ";
+   cout<<endl;
+
+   cout<<"\nOperation1: hash_multimap<int, int, \n  hash_compare<int, less<int> > > hmp1\n";
+   cout<<"Operation2: hmp1.insert(Int_Pair(3, 12))...\n";
+   cout<<"hmp1 data: ";
+   for(hmp1_Iter = hmp1.begin(); hmp1_Iter != hmp1.end(); hmp1_Iter++)
+      cout<<hmp1_Iter->second<<" ";
+   cout<<endl;
+ 
+   cout<<"\nOperation1: hash_multimap<int, int, \n  hash_compare<int, greater<int> > > hmp2\n";
+    cout<<"Operation2: hmp2.insert(Int_Pair(2, 13))...\n";
+   cout<<"hmp2 data: ";
+   for(hmp2_Iter = hmp2.begin(); hmp2_Iter != hmp2.end(); hmp2_Iter++)
+   cout<<hmp2_Iter->second<<" ";
+   cout<<endl;
+
+   cout<<"\nOperation1: hash_multimap<int, int> hmp3(less<int>(), hmp1_Alloc)\n";
+   cout<<"Operation2: hmp3.insert(Int_Pair(2, 13))...\n";
+   cout<<"hmp3 data: ";
+   for(hmp3_Iter = hmp3.begin(); hmp3_Iter != hmp3.end(); hmp3_Iter++)
+      cout<<hmp3_Iter->second<<" ";
+   cout<<endl;
+
+   cout<<"\nOperation: hash_multimap<int, int> hmp4(hmp1_PIter, hmp1_QIter)\n";
+   cout<<"hmp4 data: ";
+   for(hmp4_Iter = hmp4.begin(); hmp4_Iter != hmp4.end(); hmp4_Iter++)
+      cout<<hmp4_Iter->second<<" ";
+   cout<<endl;
+
+   cout<<"\nOperation: hash_multimap<int, int> hmp5(hmp2.begin(), \n  ++hmp2.begin(), less<int>(), hmp2_Alloc);\n";
+   cout<<"hmp5 data: ";
+   for(hmp5_Iter = hmp5.begin(); hmp5_Iter != hmp5.end(); hmp5_Iter++)
+      cout<<hmp5_Iter->second<<" ";
+   cout<<endl;
+   return 0;
+}
+
+--------------------------------------------------------------------------------------------------------------------
+
+//hash_set, constructor
+//compiled with VC7.0/.Net
+//some warnings
+#include <hash_set>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+hash_set <int>::iterator hst0_Iter, hst1_Iter, hst3_Iter, hst4_Iter, hst5_Iter;
+hash_set <int, hash_compare <int, greater<int> > >::iterator hst2_Iter;
+
+//Create an empty hash_set hst0 of key type integer
+hash_set <int> hst0;
+
+//Create an empty hash_set hst1 with the key comparison
+//function of less than, then insert 5 elements
+hash_set <int, hash_compare<int, less<int> > > hst1;
+hst1.insert(7);
+hst1.insert(3);
+hst1.insert(12);
+hst1.insert(51);
+hst1.insert(10);
+
+//Create an empty hash_set hst2 with the key comparison
+//function of greater than, then insert 4 elements
+hash_set<int, hash_compare<int, greater<int> > > hst2;
+hst2.insert(71);
+hst2.insert(68);
+hst2.insert(68);
+hst2.insert(55);
+
+//Create a hash_set hst3 with the 
+//hash_set hst1 allocator 
+hash_set<int>::allocator_type hst1_Alloc;
+hst1_Alloc = hst1.get_allocator();
+hash_set<int> hst3(less<int>(),hst1_Alloc);
+hst3.insert(12);
+hst3.insert(13);
+hst3.insert(12);
+
+//Create a hash_set hst4 by copying the range hst1[_First, _Last)
+hash_set <int>::const_iterator hst1_PIter, hst1_QIter;
+hst1_PIter = hst1.begin();
+hst1_QIter = hst1.begin();
+hst1_QIter++;
+hst1_QIter++;
+hash_set<int> hst4(hst1_PIter, hst1_QIter);
+
+//Create a hash_set hst5 by copying the range hst4[_First, _Last)
+//and with the allocator of hash_set hst2
+hash_set <int>::allocator_type hst2_Alloc;
+hst2_Alloc = hst2.get_allocator();
+hash_set <int> hst5(hst1.begin(), ++hst1.begin(), less<int>(), hst2_Alloc);
+
+//-----------------------------------------------
+cout<<"Operation: hash_set <int> hst0\n";
+cout<<"hst0 data: ";
+for(hst0_Iter = hst0.begin(); hst0_Iter != hst0.end(); hst0_Iter++)
+cout<<*hst0_Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: hash_set <int, hash_compare<int, \nless<int> > > hst1\n";
+cout<<"Operation: hst1.insert(7)...\n";
+cout<< "hst1 data: ";
+for(hst1_Iter = hst1.begin(); hst1_Iter != hst1.end(); hst1_Iter++)
+cout<<*hst1_Iter << " ";
+cout<<endl;
+
+cout<<"\nOperation: hash_set <int, hash_compare<int, \ngreater<int> > > hst2\n";
+cout<<"Operation: hst2.insert(71)...\n";
+cout<<"hst2 data: ";
+for(hst2_Iter = hst2.begin(); hst2_Iter != hst2.end(); hst2_Iter++)
+cout<<*hst2_Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: hash_set<int> hst3(less<int>(),hst1_Alloc)\n";
+cout<<"Operation: hst3.insert(12)...\n";
+cout<<"hst3 data: ";
+for(hst3_Iter = hst3.begin(); hst3_Iter != hst3.end(); hst3_Iter++)
+cout<<*hst3_Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: hash_set<int> hst4(hst1_PIter, hst1_QIter)\n";
+cout<<"hst4 data: ";
+for(hst4_Iter = hst4.begin(); hst4_Iter != hst4.end(); hst4_Iter++)
+cout<<*hst4_Iter<<" ";
+cout<<endl;
+
+cout<<"\nOperation: hash_set <int> hst5(hst1.begin(), \n++hst1.begin(), less<int>(), hst2_Alloc)\n";
+cout<<"hst5 data: ";
+for(hst5_Iter = hst5.begin(); hst5_Iter != hst5.end(); hst5_Iter++)
+cout<<*hst5_Iter<<" ";
+cout<<endl;
+return 0;
+}
+
+-------------------------------------------------------------------------------------------------------
+
+//hash_multiset, constructor
+//compiled with VC7.0 or .Net
+//a lot of warning messages...
+#include <hash_set>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   hash_multiset <int>::iterator hms0_Iter, hms1_Iter, hms3_Iter, hms4_Iter, hms5_Iter;
+   hash_multiset <int, hash_compare <int, greater<int> > >::iterator hms2_Iter;
+
+   //Create an empty hash_multiset hms0 of key type integer
+   hash_multiset <int> hms0;
+
+   //Create an empty hash_multiset hms1 with the key comparison
+   //function of less than, then insert 6 elements
+   hash_multiset<int, hash_compare<int, less<int> > > hms1;
+   hms1.insert(12);
+   hms1.insert(17);
+   hms1.insert(24);
+   hms1.insert(17);
+   hms1.insert(9);
+
+   //Create an empty hash_multiset hms2 with the key comparison
+   //function of greater than, then insert 4 elements
+   hash_multiset<int, hash_compare<int, greater<int> > > hms2;
+   hms2.insert(21);
+   hms2.insert(34);
+   hms2.insert(21);
+   hms2.insert(17);
+   
+   //Create a hash_multiset hms3 with the 
+   //allocator of hash_multiset hms1
+   hash_multiset <int>::allocator_type hms1_Alloc;
+   hms1_Alloc = hms1.get_allocator();
+   hash_multiset <int> hms3(less<int>(), hms1_Alloc);
+   hms3.insert(71);
+   hms3.insert(52);
+   hms3.insert(31);
+
+   //Create a hash_multiset hms4 by copying the range hms1[_First, _Last)
+   hash_multiset <int>::const_iterator hms1_PIter, hms1_QIter;
+   hms1_PIter = hms1.begin();
+   hms1_QIter = hms1.begin();
+   hms1_QIter++;
+   hms1_QIter++;
+   hms1_QIter++;
+   hash_multiset<int> hms4(hms1_PIter, hms1_QIter);
+
+   //Create a hash_multiset hms5 by copying the range hms2[_First, _Last)
+   //and with the allocator of hash_multiset hms2
+   hash_multiset<int>::allocator_type hms2_Alloc;
+   hms2_Alloc = hms2.get_allocator( );
+   hash_multiset<int> hms5(hms2.begin(), ++hms2.begin(),less<int>(), hms2_Alloc);
+
+   //------------------------------------------------------
+   cout<<"Operation: hash_multiset <int> hms0\n";
+   cout<<"hms0 data: ";
+   for(hms0_Iter = hms0.begin(); hms0_Iter != hms0.end(); hms0_Iter++)
+      cout<<*hms0_Iter<<" ";
+   cout<<endl;
+
+   cout<<"\nOperation1: hash_multiset<int, \n  hash_compare<int, less<int> > > hms1\n";
+   cout<<"Operation2: hms1.insert(12)...\n";
+   cout<<"hms1 data: ";
+   for(hms1_Iter = hms1.begin(); hms1_Iter != hms1.end(); hms1_Iter++)
+      cout<<*hms1_Iter<<" ";
+   cout<<endl;
+   
+   cout<<"\nOperation1: hash_multiset<int, \n  hash_compare<int, greater<int> > > hms2\n";
+   cout<<"Operation2: hms2.insert(21)...\n";
+   cout<<"hms2 data: ";
+   for(hms2_Iter = hms2.begin(); hms2_Iter != hms2.end(); hms2_Iter++)
+      cout<<*hms2_Iter<<" ";
+   cout<<endl;
+
+   cout<<"\nOperation1: hash_multiset<int> hms3(less<int>(),hms1_Alloc)\n";
+   cout<<"Operation2: hms3.insert(71)...\n";
+   cout<<"hms3 data: ";
+   for(hms3_Iter = hms3.begin(); hms3_Iter != hms3.end(); hms3_Iter++)
+      cout<<*hms3_Iter<<" ";
+   cout<<endl;
+
+   cout<<"\nOperation: hash_multiset<int> hms4(hms1_PIter, hms1_QIter)\n";
+   cout<<"hms4 data: ";
+   for(hms4_Iter = hms4.begin(); hms4_Iter != hms4.end(); hms4_Iter++)
+      cout<<*hms4_Iter<<" ";
+   cout<<endl;
+
+   cout<<"\nOperation: hash_multiset<int> hms5(hms2.begin(), \n  
+				++hms2.begin(), less<int>(), hms2_Alloc)\n";
+   cout<<"hms5 data: ";
+   for(hms5_Iter = hms5.begin(); hms5_Iter != hms5.end(); hms5_Iter++)
+      cout<<*hms5_Iter<<" ";
+   cout<<endl;
+   return 0;
+}
+
+-------------------------------------------G++------------------------------------------------------------
+
+//******mapconstructor.cpp********
+//map, constructor
+//compiled with VC++ 7.0
+//or .Net
+#include <map>
+#include <iostream>
+using namespace std;
+
+int main( )
+{
+   typedef pair<int, int> Int_Pair;
+   map<int, int>::iterator mp0_Iter, mp1_Iter, mp3_Iter, mp4_Iter, mp5_Iter, mp6_Iter;
+   map<int, int, greater<int> >::iterator mp2_Iter;
+
+   //Create an empty map mp0 of key type integer
+   map <int, int> mp0;
+
+   //Create an empty map mp1 with the key comparison
+   //function of less than, then insert 6 elements
+   map <int, int, less<int> > mp1;
+   mp1.insert(Int_Pair(1, 13));
+   mp1.insert(Int_Pair(3, 23));
+   mp1.insert(Int_Pair(3, 31));
+   mp1.insert(Int_Pair(2, 23));
+   mp1.insert(Int_Pair(6, 15));
+   mp1.insert(Int_Pair(9, 25));
+
+   //Create an empty map mp2 with the key comparison
+   //function of greater than, then insert 3 elements
+   map <int, int, greater<int> > mp2;
+   mp2.insert(Int_Pair(3, 12));
+   mp2.insert(Int_Pair(1, 31));
+   mp2.insert(Int_Pair(2, 21));
+
+   //Create a map mp3 with the 
+   //allocator of map mp1
+   map <int, int>::allocator_type mp1_Alloc;
+   mp1_Alloc = mp1.get_allocator();
+   map <int, int> mp3(less<int>(), mp1_Alloc);
+   mp3.insert(Int_Pair(1, 10));
+   mp3.insert(Int_Pair(2, 12));
+
+   //Create a copy, map mp4, of map mp1
+   map <int, int> mp4(mp1);
+
+   //Create a map mp5 by copying the range mp1[_First, _Last)
+   map <int, int>::const_iterator mp1_PIter, mp1_QIter;
+   mp1_PIter = mp1.begin();
+   mp1_QIter = mp1.begin();
+   mp1_QIter++;
+   mp1_QIter++;
+   map <int, int> mp5(mp1_PIter, mp1_QIter);
+
+   //Create a map mp6 by copying the range mp4[_First, _Last)
+   //and with the allocator of map mp2
+   map <int, int>::allocator_type mp2_Alloc;
+   mp2_Alloc = mp2.get_allocator();
+   map <int, int> mp6(mp4.begin(), ++mp4.begin(), less<int>(), mp2_Alloc);
+
+   //--------------------------------------------------------
+   cout<<"Operation: map <int, int> mp0\n";
+   cout<<"mp0 data: ";
+   for(mp0_Iter = mp0.begin(); mp0_Iter != mp0.end(); mp0_Iter++)
+      cout<<" "<<mp0_Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation1: map <int, int, less<int> > mp1\n";
+   cout<<"Operation2: mp1.insert(Int_Pair(1, 13))...\n";
+   cout<<"mp1 data: ";
+   for(mp1_Iter = mp1.begin(); mp1_Iter != mp1.end(); mp1_Iter++)
+      cout<<" "<<mp1_Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation1: map <int, int, greater<int> > mp2\n";
+   cout<<"Operation2: mp2.insert(Int_Pair(3, 12))...\n";
+   cout<<"mp2 data: ";
+   for(mp2_Iter = mp2.begin(); mp2_Iter != mp2.end(); mp2_Iter++)
+      cout<<" "<<mp2_Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation1:  map <int, int> mp3(less<int>(), mp1_Alloc)\n";
+   cout<<"Operation2: mp3.insert(Int_Pair(1, 10))...\n";
+   cout<<"mp3 data: ";
+   for(mp3_Iter = mp3.begin(); mp3_Iter != mp3.end(); mp3_Iter++)
+      cout<<" "<<mp3_Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation: map <int, int> mp4(mp1)\n";
+     cout<<"mp4 data: ";
+   for(mp4_Iter = mp4.begin(); mp4_Iter != mp4.end(); mp4_Iter++)
+      cout<<" "<<mp4_Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation: map <int, int> mp5(mp1_PIter, mp1_QIter)\n";
+   cout<<"mp5 data: ";
+   for(mp5_Iter = mp5.begin(); mp5_Iter != mp5.end(); mp5_Iter++)
+      cout<<" "<<mp5_Iter->second;
+   cout<<endl;
+
+   cout<<"\nOperation: map <int, int> mp6(mp4.begin(), \n++mp4.begin(), less<int>(), mp2_Alloc);\n";
+   cout<<"mp6 data: ";
+   for(mp6_Iter = mp6.begin(); mp6_Iter != mp6.end(); mp6_Iter++)
+      cout<<" "<<mp6_Iter->second;
+   cout<<endl;
+   return 0;
+}
+
+=====================================================================================================

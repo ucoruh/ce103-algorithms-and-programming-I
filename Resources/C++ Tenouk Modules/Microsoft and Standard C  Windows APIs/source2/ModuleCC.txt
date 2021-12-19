@@ -1,0 +1,513 @@
+============================MODULECC======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+If you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (It is C++ header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module 23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes, let the compiler
+decide... :o)
+==============================================================================================
+=======================Just Microsoft & Standard C Codes HERE=================================
+
+#include <windows.h>
+
+BOOL WINAPI DllMain(
+    HINSTANCE hinstDLL,  // handle to DLL module
+    DWORD fdwReason,     // reason for calling function
+    LPVOID lpReserved)   // reserved
+{
+    // Perform actions based on the reason for calling.
+    switch(fdwReason) 
+    { 
+        case DLL_PROCESS_ATTACH:
+            // Initialize once for each new process.
+            // Return FALSE to fail DLL load.
+            break;
+
+        case DLL_THREAD_ATTACH:
+            // Do thread-specific initialization.
+            break;
+
+        case DLL_THREAD_DETACH:
+            // Do thread-specific cleanup.
+            break;
+
+        case DLL_PROCESS_DETACH:
+            // Perform any necessary cleanup.
+            break;
+    }
+       // Successful DLL_PROCESS_ATTACH.
+    return TRUE;
+}
+
+------------------------------------------------------------------------------------------------
+
+// Project name: mydllpro, File name: mysrcdll.cpp, generating mydllpro.dll, mydllpro.lib...
+// The mydll function writes a null-terminated string to
+// the standard output device...
+// The export mechanism used here is the __declspec(export)
+// method supported by Microsoft Visual Studio, but any
+// other export method supported by your development
+// environment may be substituted.
+// For WinXp, don't forget to add
+// Advapi32.lib library if needed...
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+#define EOF (-1)
+
+#ifdef __cplusplus    // If used by C++ code, 
+extern "C" {          // we need to export the C interface
+#endif
+
+__declspec(dllexport) int mydll(LPTSTR lpszMsg)
+{
+    DWORD cchWritten;
+    HANDLE hStdout;
+    BOOL fRet;
+
+       printf("-This is mydll.dll file lol!-\n");
+       // Get a handle to the standard output device.
+       hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+
+       if (INVALID_HANDLE_VALUE == hStdout)
+       {
+              // failed to get the handle, give some message, get error code, just exit...
+              printf("GetStdHandle(), invalid handle, error: GetLastError().\n");
+              return EOF;
+       }
+       else
+              printf("GetStdHandle(), standard handle is OK.\n");
+
+    // Write a null-terminated string to the standard output device.
+    while (*lpszMsg != '\0')
+    {
+        fRet = WriteFile(hStdout, lpszMsg, 1, &cchWritten, NULL);
+        if ((fRet == FALSE) || (cchWritten != 1))
+            // If something wrong just exit or provide meaningful message/error code...
+            return EOF;
+            // else, write more...
+           lpszMsg++;
+    }
+       printf("\n");
+    return 1;
+}
+#ifdef __cplusplus
+}
+#endif
+
+-------------------------------------------------------------------------------------------------------
+
+// File: mydllloadtime.cpp 
+// A simple program that uses mydll() from mydllpro.dll. 
+// For WinXp, don't forget to add
+#define _WIN32_WINNT 0x0501
+#include <windows.h> 
+
+// call to a function in the mydllpro.dll
+__declspec(dllimport) int mydll(LPTSTR);
+// Another form: int mydll(LPTSTR);
+
+int main() 
+{ 
+    int Ret = 1;
+ 
+    Ret = mydll("This message was printed using the DLL function"); 
+    return Ret;
+}
+
+-------------------------------------------------------------------------------------------------------
+
+// File:  testmydllruntime.cpp
+// Using Run-Time Dynamic Linking
+// A simple program that uses LoadLibrary() and 
+// GetProcAddress() to access mydll() in mydllpro.dll. 
+// For WinXp, don't forget to add
+#define _WIN32_WINNT 0x0501
+#include <stdio.h> 
+#include <windows.h> 
+
+typedef void (*MYPROC)(LPTSTR); 
+
+int main()
+{
+    HINSTANCE hinstLib;
+    MYPROC ProcAdd;
+    BOOL fFreeResult, fRunTimeLinkSuccess = FALSE;
+
+    // Get a handle to our DLL module created in the previous example.
+    hinstLib = LoadLibrary("mydllpro");
+
+    // If the handle is valid, try to get the function address.
+    if (hinstLib != NULL)
+    {
+              printf("The dll handle is valid...\n");
+              ProcAdd = (MYPROC) GetProcAddress(hinstLib, "mydll");
+
+        // If the function address is valid, call the function.
+        if (ProcAdd != NULL)
+        {
+		printf("The function address is valid...\n\n");
+		fRunTimeLinkSuccess = TRUE;
+		// Pass some text, mydll() will display it on the standard output...
+		(ProcAdd) ("\nThis message is via DLL function...\n");
+        }
+       else
+              printf("\nThe function address is NOT valid, error: %d.\n", GetLastError());
+
+	// Free the DLL module.
+	fFreeResult = FreeLibrary(hinstLib);
+
+        if (fFreeResult != 0)
+               printf("FreeLibrary() is OK.\n");
+        else
+               printf("FreeLibrary() is not OK, error: %d.\n", GetLastError());
+    }
+    else
+       printf("The dll handle is not valid, error: %d.\n", GetLastError());
+
+    // If unable to call the DLL function, use an alternative.
+    if (!fRunTimeLinkSuccess)
+        printf("This message via alternative method...\n");
+
+    return 0;
+}
+
+-------------------------------------------------------------------------------------------------------
+
+// Project name: moredll, File name:  dllentryfunc.cpp generating moredll.dll
+// but no moredll.lib! The DLL entry-point function sets up shared memory using 
+// a named file-mapping object.
+#include <windows.h>
+#include <stdio.h>
+#include <memory.h>
+
+#define SHMEMSIZE 4096
+
+static LPVOID lpvMem = NULL;      // pointer to shared memory
+static HANDLE hMapObject = NULL;  // handle to file mapping
+
+BOOL DllMain(HINSTANCE hinstDLL,  // DLL module handle
+    DWORD fdwReason,              // reason called
+    LPVOID lpvReserved)           // reserved
+{
+    BOOL fInit, fIgnore;
+
+    switch (fdwReason)
+    {
+        // The DLL is loading due to process
+        // initialization or a call to LoadLibrary.
+        case DLL_PROCESS_ATTACH:
+                printf("The DLL is loading...from moredll.dll.\n");
+            // Create a named file mapping object.
+             hMapObject = CreateFileMapping(
+                INVALID_HANDLE_VALUE, // use paging file
+                NULL,                 // default security attributes
+                PAGE_READWRITE,       // read/write access
+                0,                    // size: high 32-bits
+                SHMEMSIZE,            // size: low 32-bits
+                "dllmemfilemap");     // name of map object
+            if (hMapObject == NULL)
+			return FALSE;
+            else
+			printf("CreateFileMapping() is OK.\n");
+
+             // The first process to attach initializes memory.
+             fInit = (GetLastError() != ERROR_ALREADY_EXISTS);
+
+            // Get a pointer to the file-mapped shared memory.
+            lpvMem = MapViewOfFile(
+                hMapObject,     // object to map view of
+                FILE_MAP_WRITE, // read/write access
+                0,              // high offset:  map from
+                0,              // low offset:   beginning
+                0);             // default: map entire file
+
+    		if (lpvMem == NULL)
+			return FALSE;
+            else
+			printf("MapViewOfFile() is OK.\n");
+
+            // Initialize memory if this is the first process.
+            if (fInit)
+                memset(lpvMem, '\0', SHMEMSIZE);
+            break;
+
+        // The attached process creates a new thread.
+        case DLL_THREAD_ATTACH:
+		printf("The attached process creates a new thread...from moredll.dll.\n");
+            break;
+
+        // The thread of the attached process terminates.
+        case DLL_THREAD_DETACH:
+		printf("The thread of the attached process terminates... from moredll.dll.\n");
+            break;
+
+	  // The DLL is unloading from a process due to 
+	  // process termination or a call to FreeLibrary().
+        case DLL_PROCESS_DETACH:
+              printf("The DLL is unloading from a process... from moredll.dll.\n");
+            // Unmap shared memory from the process's address space.
+            fIgnore = UnmapViewOfFile(lpvMem);
+
+            // Close the process's handle to the file-mapping object.
+            fIgnore = CloseHandle(hMapObject);
+              break;
+
+        default:
+		printf("Reason called not matched, error if any: %d... from moredll.dll.\n", GetLastError());
+          break;
+     } 
+    return TRUE;
+    UNREFERENCED_PARAMETER(hinstDLL);
+    UNREFERENCED_PARAMETER(lpvReserved);
+} 
+
+// Can be commented out for this example...
+// SetSharedMem() sets the contents of shared memory.
+VOID SetSharedMem(LPTSTR lpszBuf)
+{ 
+    LPTSTR lpszTmp = "Testing some string";
+
+    // Get the address of the shared memory block.
+    lpszTmp = (LPTSTR) lpvMem;
+
+    // Copy the null-terminated string into shared memory.
+    while (*lpszBuf) 
+        *lpszTmp++ = *lpszBuf++;
+    *lpszTmp = '\0';
+printf("The content: %s.\n", lpszTmp);
+} 
+
+// Can be commented out for this example...
+// GetSharedMem() gets the contents of shared memory. 
+VOID GetSharedMem(LPTSTR lpszBuf, DWORD cchSize)
+{
+    LPTSTR lpszTmp;
+
+    // Get the address of the shared memory block.
+    lpszTmp = (LPTSTR) lpvMem;
+
+    // Copy from shared memory into the caller's buffer.
+    while (*lpszTmp && --cchSize)
+        *lpszBuf++ = *lpszTmp++;
+    *lpszBuf = '\0';
+	printf("The caller buffer: %s.\n", lpszBuf);
+
+}
+
+-------------------------------------------------------------------------------------------------------
+
+// File:  testdll.cpp, using moredll.dll that uses Dllmain()
+// Using Run-Time Dynamic Linking
+// A simple program that uses LoadLibrary() and 
+// GetProcAddress() to access Dllmain() of moredll.dll.
+// No function to be exported, just testing...
+
+#include <stdio.h> 
+#include <windows.h> 
+
+typedef void (*MYPROC)(LPTSTR); 
+
+int main() 
+{
+    HINSTANCE hinstLib; 
+    MYPROC ProcAdd; 
+    BOOL fFreeResult, fRunTimeLinkSuccess = FALSE; 
+
+    // Get a handle to our DLL module, moredll.dll...this module has been copied
+    // to C:\WINDOWS\System32 directory...
+    hinstLib = LoadLibrary("moredll"); 
+
+    // If the handle is valid, try to get the function address.
+    if (hinstLib != NULL) 
+    {
+              printf("The DLL handle is valid...\n");
+              ProcAdd = (MYPROC) GetProcAddress(hinstLib, "Anonymfunction"); 
+
+        // If the function address is valid, call the function.
+        if (ProcAdd != NULL) 
+        {
+              printf("The function address is valid...\n\n");
+              fRunTimeLinkSuccess = TRUE;
+              // Ready to execute DLLmain()...
+        }
+       else
+              printf("The function address is not valid, error: %d.\n", GetLastError());
+       }
+       else
+              printf("\nThe DLL handle is NOT valid, error: %d\n", GetLastError());
+
+	// Free the DLL module.
+	fFreeResult = FreeLibrary(hinstLib);
+
+      if (fFreeResult != 0)
+          printf("FreeLibrary() is OK.\n");
+      else
+          printf("FreeLibrary() is not OK.\n");
+
+  return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// Project name: moredll, File name: dllntls.cpp, generating moredll.dll 
+// Using Thread Local Storage in a Dynamic Link Library
+#include <windows.h>
+#include <stdio.h>
+
+static DWORD dwTlsIndex; // address of shared memory
+
+// DllMain() is the entry-point function for this DLL. 
+BOOL DllMain(HINSTANCE hinstDLL,  // DLL module handle
+    DWORD fdwReason,              // reason called
+    LPVOID lpvReserved)           // reserved
+{
+    LPVOID lpvData; 
+    BOOL fIgnore; 
+
+    switch (fdwReason) 
+    {
+        // The DLL is loading due to process 
+        // initialization or a call to LoadLibrary. 
+        case DLL_PROCESS_ATTACH:
+              printf("Loading the DLL...\n");
+            // Allocate a TLS index.
+            if ((dwTlsIndex = TlsAlloc()) == 0xFFFFFFFF) 
+                return FALSE; 
+                // No break: Initialize the index for first thread.
+
+        // The attached process creates a new thread. 
+        case DLL_THREAD_ATTACH: 
+            printf("The attached process creating a new thread...\n");
+            // Initialize the TLS index for this thread.
+            lpvData = (LPVOID) LocalAlloc(LPTR, 256); 
+            if (lpvData != NULL) 
+                fIgnore = TlsSetValue(dwTlsIndex, lpvData); 
+            break; 
+
+        // The thread of the attached process terminates.
+        case DLL_THREAD_DETACH: 
+            printf("The thread of the attached process terminates...\n");
+            // Release the allocated memory for this thread.
+            lpvData = TlsGetValue(dwTlsIndex); 
+            if (lpvData != NULL) 
+                LocalFree((HLOCAL) lpvData); 
+            break; 
+
+        // DLL unload due to process termination or FreeLibrary. 
+        case DLL_PROCESS_DETACH: 
+            printf("DLL unloading...\n");
+            // Release the allocated memory for this thread.
+            lpvData = TlsGetValue(dwTlsIndex); 
+            if (lpvData != NULL) 
+                LocalFree((HLOCAL) lpvData); 
+
+            // Release the TLS index.
+            TlsFree(dwTlsIndex); 
+            break; 
+
+        default:
+              printf("Reason called not matched, error if any: %d...\n", GetLastError());
+            break; 
+    }
+
+    return TRUE; 
+    UNREFERENCED_PARAMETER(hinstDLL); 
+    UNREFERENCED_PARAMETER(lpvReserved); 
+}
+
+-----------------------------------------------------------------------------------------------------------
+
+// File:  testdll.cpp, using moredll.dll that uses Dllmain()
+// Using Run-Time Dynamic Linking
+// A simple program that uses LoadLibrary() and 
+// GetProcAddress() to access Dllmain() of moredll.dll.
+// No function to be exported/imported, just testing...
+
+#include <stdio.h> 
+#include <windows.h> 
+
+typedef void (*MYPROC)(LPTSTR);
+
+int main()
+{
+    HINSTANCE hinstLib;
+    MYPROC ProcAdd;
+    BOOL fFreeResult, fRunTimeLinkSuccess = FALSE;
+
+    // Get a handle to our DLL module, moredll.dll...this module has been copied
+    // to C:\WINDOWS\System32 directory...
+    hinstLib = LoadLibrary("moredll");
+
+    // If the handle is valid, try to get the function address.
+    if (hinstLib != NULL)
+    {
+              printf("The DLL handle is valid...\n");
+              ProcAdd = (MYPROC) GetProcAddress(hinstLib, "Anonymfunction");
+
+        // If the function address is valid, call the function.
+        if (ProcAdd != NULL) 
+        {
+           printf("The function address is valid...\n\n");
+           fRunTimeLinkSuccess = TRUE;
+           // Ready to execute DllMain()...
+        }
+       else
+              printf("The function address is not valid, error: %d.\n", GetLastError());
+       }
+       else
+              printf("\nThe DLL handle is NOT valid, error: %d\n", GetLastError());
+
+	// Free the DLL module.
+	fFreeResult = FreeLibrary(hinstLib);
+
+        if (fFreeResult != 0)
+               printf("FreeLibrary() is OK.\n");
+        else
+               printf("FreeLibrary() is not OK.\n");
+
+  return 0;
+}
+
+====================================================================================================

@@ -1043,9 +1043,9 @@ Hexadecimal: 0x7f, 0x2a, 0x521 etc
 -0.22E-5
 </code></pre>
 <p>Please note that</p>
-<p>$$
+<div class="arithmatex">\[
 E-5 = 10^{-5}
-$$</p>
+\]</div>
 <h3 id="3-characters">3. Characters</h3>
 <p>Enclosing a single character inside single quote marks yields a character literal. For example, 'a','m', 'F', '2', ", and so on.</p>
 <h3 id="4-escape-sequences">4. Escape Sequences</h3>
@@ -1207,7 +1207,7 @@ PI = 2.9; //Error
 </tbody>
 </table>
 <h3 id="int">int</h3>
-<p>Integers are entire integers with zero, positive, and negative values but no decimal values. For instance, $0$, $-5$, and $10$</p>
+<p>Integers are entire integers with zero, positive, and negative values but no decimal values. For instance, <span class="arithmatex">\(0\)</span>, <span class="arithmatex">\(-5\)</span>, and <span class="arithmatex">\(10\)</span></p>
 <p>In order to declare an integer variable, we can use <code>int</code>.</p>
 <pre><code class="language-c">int id;
 </code></pre>
@@ -1215,7 +1215,7 @@ PI = 2.9; //Error
 <p>In C programming, you can define many variables at the same time. As an example,</p>
 <pre><code class="language-c">int id, age;
 </code></pre>
-<p>Integers are typically $\text{4 bytes}$ in size ($\text{32 bits}$). It may also take   $2^{32} $ different states from $-2147483648$ to $2147483647$.</p>
+<p>Integers are typically <span class="arithmatex">\(\text{4 bytes}\)</span> in size (<span class="arithmatex">\(\text{32 bits}\)</span>). It may also take   $2^{32} $ different states from <span class="arithmatex">\(-2147483648\)</span> to <span class="arithmatex">\(2147483647\)</span>.</p>
 <h3 id="float-and-double">float and double</h3>
 <p>Real values are stored in float and double variables.</p>
 <pre><code class="language-c">float salary;
@@ -1243,7 +1243,7 @@ long double c;
 </code></pre>
 <p>Variables a and b can store integer values in this case. In addition, c may hold a floating-point number.</p>
 <p>You can use <code>short</code> if you are certain that just a tiny integer range between</p>
-<p>$-32767, +32767$  will be utilized.</p>
+<p><span class="arithmatex">\(-32767, +32767\)</span>  will be utilized.</p>
 <pre><code class="language-c">short d;
 </code></pre>
 <p>The <code>sizeof()</code> operator may always be used to determine the size of a variable.</p>
@@ -1269,9 +1269,9 @@ int y;
 </code></pre>
 <p>Because we applied the unsigned modifier, the variable <code>x</code> can only retain zero and positive numbers.</p>
 <p>Given that <code>int</code> has a capacity of <code>4 bytes</code>, variable <code>y</code> can have values ranging from</p>
-<p>-$2^{31}$ to  $2^{31}-1$, </p>
+<p>-<span class="arithmatex">\(2^{31}\)</span> to  <span class="arithmatex">\(2^{31}-1\)</span>, </p>
 <p>But variable <code>x</code>can hold values ranging from</p>
-<p>$0$ to  $2^{32}-1$.</p>
+<p><span class="arithmatex">\(0\)</span> to  <span class="arithmatex">\(2^{32}-1\)</span>.</p>
 <h2 id="other-data-types-defined-in-c-programming-are">Other data types defined in C programming are:</h2>
 <ul>
 <li>bool Type</li>
@@ -2686,6 +2686,9 @@ if (test &gt; 5) {
     <script>var base_url = '../..';</script>
     <script src="../../js/theme_extra.js" defer></script>
     <script src="../../js/theme.js" defer></script>
+      <script src="../../javascripts/mathjax.js" defer></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
       <script src="../../search/main.js" defer></script>
     <script defer>
         window.onload = function () {

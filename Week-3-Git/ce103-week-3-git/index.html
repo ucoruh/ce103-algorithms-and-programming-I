@@ -1,0 +1,2357 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>Ce103 week 3 git - ce103 algorithms and programming I</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:""}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-DGZ815VN23"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-DGZ815VN23",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGZ815VN23"></script>
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="pink">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ce103-algorithms-and-programming-i" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ce103 algorithms and programming I" class="md-header__button md-logo" aria-label="ce103 algorithms and programming I" data-md-component="logo">
+      
+  <img src="../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ce103 algorithms and programming I
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ce103 week 3 git
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ce103 algorithms and programming I" class="md-nav__button md-logo" aria-label="ce103 algorithms and programming I" data-md-component="logo">
+      
+  <img src="../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    ce103 algorithms and programming I
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        ce103-algorithms-and-programming-I
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Syllabus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Syllabus" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Syllabus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Syllabus/Syllabus/" class="md-nav__link">
+        Syllabus
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Week 1 Intro
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 1 Intro" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Week 1 Intro
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-1-Intro/ce103-week-1-intro/" class="md-nav__link">
+        Ce103 week 1 intro
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Week 10 Java II
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 10 Java II" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Week 10 Java II
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-10-Java-II/ce103-week-10-java-II/" class="md-nav__link">
+        ce103 week 10 java II
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Week 11 Java III
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 11 Java III" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Week 11 Java III
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-11-Java-III/ce103-week-11-java-III/" class="md-nav__link">
+        ce103 week 11 java III
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Week 12 C Cpp GUI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 12 C Cpp GUI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Week 12 C Cpp GUI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-12-C-Cpp-GUI/ce103-week-12-c-cpp-gui/" class="md-nav__link">
+        Ce103 week 12 c cpp gui
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Week 13 Csharp GUI I
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 13 Csharp GUI I" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Week 13 Csharp GUI I
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-13-Csharp-GUI-I/ce103-week-13-csharp-gui-I/" class="md-nav__link">
+        ce103 week 13 csharp gui I
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          Week 14 Csharp GUI II
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 14 Csharp GUI II" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Week 14 Csharp GUI II
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-14-Csharp-GUI-II/ce103-week-14-csharp-gui-II/" class="md-nav__link">
+        ce103 week 14 csharp gui II
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          Week 15 Java GUI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 15 Java GUI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Week 15 Java GUI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-15-Java-GUI/ce103-week-15-java-gui/" class="md-nav__link">
+        Ce103 week 15 java gui
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          Week 16 Final
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 16 Final" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Week 16 Final
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-16-Final/ce103-week-9-final/" class="md-nav__link">
+        Ce103 week 9 final
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11">
+          Week 2 Setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 2 Setup" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          Week 2 Setup
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-2-Setup/ce103-week-2-setup/" class="md-nav__link">
+        Ce103 week 2 setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11_2" type="checkbox" id="__nav_11_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11_2">
+          Sources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Sources" data-md-level="2">
+        <label class="md-nav__title" for="__nav_11_2">
+          <span class="md-nav__icon md-icon"></span>
+          Sources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11_2_1" type="checkbox" id="__nav_11_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11_2_1">
+          Llvm clang hello world apps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Llvm clang hello world apps" data-md-level="3">
+        <label class="md-nav__title" for="__nav_11_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Llvm clang hello world apps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-2-Setup/sources/llvm-clang-hello-world-apps/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11_2_2" type="checkbox" id="__nav_11_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11_2_2">
+          Mingw gcc hello world apps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mingw gcc hello world apps" data-md-level="3">
+        <label class="md-nav__title" for="__nav_11_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mingw gcc hello world apps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-2-Setup/sources/mingw-gcc-hello-world-apps/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11_2_3" type="checkbox" id="__nav_11_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11_2_3">
+          Npp gcc hello world apps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Npp gcc hello world apps" data-md-level="3">
+        <label class="md-nav__title" for="__nav_11_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Npp gcc hello world apps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-2-Setup/sources/npp-gcc-hello-world-apps/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_12" type="checkbox" id="__nav_12" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_12">
+          Week 3 Git
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 3 Git" data-md-level="1">
+        <label class="md-nav__title" for="__nav_12">
+          <span class="md-nav__icon md-icon"></span>
+          Week 3 Git
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Ce103 week 3 git
+      </a>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_13" type="checkbox" id="__nav_13" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_13">
+          Week 4 Test
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 4 Test" data-md-level="1">
+        <label class="md-nav__title" for="__nav_13">
+          <span class="md-nav__icon md-icon"></span>
+          Week 4 Test
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-4-Test/ce103-week-4-test/" class="md-nav__link">
+        Ce103 week 4 test
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_14" type="checkbox" id="__nav_14" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_14">
+          Week 5 C
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 5 C" data-md-level="1">
+        <label class="md-nav__title" for="__nav_14">
+          <span class="md-nav__icon md-icon"></span>
+          Week 5 C
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-5-C/ce103-week-5-c/" class="md-nav__link">
+        Ce103 week 5 c
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_14_2" type="checkbox" id="__nav_14_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_14_2">
+          Sources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Sources" data-md-level="2">
+        <label class="md-nav__title" for="__nav_14_2">
+          <span class="md-nav__icon md-icon"></span>
+          Sources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_14_2_1" type="checkbox" id="__nav_14_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_14_2_1">
+          Console snake game
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Console snake game" data-md-level="3">
+        <label class="md-nav__title" for="__nav_14_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Console snake game
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-5-C/sources/console-snake-game/" class="md-nav__link">
+        Console Snake Game
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_15" type="checkbox" id="__nav_15" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_15">
+          Week 6 Cpp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 6 Cpp" data-md-level="1">
+        <label class="md-nav__title" for="__nav_15">
+          <span class="md-nav__icon md-icon"></span>
+          Week 6 Cpp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-6-Cpp/ce103-week-6-cpp/" class="md-nav__link">
+        Ce103 week 6 cpp
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_16" type="checkbox" id="__nav_16" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_16">
+          Week 7 Csharp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 7 Csharp" data-md-level="1">
+        <label class="md-nav__title" for="__nav_16">
+          <span class="md-nav__icon md-icon"></span>
+          Week 7 Csharp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-7-Csharp/ce103-week-7-csharp/" class="md-nav__link">
+        Ce103 week 7 csharp
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_17" type="checkbox" id="__nav_17" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_17">
+          Week 8 Midterm
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 8 Midterm" data-md-level="1">
+        <label class="md-nav__title" for="__nav_17">
+          <span class="md-nav__icon md-icon"></span>
+          Week 8 Midterm
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-8-Midterm/ce103-week-8-midterm/" class="md-nav__link">
+        Ce103 week 8 midterm
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_18" type="checkbox" id="__nav_18" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_18">
+          Week 9 Java I
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 9 Java I" data-md-level="1">
+        <label class="md-nav__title" for="__nav_18">
+          <span class="md-nav__icon md-icon"></span>
+          Week 9 Java I
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-9-Java-I/ce103-week-9-java-I/" class="md-nav__link">
+        ce103 week 9 java I
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<!-- _backgroundColor: aquq -->
+
+<!-- _color: orange -->
+
+<!-- paginate: false -->
+
+<h1 id="ce103-algorithms-and-programming-i">CE103 Algorithms and Programming I</h1>
+<h1 id="week-3">Week-3</h1>
+<hr />
+<!-- paginate: true -->
+
+<h2 id="introduction-to-source-code-management-systems">Introduction to Source Code Management Systems</h2>
+<h3 id="git-github-gitlab-bitbucket-maven-svn-tfs">Git, Github, Gitlab, Bitbucket, Maven, SVN, TFS</h3>
+<hr />
+<p>Source code management (SCM) is used to track modifications to a source code repository. SCM tracks a running history of changes to a code base and helps resolve conflicts when merging updates from multiple contributors. SCM is also synonymous with Version control. 
+As software projects grow in lines of code and contributor head count, the costs of communication overhead and management complexity also grow. SCM is a critical tool to alleviate the organizational strain of growing development costs.</p>
+<hr />
+<h2 id="features-of-source-code-management-systems">Features of Source Code Management Systems</h2>
+<ul>
+<li>
+<p>Authenticated access for commits</p>
+</li>
+<li>
+<p>Revision history on files</p>
+</li>
+<li>
+<p>Atomic commits of multiple files</p>
+</li>
+<li>
+<p>Versioning/Tagging</p>
+</li>
+</ul>
+<h2 id="why-do-we-need-source-code-management-systems">Why Do We Need Source Code Management Systems?</h2>
+<p>We can save the file with a different name if it’s our school project or one-time papers but for a well-equipped software development? Not a chance.</p>
+<p>Big projects need a version control system to track the changes and avoid misunderstanding. A good SCM does the following:</p>
+<p><strong>Backup and Restore</strong> – Files can be saved at any moment and can be restored from the last saved.</p>
+<p><strong>Synchronization</strong> – Programmers can get the latest code and fetch the up-to-date codes from the repository.</p>
+<p><strong>Short-Term Undo</strong> – Working with a file and messed it up. We can do a short-term undo to the last known version.</p>
+<p><strong>Long-Term Undo</strong> – It helps when we have to make a release version rollback. Something like going to the last version which was created a year</p>
+<p><strong>Track Change</strong>s – We can track the changes as when anyone is making any change, he can leave a commit message as for why the change was done.</p>
+<p><strong>Ownership</strong>– With every commit made to the master branch, it will ask the owner permission to merge it.</p>
+<p><strong>Branching and Merging</strong> – You can create a branch of your source code and create the changes. Once the changes are approved, you can merge it with the master branch.</p>
+<h2 id="types-of-version-control-systems">Types of Version Control Systems</h2>
+<h3 id="centralized-version-control-tfs-subversion">Centralized Version Control (TFS, Subversion)</h3>
+<p>The main concept of Centralized Version Control is that it works in a client and server relationship. The repository is located in one place and allows access to multiple clients.</p>
+<p><img title="" src="assets/2021-10-19-20-40-58-image.png" alt="" data-align="center"></p>
+<p><img title="" src="assets/2021-10-19-20-41-08-image.png" alt="" data-align="center"></p>
+<p>It’s very similar to FTP where you have FTP clients which connect to FTP server. Here all the user changes and commits have to pass through the central server. For Ex: Subversion.</p>
+<p><strong>The benefits of centralized version control are:</strong></p>
+<ul>
+<li>
+<p>It’s easy to understand.</p>
+</li>
+<li>
+<p>There are more GUI and IDE clients.</p>
+</li>
+<li>
+<p>You have more control over the users and access.</p>
+</li>
+</ul>
+<p><strong>We do have drawbacks also:</strong></p>
+<ul>
+<li>
+<p>It is dependent on the access to the server. </p>
+</li>
+<li>
+<p>It can be slower because every command from the client has to pass the server.</p>
+</li>
+<li>
+<p>Branching and merging strategies are difficult to use.</p>
+</li>
+</ul>
+<h2 id="distributed-version-control-git-and-mercurial">Distributed Version Control (Git and Mercurial)</h2>
+<p>These systems are newer to use. In Distributed Version Control, each user has their own copy of the entire repository as well as the files and history. For Ex: Git and Mercurial</p>
+<p><img title="" src="assets/2021-10-19-20-45-02-image.png" alt="" data-align="center"></p>
+<p><img title="" src="assets/2021-10-19-20-45-13-image.png" alt="" data-align="center"></p>
+<p>The benefits of distributed version control are:</p>
+<ul>
+<li>
+<p>More powerful and easy change tracking.</p>
+</li>
+<li>
+<p>No need of a centralized server. Most of the functionalities work in offline mode also apart from sharing the repositories.</p>
+</li>
+<li>
+<p>Branching and Merging strategies are more easy and reliable.</p>
+</li>
+<li>
+<p>It’s faster than the other one.</p>
+</li>
+</ul>
+<h2 id="list-of-source-code-version-management-tools">List of Source Code Version Management Tools</h2>
+<p><img alt="" src="../assets/2021-10-19-20-55-30-image.png" /></p>
+<ul>
+<li>
+<p>Github</p>
+</li>
+<li>
+<p>GitLab</p>
+</li>
+<li>
+<p>BitBucket</p>
+</li>
+<li>
+<p>SourceForge</p>
+</li>
+<li>
+<p>Beanstalk</p>
+</li>
+<li>
+<p>Apache Allura</p>
+</li>
+<li>
+<p>AWS CodeCommit</p>
+</li>
+<li>
+<p>Launchpad</p>
+</li>
+<li>
+<p>Phabricator</p>
+</li>
+<li>
+<p>GitBucket</p>
+</li>
+</ul>
+<h1 id="git-distributed-source-code-management">GIT (Distributed Source Code Management)</h1>
+<p><img title="" src="assets/2021-10-19-20-52-48-image.png" alt="" data-align="center"></p>
+<p><img alt="" src="../assets/2021-10-19-20-51-35-image.png" /></p>
+<p><img title="" src="assets/2021-10-19-20-54-22-image.png" alt="" data-align="center"></p>
+<p><img alt="" src="../assets/2021-10-19-20-51-43-image.png" /></p>
+<h2 id="a-basic-overview-of-how-git-works">A Basic Overview of How Git Works</h2>
+<ul>
+<li>
+<p>Create a “repository” (project) with a git hosting tool (like Bitbucket)</p>
+</li>
+<li>
+<p>Copy (or clone) the repository to your local machine</p>
+</li>
+<li>
+<p>Add a file to your local repo and “commit” (save) the changes</p>
+</li>
+<li>
+<p>“Push” your changes to your master branch</p>
+</li>
+<li>
+<p>Make a change to your file with a git hosting tool and commit</p>
+</li>
+<li>
+<p>“Pull” the changes to your local machine</p>
+</li>
+<li>
+<p>Create a “branch” (version), make a change, commit the change</p>
+</li>
+<li>
+<p>Open a “pull request”.</p>
+</li>
+<li>
+<p>“Merge” your branch to the master branch</p>
+</li>
+</ul>
+<h2 id="some-of-the-basic-operations-in-git-are">Some of The Basic Operations in GIT are</h2>
+<ul>
+<li>
+<p>Initialize</p>
+</li>
+<li>
+<p>Add</p>
+</li>
+<li>
+<p>Commit</p>
+</li>
+<li>
+<p>Pull</p>
+</li>
+<li>
+<p>Push</p>
+</li>
+</ul>
+<p><img alt="" src="../assets/2021-10-19-21-10-40-image.png" /></p>
+<ul>
+<li>
+<p>Branching</p>
+</li>
+<li>
+<p>Merging</p>
+</li>
+<li>
+<p>Rebasing</p>
+</li>
+</ul>
+<p><img alt="" src="../assets/2021-10-19-21-11-35-image.png" /></p>
+<h2 id="a-brief-idea-about-how-these-operations-work-with-the-git-repositories">A brief idea about how these operations work with the Git repositories</h2>
+<p><img title="" src="assets/2021-10-19-21-18-28-image.png" alt="" data-align="center"></p>
+<p><img alt="" src="../assets/2021-10-19-21-18-39-image.png" /></p>
+<p>For more detailed cheetsheat please check the following interactive map</p>
+<p><a href="https://www.ndpsoftware.com/git-cheatsheet.html">NDP Software :: Git Cheatsheet</a></p>
+<p><img alt="" src="../assets/2021-10-19-21-20-15-image.png" /></p>
+<h1 id="installation-of-git">Installation of GIT</h1>
+<p>Check Installation Already Completed</p>
+<pre><code class="language-git">git --version
+</code></pre>
+<p><img title="" src="assets/2021-10-19-21-56-24-image.png" alt="" data-align="center"></p>
+<p>If your console gives error about git command follow the steps in the link</p>
+<p><a href="https://www.atlassian.com/git/tutorials/install-git#windows">Install Git | Atlassian Git Tutorial</a></p>
+<p>In this link you will should download following setup according to your operating system</p>
+<h3 id="git-setup-files">GIT Setup Files</h3>
+<ul>
+<li>
+<p><a href="http://git-scm.com/download/mac">Download</a> <a href="http://git-scm.com/download/mac">git</a> <a href="http://git-scm.com/download/mac">for</a> <a href="http://git-scm.com/download/mac">OSX</a></p>
+</li>
+<li>
+<p><a href="http://msysgit.github.io/">Download</a> <a href="http://msysgit.github.io/">git</a> <a href="http://msysgit.github.io/">for</a> <a href="http://msysgit.github.io/">Windows</a></p>
+</li>
+<li>
+<p><a href="http://git-scm.com/book/en/Getting-Started-Installing-Git">Download</a> <a href="http://git-scm.com/book/en/Getting-Started-Installing-Git">git</a> <a href="http://git-scm.com/book/en/Getting-Started-Installing-Git">for</a> <a href="http://git-scm.com/book/en/Getting-Started-Installing-Git">Linux</a></p>
+</li>
+</ul>
+<p>Download and install GIT from the following links (both have same github release path)</p>
+<p><a href="https://git-scm.com/downloads">Git - Downloads</a></p>
+<p>After running setup follow the steps below</p>
+<p><img title="" src="assets/2021-10-19-22-05-36-image.png" alt="" width="449"></p>
+<p><img title="" src="assets/2021-10-19-22-05-41-image.png" alt="" width="446"></p>
+<p><img title="" src="assets/2021-10-19-22-05-55-image.png" alt="" width="443"></p>
+<p><img title="" src="assets/2021-10-19-22-06-05-image.png" alt="" width="445"></p>
+<p><img title="" src="assets/2021-10-19-22-06-11-image.png" alt="" width="444"></p>
+<p><img title="" src="assets/2021-10-19-22-06-18-image.png" alt="" width="443"></p>
+<h3 id="installation-of-git-extension-windows">Installation of GIT Extension (Windows)</h3>
+<p>You can install Git GUI from https://git-scm.com/downloads/guis
+I prefer to use git extension https://gitextensions.github.io/ and https://tortoisegit.org/</p>
+<p>Also Download KDiff3 <a href="https://sourceforge.net/projects/kdiff3/files/">KDiff3 - Browse Files at SourceForge.net</a></p>
+<p>These extensions provide GUI for git operations to make process easier.</p>
+<h3 id="configuration-of-git-extension-windows">Configuration of GIT Extension (Windows)</h3>
+<p><img alt="" src="../assets/2021-10-19-23-08-51-image.png" /></p>
+<p>If you install git everything should be green and this configuration is stored on  .gitconfig on your home <code>C:/Windows/Users/&lt;user&gt;/.gitconfig</code></p>
+<pre><code class="language-batch">[core]
+    editor = \&quot;C:/Program Files (x86)/GitExtensions/GitExtensions.exe\&quot; fileeditor
+    autocrlf = true
+    quotePath = false
+    commitGraph = true
+    longpaths = true
+[user]
+    email = xxxxxxx@gmail.com
+    name = xxxx xxxxxx
+[filter &quot;lfs&quot;]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[pull]
+    rebase = false
+[fetch]
+    prune = false
+[rebase]
+    autoStash = false
+[credential]
+    helper = manager
+[diff]
+    guitool = kdiff3
+[difftool &quot;kdiff3&quot;]
+    path = C:/Program Files/KDiff3/kdiff3.exe
+    cmd = \&quot;C:/Program Files/KDiff3/kdiff3.exe\&quot; \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot;
+[merge]
+    guitool = tortoisemerge
+[mergetool &quot;tortoisemerge&quot;]
+    path = C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe
+    cmd = \&quot;C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe\&quot; -base:\&quot;$BASE\&quot; -mine:\&quot;$LOCAL\&quot; -theirs:\&quot;$REMOTE\&quot; -merged:\&quot;$MERGED\&quot;
+[receive]
+    advertisePushOptions = true
+[gc]
+    writeCommitGraph = true
+</code></pre>
+<p>Also in extension you can see similar settings</p>
+<p><img alt="" src="../assets/2021-10-25-18-38-57-image.png" /></p>
+<p>Samples</p>
+<p>MergeTool </p>
+<pre><code class="language-textile">tortoisemerge
+</code></pre>
+<p>Path to mergetool</p>
+<pre><code class="language-textile">C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe
+</code></pre>
+<p>Mergetool command</p>
+<pre><code class="language-textile">&quot;C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe&quot; -base:&quot;$BASE&quot; -mine:&quot;$LOCAL&quot; -theirs:&quot;$REMOTE&quot; -merged:&quot;$MERGED&quot;
+</code></pre>
+<p>Difftool</p>
+<pre><code class="language-textile">kdiff3
+</code></pre>
+<p>Path to difftool</p>
+<pre><code class="language-textile">C:/Program Files/KDiff3/kdiff3.exe
+</code></pre>
+<p>Difftool command</p>
+<pre><code class="language-textile">&quot;C:/Program Files/KDiff3/kdiff3.exe&quot; &quot;$LOCAL&quot; &quot;$REMOTE&quot;
+</code></pre>
+<p>If you see something as merge and diff tool is not configured, follow the similar settings above on your computer. If you installed kdiff3, tortoisegit and extension you will have same diff and merge tools</p>
+<p>This topic also help you </p>
+<p><a href="https://stackoverflow.com/questions/33308482/git-how-can-i-configure-kdiff3-as-a-merge-tool-and-diff-tool">Git: How can I configure KDiff3 as a merge tool and diff tool? - Stack Overflow</a></p>
+<p><img src="assets/2021-10-25-18-23-19-image.png" title="" alt="" width="562"></p>
+<p>Open Git-&gt;Config, in your settings you will see path to mergetool and difftool will be empty fill settings like that below find executables in your computer and copy paths to here.</p>
+<p><img alt="" src="../assets/2021-10-25-18-38-57-image.png" /></p>
+<p>Also if we want to change and use different diff and merge tool then we can do this with gitbash console as below</p>
+<pre><code class="language-batch">C:\Program Files\TortoiseGit\bin
+</code></pre>
+<p>Find TortoiseGitIDiff.exe and TortoiseGitMerge.exe</p>
+<p><img alt="" src="../assets/2021-10-25-18-24-56-image.png" /></p>
+<p>Copy path of this applications</p>
+<pre><code class="language-batch">C:\Program Files\TortoiseGit\bin\TortoiseGitMerge.exe
+C:\Program Files\TortoiseGit\bin\TortoiseGitIDiff.exe
+</code></pre>
+<p>open a gitbash console and run following commands </p>
+<pre><code class="language-batch">git config --global merge.tool TortoiseGitMerge
+git config --global mergetool.TortoiseGitMerge.path &quot;C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe&quot;
+git config --global mergetool.TortoiseGitMerge.trustExitCode false
+
+git config --global diff.guitool TortoiseGitIDiff
+git config --global difftool.TortoiseGitIDiff.path &quot;C:/Program Files/TortoiseGit/bin/TortoiseGitIDiff.exe&quot;
+git config --global difftool.TortoiseGitIDiff.trustExitCode false
+</code></pre>
+<p>This updates will be stored on .gitconfig</p>
+<h3 id="using-the-git-extension">Using the GIT Extension</h3>
+<p>right click in the git folder and use Git Extension menu for operations.</p>
+<p>for sample commit click "Commit"</p>
+<p><img alt="" src="../assets/2021-10-19-23-10-32-image.png" /></p>
+<p>from opening window first stage related files and then write a good commit message</p>
+<p>finally click commit to local. You can also commit&amp;push it to remote repository.</p>
+<p><img alt="" src="../assets/2021-10-19-23-11-19-image.png" /></p>
+<h3 id="git-installation-completed">GIT Installation Completed..</h3>
+<p><img title="" src="assets/2021-10-20-00-04-47-image.png" alt="" data-align="center"></p>
+<p><img alt="" src="../assets/2021-10-20-00-04-54-image.png" /></p>
+<h3 id="installation-of-gig-git-ignore-creator">Installation of gig (git ignore creator)</h3>
+<p>Requirements</p>
+<ul>
+<li>
+<p>Python &gt;= 3.6</p>
+</li>
+<li>
+<p>Internet connection</p>
+</li>
+</ul>
+<p>https://github.com/sloria/gig </p>
+<pre><code class="language-batch">pip install -U gig
+</code></pre>
+<p><img alt="" src="../assets/2021-10-20-00-06-35-image.png" /></p>
+<pre><code class="language-batch">gig --version
+</code></pre>
+<h3 id="usage-of-gig">Usage of gig</h3>
+<p>List all gitignore templates</p>
+<pre><code class="language-batch">gig list
+gig list -global
+</code></pre>
+<p>Sample gitignore for C Java and Visual Studio </p>
+<pre><code class="language-bat">gig C Java VisualStudio &gt; .gitignore
+</code></pre>
+<p>There is a portal for this also by Toptal</p>
+<p>•<a href="https://www.toptal.com/developers/gitignore">gitignore.io - Create Useful .gitignore Files For Your Project</a></p>
+<p><img title="" src="assets/2021-10-20-00-11-16-image.png" alt="" data-align="center" width="615"></p>
+<p>for samples you can check the following links.</p>
+<p>https://github.com/github/gitignore</p>
+<p>https://dev.to/shihanng/gig-a-gitignore-generator-opc</p>
+<h2 id="configuration-of-git">Configuration of GIT</h2>
+<p>It is important to configure your Git because any commits that you
+make are associated with your configuration details.</p>
+<p>configuring Git with your username and email. In order to do that, type the following commands in your Git Bash:</p>
+<pre><code class="language-git">git config - - global user.name &quot;&lt;your name&gt;&quot;
+
+git config - - global user.email &quot;&lt;your email&gt;&quot;
+</code></pre>
+<p><img alt="" src="../assets/2021-10-20-00-15-38-image.png" /></p>
+<p>git configuration files are located on the user folder</p>
+<p><img alt="" src="../assets/2021-10-20-00-16-06-image.png" /></p>
+<p>If you want to view all your configuration details, use the command below</p>
+<pre><code class="language-git">git config --list
+</code></pre>
+<p><img alt="" src="../assets/2021-10-20-00-17-00-image.png" /></p>
+<h3 id="using-gitignore-files-with-git-extension">Using .gitignore files with git-extension</h3>
+<p>with gitignore file</p>
+<p><img alt="" src="../assets/2021-10-20-00-51-16-image.png" /></p>
+<p>without gitignore file (just move to another location)</p>
+<p><img alt="" src="../assets/2021-10-20-00-51-39-image.png" /></p>
+<h1 id="github-create-repo">Github Create Repo</h1>
+<p><img title="" src="assets/2021-10-20-00-52-14-image.png" alt="" data-align="center"></p>
+<h1 id="initilization-of-repo-not-existing-in-github">Initilization of Repo (not existing in github)</h1>
+<h2 id="git-init">git init</h2>
+<ul>
+<li>
+<p>In order to do that, we use the command <strong>git init</strong>.</p>
+</li>
+<li>
+<p><strong>git init</strong> creates an empty Git repository or re-initializes an existing one. It basically creates a <strong>.git</strong> directory with sub directories and template files. Running a <strong>git init</strong> in an existing repository will not overwrite things that are already there. It rather picks up the newly added templates.</p>
+</li>
+</ul>
+<pre><code class="language-batch">git init
+</code></pre>
+<p><img alt="" src="../assets/2021-10-20-00-56-52-image.png" /></p>
+<h1 id="adding-initiated-repo-remote-upstream-repo-link-with-github-repo">Adding Initiated Repo Remote Upstream Repo (Link with Github Repo)</h1>
+<p>If you enter following command in the git folder you will see nothing</p>
+<pre><code class="language-batch">git remote -v
+</code></pre>
+<p>That mean this repository do not have a remote upstream repository such as a github or bitbucket repo. Open the github and bitbucket repository and copy project path from </p>
+<p><img alt="" src="../assets/2021-10-22-02-12-06-image.png" /></p>
+<p>you will see the following sample from github code button</p>
+<pre><code class="language-batch">https://github.com/ucoruh/ce103-sample-text.git
+</code></pre>
+<p>copy link and use with following command</p>
+<pre><code class="language-batch">git remote add origin https://github.com/ucoruh/ce103-sample-text.git
+</code></pre>
+<p>then you can check your remote setting with</p>
+<pre><code class="language-batch">$ git remote -v
+origin  https://github.com/ucoruh/ce103-sample-text.git (fetch)
+origin  https://github.com/ucoruh/ce103-sample-text.git (push)
+</code></pre>
+<p>you can check the following sample </p>
+<p><a href="https://articles.assembla.com/en/articles/1136998-how-to-add-a-new-remote-to-your-git-repo">How to Add a New Remote to your Git Repo | Assembla Help Center</a></p>
+<h2 id="now-you-can-push-your-local-changes-to-remote-repository"><em>Now you can push your local changes to remote repository</em></h2>
+<h2 id="if-you-see-a-repository-on-github-then-you-can-download-with-following-operation"><em>If you see a repository on Github then you can download with following operation</em></h2>
+<h1 id="checkout-a-repository">Checkout a Repository</h1>
+<p>create a working copy of a local repository by running the command</p>
+<pre><code class="language-batch">git clone /path/to/repository
+</code></pre>
+<p>Sample clone command</p>
+<pre><code class="language-batch">git clone https://github.com/ucoruh/ce103-sample-text.git
+</code></pre>
+<p>when using a remote server, your command will be</p>
+<pre><code class="language-batch">git clone username@host:/path/to/repository
+</code></pre>
+<h1 id="checking-repository-status">Checking Repository Status</h1>
+<h3 id="git-status">git status</h3>
+<p>The git status command lists all the modified files which are ready to be added to the local repository.</p>
+<pre><code class="language-batch">git status
+</code></pre>
+<p><img alt="" src="../assets/2021-10-20-00-57-52-image.png" /></p>
+<h1 id="adding-files-to-index">Adding Files to Index</h1>
+<h3 id="git-add">git add</h3>
+<p>This command updates the index using the current content found in the working tree
+and then prepares the content in the staging area for the next commit.</p>
+<pre><code class="language-batch">git add &lt;directory&gt;
+git add &lt;file&gt;
+git add *
+</code></pre>
+<p>Created two more files edureka3.txt and edureka4.txt. Let us add the files using the command git add -A. This command will add all the files to the index which are in the directory but not updated in the index yet.</p>
+<p><img alt="" src="../assets/2021-10-20-00-59-59-image.png" /></p>
+<h1 id="commit-changes">Commit Changes</h1>
+<h3 id="git-commit">git commit</h3>
+<p>•It refers to recording snapshots of the repository at a given time. Committed
+snapshots will never change unless done explicitly. Let me explain how commit
+works with the diagram below</p>
+<p><img alt="" src="../assets/2021-10-20-01-00-44-image.png" /></p>
+<p>Here, C1 is the initial commit, i.e. the snapshot of the first change from which
+another snapshot is created with changes named C2. Note that the master points
+to the latest commit. Now, when I commit again, another snapshot C3 is created and now the master points to C3 instead of C2.</p>
+<p>Commands:</p>
+<pre><code class="language-batch">git commit -m &quot;&lt;message&gt;&quot;
+</code></pre>
+<p><img alt="" src="../assets/2021-10-20-01-01-42-image.png" /></p>
+<p>Now, if you want to commit a snapshot of all the changes in the working directory at
+once, you can use the command below</p>
+<p>Please check writing good commit messages article below</p>
+<p><a href="https://dev.to/chrissiemhrk/git-commit-message-5e21">How to write a good commit message - DEV Community</a></p>
+<pre><code>type: subject
+
+body (optional)
+
+footer (optional)
+</code></pre>
+<h3 id="1-type">1. Type</h3>
+<ul>
+<li><strong>feat</strong> - a new feature</li>
+<li><strong>fix</strong> - a bug fix</li>
+<li><strong>docs</strong> - changes in documentation</li>
+<li><strong>style</strong> - everything related to styling</li>
+<li><strong>refactor</strong> - code changes that neither fixes a bug or adds a feature</li>
+<li><strong>test</strong> - everything related to testing</li>
+<li><strong>chore</strong> - updating build tasks, package manager configs, etc</li>
+</ul>
+<h3 id="2-subject">2. Subject</h3>
+<p>This contains a short description of the changes made. It shouldn't be greater than 50 characters, should begin with a capital letter and written in the imperative eg. Add instead of Added or Adds.</p>
+<h3 id="3-body">3. Body</h3>
+<p>The body is used to explain what changes you made and why you made them. Not all commits are complex enough that they need a body, especially if you are working on a personal project alone, and as such writing a body is optional.</p>
+<p>A blank line between the body and the subject is required and each line should have no more than 72 characters.</p>
+<h3 id="4footer">4.Footer</h3>
+<p>The footer is also optional and mainly used when you are using an issue tracker to reference the issue ID.</p>
+<p>Example </p>
+<pre><code class="language-git">feat: Summarize changes in around 50 characters or less
+
+More detailed explanatory text, if necessary. Wrap it to about 72
+characters or so. In some contexts, the first line is treated as the
+subject of the commit and the rest of the text as the body. The
+blank line separating the summary from the body is critical (unless
+you omit the body entirely); various tools like `log`, `shortlog`
+and `rebase` can get confused if you run the two together.
+
+Explain the problem that this commit is solving. Focus on why you
+are making this change as opposed to how (the code explains that).
+Are there side effects or other unintuitive consequences of this
+change? Here's the place to explain them.
+
+Further paragraphs come after blank lines.
+
+ - Bullet points are okay, too
+
+ - Typically a hyphen or asterisk is used for the bullet, preceded
+   by a single space, with blank lines in between, but conventions
+   vary here
+
+If you use an issue tracker, put references to them at the bottom,
+like this:
+
+Resolves: #123
+See also: #456, #789
+</code></pre>
+<pre><code class="language-batch">git commit -a
+</code></pre>
+<p><img alt="" src="../assets/2021-10-20-01-02-26-image.png" /></p>
+<p>I have created two more text files in my working directory viz. edureka5.txt and edureka6.txt but they are not added to the index yet.</p>
+<p>I am adding edureka5.txt using the command</p>
+<pre><code class="language-batch">git add edureka5.txt
+</code></pre>
+<p><img alt="" src="../assets/2021-10-20-01-03-52-image.png" /></p>
+<p>I have added edureka5.txt to the index explicitly but not edureka6.txt and made changes in the previous files. I want to commit all changes in the directory at once.</p>
+<blockquote>
+<p>This command will commit a snapshot of all changes in the working directory but only includes modifications to tracked files i.e. the files that have been added with git add at some point in their history. Hence, edureka6.txt was not committed because it was not added to the index yet. But changes in all previous files present in the repository were committed, i.e. edureka1.txt, edureka2.txt, edureka3.txt, edureka4.txt and edureka5.txt.   Now I have made my desired commits in my local repository</p>
+</blockquote>
+<p>your local repository consists of three "trees" maintained by git. the first one is your Working Directory which holds the actual files. the second one is the Index which acts as a staging area and finally the HEAD which points to the last commit you've made</p>
+<p><img alt="" src="../assets/2021-10-20-01-32-48-image.png" /></p>
+<h1 id="update-local-repo-before-sending">Update local repo before sending</h1>
+<h2 id="fetching">Fetching</h2>
+<p>If we have a remote Git branch, for example a branch on Github, it can happen that the remote branch has commits that the current branch doesn't have! Maybe another branch got merged, your colleague pushed a quick fix, and so on.</p>
+<p>We can get these changes locally, by performing a <code>git fetch</code> on the remote branch! It doesn't affect your local branch in any way: a <code>fetch</code> simply downloads new data.</p>
+<p><img alt="Alt Text" src="https://res.cloudinary.com/practicaldev/image/fetch/s--38PuARw2--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bulx1voegfji4vwgndh4.gif" /></p>
+<p>We can now see all the changes that have been made since we last pushed! We can decide what we want to do with the new data now that we have it locally.</p>
+<h3 id="pulling">Pulling</h3>
+<p>Although a <code>git fetch</code> is very useful in order to get the remote information of a branch, we can also perform a <code>git pull</code>. A <code>git pull</code> is actually two commands in one: a <code>git fetch</code>, and a <code>git merge</code>. When we're pulling changes from the origin, we're first fetching all the data like we did with a <code>git fetch</code>, after which the latest changes are automatically merged into the local branch</p>
+<p><img alt="Alt Text" src="https://res.cloudinary.com/practicaldev/image/fetch/s---X5AXldj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/zifpnl1h6a4tk4qdc9sy.gif" /></p>
+<p>Awesome, we're now perfectly in sync with the remote branch and have all the latest changes!</p>
+<h3 id="git-pull">git pull</h3>
+<p>Note that before you affect changes to the central repository you should always pull
+changes from the central repository to your local repository to get updated with the work of all the collaborators that have been contributing in the central repository. For that we will use the pull command.</p>
+<p>But first, you need to set your central repository as origin using the command</p>
+<pre><code class="language-batch">git remote add origin &lt;link of your central repository&gt;
+</code></pre>
+<p><img alt="" src="../assets/2021-10-20-01-06-43-image.png" /></p>
+<blockquote>
+<p>Now that my origin is set</p>
+</blockquote>
+<p>let us extract files from the origin using pull. For that use the command</p>
+<pre><code class="language-batch">git pull origin master
+</code></pre>
+<p><img alt="" src="../assets/2021-10-20-01-07-44-image.png" /></p>
+<p>This command will copy all the files from the master branch of remote repository to your local repository.</p>
+<blockquote>
+<p>Since my local repository was already updated with files from master branch, hence the message is Already up-to-date. Refer to the screen shot above</p>
+</blockquote>
+<p>One can also try pulling files from a different branch using the following command:</p>
+<pre><code class="language-batch">git pull origin &lt;branch-name&gt;
+</code></pre>
+<blockquote>
+<p>Your local Git repository is now updated with all the recent changes. It is time you make changes in the central repository by using the push command.</p>
+</blockquote>
+<h1 id="send-changes-to-remote-repo">Send Changes to Remote Repo</h1>
+<h3 id="git-push">git push</h3>
+<ul>
+<li>
+<p>This command transfers commits from your local repository to your remote repository. It is the opposite of pull operation.</p>
+</li>
+<li>
+<p>Pulling imports commits to local repositories whereas pushing exports commits to the remote repositories</p>
+</li>
+<li>
+<p>The use of git push is to publish your local changes to a central repository. After you’ve accumulated several local commits and are ready to share them with the rest of the team, you can then push them to the central repository by using the following command</p>
+</li>
+</ul>
+<pre><code class="language-batch">git push &lt;remote&gt; 
+</code></pre>
+<blockquote>
+<p>This remote refers to the remote repository which had been set before using the pull command.</p>
+</blockquote>
+<ul>
+<li>This pushes the changes from the local repository to the remote repository along
+  with all the necessary commits and internal objects. This creates a local branch in the destination repository</li>
+</ul>
+<p>The below files are the files which we have already committed previously in the commit section and they are all “push-ready“.</p>
+<p>I will use the command <code>git push origin master</code> to reflect these files in the master branch of my central repository.</p>
+<p><img alt="" src="../assets/2021-10-20-01-12-19-image.png" /></p>
+<p><img alt="" src="../assets/2021-10-20-01-12-33-image.png" /></p>
+<p><img alt="" src="../assets/2021-10-20-01-12-47-image.png" /></p>
+<blockquote>
+<p>To prevent overwriting, Git does not allow push when it results in a non-fast forward merge in the destination repository.</p>
+<p>A non-fast forward merge means an upstream merge i.e. merging with ancestor or parent branches from a child branch</p>
+<p>To enable such merge, use the command below</p>
+<p><code>batch
+git push &lt;remote&gt; -force</code></p>
+</blockquote>
+<p>The above command forces the push operation even if it results in a non-fast
+forward merge</p>
+<h1 id="branching">Branching</h1>
+<h3 id="git-branch">git branch</h3>
+<p>Branches in Git are nothing but pointers to a specific commit. Git generally prefers to keep its branches as lightweight as possible.</p>
+<p>There are basically two types of branches viz. </p>
+<ul>
+<li>
+<p>local branches</p>
+</li>
+<li>
+<p>remote tracking branches.</p>
+</li>
+</ul>
+<p>A local branch is just another path of your working tree. On the other hand, remote tracking branches have special purposes. Some of them are:</p>
+<p>They link your work from the local repository to the work on central repository.</p>
+<p>They automatically detect which remote branches to get changes from, when you use git pull.</p>
+<p><img alt="" src="../assets/2021-10-20-01-26-37-image.png" /></p>
+<h1 id="learn-current-branch">Learn current branch</h1>
+<p>You can check what your current branch is by using the command</p>
+<pre><code class="language-batch">git branch
+</code></pre>
+<p>The one mantra that you should always be chanting while branching is “branch early, and branch often”</p>
+<h2 id="list-local-branches">List Local Branches</h2>
+<pre><code class="language-batch">git branch -l
+</code></pre>
+<h2 id="list-remote-branches">List Remote Branches</h2>
+<pre><code class="language-batch">git branch -r
+</code></pre>
+<h2 id="list-all-local-and-remote-branches">List All Local and Remote Branches</h2>
+<pre><code class="language-batch">git branch -a
+</code></pre>
+<p>There will be another topic and you will need this after pull-request action in github</p>
+<p>If you merged your branch to base branch in github and delete it on github your local branch list will not be updated by it self. You have to use the following command to update local and remote branch lists. Use the following command to syncronize your repository with remote upstream repo.</p>
+<p><a href="https://splice.com/blog/cleaning-git-branches/">Removing merged git branches</a></p>
+<pre><code class="language-batch">git remote update --prune
+</code></pre>
+<h1 id="create-branch">Create Branch</h1>
+<p>To create a new branch we use the following command</p>
+<pre><code class="language-batch">git branch &lt;branch-name&gt;
+</code></pre>
+<p>The diagram below shows the workflow when a new branch is created.  When we create a new branch it originates from the master branch itself.</p>
+<p><img alt="" src="../assets/2021-10-20-01-29-13-image.png" /></p>
+<p>Since there is no storage/memory overhead with making many branches, it is easier to
+logically divide up your work rather than have big chunky branches</p>
+<p>You can create and change branch with following command, create a new branch named "feature_x" and switch to it using</p>
+<pre><code class="language-batch">git checkout -b feature_x
+</code></pre>
+<h1 id="change-branch">Change Branch</h1>
+<pre><code class="language-batch">git checkout &lt;branch-name&gt;
+
+git checkout master
+</code></pre>
+<p><img alt="" src="../assets/2021-10-20-01-30-08-image.png" /></p>
+<blockquote>
+<p>Branching includes the work of a particular commit along with all parent commits. As you can see in the diagram above, the newBranch has detached itself from the master and hence will create a different path</p>
+</blockquote>
+<h1 id="delete-local-branch">Delete Local Branch</h1>
+<p>and delete the branch again, before doing this switch to main or master branches.</p>
+<pre><code class="language-batch">git branch -d feature_x
+</code></pre>
+<h1 id="delete-remote-branch">Delete Remote Branch</h1>
+<p>and delete the branch again, before doing this switch to main or master branches.</p>
+<pre><code class="language-batch">git push origin --delete feature_x
+</code></pre>
+<p><a href="https://www.educative.io/edpresso/how-to-delete-remote-branches-in-git">How to delete remote branches in Git</a></p>
+<h1 id="push-specific-branch-to-remote">Push Specific Branch to Remote</h1>
+<p>A branch is not available to others unless you push the branch to your remote
+repository</p>
+<pre><code class="language-batch">git push origin &lt;branch&gt;
+</code></pre>
+<h1 id="update-merge-conflicts">Update &amp; Merge (Conflicts)</h1>
+<p>to update your local repository to the newest commit, execute</p>
+<pre><code>git pull
+</code></pre>
+<p>in your working directory to fetch and merge remote changes.</p>
+<p>to merge another branch into your active branch (e.g. master), use</p>
+<pre><code>git merge &lt;branch&gt;
+</code></pre>
+<p>in both cases git tries to auto-merge changes. Unfortunately, this is not always possible and results in conflicts. You are responsible to merge those conflicts manually by editing the files shown by git. After changing, you need to mark them as merged with</p>
+<pre><code>git add &lt;filename&gt;
+</code></pre>
+<p>before merging changes, you can also preview them by using</p>
+<pre><code>git diff &lt;source_branch&gt; &lt;target_branch&gt;
+</code></pre>
+<p><a href="https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts">Git merge conflicts | Atlassian Git Tutorial</a></p>
+<p>There are two types of merges Git can perform: a <strong>fast-forward</strong>, or a <strong>no-fast-forward</strong></p>
+<h3 id="fast-forward-ff">Fast-forward (<code>--ff</code>)</h3>
+<p>A <strong>fast-forward merge</strong> can happen when the current branch has no extra commits compared to the branch we’re merging. Git is... <em>lazy</em> and will first try to perform the easiest option: the fast-forward! This type of merge doesn’t create a new commit, but rather merges the commit(s) on the branch we’re merging right in the current branch</p>
+<p><img alt="" src="https://res.cloudinary.com/practicaldev/image/fetch/s--cT4TSe48--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/894znjv4oo9agqiz4dql.gif" /></p>
+<p>Perfect! We now have all the changes that were made on the <code>dev</code> branch available on the <code>master</code> branch. So, what's the <strong>no-fast-forward</strong> all about?</p>
+<h2 id="no-fast-foward-no-ff">No-fast-foward (<code>--no-ff</code>)</h2>
+<p>It's great if your current branch doesn't have any extra commits compared to the branch that you want to merge, but unfortunately that's rarely the case! If we committed changes on the current branch that the branch we want to merge doesn't have, git will perform a <em>no-fast-forward</em> merge.</p>
+<p>With a no-fast-forward merge, Git creates a new <em>merging commit</em> on the active branch. The commit's parent commits point to both the active branch and the branch that we want to merge!</p>
+<p><img alt="" src="https://res.cloudinary.com/practicaldev/image/fetch/s--zRZ0x2Vc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/rf1o2b6eduboqwkigg3w.gif" /></p>
+<p>No big deal, a perfect merge!  The <code>master</code> branch now contains all the changes that we've made on the <code>dev</code> branch.</p>
+<h3 id="merge-conflicts">Merge Conflicts</h3>
+<p>Although Git is good at deciding how to merge branches and add changes to files, it cannot always make this decision all by itself  This can happen when the two branches we're trying to merge have changes on the same line in the same file, or if one branch deleted a file that another branch modified, and so on.</p>
+<p>In that case, Git will ask you to help decide which of the two options we want to keep! Let's say that on both branches, we edited the first line in the <code>README.md</code>.</p>
+<p><img alt="" src="https://res.cloudinary.com/practicaldev/image/fetch/s--jXqGWUai--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/m3nxmp67mqof5sa3iik9.png" /></p>
+<p>If we want to merge <code>dev</code> into <code>master</code>, this will end up in a merge conflict: would you like the title to be <code>Hello!</code> or <code>Hey!</code>?</p>
+<p>When trying to merge the branches, Git will show you where the conflict happens. We can manually remove the changes we don't want to keep, save the changes, add the changed file again, and commit the changes</p>
+<p><img alt="" src="https://res.cloudinary.com/practicaldev/image/fetch/s--7lBksXwA--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bcd5ajtoc0g5dxzmpfbq.gif" /></p>
+<p>Although merge conflicts are often quite annoying, it makes total sense: Git shouldn't just <em>assume</em> which change we want to keep</p>
+<h1 id="sample-conflict-1">Sample Conflict -1</h1>
+<p>participants.txt</p>
+<p>(<strong>I added a hyphen before each name</strong>)</p>
+<pre><code class="language-textile">Finance team
+ Charles
+ Lisa
+ John
+ Stacy
+ Alexander
+</code></pre>
+<pre><code class="language-batch">git init
+git add .
+git commit –m 'Initial list for finance team'
+</code></pre>
+<p>Create a new branch called marketing using the following syntax</p>
+<pre><code class="language-git">git checkout –b marketing
+</code></pre>
+<p>Now open the <code>participants.txt</code> file and start entering the names for the marketing department below the finance team list, as follows: (<strong>I added a hyphen before each name</strong>)</p>
+<pre><code class="language-textile">Marketing team
+ Collins
+ Linda
+ Patricia
+ Morgan
+</code></pre>
+<pre><code class="language-git">git add .
+git commit –m 'Unfinished list of marketing team'
+git checkout master
+</code></pre>
+<p>Open the file and delete the names <strong>Alexander</strong> and <strong>Stacy</strong>, save, close, add the changes, and commit with the commit message Final list from Finance team</p>
+<pre><code class="language-git">git add .
+git commit –m &quot;Final list from Finance team&quot;
+git checkout marketing
+</code></pre>
+<p>Open the file and add the fifth name, <strong>Amanda</strong>, for the marketing team, save, add, and commit</p>
+<pre><code class="language-git">git add .
+git commit –m &quot;Initial list of marketing team&quot;
+</code></pre>
+<p>names entered for marketing have been confirmed; now we need to merge these two lists, which can be done by the following command</p>
+<pre><code class="language-batch">git merge master
+</code></pre>
+<pre><code class="language-batch">Auto-merging participants.txt
+CONFLICT (content): Merge conflict in participants.txt
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<pre><code class="language-textile">Finance team
+-Charles
+-Lisa
+-John
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+-Stacy
+-Alexander
+
+Marketing team
+- Collins
+- Linda
+- Patricia
+- Morgan
+- Amanda
+=======
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; master
+</code></pre>
+<pre><code class="language-textile">&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+Changes made on the branch that is being merged into. In most cases,
+this is the branch that I have currently checked out (i.e. HEAD).
+|||||||
+The common ancestor version.
+=======
+Changes made on the branch that is being merged in. This is often a 
+feature/topic branch.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+</code></pre>
+<ul>
+<li>remove them</li>
+<li>keep the lines you want to see in the final version of the file</li>
+<li>add and commit</li>
+</ul>
+<p>If we want to save all to our version</p>
+<pre><code class="language-batch">git checkout --ours .  # checkout our local version of all files
+git add -u             # mark all conflicted files as merged
+git commit             # commit the merge
+</code></pre>
+<p>If we want to discard all our revision</p>
+<pre><code class="language-batch">git checkout --theirs .  # checkout remote version of all files
+git add -u             # mark all conflicted files as merged
+git commit             # commit the merge
+</code></pre>
+<h1 id="conflict-sample-2">Conflict Sample -2</h1>
+<p>You're going to pull some changes, but oops, you're not up to date:</p>
+<pre><code class="language-batch">git fetch origin
+git pull origin master
+
+From ssh://gitosis@example.com:22/projectname
+ * branch            master     -&gt; FETCH_HEAD
+Updating a030c3a..ee25213
+error: Entry 'filename.c' not uptodate. Cannot merge.
+</code></pre>
+<p>So you get up-to-date and try again, but have a conflict:</p>
+<pre><code class="language-batch">git add filename.c
+git commit -m &quot;made some wild and crazy changes&quot;
+git pull origin master
+
+From ssh://gitosis@example.com:22/projectname
+ * branch            master     -&gt; FETCH_HEAD
+Auto-merging filename.c
+CONFLICT (content): Merge conflict in filename.c
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<p>So you decide to take a look at the changes:</p>
+<pre><code class="language-batch">git mergetool
+</code></pre>
+<p>Oh my, oh my, upstream changed some things, but just to use my changes...no...their changes...</p>
+<pre><code class="language-batch">git checkout --ours filename.c
+git checkout --theirs filename.c
+git add filename.c
+git commit -m &quot;using theirs&quot;
+</code></pre>
+<p>And then we try a final time</p>
+<pre><code class="language-batch">git pull origin master
+
+From ssh://gitosis@example.com:22/projectname
+ * branch            master     -&gt; FETCH_HEAD
+Already up-to-date.
+</code></pre>
+<h1 id="tagging">Tagging</h1>
+<p>it's recommended to create tags for software releases. this is a known concept,
+which also exists in SVN. You can create a new tag named 1.0.0 by executing</p>
+<pre><code class="language-batch">git tag 1.0.0 1b2e1d63ff
+</code></pre>
+<p>the 1b2e1d63ff stands for the first 10 characters of the commit id you want to
+reference with your tag. You can get the commit id by looking at the...</p>
+<h1 id="log">Log</h1>
+<p>in its simplest form, you can study repository history using.. git log</p>
+<p>You can add a lot of parameters to make the log look like what you want. To see
+only the commits of a certain author:</p>
+<pre><code class="language-batch">git log --author=bob
+</code></pre>
+<p>To see a very compressed log where each commit is one line:</p>
+<pre><code class="language-batch">git log --pretty=oneline
+</code></pre>
+<p>Or maybe you want to see an ASCII art tree of all the branches, decorated with the names of tags and branches:</p>
+<pre><code class="language-batch">git log --graph --oneline --decorate --all
+</code></pre>
+<p>See only which files have changed: </p>
+<pre><code class="language-batch">git log --name-status
+</code></pre>
+<p>These are just a few of the possible parameters you can use. For more, see </p>
+<pre><code class="language-batch">git log --help
+</code></pre>
+<h1 id="replace-local-changes">Replace Local Changes</h1>
+<p>In case you did something wrong, which for sure never happens ;), you can replace
+local changes using the command</p>
+<pre><code class="language-batch">git checkout -- &lt;filename&gt;
+</code></pre>
+<p>this replaces the changes in your working tree with the last content in HEAD.
+Changes already added to the index, as well as new files, will be kept.</p>
+<p>if you use dot (.) then all local changes will be rollbacked.</p>
+<pre><code class="language-batch"> git checkout -- .
+</code></pre>
+<p>If you instead want to drop all your local changes and commits, fetch the latest
+history from the server and point your local master branch at it like this</p>
+<pre><code class="language-batch">git fetch origin
+
+git reset --hard origin/master
+</code></pre>
+<h1 id="reflog">Reflog</h1>
+<p>Everyone makes mistakes, and that's totally okay! Sometimes it may feel like you've corrupt your git repo so badly that you just want to delete it entirely.</p>
+<p><code>git reflog</code> is a very useful command in order to show a log of all the actions that have been taken! This includes merges, resets, reverts: basically any alteration to your branch.</p>
+<p><img alt="Alt Text" src="https://res.cloudinary.com/practicaldev/image/fetch/s--MMUdOS0P--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/1aqek1py1knwl926ele7.gif" /></p>
+<p>If you made a mistake, you can easily redo this by resetting <code>HEAD</code> based on the information that <code>reflog</code> gives us!</p>
+<p>Say that we actually didn't want to merge the origin branch. When we execute the <code>git reflog</code> command, we see that the state of the repo before the merge is at <code>HEAD@{1}</code>. Let's perform a <code>git reset</code> to point HEAD back to where it was on <code>HEAD@{1}</code>!</p>
+<p><img alt="Alt Text" src="https://res.cloudinary.com/practicaldev/image/fetch/s--A1UMM2AH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/9z9rhtbw7mrigp0miijz.gif" /></p>
+<p>We can see that the latest action has been pushed to the <code>reflog</code></p>
+<h1 id="resetting">Resetting</h1>
+<p>It can happen that we committed changes that we didn't want later on. Maybe it's a <code>WIP</code> commit, or maybe a commit that introduced bugs! 🐛 In that case, we can perform a <code>git reset</code>.</p>
+<p>A <code>git reset</code> gets rid of all the current staged files and gives us control over where <code>HEAD</code> should point to.</p>
+<h3 id="soft-reset">Soft reset</h3>
+<p>A <em>soft reset</em> moves <code>HEAD</code> to the specified commit (or the index of the commit compared to <code>HEAD</code>), without getting rid of the changes that were introduced on the commits afterward!</p>
+<p>Let's say that we don't want to keep the commit <code>9e78i</code> which added a <code>style.css</code> file, and we also don't want to keep the commit <code>035cc</code> which added an <code>index.js</code> file. However, we do want to keep the newly added <code>style.css</code> and <code>index.js</code> file! A perfect use case for a soft reset.</p>
+<p><img alt="" src="https://res.cloudinary.com/practicaldev/image/fetch/s---GveiZe---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/je5240aqa5uw9d8j3ibb.gif" /></p>
+<p>When typing <code>git status</code>, you'll see that we still have access to all the changes that were made on the previous commits. This is great, as this means that we can fix the contents of these files and commit them again later on!</p>
+<h3 id="hard-reset">Hard reset</h3>
+<p>Sometimes, we don't want to keep the changes that were introduced by certain commits. Unlike a soft reset, we shouldn't need to have access to them any more. Git should simply reset its state back to where it was on the specified commit: this even includes the changes in your working directory and staged files!</p>
+<p><img alt="Alt Text" src="https://res.cloudinary.com/practicaldev/image/fetch/s--GqjwnYkF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/hlh0kowt3hov1xhcku38.gif" /></p>
+<p>Git has discarded the changes that were introduced on <code>9e78i</code> and <code>035cc</code>, and reset its state to where it was on commit <code>ec5be</code>.</p>
+<h3 id="reverting">Reverting</h3>
+<p>Another way of undoing changes is by performing a <code>git revert</code>. By reverting a certain commit, we create a <em>new commit</em> that contains the reverted changes!</p>
+<p>Let's say that <code>ec5be</code> added an <code>index.js</code> file. Later on, we actually realize we didn't want this change introduced by this commit anymore! Let's revert the <code>ec5be</code> commit.</p>
+<p><img alt="Alt Text" src="https://res.cloudinary.com/practicaldev/image/fetch/s--eckmvr2M--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/3kkd2ahn41zixs12xgpf.gif" /></p>
+<p>Perfect! Commit <code>9e78i</code> reverted the changes that were introduced by the <code>ec5be</code> commit. Performing a <code>git revert</code> is very useful in order to undo a certain commit, without modifying the history of the branch.</p>
+<h1 id="cherry-picking">Cherry-picking</h1>
+<p>When a certain branch contains a commit that introduced changes we need on our active branch, we can <code>cherry-pick</code> that command! By <code>cherry-pick</code>ing a commit, we create a new commit on our active branch that contains the changes that were introduced by the <code>cherry-pick</code>ed commit.</p>
+<p>Say that commit <code>76d12</code> on the <code>dev</code> branch added a change to the <code>index.js</code> file that we want in our <code>master</code> branch. We don't want the <em>entire</em> we just care about this one single commit!</p>
+<p><img alt="Alt Text" src="https://res.cloudinary.com/practicaldev/image/fetch/s--9vWP_K4S--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/2dkjx4yeaal10xyvj29v.gif" /></p>
+<p>Cool, the master branch now contains the changes that <code>76d12</code> introduced</p>
+<h1 id="rebasing">Rebasing</h1>
+<p>We just saw how we could apply changes from one branch to another by performing a <code>git merge</code>. Another way of adding changes from one branch to another is by performing a <code>git rebase</code>.</p>
+<p>A <code>git rebase</code> <em>copies</em> the commits from the current branch, and puts these copied commits on top of the specified branch.</p>
+<p><img alt="" src="https://res.cloudinary.com/practicaldev/image/fetch/s--EIY4OOcE--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/dwyukhq8yj2xliq4i50e.gif" /></p>
+<p>Perfect, we now have all the changes that were made on the <code>master</code> branch available on the <code>dev</code> branch!</p>
+<p>A big difference compared to merging, is that Git won't try to find out which files to keep and not keep. The branch that we're rebasing always has the latest changes that we want to keep! You won't run into any merging conflicts this way, and keeps a nice linear Git history.</p>
+<p>This example shows rebasing on the <code>master</code> branch. In bigger projects, however, you usually don't want to do that. A <code>git rebase</code> <strong>changes the history of the project</strong> as new hashes are created for the copied commits!</p>
+<p>Rebasing is great whenever you're working on a feature branch, and the master branch has been updated. You can get all the updates on your branch, which would prevent future merging conflicts!</p>
+<h3 id="interactive-rebase">Interactive Rebase</h3>
+<p>Before rebasing the commits, we can modify them!  We can do so with an <em>interactive rebase</em>. An interactive rebase can also be useful on the branch you're currently working on, and want to modify some commits.</p>
+<p>There are 6 actions we can perform on the commits we're rebasing:</p>
+<ul>
+<li><code>reword</code>: Change the commit message</li>
+<li><code>edit</code>: Amend this commit</li>
+<li><code>squash</code>: Meld commit into the previous commit</li>
+<li><code>fixup</code>: Meld commit into the previous commit, without keeping the commit's log message</li>
+<li><code>exec</code>: Run a command on each commit we want to rebase</li>
+<li><code>drop</code>: Remove the commit</li>
+</ul>
+<p>Awesome! This way, we can have full control over our commits. If we want to remove a commit, we can just <code>drop</code> it.</p>
+<p><img alt="Alt Text" src="https://res.cloudinary.com/practicaldev/image/fetch/s--P6jr7igd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/msofpv7k6rcmpaaefscm.gif" /></p>
+<p>Or if we want to squash multiple commits together to get a cleaner history, no problem!</p>
+<p><img alt="Alt Text" src="https://res.cloudinary.com/practicaldev/image/fetch/s--VSQt4g1V--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bc1r460xx1i0blu0lnnm.gif" /></p>
+<p>Interactive rebasing gives you a lot of control over the commits you're trying to rebase, even on the current active branch</p>
+<h1 id="useful-hints">Useful Hints</h1>
+<p>built-in git GUI</p>
+<pre><code class="language-batch">gitk
+</code></pre>
+<p>use colorful git output</p>
+<pre><code class="language-batch">git config color.ui true
+</code></pre>
+<p>show log on just one line per commit</p>
+<pre><code class="language-batch">git config format.pretty oneline
+</code></pre>
+<p>use interactive adding</p>
+<pre><code class="language-batch">git add -i
+</code></pre>
+<pre><code class="language-batch">HEAD~2          // previous two commits fro head
+HEAD~~         // previous two commits from head
+HEAD@{2}     // reflog order
+18fe5              // previous commit hash
+</code></pre>
+<h2 id="git-decision-tree">GIT Decision Tree</h2>
+<p>http://justinhileman.info/article/git-pretty/git-pretty.png</p>
+<p><img alt="" src="http://justinhileman.info/article/git-pretty/git-pretty.png" /></p>
+<h1 id="git-in-action">GIT in action</h1>
+<p><img alt="" src="../assets/2021-10-20-02-08-27-image.png" /></p>
+<p><img alt="" src="../assets/2021-10-20-02-08-09-image.png" /></p>
+<p><img alt="" src="../assets/2021-10-20-02-08-16-image.png" /></p>
+<p><img alt="" src="../assets/2021-10-20-02-08-34-image.png" /></p>
+<p><img alt="" src="../assets/2021-10-20-02-08-46-image.png" /></p>
+<p><img alt="" src="../assets/2021-10-20-02-08-51-image.png" /></p>
+<p><img alt="" src="../assets/2021-10-20-02-10-10-image.png" /></p>
+<h1 id="gource">Gource</h1>
+<p>https://gource.io/</p>
+<p><img alt="" src="../assets/2021-10-20-02-10-45-image.png" /></p>
+<h1 id="references">References</h1>
+<p><a href="https://www.atlassian.com/git/tutorials/source-code-management#:~:text=Source%20code%20management%20(SCM)%20is,also%20synonymous%20with%20Version%20control">Source Code Management | Atlassian Git Tutorial</a>.</p>
+<p><a href="https://www.linuxnix.com/what-is-source-code-management-or-version-control/">What is Source Code Management or Version Control ? - The Linux Juggernaut</a></p>
+<p>https://www.edureka.co/blog/how-to-use-github/</p>
+<p>https://www.edureka.co/blog/git-tutorial/</p>
+<p>https://www.edureka.co/blog/install-git/</p>
+<p><a href="https://rogerdudler.github.io/git-guide/index.html">git - the simple guide - no deep shit!</a></p>
+<p><a href="https://github.com/rogerdudler/git-guide">GitHub - rogerdudler/git-guide: git - the simple guide</a></p>
+<p><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1">https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1#merge</a></p>
+<p><a href="https://dev.to/chrissiemhrk/git-commit-message-5e21">How to write a good commit message - DEV Community</a></p>
+<p>https://blog.xebialabs.com/2016/06/14/periodic-table-devops-tools-v-2/</p>
+<p>https://harness.io/2018/01/devops-tools-lifecycle-mesh-2018/</p>
+<p>https://medium.com/swlh/how-to-become-an-devops-engineer-in-2020-80b8740d5a52</p>
+<p>https://www.lucidchart.com/blog/devops-process-flow</p>
+<p>https://www.researchgate.net/publication/262450962_Rugby_An_Agile_Process_Model_Based_on_Continuous_Delivery</p>
+<p><a href="https://rogerdudler.github.io/git-guide/index.html">git - the simple guide - no deep shit!</a></p>
+<p><a href="https://www.edureka.co/blog/git-tutorial/">Git Tutorial | Commands And Operations In Git | Edureka</a></p>
+<p><a href="https://dev.to/chrissiemhrk/git-commit-message-5e21">How to write a good commit message - DEV Community</a></p>
+<p><a href="https://www.youtube.com/watch?v=MJUJ4wbFm_A&amp;ab_channel=CS50">An Introduction to Git and GitHub by Brian Yu - YouTube</a></p>
+<p>https://education.github.com/git-cheat-sheet-education.pdf</p>
+<p><a href="http://www.ndpsoftware.com/git-cheatsheet.html#loc=remote_repo">NDP Software :: Git Cheatsheet</a>;</p>
+<p><a href="https://learngitbranching.js.org/">Learn Git Branching</a></p>
+<p>https://guides.github.com/introduction/git-handbook/</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../Week-2-Setup/sources/npp-gcc-hello-world-apps/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Index" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Index
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../Week-4-Test/ce103-week-4-test/" class="md-footer__link md-footer__link--next" aria-label="Next: Ce103 week 4 test" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Ce103 week 4 test
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3127 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>Ce103 week 4 test - ce103 algorithms and programming I</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:""}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-DGZ815VN23"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-DGZ815VN23",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGZ815VN23"></script>
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="pink">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ce103-algorithms-and-programming-i" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ce103 algorithms and programming I" class="md-header__button md-logo" aria-label="ce103 algorithms and programming I" data-md-component="logo">
+      
+  <img src="../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ce103 algorithms and programming I
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ce103 week 4 test
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ce103 algorithms and programming I" class="md-nav__button md-logo" aria-label="ce103 algorithms and programming I" data-md-component="logo">
+      
+  <img src="../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    ce103 algorithms and programming I
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        ce103-algorithms-and-programming-I
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Syllabus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Syllabus" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Syllabus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Syllabus/Syllabus/" class="md-nav__link">
+        Syllabus
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Week 1 Intro
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 1 Intro" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Week 1 Intro
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-1-Intro/ce103-week-1-intro/" class="md-nav__link">
+        Ce103 week 1 intro
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Week 10 Java II
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 10 Java II" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Week 10 Java II
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-10-Java-II/ce103-week-10-java-II/" class="md-nav__link">
+        ce103 week 10 java II
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Week 11 Java III
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 11 Java III" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Week 11 Java III
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-11-Java-III/ce103-week-11-java-III/" class="md-nav__link">
+        ce103 week 11 java III
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Week 12 C Cpp GUI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 12 C Cpp GUI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Week 12 C Cpp GUI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-12-C-Cpp-GUI/ce103-week-12-c-cpp-gui/" class="md-nav__link">
+        Ce103 week 12 c cpp gui
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Week 13 Csharp GUI I
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 13 Csharp GUI I" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Week 13 Csharp GUI I
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-13-Csharp-GUI-I/ce103-week-13-csharp-gui-I/" class="md-nav__link">
+        ce103 week 13 csharp gui I
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          Week 14 Csharp GUI II
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 14 Csharp GUI II" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Week 14 Csharp GUI II
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-14-Csharp-GUI-II/ce103-week-14-csharp-gui-II/" class="md-nav__link">
+        ce103 week 14 csharp gui II
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          Week 15 Java GUI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 15 Java GUI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Week 15 Java GUI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-15-Java-GUI/ce103-week-15-java-gui/" class="md-nav__link">
+        Ce103 week 15 java gui
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          Week 16 Final
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 16 Final" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Week 16 Final
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-16-Final/ce103-week-9-final/" class="md-nav__link">
+        Ce103 week 9 final
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11">
+          Week 2 Setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 2 Setup" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          Week 2 Setup
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-2-Setup/ce103-week-2-setup/" class="md-nav__link">
+        Ce103 week 2 setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11_2" type="checkbox" id="__nav_11_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11_2">
+          Sources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Sources" data-md-level="2">
+        <label class="md-nav__title" for="__nav_11_2">
+          <span class="md-nav__icon md-icon"></span>
+          Sources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11_2_1" type="checkbox" id="__nav_11_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11_2_1">
+          Llvm clang hello world apps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Llvm clang hello world apps" data-md-level="3">
+        <label class="md-nav__title" for="__nav_11_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Llvm clang hello world apps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-2-Setup/sources/llvm-clang-hello-world-apps/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11_2_2" type="checkbox" id="__nav_11_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11_2_2">
+          Mingw gcc hello world apps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mingw gcc hello world apps" data-md-level="3">
+        <label class="md-nav__title" for="__nav_11_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Mingw gcc hello world apps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-2-Setup/sources/mingw-gcc-hello-world-apps/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11_2_3" type="checkbox" id="__nav_11_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11_2_3">
+          Npp gcc hello world apps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Npp gcc hello world apps" data-md-level="3">
+        <label class="md-nav__title" for="__nav_11_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Npp gcc hello world apps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-2-Setup/sources/npp-gcc-hello-world-apps/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_12" type="checkbox" id="__nav_12" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_12">
+          Week 3 Git
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 3 Git" data-md-level="1">
+        <label class="md-nav__title" for="__nav_12">
+          <span class="md-nav__icon md-icon"></span>
+          Week 3 Git
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-3-Git/ce103-week-3-git/" class="md-nav__link">
+        Ce103 week 3 git
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_13" type="checkbox" id="__nav_13" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_13">
+          Week 4 Test
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 4 Test" data-md-level="1">
+        <label class="md-nav__title" for="__nav_13">
+          <span class="md-nav__icon md-icon"></span>
+          Week 4 Test
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Ce103 week 4 test
+      </a>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_14" type="checkbox" id="__nav_14" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_14">
+          Week 5 C
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 5 C" data-md-level="1">
+        <label class="md-nav__title" for="__nav_14">
+          <span class="md-nav__icon md-icon"></span>
+          Week 5 C
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-5-C/ce103-week-5-c/" class="md-nav__link">
+        Ce103 week 5 c
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_14_2" type="checkbox" id="__nav_14_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_14_2">
+          Sources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Sources" data-md-level="2">
+        <label class="md-nav__title" for="__nav_14_2">
+          <span class="md-nav__icon md-icon"></span>
+          Sources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_14_2_1" type="checkbox" id="__nav_14_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_14_2_1">
+          Console snake game
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Console snake game" data-md-level="3">
+        <label class="md-nav__title" for="__nav_14_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Console snake game
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-5-C/sources/console-snake-game/" class="md-nav__link">
+        Console Snake Game
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_15" type="checkbox" id="__nav_15" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_15">
+          Week 6 Cpp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 6 Cpp" data-md-level="1">
+        <label class="md-nav__title" for="__nav_15">
+          <span class="md-nav__icon md-icon"></span>
+          Week 6 Cpp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-6-Cpp/ce103-week-6-cpp/" class="md-nav__link">
+        Ce103 week 6 cpp
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_16" type="checkbox" id="__nav_16" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_16">
+          Week 7 Csharp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 7 Csharp" data-md-level="1">
+        <label class="md-nav__title" for="__nav_16">
+          <span class="md-nav__icon md-icon"></span>
+          Week 7 Csharp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-7-Csharp/ce103-week-7-csharp/" class="md-nav__link">
+        Ce103 week 7 csharp
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_17" type="checkbox" id="__nav_17" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_17">
+          Week 8 Midterm
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 8 Midterm" data-md-level="1">
+        <label class="md-nav__title" for="__nav_17">
+          <span class="md-nav__icon md-icon"></span>
+          Week 8 Midterm
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-8-Midterm/ce103-week-8-midterm/" class="md-nav__link">
+        Ce103 week 8 midterm
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_18" type="checkbox" id="__nav_18" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_18">
+          Week 9 Java I
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Week 9 Java I" data-md-level="1">
+        <label class="md-nav__title" for="__nav_18">
+          <span class="md-nav__icon md-icon"></span>
+          Week 9 Java I
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Week-9-Java-I/ce103-week-9-java-I/" class="md-nav__link">
+        ce103 week 9 java I
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<!-- _backgroundColor: aquq -->
+
+<!-- _color: orange -->
+
+<!-- paginate: false -->
+
+<h1 id="ce103-algorithms-and-programming-i">CE103 Algorithms and Programming I</h1>
+<h1 id="week-4">Week-4</h1>
+<hr />
+<!-- paginate: true -->
+
+<h2 id="introduction-to-code-reusability-and-automated-testing">Introduction to Code Reusability and Automated Testing</h2>
+<p>During this course we will use entry level of shared library development and their tests and test automations. Also we will see TDD(Test Driven Development) approach.</p>
+<hr />
+<p>During this course we will use <strong>Windows OS, Eclipse and Visual Studio Commuity Edition</strong> environments for examples.</p>
+<hr />
+<p>Each example will include two function </p>
+<p>"Hello <name>" printing function with name sayHelloTo(name) and</p>
+<p>sum of two variable function for basic, sum = sum(a,b). </p>
+<p>This sum function will add a to b and return result to sum variable. </p>
+<p>We will locate them in library and use them from a console application, also we will create unit tests for testing their functionalities and return variables</p>
+<hr />
+<h2 id="shared-library-development">Shared Library Development</h2>
+<h3 id="c-programming-static-library">C Programming (Static Library)</h3>
+<h4 id="visual-studio-community-edition">Visual Studio Community Edition</h4>
+<p>In this sample we will create <strong>c-lib-sample</strong> project that contains library, executable, unit tests and unit test runners.</p>
+<hr />
+<p>First of all you install Visual Studio Community Edition from website</p>
+<p><a href="https://visualstudio.microsoft.com/tr/vs/community/">Visual Studio 2019 Community Edition - Son Ücretsiz Sürümü İndir</a></p>
+<hr />
+<p>Open visual studio community edition and select create a new project</p>
+<p><img alt="height:300px" src="../assets/571c6356a9188baf6f9cf2264890183de5589184.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/4ecb3db6f7035f4860cfa1c299c3c1fe09a7a65f.png" /></p>
+<hr />
+<p>Select create a new project</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-14-30-37-image.png" /></p>
+<hr />
+<p>Select C++ static library from project list</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-14-32-36-image.png" /></p>
+<hr />
+<p>Name static library project</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-14-33-51-image.png" /></p>
+<hr />
+<p>Default configuration come with C++ project types and setting</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-14-35-30-image.png" /></p>
+<hr />
+<p>In the c-sample-lib.cpp you will sample function</p>
+<pre><code class="language-c">void fncsamplelib()
+{
+
+}
+</code></pre>
+<hr />
+<p>Delete pch.h and pch.c files. Also disable use precompiled header settings from configurations and change to "Not Using Precomplied Headers", also you can delete precomplied Header File. </p>
+<p><img alt="height:400px" src="../assets/2021-10-23-14-45-56-image.png" /></p>
+<hr />
+<p>Customize library header name and update "framework.h" to "samplelib.h"</p>
+<p>Insert your functions inside the c-sample-lib.c and update header files also.</p>
+<pre><code class="language-c">// c-sample-lib.cpp : Defines the functions for the static library.
+//
+
+#include &quot;samplelib.h&quot;
+#include &quot;stdio.h&quot;
+
+/// &lt;summary&gt;
+/// 
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;name&quot;&gt;&lt;/param&gt;
+void sayHelloTo(char* name){
+
+    if (name != NULL){
+        printf(&quot;Hello %s \n&quot;,name);
+    }
+    else {
+        printf(&quot;Hello There\n&quot;);
+    }
+}
+
+/// &lt;summary&gt;
+/// 
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;a&quot;&gt;&lt;/param&gt;
+/// &lt;param name=&quot;b&quot;&gt;&lt;/param&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+int sum(int a, int b){
+
+    int c = 0;
+    c = a + b;
+    return c;
+}
+</code></pre>
+<hr />
+<p>also update samplelib.h</p>
+<pre><code class="language-c">#pragma once
+
+#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
+
+void sayHelloTo(char* name);
+int sum(int a, int b);
+</code></pre>
+<hr />
+<p>If you check configuration you will see that for C complier we are using Microsoft Environment and Toolkits</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-15-58-07-image.png" /></p>
+<hr />
+<p>Now we can compile our library</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-15-59-10-image.png" /></p>
+<hr />
+<p>You can follow operation from output window</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-15-59-27-image.png" /></p>
+<hr />
+<p>in debug folder we will see our output</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-16-00-02-image.png" /></p>
+<hr />
+<p>now we will add a console application c-sample-app and use our library</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-16-00-47-image.png" /></p>
+<hr />
+<p>select C++ Windows Console Application from list</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-16-01-06-image.png" /></p>
+<hr />
+<p>C++ Console Application Selection will generate a C++ console project we can change extension to C to compile our application as C application. </p>
+<p>we will convert c-sample-app.c to following code</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+/// &lt;summary&gt;
+/// 
+/// &lt;/summary&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+int main()
+{
+    printf(&quot;Hello World!\n&quot;);
+}
+</code></pre>
+<hr />
+<p>after conversion set c-sample-app as startup project and build it</p>
+<p><img alt="height:150px" src="../assets/2021-10-23-16-05-39-image.png" /></p>
+<p>this will create c-sample-app.exe in the same folder with c-sample-lib.lib library</p>
+<p><img alt="height:300px" src="../assets/2021-10-23-16-06-33-image.png" /></p>
+<p>if we run application we will see only   "Hello World"</p>
+<hr />
+<p>now we will see two options to add library as references in our application and use its functions.</p>
+<hr />
+<p>First option </p>
+<p>right click references for c-sample-app and add current library as reference</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-16-14-44-image.png" /></p>
+<hr />
+<p>Select Add Reference</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-16-14-53-image.png" /></p>
+<hr />
+<p>Browse for solution and select c-sample-lib</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-16-15-09-image.png" /></p>
+<hr />
+<p>You can check added reference from references section</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-16-15-21-image.png" /></p>
+<hr />
+<p>now we can include required headers from c-sample-lib folder and use it.</p>
+<p>we can include required header with relative path as follow or with configuration</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &quot;..\c-sample-lib\samplelib.h&quot;
+/// &lt;summary&gt;
+/// 
+/// &lt;/summary&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+int main()
+{
+    printf(&quot;Hello World!\n&quot;);
+}
+</code></pre>
+<hr />
+<p>we can build our c-sample-app</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-16-16-03-image.png" /></p>
+<hr />
+<p>also we can only write header name </p>
+<pre><code class="language-c">#include &lt;samplelib.h&gt;
+</code></pre>
+<hr />
+<p>for this we need to configure include directories</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-16-17-54-image.png" /></p>
+<hr />
+<p>select c-sample-lib header file location</p>
+<p><img alt="height:100px" src="../assets/2021-10-23-16-19-00-image.png" /></p>
+<p>browse for folder</p>
+<p><img alt="height:300px" src="../assets/2021-10-23-16-19-20-image.png" /></p>
+<hr />
+<p>your full path will be added to your configuration</p>
+<p><img alt="height:500px" src="../assets/2021-10-23-16-19-29-image.png" /></p>
+<hr />
+<p>if you add header file paths to your configuration you can use header files by name in your source code</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;samplelib.h&gt;
+/// &lt;summary&gt;
+/// 
+/// &lt;/summary&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+int main()
+{
+    printf(&quot;Hello World!\n&quot;);
+}
+</code></pre>
+<hr />
+<p>we can compile the following we don't have problems but here we need to configure relative paths for configuration open include library settings and update with relative path</p>
+<pre><code class="language-batch">..\c-sample-lib
+</code></pre>
+<p><img alt="height:400px" src="../assets/2021-10-23-16-22-54-image.png" /></p>
+<hr />
+<p>now we have portable source code configuration. we can call our functions and then we can update header and library folder configurations. </p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;samplelib.h&gt;
+/// &lt;summary&gt;
+/// 
+/// &lt;/summary&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+int main()
+{
+    int result = 0;
+    //printf(&quot;Hello World!\n&quot;);
+    result = sum(5, 4);
+    sayHelloTo(&quot;Computer&quot;);
+    printf(&quot;Result is %d \n&quot;,result);
+    printf(&quot;Press any key to continue...\n&quot;);
+    getchar();
+    return 0;
+}
+</code></pre>
+<hr />
+<p>when you run you will see the following outputs, that mean we called library functions. </p>
+<p><img alt="height:400px" src="../assets/2021-10-23-16-29-46-image.png" /></p>
+<hr />
+<p>static library is a code sharing approach if you want to share your source code with your customers then you can share static libraries and header files together. Another case you can use a precompiled static library with you or this library can be part of any installation then if there is a installed app and static libraries are placed on system folder or any different location then you can use configuration files to set library path and included header paths</p>
+<hr />
+<p>Now we can remove project from c-sample-app references but we will set library file in configuration</p>
+<p>Before this copy static library and header files to a folder like that </p>
+<pre><code class="language-c">DebugStaticLibDeployment
+</code></pre>
+<ul>
+<li>Set C/C++ -&gt; General -&gt; Additional Include Directories</li>
+</ul>
+<p>There is a bug in configurations and relative path not finding headers so for this reason we will set full path but this is not a good practice for team working</p>
+<hr />
+<p><strong>Not Working</strong></p>
+<pre><code class="language-c">..\c-sample-lib\DebugStaticLibDeployment
+</code></pre>
+<p><img alt="height:400px" src="../assets/2021-10-23-23-48-33-image.png" /></p>
+<hr />
+<p><strong>Working</strong></p>
+<pre><code class="language-c">E:\...\c-lib-sample\c-sample-lib\DebugStaticLibDeployment
+</code></pre>
+<p><img alt="height:400px" src="../assets/2021-10-23-23-50-09-image.png" /></p>
+<hr />
+<p>Now we will set library folder that our static library placed</p>
+<p>we will set VC++ Directories -&gt; Library Directories</p>
+<p>Here is the same issue if we use relative path it doesn't work we need to set full path for library folder</p>
+<hr />
+<p><strong>Working</strong></p>
+<pre><code class="language-c">E:\...\c-lib-sample\c-sample-lib\DebugStaticLibDeployment
+</code></pre>
+<p><img alt="height:500px" src="../assets/2021-10-23-23-51-37-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-23-23-51-20-image.png" /></p>
+<hr />
+<p><strong>Not Working</strong></p>
+<pre><code class="language-c">..\c-sample-lib\DebugStaticLibDeployment
+</code></pre>
+<p><img alt="height:500px" src="../assets/2021-10-23-23-54-22-image.png" /></p>
+<hr />
+<p><img alt="height:400px" src="../assets/2021-10-23-23-54-42-image.png" /></p>
+<p><img alt="height:150px" src="../assets/2021-10-23-23-54-08-image.png" /></p>
+<hr />
+<p>If we set full path for both libraries and headers then we need to set library name for project</p>
+<p><strong>Linker-&gt;Input-&gt;Additional Dependencies</strong></p>
+<p><img alt="height:350px" src="../assets/2021-10-23-23-56-40-image.png" /></p>
+<p>In this case we will compile c-sample-app and we do not need to compile c-sample-lib because we copied output files to different location and they are ready to use.</p>
+<hr />
+<p>current source code will be like that nothing changed</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;samplelib.h&gt;
+
+/// &lt;summary&gt;
+/// 
+/// &lt;/summary&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+int main()
+{
+    int result = 0;
+    //printf(&quot;Hello World!\n&quot;);
+    result = sum(5, 4);
+    sayHelloTo(&quot;Computer&quot;);
+    printf(&quot;Result is %d \n&quot;,result);
+    printf(&quot;Press any key to continue...\n&quot;);
+    getchar();
+    return 0;
+}
+</code></pre>
+<hr />
+<p>and output </p>
+<p><img alt="height:400px" src="../assets/2021-10-24-00-15-40-image.png" /></p>
+<hr />
+<p>There is a option about portability that we can set for team works</p>
+<p>We will remove all library related settings from configurations and we will write them in source code</p>
+<p>Clear linker-&gt;general-&gt;additional library directories</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-00-18-38-image.png" /></p>
+<hr />
+<p>Clear C/C++ -&gt; General -&gt; Additional Include Directories</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-00-19-20-image.png" /></p>
+<hr />
+<p>Clear Linker-&gt;Input-&gt;Additional Dependencies</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-00-19-51-image.png" /></p>
+<hr />
+<p>Now we can set this configurations in source code as follow</p>
+<pre><code class="language-c">#pragma comment(lib, &quot;..\\DebugStaticLibDeployment\\c-sample-lib.lib&quot;)
+#include &quot;..\DebugStaticLibDeployment\samplelib.h&quot;
+
+#include &lt;stdio.h&gt;
+
+/// &lt;summary&gt;
+/// 
+/// &lt;/summary&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+int main()
+{
+    int result = 0;
+    //printf(&quot;Hello World!\n&quot;);
+    result = sum(5, 4);
+    sayHelloTo(&quot;Computer&quot;);
+    printf(&quot;Result is %d \n&quot;,result);
+    printf(&quot;Press any key to continue...\n&quot;);
+    getchar();
+    return 0;
+}
+</code></pre>
+<p>with this configuration if your friends download this code then they can run them with their environment without setting a path.</p>
+<hr />
+<h3 id="c-programming-static-library_1">C++ Programming (Static Library)</h3>
+<hr />
+<h4 id="visual-studio-community-edition_1">Visual Studio Community Edition</h4>
+<p>All steps are similar with C programming above, but you do not need to delete pch.h </p>
+<p>You should take care about compiled source codes</p>
+<p>for example if your code is compiled for x86 then your application also should use the x86 configuration else x64 then library should be x64 complied version.</p>
+<hr />
+<p>Source will look like the following </p>
+<pre><code class="language-cpp">// cpp-sample-app.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#pragma comment(lib, &quot;..\\DebugStaticLibDeployment\\cpp-sample-lib.lib&quot;)
+
+#include &quot;..\DebugStaticLibDeployment\samplelib.h&quot;
+
+#include &lt;iostream&gt;
+
+int main()
+{
+    std::cout &lt;&lt; &quot;Hello World!\n&quot;;
+
+    int result = 0;
+    //printf(&quot;Hello World!\n&quot;);
+    result = sum(5, 4);
+    sayHelloTo(&quot;Computer&quot;);
+    printf(&quot;Result is %d \n&quot;, result);
+    printf(&quot;Press any key to continue...\n&quot;);
+    getchar();
+    return 0;
+
+}
+</code></pre>
+<hr />
+<h3 id="cc-wsl-option">C/C++ WSL Option</h3>
+<hr />
+<p>Install WSL</p>
+<p><a href="https://github.com/ucoruh/ns3-wsl-win10-setup">GitHub - ucoruh/ns3-wsl-win10-setup: ns3 windows 10 WSL2 setup and usage</a></p>
+<p>Create a Linux project</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-12-00-18-image.png" /></p>
+<hr />
+<p>Configure Platform Toolset to WSL</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-12-00-47-image.png" /></p>
+<hr />
+<p>Select GCC for Windows Subsystem for Linux</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-12-01-15-image.png" /></p>
+<hr />
+<p>Put a breakpoint and run debugger</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-12-02-48-image.png" /></p>
+<hr />
+<p>In the debugger for WSL you can use local WSL installation but if you want to run it on Release setting it require a SSH connection.</p>
+<p><img alt="height:200px" src="../assets/2021-10-24-12-06-58-image.png" /></p>
+<hr />
+<p>Configure SSH parameters</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-12-07-16-image.png" /></p>
+<hr />
+<p>so you have to complete the following steps. </p>
+<h3 id="cc-remote-linux-option-over-ssh">C/C++ Remote Linux Option over SSH</h3>
+<p>Enable SSH </p>
+<p><a href="https://www.illuminiastudios.com/dev-diaries/ssh-on-windows-subsystem-for-linux/">SSH on Windows Subsystem for Linux (WSL) | Illuminia Studios</a></p>
+<p>Connect to Remote WSL Environment</p>
+<p><a href="https://docs.microsoft.com/tr-tr/cpp/linux/connect-to-your-remote-linux-computer?view=msvc-160">Bağlan hedef Linux sisteminize Visual Studio | Microsoft Docs</a></p>
+<hr />
+<h3 id="c-programming-dinamik-library">C# Programming (Dinamik Library)</h3>
+<hr />
+<h4 id="visual-studio-community-edition_2">Visual Studio Community Edition</h4>
+<p>In C# project we will create class library we have several options</p>
+<p>for this sample we will select .NET core that we can build cross platform library</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-00-59-38-image.png" /></p>
+<hr />
+<p><mark>There is no static library option</mark></p>
+<p><img alt="" src="../assets/2021-10-24-01-01-29-image.png" /></p>
+<hr />
+<p>We will select .Net Core 3.1</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-01-59-image.png" /></p>
+<hr />
+<p>You will have default empty class library file</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-03-45-image.png" /></p>
+<hr />
+<p>In the project you can see .NETcore reference</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-03-55-image.png" /></p>
+<hr />
+<p>We can build empty class library that generate dll for our application</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-04-06-image.png" /></p>
+<hr />
+<p>Now we will add Console Application but this will also use .NETCore</p>
+<hr />
+<p>Select New Project </p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-04-43-image.png" /></p>
+<hr />
+<p>Name the project</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-25-44-image.png" /></p>
+<hr />
+<p>Select .NETCore framework</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-26-00-image.png" /></p>
+<hr />
+<p>You will have the following sample main.cs file</p>
+<pre><code class="language-csharp">using System;
+
+namespace csharp_sample_app
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(&quot;Hello World!&quot;);
+        }
+    }
+}
+</code></pre>
+<hr />
+<p>Now we can link projects with adding references open reference section</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-28-45-image.png" /></p>
+<hr />
+<p>browse for class library project output folder and select output dll file for console application</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-28-25-image.png" /></p>
+<hr />
+<p>now we can update our library code and use it in console application</p>
+<p>copy following sample to sampleLibClass file in the library</p>
+<pre><code class="language-csharp">using System;
+
+namespace csharp_sample_lib
+{
+    public class sampleLibClass
+    {
+        public static void sayHelloTo(string name)
+        {
+            if (!String.IsNullOrEmpty(name))
+            {
+                Console.WriteLine(&quot;Hello &quot; + name);
+            }
+            else
+            {
+                Console.WriteLine(&quot;Hello There&quot;);
+            }
+
+        }
+
+        public static int sum(int a, int b)
+        {
+            int c = 0;
+            c = a + b;
+            return c;
+        }
+    }
+}
+</code></pre>
+<hr />
+<p>after this operation copy following sample to console application and build app then you can run</p>
+<pre><code class="language-csharp">using csharp_sample_lib;
+using System;
+
+namespace csharp_sample_app
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(&quot;Hello World!&quot;);
+
+            sampleLibClass.sayHelloTo(&quot;Computer&quot;);
+            int result = sampleLibClass.sum(5, 4);
+            Console.WriteLine(&quot;Results is&quot; + result);
+            Console.WriteLine(&quot;Results is {0}&quot;, result);
+            Console.Read();
+        }
+    }
+}
+</code></pre>
+<hr />
+<p>You will see following output that mean we called DLL functions</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-33-49-image.png" /></p>
+<hr />
+<p>Also we can publish this console application with dll for linux environment or others </p>
+<p>for linux environment we should install .NETCore</p>
+<hr />
+<p>follow the link below or commands that I shared with you as below for deployment</p>
+<p><a href="https://tecadmin.net/how-to-install-net-core-on-ubuntu-20-04/">How to Install Dotnet Core on Ubuntu 20.04 &ndash; TecAdmin</a></p>
+<p>Step 1 – Enable Microsoft PPA</p>
+<pre><code class="language-batch"> wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb 
+sudo dpkg -i packages-microsoft-prod.deb
+</code></pre>
+<hr />
+<p>Step 2 – Installing Dotnet Core SDK</p>
+<pre><code class="language-batch">sudo apt update 
+sudo apt install apt-transport-https 
+sudo apt install dotnet-sdk-3.1 
+</code></pre>
+<hr />
+<p>Step 3 – Install Dotnet Core Runtime Only</p>
+<p>To install .NET Core Runtime on Ubuntu 20.04 LTS system, execute the commands:</p>
+<pre><code class="language-batch">sudo apt update 
+</code></pre>
+<hr />
+<p>To install the previous version of .Net core runtime 2.1, type:</p>
+<pre><code class="language-batch">sudo apt install dotnet-runtime-2.1
+</code></pre>
+<p>Press “y” for any input prompted by the installer.</p>
+<hr />
+<p>Step 4 – (Optional) Check .NET Core Version</p>
+<p>You can use dotnet command line utility to check installed version of .NET Core on your system. To check dotnet version, type:</p>
+<pre><code>dotnet --version
+</code></pre>
+<p><img alt="height:200px" src="../assets/2021-10-24-02-13-11-image.png" /></p>
+<hr />
+<p>Now we will publish our application as single executable</p>
+<p>Open publish menu</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-02-13-57-image.png" /></p>
+<hr />
+<p>Select netcoreapp3.1 and Release for linux-x64</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-35-53-image.png" /></p>
+<hr />
+<p>Select produce single file</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-35-44-image.png" /></p>
+<hr />
+<p>After succesfull publish you will have linux binary that you can run with WSL</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-01-59-52-image.png" /></p>
+<hr />
+<p>Open WSL and enter the path where this folder located</p>
+<p>and run application as follow</p>
+<p><img alt="" src="../assets/2021-10-24-01-59-11-image.png" /></p>
+<hr />
+<p>check dotnet --version and then run application</p>
+<p><img alt="" src="../assets/2021-10-24-01-59-31-image.png" /></p>
+<p>you will see similar output</p>
+<p><img alt="" src="../assets/2021-10-24-01-59-23-image.png" /></p>
+<hr />
+<p>In this sample we created single application from settings lets try with shared library located option uncheck the "produce single file" option and publish again. </p>
+<p>Then you will have the following outputs</p>
+<p><img alt="height:400px" src="../assets/2021-10-24-02-04-18-image.png" /></p>
+<hr />
+<p>If you run csharp-sample-app</p>
+<p>you will have the same output</p>
+<p><img alt="height:300px" src="../assets/2021-10-24-02-04-32-image.png" /></p>
+<hr />
+<h3 id="java-programming">Java Programming</h3>
+<hr />
+<h4 id="eclipse-ide">Eclipse IDE</h4>
+<p>You should download and install eclipse installer and then you should select Eclipse IDE for Java Developers</p>
+<p><a href="https://www.eclipse.org/downloads/packages/installer">Eclipse Installer 2021-09 R | Eclipse Packages</a></p>
+<p><img alt="height:400px" src="../assets/2021-10-24-11-39-03-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-11-39-17-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-02-19-48-image.png" /></p>
+<hr />
+<p><img alt="" src="../assets/2021-10-24-02-21-55-image.png" /></p>
+<hr />
+<p>select create a project</p>
+<p><TODO></p>
+<p><img alt="height:500px" src="../assets/2021-10-24-02-24-39-image.png" /></p>
+<hr />
+<p>select java project </p>
+<p><img alt="height:500px" src="../assets/2021-10-24-02-24-53-image.png" /></p>
+<hr />
+<p>give project name</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-02-26-15-image.png" /></p>
+<hr />
+<p>select finish</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-02-26-50-image.png" /></p>
+<hr />
+<p>first we need to add a default package to keep everything organized</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-02-27-56-image.png" /></p>
+<hr />
+<p>then we can create our class that includes our functions</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-02-28-27-image.png" /></p>
+<hr />
+<p>give class a name</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-02-29-50-image.png" /></p>
+<hr />
+<p>you will have following class with main</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-02-30-03-image.png" /></p>
+<hr />
+<p>We will create sample java library with static functions as below.</p>
+<pre><code class="language-java">package ce103;
+
+import java.io.IOException;
+
+public class JavaSampleLib {
+
+    public static void sayHelloTo(String name) {
+        if(name.isBlank() || name.isEmpty())
+        {
+            System.out.println(&quot;Hello &quot;+name);
+        }else {
+            System.out.println(&quot;Hello There&quot;);
+        }
+    }
+
+    public static int sum(int a,int b)
+    {
+        int c = 0;
+        c = a+b;
+        return c;
+    }
+
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        System.out.println(&quot;Hello World!&quot;);
+
+        JavaSampleLib.sayHelloTo(&quot;Computer&quot;);
+        int result = JavaSampleLib.sum(5, 4);
+        System.out.println(&quot;Results is&quot; + result);
+        System.out.printf(&quot;Results is %d \n&quot;, result);
+
+
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+}
+</code></pre>
+<hr />
+<p>also we can add main method to run our library functions. If we run this file its process main function</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-17-06-image.png" /></p>
+<hr />
+<p>we can see output from console as below </p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-16-44-image.png" /></p>
+<hr />
+<p>There is no exe files java runtime environment run class files but we can export this as an executable.</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-19-33-image.png" /></p>
+<hr />
+<p>Select Java-&gt;Runnable JAR File</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-20-33-image.png" /></p>
+<hr />
+<p>click next and set output path for jar file</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-22-07-image.png" /></p>
+<hr />
+<p>If our project has several external dependecy then we can extract this required files (jar, so, dll) in seperated folder or we can combine them and generate a single executable jar</p>
+<p>Lets pack everthing together, Select launch configuration that has main function</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-25-36-image.png" /></p>
+<hr />
+<p>end of this operation we will have the following jar that we can by click </p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-26-22-image.png" /></p>
+<hr />
+<p>When you click application if cannot run then try command line to see problem</p>
+<p>enter jar folder and run the following command</p>
+<pre><code class="language-batch">java -jar JavaSampleLibExecutable.jar
+</code></pre>
+<p><img alt="height:200px" src="../assets/2021-10-24-10-28-37-image.png" /></p>
+<p>In my case eclipse build JDK is newer than that I installed and set for my OS</p>
+<p>If we check version we can see problem Java version 1.8.0_231</p>
+<p><img alt="height:100px" src="../assets/2021-10-24-10-30-21-image.png" /></p>
+<hr />
+<p>We can found installed and builded JDK for our application from Eclipse setting</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-32-28-image.png" /></p>
+<hr />
+<p>select environments </p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-32-57-image.png" /></p>
+<hr />
+<p>select installed JRE or JDK</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-33-25-image.png" /></p>
+<hr />
+<p>you can see installed JRE or JDK home </p>
+<pre><code class="language-batch">C:\Program Files\Java\jdk-16.0.1
+</code></pre>
+<p><img alt="height:400px" src="../assets/2021-10-24-10-33-48-image.png" /></p>
+<hr />
+<p>Open system environment to fix this problem</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-34-26-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-10-34-49-image.png" /></p>
+<hr />
+<p>Check user settings first</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-35-28-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-10-35-43-image.png" /></p>
+<hr />
+<p>Check system settings</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-36-14-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-10-36-37-image.png" /></p>
+<hr />
+<p>we will move up the JDK 16 configuration then command line will run first java </p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-37-22-image.png" /></p>
+<hr />
+<p>Also in system setting check JAVA_HOME</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-37-50-image.png" /></p>
+<hr />
+<p>After this settings close current command line and open new one</p>
+<p>write </p>
+<pre><code class="language-batch">java --version
+</code></pre>
+<p>if you see java version updated and 16.0.1 then settings are correct</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-39-39-image.png" /></p>
+<hr />
+<p>and now if we enter and run application as follow we will see output</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-10-40-31-image.png" /></p>
+<hr />
+<p>But when you click this jar its not running as you see so we have options to provide a clickable application there</p>
+<p>Launch4j is an option here</p>
+<p><a href="http://launch4j.sourceforge.net/index.html">Launch4j - Cross-platform Java executable wrapper</a></p>
+<p><img alt="How to use Launch4" src="http://launch4j.sourceforge.net/launch4j-use.gif" /></p>
+<hr />
+<p>you can watch this tutorial also</p>
+<p><a href="https://www.youtube.com/watch?v=MyMPPuYGN-U&amp;ab_channel=GoXR3PlusStudio">How to convert jar to exe using Launch4J Full explanation - YouTube</a></p>
+<hr />
+<p>Download and install launch4j and open application</p>
+<p><img alt="height:200px" src="../assets/2021-10-24-11-24-15-image.png" /></p>
+<hr />
+<p>configure your application settings similar to below select jar file and exe output path</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-11-24-40-image.png" /></p>
+<hr />
+<p>we can customize main class if have multiple main class</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-11-25-22-image.png" /></p>
+<hr />
+<p>select console from setting for this application</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-11-25-46-image.png" /></p>
+<hr />
+<p>we can provide a single running application, this setting avoid to run multiple instances</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-11-26-30-image.png" /></p>
+<hr />
+<p>we need to set runtime environment versions </p>
+<p><img alt="height:500px" src="../assets/2021-10-24-11-27-01-image.png" /></p>
+<hr />
+<p>you can set system parameters before running application</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-11-27-36-image.png" /></p>
+<hr />
+<p>with splash screen you can show a splash screen image for your application</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-11-28-07-image.png" /></p>
+<hr />
+<p>File attributes such as version product information is configured from version info tab</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-11-28-45-image.png" /></p>
+<hr />
+<p>if your application runtime condition has an error then you can show this customized messages also</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-11-29-21-image.png" /></p>
+<hr />
+<p>with this options save configuration file xml</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-11-30-18-image.png" /></p>
+<hr />
+<p>and compile settings</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-11-31-03-image.png" /></p>
+<hr />
+<p>you will see generated output file in log screen</p>
+<pre><code class="language-batch">Compiling resources
+Linking
+Wrapping
+WARNING: Sign the executable to minimize antivirus false positives or use launching instead of wrapping.
+Successfully created C:\Users\ugur.coruh\Desktop\java-export-sample\JavaSampleLibExecutable.exe
+</code></pre>
+<hr />
+<p>now we can run exe by click</p>
+<p><img alt="height:300px" src="../assets/2021-10-24-11-32-00-image.png" /></p>
+<p><img alt="height:200px" src="../assets/2021-10-24-11-32-21-image.png" /></p>
+<hr />
+<p>another option here adding a bat file to run current jar file</p>
+<hr />
+<p><strong>JavaSampleLibExecutable.bat</strong></p>
+<pre><code class="language-batch">java -jar JavaSampleLibExecutable.jar
+</code></pre>
+<p><img alt="height:200px" src="../assets/2021-10-24-11-34-18-image.png" /></p>
+<p>if we click bat file then we will automate command line task for current jar file</p>
+<p><img alt="height:200px" src="../assets/2021-10-24-11-34-50-image.png" /></p>
+<hr />
+<p>Now return back to our java library and create another console application that use library functions</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-09-58-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-14-13-53-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-14-19-22-image.png" /></p>
+<hr />
+<p>you can set libraries in this step from but our library should exported for our solution</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-20-12-image.png" /></p>
+<hr />
+<p>Select Add External JARs...</p>
+<p><img alt="height:200px" src="../assets/2021-10-24-14-20-26-image.png" /></p>
+<hr />
+<p>Open Exported jar folder and select</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-20-46-image.png" /></p>
+<hr />
+<p>Or we can select by Add jar from current workspace</p>
+<p><img alt="height:200px" src="../assets/2021-10-24-14-22-22-image.png" /></p>
+<p><img alt="height:200px" src="../assets/2021-10-24-14-22-10-image.png" /></p>
+<hr />
+<p>but in this step I won't add anything I'll add references later</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-23-12-image.png" /></p>
+<hr />
+<p>we will have the following project</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-24-04-image.png" /></p>
+<hr />
+<p>lets create a package</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-24-36-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-14-24-54-image.png" /></p>
+<hr />
+<p>and lets create a main class for our application</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-25-27-image.png" /></p>
+<hr />
+<p>check create main function</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-26-05-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-14-26-50-image.png" /></p>
+<hr />
+<p>right click to project and add reference</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-27-51-image.png" /></p>
+<hr />
+<p>you can enter same configurations from project properties</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-28-35-image.png" /></p>
+<hr />
+<p>Lets export our library as a JAR file and then add to our classpath</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-30-37-image.png" /></p>
+<hr />
+<p>Select JAR file</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-30-55-image.png" /></p>
+<hr />
+<p>we configured output as </p>
+<pre><code class="language-batch">C:\Users\ugur.coruh\Desktop\java-export-sample\JavaSampleLib.jar
+</code></pre>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-31-54-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-14-32-38-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-14-33-05-image.png" /></p>
+<hr />
+<p>In the same export folder now we have JavaSampleLib.jar</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-33-54-image.png" /></p>
+<hr />
+<p>return back to java-sample-app and then add this jar file to our project</p>
+<p>Build Path-&gt;Add External Archives</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-34-39-image.png" /></p>
+<hr />
+<p>you will see its added to reference libraries</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-35-30-image.png" /></p>
+<hr />
+<p>in our JavaSampleApp.java we can use the following source codes</p>
+<pre><code class="language-java">package ce103;
+
+import java.io.IOException;
+
+public class JavaSampleApp {
+
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+        System.out.println(&quot;Hello World!&quot;);
+
+        JavaSampleLib.sayHelloTo(&quot;Computer&quot;);
+        int result = JavaSampleLib.sum(5, 4);
+        System.out.println(&quot;Results is&quot; + result);
+        System.out.printf(&quot;Results is %d \n&quot;, result);
+
+
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+}
+</code></pre>
+<hr />
+<p>When we run application we will see similar output</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-38-18-image.png" /></p>
+<hr />
+<p>Lets export this application with its dependent library</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-39-05-image.png" /></p>
+<hr />
+<p>Select runnable jar</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-39-23-image.png" /></p>
+<hr />
+<p>Set Launch configuration and Export destination</p>
+<pre><code class="language-batch">C:\Users\ugur.coruh\Desktop\java-export-sample\JavaSampleAppSingle.jar
+</code></pre>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-40-10-image.png" /></p>
+<hr />
+<p>In this option we will have single jar file</p>
+<p>In the export folder we do not see reference libraries</p>
+<p><img alt="height:200px" src="../assets/2021-10-24-14-42-02-image.png" /></p>
+<p>and we can run with command line</p>
+<p><img alt="height:200px" src="../assets/2021-10-24-14-42-26-image.png" /></p>
+<hr />
+<p>only change copy required libraries setting and then give a new name for new jar file and export </p>
+<pre><code class="language-batch">C:\Users\ugur.coruh\Desktop\java-export-sample\JavaSampleAppMultiple.jar
+</code></pre>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-43-13-image.png" /></p>
+<hr />
+<p>now we have a folder that contains our libraries referenced</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-44-13-image.png" /></p>
+<hr />
+<p>in this file we can find our library</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-14-44-45-image.png" /></p>
+<hr />
+<p>if we test our application we will see it will work</p>
+<p><img alt="height:200px" src="../assets/2021-10-24-14-45-35-image.png" /></p>
+<p>if we delete JavaSampleLib.jar and then try running application we will get error</p>
+<p><img alt="height:200px" src="../assets/2021-10-24-14-46-43-image.png" /></p>
+<hr />
+<h2 id="program-testing">Program Testing</h2>
+<hr />
+<h2 id="unit-test-development">Unit Test Development</h2>
+<hr />
+<h3 id="c-unit-tests">C Unit Tests</h3>
+<hr />
+<h4 id="visual-studio-community-edition_3">Visual Studio Community Edition</h4>
+<hr />
+<p><TODO></p>
+<h3 id="c-unit-tests_1">C++ Unit Tests</h3>
+<hr />
+<h4 id="visual-studio-community-edition_4">Visual Studio Community Edition</h4>
+<p><a href="https://docs.microsoft.com/tr-tr/visualstudio/test/writing-unit-tests-for-c-cpp?view=vs-2019">C/C++ için birim testleri yazma - Visual Studio (Windows) | Microsoft Docs</a></p>
+<p>Use cpp-sample-lib project and add </p>
+<p><img alt="height:500px" src="../assets/2021-10-25-02-41-08-image.png" /></p>
+<hr />
+<p>select Native Unit Test</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-02-41-46-image.png" /></p>
+<hr />
+<p>set project path and name</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-02-42-35-image.png" /></p>
+<hr />
+<p>you will have cpp-sample-test project</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-02-42-54-image.png" /></p>
+<hr />
+<p>add library project from references</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-02-44-13-image.png" /></p>
+<hr />
+<p>Add cpp-sample-lib to cpp-sample-test project</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-02-44-31-image.png" /></p>
+<hr />
+<p>cpp-sample-test.cpp</p>
+<pre><code class="language-cpp">#include &quot;pch.h&quot;
+#include &quot;CppUnitTest.h&quot;
+#include &quot;..\cpp-sample-lib\samplelib.h&quot;
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+namespace cppsampletest
+{
+    TEST_CLASS(cppsampletest)
+    {
+    public:
+
+        TEST_METHOD(TestSumCorrect)
+        {
+            Assert::AreEqual(9, sum(4, 5));
+        }
+
+        TEST_METHOD(TestSumInCorrect)
+        {
+            Assert::AreEqual(10, sum(4, 5));
+        }
+    };
+}
+</code></pre>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-25-02-54-23-image.png" /></p>
+<hr />
+<p><TODO></p>
+<h3 id="c-unit-tests_2">C# Unit Tests</h3>
+<hr />
+<h3 id="visual-studio-community-edition-mstestv2net">Visual Studio Community Edition (MSTestV2+.Net)</h3>
+<p>Install extension fine code coverage</p>
+<p>https://marketplace.visualstudio.com/items?itemName=FortuneNgwenya.FineCodeCoverage</p>
+<p>Create a .Net Framework Library</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-01-28-20-image.png" /></p>
+<hr />
+<p>set project framework and path</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-01-27-50-image.png" /></p>
+<hr />
+<p>Create library functions</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-01-31-06-image.png" /></p>
+<hr />
+<pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace cs_lib_sample
+{
+    public class SampleLibClass
+    {
+        public static string sayHelloTo(string name)
+        {
+            string result = String.Empty;
+
+            if (!String.IsNullOrEmpty(name))
+            {
+                result = &quot;Hello &quot; + name;
+            }
+            else
+            {
+                result = &quot;Hello There&quot;;
+            }
+
+            Console.WriteLine(result);
+
+            return result;
+        }
+
+        public static int sum(int a, int b)
+        {
+            int c = 0;
+            c = a + b;
+            return c;
+        }
+
+        public int multiply(int a, int b)
+        {
+            return a * b;
+        }
+    }
+}
+</code></pre>
+<hr />
+<p>right click and then create unit test project</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-01-32-52-image.png" /></p>
+<hr />
+<p>press OK</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-01-33-16-image.png" /></p>
+<hr />
+<p>enter test code</p>
+<pre><code class="language-csharp">using Microsoft.VisualStudio.TestTools.UnitTesting;
+using cs_lib_sample;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cs_lib_sample.Tests
+{
+    [TestClass()]
+    public class SampleLibClassTests
+    {
+
+        [TestMethod()]
+        public void testSayHelloTo()
+        {
+
+
+            Assert.AreEqual(&quot;Hello Computer&quot;, SampleLibClass.sayHelloTo(&quot;Computer&quot;), &quot;Regular say hello should work&quot;);
+        }
+        [TestMethod()]
+        public void testSayHelloToWrong()
+        {
+            Assert.AreEqual(&quot;Hello All&quot;, SampleLibClass.sayHelloTo(&quot;Computer&quot;), &quot;Regular say hello won't work&quot;);
+        }
+
+
+        [TestMethod()]
+        public void testSumCorrect()
+        {
+            Assert.AreEqual(9, SampleLibClass.sum(4, 5), &quot;Regular sum should work&quot;);
+        }
+
+        [TestMethod()]
+        public void testSumWrong()
+        {
+            Assert.AreEqual(10, SampleLibClass.sum(4, 5), &quot;Regular sum shouldn't work&quot;);
+        }
+
+        [TestMethod()]
+        public void testMultiply()
+        {
+            SampleLibClass sampleLib = new SampleLibClass();
+
+            Assert.AreEqual(20, sampleLib.multiply(4, 5), &quot;Regular multiplication should work&quot;);
+        }
+
+
+    }
+}
+</code></pre>
+<hr />
+<p>Run tests</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-01-43-14-image.png" /></p>
+<hr />
+<p>you will code coverage and entered or passed branches</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-01-43-45-image.png" /></p>
+<hr />
+<h4 id="visual-studio-community-edition-nunitnetcore">Visual Studio Community Edition (NUnit+.NETCore)</h4>
+<p>use cshar-sample-lib for this example</p>
+<p>create and add a unit test project to solution</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-18-01-34-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-18-02-18-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-18-02-35-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-18-03-05-image.png" /></p>
+<hr />
+<p>Add project reference</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-18-03-40-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-18-03-56-image.png" /></p>
+<hr />
+<p>SampleLibraryTestClasss in NUnit Project</p>
+<pre><code class="language-csharp">using csharp_sample_lib;
+using NUnit.Framework;
+
+namespace csharp_sample_lib_test
+{
+    public class SampleLibraryTestClass
+    {
+        sampleLibClass sampleLib;
+
+        [SetUp]
+        public void Setup()
+        {
+            sampleLib = new sampleLibClass();
+        }
+
+        [Test]
+        public void testSayHelloTo()
+        {
+            Assert.AreEqual(&quot;Hello Computer&quot;, sampleLibClass.sayHelloTo(&quot;Computer&quot;), &quot;Regular say hello should work&quot;);
+        }
+
+        [Test]
+        public void testSayHelloToWrong()
+        {
+            Assert.AreEqual(&quot;Hello All&quot;, sampleLibClass.sayHelloTo(&quot;Computer&quot;), &quot;Regular say hello won't work&quot;);
+        }
+
+
+        [Test]
+        public void testSumCorrect()
+        {
+            Assert.AreEqual(9, sampleLibClass.sum(4, 5), &quot;Regular sum should work&quot;);
+        }
+
+        [Test]
+        public void testSumWrong()
+        {
+            Assert.AreEqual(10, sampleLibClass.sum(4, 5), &quot;Regular sum shouldn't work&quot;);
+        }
+
+        [Test]
+        public void testMultiply()
+        {
+            Assert.AreEqual(20, sampleLib.multiply(4, 5), &quot;Regular multiplication should work&quot;);
+        }
+    }
+}
+</code></pre>
+<hr />
+<p>sample class library </p>
+<pre><code class="language-csharp">using System;
+
+namespace csharp_sample_lib
+{
+    public class sampleLibClass
+    {
+        public static string sayHelloTo(string name)
+        {
+            string result = String.Empty;
+
+            if (!String.IsNullOrEmpty(name))
+            {
+                result = &quot;Hello &quot; + name;
+            }
+            else
+            {
+                result = &quot;Hello There&quot;;
+            }
+
+            Console.WriteLine(result);
+
+            return result;
+        }
+
+        public static int sum(int a, int b)
+        {
+            int c = 0;
+            c = a + b;
+            return c;
+        }
+
+        public int multiply(int a, int b)
+        {
+            return a * b;
+        }
+    }
+}
+</code></pre>
+<hr />
+<p>Open test explorer and run tests </p>
+<p><img alt="height:500px" src="../assets/2021-10-24-18-17-57-image.png" /></p>
+<hr />
+<p>or you can run from project</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-18-21-31-image.png" /></p>
+<hr />
+<p>Also we can create unit test from library class,</p>
+<p>right click the sampleLibClass and select create unit tests but this option do not provide nunit tests.</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-22-33-23-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-22-34-08-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-22-34-22-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-22-36-28-image.png" /></p>
+<hr />
+<pre><code class="language-csharp">using Microsoft.VisualStudio.TestTools.UnitTesting;
+using csharp_sample_lib;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace csharp_sample_lib.Tests
+{
+    [TestClass()]
+    public class sampleLibClassTests
+    {
+        [TestMethod()]
+        public void sayHelloToTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void sumTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void multiplyTest()
+        {
+            Assert.Fail();
+        }
+    }
+}
+</code></pre>
+<hr />
+<p>we will not commit this changes and continue from nunit test project, the fine code </p>
+<p>coverage also work for nunit test but not provide inline highlighting</p>
+<p>if we run tests we will have the following outputs</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-01-51-11-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-25-01-51-28-image.png" /></p>
+<p>Inline code highlight is part of enterprise visual studio edition</p>
+<p><a href="https://dev.to/rruizdev/analizando-cobertura-del-codigo-en-visual-studio-1p27">Analyzing code coverage in Visual Studio - DEV Community</a></p>
+<hr />
+<h1 id="tldr">TL;DR</h1>
+<p>Additional information you can use OpenCover + Nunit Runner + Report Generator together to setup a code coverage report but it has complex batch running process. After a few try I decided to use fine code coverage but here is the usage not tested well.</p>
+<p>First unit test runner tool doesn't support .Net Core</p>
+<p><a href="https://stackoverflow.com/questions/64611083/the-nunit-3-driver-encountered-an-error-while-executing-reflected-code-nunit-en">c# - The NUnit 3 driver encountered an error while executing reflected code (NUnit.Engine.NUnitEngineException) - Stack Overflow</a></p>
+<p>Follow the instructions on the link</p>
+<p><a href="https://github.com/sukhoi1/Useful-Notes/wiki/CMD-OpenCover">CMD OpenCover · sukhoi1/Useful-Notes Wiki · GitHub</a></p>
+<p>Install OpenCover, ReportGenerator, Nunit,Runners packages then use the package installation folder to get tools that you need</p>
+<hr />
+<p>Here is a sample for open cover, select package and copy path</p>
+<p><img alt="height:500px" src="../assets/2021-10-25-00-51-33-image.png" /></p>
+<hr />
+<p>Goto path and tools</p>
+<pre><code class="language-batch">C:\Users\ugur.coruh\.nuget\packages\opencover\4.7.1221
+</code></pre>
+<p>You need to setup some batch similar with following</p>
+<p>run-test-coverage.bat</p>
+<pre><code class="language-batch">set pathA=C:\Users\ugur.coruh\.nuget\packages\opencover\4.7.1221\tools
+set pathB=C:\Users\ugur.coruh\.nuget\packages\nunit.consolerunner\3.12.0\tools
+set pathC=C:\Users\ugur.coruh\.nuget\packages\reportgenerator\4.8.13\tools\netcoreapp3.0
+set dllpath=C:\Users\ugur.coruh\Desktop\csharp-sample-lib\csharp-sample-lib-test\bin\Debug\netcoreapp3.1
+
+&quot;%pathA%\OpenCover.Console.exe&quot; ^
+-targetargs:&quot;%dllpath%\csharp-sample-lib-test.dll&quot; ^
+-filter:&quot;+[csharp-sample-lib*]* -[*test]*&quot; ^
+-target:&quot;%pathB%\nunit3-console.exe&quot; ^
+-output:&quot;%dllpath%\coverReport.xml&quot; ^
+-skipautoprops -register:user &amp;&amp; &quot;%pathC%\ReportGenerator.exe&quot; -reports:&quot;%dllpath%\coverReport.xml&quot; -targetdir:&quot;&quot;%dllpath%\coverage&quot;
+pause
+</code></pre>
+<hr />
+<p>but nunit3-console.exe gives error </p>
+<p><img alt="height:300px" src="../assets/2021-10-25-02-07-41-image.png" /></p>
+<p><img alt="height:200px" src="../assets/2021-10-25-02-08-00-image.png" /></p>
+<hr />
+<p>for this compatibility issues I prefer to use fine code coverage extension. </p>
+<p>OpenCover related studies</p>
+<p><a href="https://automationrhapsody.com/code-coverage-manual-automated-tests-opencover-net-applications/">Code coverage of manual or automated tests with OpenCover for .NET applications – Automation Rhapsody</a></p>
+<p><a href="https://automationrhapsody.com/code-coverage-net-core-unit-tests-opencover/">Code coverage of .NET Core unit tests with OpenCover – Automation Rhapsody</a></p>
+<p>Sample OpenCover report</p>
+<p><a href="https://automationrhapsody.com/examples/OpenCover-report/">Summary - Coverage Report</a></p>
+<hr />
+<h3 id="download-and-setup-opencover-nunit-console-report-generator-without-package-manager">Download and Setup OpenCover, NUnit Console, Report Generator without Package Manager</h3>
+<p>You can also download the tools from github project pages and install on your operating system, </p>
+<hr />
+<h3 id="opencover">OpenCover</h3>
+<p><a href="https://github.com/OpenCover/opencover/releases">Releases · OpenCover/opencover · GitHub</a></p>
+<p><img alt="height:500px" src="../assets/2021-10-24-23-02-03-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-23-01-45-image.png" /></p>
+<hr />
+<p>Select advanced and then install for all users</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-23-02-41-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-23-02-57-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-23-03-14-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-23-03-28-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-23-03-57-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-23-10-16-image.png" /></p>
+<hr />
+<p><img alt="height:400px" src="../assets/2021-10-24-23-10-45-image.png" /></p>
+<p><img alt="height:200px" src="../assets/2021-10-24-23-11-29-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-23-10-27-image.png" /></p>
+<hr />
+<h3 id="reportgenerator">ReportGenerator</h3>
+<p><a href="https://github.com/danielpalme/ReportGenerator/releases/tag/v4.8.13">Release ReportGenerator_4.8.13 · danielpalme/ReportGenerator · GitHub</a></p>
+<p><img alt="height:500px" src="../assets/2021-10-24-23-14-40-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-23-16-59-image.png" /></p>
+<hr />
+<h3 id="nunit-console">NUnit Console</h3>
+<p><a href="https://nunit.org/download/">Downloads</a></p>
+<p><img alt="height:500px" src="../assets/2021-10-24-23-28-35-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-23-29-10-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-23-30-01-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-23-30-13-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-23-30-55-image.png" /></p>
+<hr />
+<h3 id="nunit-mstest-batch-report-generation-not-tested">NUnit + MSTest Batch Report Generation (Not Tested)</h3>
+<p><a href="http://codehelper.net/unit-testing/opencover-and-reportgenerator-unit-test-coverage-in-visual-studio-2013-and-2015/">OpenCover and ReportGenerator Unit Test Coverage in Visual Studio 2013 and 2015 &#8211; CodeHelper.Net</a></p>
+<p><a href="https://www.codeproject.com/Articles/1276980/OpenCover-and-ReportGenerator-Unit-Test-Coverage-i">OpenCover and ReportGenerator Unit Test Coverage in Visual Studio 2013 and 2015 - CodeProject</a></p>
+<hr />
+<h3 id="java-unit-tests">Java Unit Tests</h3>
+<hr />
+<h4 id="eclipse-ide-junit4-junit5">Eclipse IDE (JUnit4 , JUnit5)</h4>
+<p>In this sample we will create two example for similar library</p>
+<p>Please check the following links </p>
+<p><a href="https://www.vogella.com/tutorials/JUnit/article.html">JUnit 5 tutorial - Learn how to write unit tests</a></p>
+<p><a href="https://junit.org/junit5/">JUnit 5</a></p>
+<p><a href="https://junit.org/junit5/docs/current/user-guide/">JUnit 5 User Guide</a></p>
+<p>https://www.eclemma.org/</p>
+<p><a href="https://examples.javacodegeeks.com/core-java/junit/junit-hello-world-example/">JUnit Hello World Example - Examples Java Code Geeks - 2021</a></p>
+<p>https://yasinmemic.medium.com/java-ile-unit-test-yazmak-birim-test-ca15cf0d024b</p>
+<hr />
+<h4 id="java-application-junit">Java Application + JUnit</h4>
+<p>In normal java application we can right click the project java-sample-lib and add Junit case </p>
+<p><img alt="height:500px" src="../assets/2021-10-24-16-05-50-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-16-06-51-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-16-06-36-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-16-07-08-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-16-07-29-image.png" /></p>
+<hr />
+<p>and you will have the following test class</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-16-07-53-image.png" /></p>
+<hr />
+<p>Now we will create tests that check our function flowchart and return values</p>
+<p>We need to cover all code branches that we coded</p>
+<p>I have updated JavaSampleLib.java as follow to check outputs</p>
+<p>JavaSampleLib.java</p>
+<pre><code class="language-java">package ce103;
+
+public class JavaSampleLib {
+
+    public static String sayHelloTo(String name) {
+
+        String output = &quot;&quot;;
+
+        if(!name.isBlank() &amp;&amp; !name.isEmpty()){
+            output = &quot;Hello &quot;+name;
+        }else {
+            output = &quot;Hello There&quot;;
+        }
+
+        System.out.println(output);
+
+        return output;
+    }
+
+    public static int sum(int a,int b)
+    {
+        int c = 0;
+        c = a+b;
+        return c;
+    }
+
+    public int multiply(int a, int b) {
+        return a * b;
+    }
+
+//    public static void main(String[] args) {
+//        // TODO Auto-generated method stub
+//        System.out.println(&quot;Hello World!&quot;);
+//
+//        JavaSampleLib.sayHelloTo(&quot;Computer&quot;);
+//        int result = JavaSampleLib.sum(5, 4);
+//        System.out.println(&quot;Results is&quot; + result);
+//        System.out.printf(&quot;Results is %d \n&quot;, result);
+//        
+//        
+//        try {
+//            System.in.read();
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//
+//    }
+
+}
+</code></pre>
+<hr />
+<p>and JavaSampleLibTest.java</p>
+<pre><code class="language-java">package ce103;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+class JavaSampleLibTest {
+
+    JavaSampleLib sampleLib;
+
+    @BeforeAll
+    static void setUpBeforeClass() throws Exception {
+    }
+
+    @AfterAll
+    static void tearDownAfterClass() throws Exception {
+    }
+
+    @BeforeEach
+    void setUp() throws Exception {
+        sampleLib = new JavaSampleLib();
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+    }
+
+    @Test
+    @DisplayName(&quot;Simple Say Hello should work&quot;)
+    void testSayHelloTo() {
+        assertEquals(&quot;Hello Computer&quot;, JavaSampleLib.sayHelloTo(&quot;Computer&quot;), &quot;Regular say hello should work&quot;);
+    }
+
+    @Test
+    @DisplayName(&quot;Simple Say Hello shouldn' work&quot;)
+    void testSayHelloToWrong() {
+        assertEquals(&quot;Hello All&quot;, JavaSampleLib.sayHelloTo(&quot;Computer&quot;), &quot;Regular say hello won't work&quot;);
+    }
+
+
+    @Test
+    @DisplayName(&quot;Simple sum should work&quot;)
+    void testSumCorrect() {
+        assertEquals(9, JavaSampleLib.sum(4, 5), &quot;Regular sum should work&quot;);
+    }
+
+    @Test
+    @DisplayName(&quot;Simple sum shouldn't work&quot;)
+    void testSumWrong() {
+        assertEquals(10, JavaSampleLib.sum(4, 5), &quot;Regular sum shouldn't work&quot;);
+    }
+
+    @Test
+    @DisplayName(&quot;Simple multiplication should work&quot;)
+    void testMultiply() {
+        assertEquals(20, sampleLib.multiply(4, 5), &quot;Regular multiplication should work&quot;);
+    }
+
+    @RepeatedTest(5)
+    @DisplayName(&quot;Ensure correct handling of zero&quot;)
+    void testMultiplyWithZero() {
+        assertEquals(0, sampleLib.multiply(0, 5), &quot;Multiple with zero should be zero&quot;);
+        assertEquals(0, sampleLib.multiply(5, 0), &quot;Multiple with zero should be zero&quot;);
+    }
+
+    public static int[][] data() {
+        return new int[][] { { 1, 2, 2 }, { 5, 3, 15 }, { 121, 4, 484 },{ 2, 2, 2 } };
+    }
+
+    @ParameterizedTest
+    @MethodSource(value = &quot;data&quot;)
+    void testWithStringParameter(int[] data) {
+        JavaSampleLib tester = new JavaSampleLib();
+        int m1 = data[0];
+        int m2 = data[1];
+        int expected = data[2];
+        assertEquals(expected, tester.multiply(m1, m2));
+    }
+
+}
+</code></pre>
+<hr />
+<p>if we run tests</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-17-02-49-image.png" /></p>
+<hr />
+<p>we will see all results there</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-17-03-17-image.png" /></p>
+<hr />
+<p>also we can see the code coverage of tests</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-17-07-16-image.png" /></p>
+<hr />
+<p>when we open our source code (just close and open again another case highlighting will not work) you will see tested part of your codes</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-17-09-56-image.png" /></p>
+<hr />
+<h4 id="maven-java-application-junit">Maven Java Application + JUnit</h4>
+<p>Lets create Maven project with tests</p>
+<p>Create a maven project</p>
+<p><em>File -&gt; New -&gt; Maven Project</em></p>
+<p><img alt="height:500px" src="../assets/2021-10-24-15-09-33-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-15-10-27-image.png" /></p>
+<hr />
+<p>Lets convert our sample java-sample-lib directories to standard folder structure for test and app division</p>
+<p><a href="http://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html">Maven &#x2013; Introduction to the Standard Directory Layout</a></p>
+<p>Also for intro you can use this</p>
+<p><a href="https://examples.javacodegeeks.com/core-java/junit/junit-hello-world-example/">JUnit Hello World Example - Examples Java Code Geeks - 2021</a></p>
+<p>Eclipse<br />
+Maven<br />
+Java<br />
+JUnit 4.12 (pulled by Maven automatically)</p>
+<hr />
+<p>Lets give new sample java-sample-lib-mvnbut in this time we will create a maven project</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-17-22-19-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-17-22-44-image.png" /></p>
+<hr />
+<p>pom.xml file</p>
+<pre><code class="language-xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;com.ce103&lt;/groupId&gt;
+  &lt;artifactId&gt;java-sample-lib-ext&lt;/artifactId&gt;
+  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+  &lt;name&gt;Java Sample Lib&lt;/name&gt;
+  &lt;description&gt;Java Sample with Unit Test&lt;/description&gt;
+&lt;/project&gt;
+</code></pre>
+<hr />
+<p>we will add JUnit 5 for our project </p>
+<pre><code class="language-xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;com.ce103&lt;/groupId&gt;
+    &lt;artifactId&gt;java-sample-lib-ext&lt;/artifactId&gt;
+    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+    &lt;name&gt;Java Sample Lib&lt;/name&gt;
+    &lt;description&gt;Java Sample with Unit Test&lt;/description&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+            &lt;artifactId&gt;junit-jupiter-params&lt;/artifactId&gt;
+            &lt;version&gt;5.7.1&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+&lt;/project&gt;
+</code></pre>
+<hr />
+<p>it will automatically download libraries </p>
+<p><img alt="height:500px" src="../assets/2021-10-24-17-25-05-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-17-26-28-image.png" /></p>
+<hr />
+<p>Create java sample library in ce103 package, first create java package</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-17-26-48-image.png" /></p>
+<hr />
+<p>In this package create library class</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-17-27-47-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-17-27-28-image.png" /></p>
+<hr />
+<p>copy content from other library</p>
+<pre><code class="language-java">package ce103;
+
+public class JavaSampleLib {
+
+public static String sayHelloTo(String name) {
+
+        String output = &quot;&quot;;
+
+        if(!name.isBlank() &amp;&amp; !name.isEmpty()){
+            output = &quot;Hello &quot;+name;
+        }else {
+            output = &quot;Hello There&quot;;
+        }
+
+        System.out.println(output);
+
+        return output;
+    }
+
+    public static int sum(int a,int b)
+    {
+        int c = 0;
+        c = a+b;
+        return c;
+    }
+
+    public int multiply(int a, int b) {
+        return a * b;
+    }
+
+
+}
+</code></pre>
+<hr />
+<p>Now lets create tests inf src/test/java</p>
+<p><img alt="height:500px" src="../assets/2021-10-24-17-28-57-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-17-29-43-image.png" /></p>
+<hr />
+<p>create a JUnit Case </p>
+<p><img alt="height:500px" src="../assets/2021-10-24-17-30-11-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-17-31-09-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-17-31-39-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-17-31-53-image.png" /></p>
+<hr />
+<p>you will simple template</p>
+<pre><code class="language-java">package ce103;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class JavaSampleLibTest {
+
+    @BeforeAll
+    static void setUpBeforeClass() throws Exception {
+    }
+
+    @AfterAll
+    static void tearDownAfterClass() throws Exception {
+    }
+
+    @BeforeEach
+    void setUp() throws Exception {
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+    }
+
+    @Test
+    void testSayHelloTo() {
+        fail(&quot;Not yet implemented&quot;);
+    }
+
+    @Test
+    void testSum() {
+        fail(&quot;Not yet implemented&quot;);
+    }
+
+    @Test
+    void testMultiply() {
+        fail(&quot;Not yet implemented&quot;);
+    }
+
+}
+</code></pre>
+<hr />
+<p>now lets copy tests from other projects</p>
+<pre><code class="language-java">
+</code></pre>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-17-38-13-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-17-38-27-image.png" /></p>
+<hr />
+<p><img alt="height:500px" src="../assets/2021-10-24-17-39-56-image.png" /></p>
+<hr />
+<p>That's a part of java unit testing...</p>
+<hr />
+<h2 id="tdd-test-driven-development">TDD (Test Driven Development)</h2>
+<hr />
+<h2 id="test-and-deployment-automation-management">Test and Deployment Automation Management</h2>
+<hr />
+<h4 id="travis-ci-c">Travis-CI + C</h4>
+<hr />
+<h4 id="travis-ci-cpp">Travis-CI + Cpp</h4>
+<hr />
+<h4 id="travis-ci-c_1">Travis-CI + C</h4>
+<hr />
+<h4 id="travis-ci-java">Travis-CI + Java</h4>
+<hr />
+<h1 id="references">References</h1>
+<p><a href="https://github.com/MicrosoftDocs/cpp-docs">GitHub - MicrosoftDocs/cpp-docs: C++ Documentation</a></p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../Week-3-Git/ce103-week-3-git/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Ce103 week 3 git" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Ce103 week 3 git
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../Week-5-C/ce103-week-5-c/" class="md-footer__link md-footer__link--next" aria-label="Next: Ce103 week 5 c" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Ce103 week 5 c
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

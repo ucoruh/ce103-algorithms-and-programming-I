@@ -19,6 +19,8 @@ footer: '![height:50px](http://erdogan.edu.tr/Images/Uploads/MyContents/L_379-20
 
 # Week-12
 
+[PPTX](ce103-week-12-c-cpp-gui_slide.pptx), [DOC](ce103-week-12-c-cpp-gui_doc.pdf), [HTML](ce103-week-12-c-cpp-gui.md_slide.html) , [PDF](ce103-week-12-c-cpp-gui.md_slide.pdf)
+
 ---
 
 <!-- paginate: true -->
@@ -35,25 +37,15 @@ The Microsoft Foundation Class
 
 [The Windows GUI interface programming using Microsoft Foundation Classes (MFC) with Visual C++ and .Net hands-on approach tutorials](https://www.tenouk.com/cplusplusnmfc.html)
 
-
-
 [Module 1: Using Visual C++ 6.0, .Net and Windows MFC Graphic User Interface (GUI) programming hands-on tutorial-Module1](https://www.tenouk.com/visualcplusmfc/visualcplusmfc1.html)
 
 ![The Visual C++ application build process](https://www.tenouk.com/visualcplusmfc/visualcplusmfc1_files/image002.png)
 
-
-
 ![Visual C++ 6.0 windows with main components displayed](https://www.tenouk.com/visualcplusmfc/visualcplusmfc1_files/image003.png)
-
-
 
 ![Visual C++ ResourceView](https://www.tenouk.com/visualcplusmfc/visualcplusmfc1_files/image004.png)
 
-
-
 GTK 4 
-
-
 
 https://www.msys2.org/
 
@@ -92,8 +84,6 @@ int main (int argc, char *argv[]) {
   return g_application_run (G_APPLICATION (app), argc, argv);
 }
 ```
-
-
 
 ---
 

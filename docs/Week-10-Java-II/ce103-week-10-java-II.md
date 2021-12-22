@@ -125,11 +125,7 @@ e. Java Set
 
 Java ListIterator
 
-
-
 ## Out of Scope
-
-
 
 a. Java OOP-I
 

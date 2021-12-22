@@ -1,0 +1,20 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+{% extends "base.html" %}
+{% block extrahead %}
+  <link rel="stylesheet" href="{{ 'overrides/assets/stylesheets/main.d8956580.min.css' | url }}">
+{% endblock %}
+{% block announce %}
+  <a href="https://www.linkedin.com/in/ugurcoruh/">
+    For more information contact with me <strong>@ugurcoruh</strong> on
+    <span class="twemoji">
+      {% include ".icons/fontawesome/brands/linkedin.svg" %}
+    </span>
+    <strong>Linkedin</strong>
+  </a>
+{% endblock %}
+{% block scripts %}
+  {{ super() }}
+  <script src="{{ 'overrides/assets/javascripts/bundle.7af4aac1.min.js' | url }}"></script>
+{% endblock %}

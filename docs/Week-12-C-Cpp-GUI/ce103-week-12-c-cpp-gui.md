@@ -19,10 +19,17 @@ footer: '![height:50px](http://erdogan.edu.tr/Images/Uploads/MyContents/L_379-20
 
 # Week-12
 
-[PPTX](ce103-week-12-c-cpp-gui_slide.pptx), [DOC](ce103-week-12-c-cpp-gui_doc.pdf), [HTML](ce103-week-12-c-cpp-gui.md_slide.html) , [PDF](ce103-week-12-c-cpp-gui.md_slide.pdf)
+[PPTX](ce103-week-12-c-cpp-gui.md_slide.pptx)
+[DOC](ce103-week-12-c-cpp-gui.md_doc.pdf) 
+[HTML](ce103-week-12-c-cpp-gui.md_slide.html)
+[PDF](ce103-week-12-c-cpp-gui.md_slide.pdf)
 
+# Presentation
 ---
 
+<iframe width=700, height=500 frameBorder=0 src="../ce103-week-12-c-cpp-gui.md_slide.html"></iframe>
+
+---
 <!-- paginate: true -->
 
 # C/Cpp GUI Programming

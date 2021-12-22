@@ -1,30 +1,105 @@
+# Project information
 site_name: "ce103 algorithms and programming I"
+site_author: 'Asst. Prof. Dr. Uğur CORUH'
+site_url: 'https://ucoruh.github.io/ce103-algorithms-and-programming-I/'
+site_description: >-
+    Recep Tayyip Erdoğan University, Faculty of Enginnering and Architecture, Computer Enginnering Department
+    CE103 Algorithms and Programming I Course Notes
+
+# Repository
+repo_name: 'GitHub'
+repo_url: 'https://github.com/ucoruh/ce103-algorithms-and-programming-I'
+edit_uri: ""
+
+# Copyright
+copyright: Copyleft &copy; 2019 - 2021 Uğur CORUH
+
+#theme:
+#    name: material
+#   logo: assets/images/favicon.png
+#   favicon: images/favicon.png
+#   palette:
+#       primary: teal
+#       accent: pink
+#   language: en
+#   feature:
+#       tabs: true
+#   font:
+#       text: Roboto
+        
+# Configuration
 theme:
-    name: material
-    logo: assets/images/favicon.png
-    favicon: images/favicon.png
-    palette:
-        primary: teal
-        accent: pink
-    language: en
-    feature:
-        tabs: true
-    font:
-        text: Roboto
-
-markdown_extensions:
-  - pymdownx.arithmatex:
-      generic: true
-
-extra_javascript:
-  - javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  name: material
+  custom_dir: docs/overrides/
+  #name: null
+  #custom_dir: !ENV [THEME_DIR, "material"]
   
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+  
+  # Static files
+  static_templates:
+    - 404.html
+    
+  # Default values, taken from mkdocs_theme.yml
+  language: en
+  features:
+    - content.code.annotate
+    # - content.tabs.link
+    # - header.autohide
+    # - navigation.expand
+    - navigation.indexes
+    # - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    # - toc.integrate
+    
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+  
+#  palette:
+#   - media: "(prefers-color-scheme: light)"
+#     scheme: default
+#     toggle:
+#       icon: material/toggle-switch-off-outline
+#       name: Switch to dark mode
+#   - media: "(prefers-color-scheme: dark)"
+#     scheme: slate
+#     toggle:
+#       icon: material/toggle-switch
+#       name: Switch to light mode
+
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: images/favicon.png
+  icon:
+    logo: logo
+    #logo: assets/images/favicon.png
+    
+# Customization
 extra:
   analytics:
     provider: google
-    property: G-DGZ815VN23
+    property: !ENV GOOGLE_ANALYTICS_KEY
     feedback:
       title: Was this page helpful?
       ratings:
@@ -48,4 +123,114 @@ extra:
       make our documentation better.
     cookies:
       analytics: Google Analytics
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ucoruh
+    - icon: fontawesome/brands/bitbucket
+      link: https://bitbucket.org/ucoruh/
+    - icon: fontawesome/regular/compass
+      link: https://www.scopus.com/authid/detail.uri?authorId=57218950743
+    - icon: fontawesome/regular/id-card
+      link: https://dblp.org/pid/230/0394.html
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/u/ucoruh/
+    - icon: fontawesome/brands/orcid
+      link: https://orcid.org/my-orcid?orcid=0000-0003-4193-8401
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/ugurcoruh/
+    - icon: fontawesome/regular/moon
+      link: https://publons.com/researcher/1540204/ugur-coruh/
+    - icon: fontawesome/brands/google
+      link: https://scholar.google.com/citations?user=KIU4ltMAAAAJ&hl=tr
+    - icon: fontawesome/regular/clipboard
+      link: https://avesis.erdogan.edu.tr/ugur.coruh
+    - icon: fontawesome/regular/user-circle
+      link: https://www.ugurcoruh.com/
+      
+# Extensions
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+plugins:
+  - search
+  - git-revision-date-localized
+  - minify:
+      minify_html: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# markdown_extensions:
+# - pymdownx.arithmatex:
+#     generic: true
+
+#   extra_javascript:
+# - javascripts/mathjax.js
+# - https://polyfill.io/v3/polyfill.min.js?features=es6
+# - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  
+# Page tree
+nav:
+  - Home: index.md
+  - Syllabus: Syllabus/Syllabus.md
+  - Course Modules:
+    - Week-1 (Intro and Developer Roadmap): Week-1-Intro/ce103-week-1-intro.md
+    - Week-2 (Development Environments): Week-2-Setup/ce103-week-2-setup.md
+    - Week-3 (Git Version Management): Week-3-Git/ce103-week-3-git.md
+    - Week-4 (Unit Testing and Libraries): Week-4-Test/ce103-week-4-test.md
+    - Week-5 (C Console Programming): Week-5-C/ce103-week-5-c.md
+    - Week-6 (C++ Console Programming): Week-6-Cpp/ce103-week-6-cpp.md
+    - Week-7 (C# Console Programming): Week-7-Csharp/ce103-week-7-csharp.md
+    - Week-8 (Midterm): Week-8-Midterm/ce103-week-8-midterm.md
+    - Week-9 (Java Console Programming-I): Week-9-Java-I/ce103-week-9-java-I.md
+    - Week-10 (Java Console Programming-II): Week-10-Java-II/ce103-week-10-java-II.md      
+    - Week-11 (Java Console Programming-III): Week-11-Java-III/ce103-week-11-java-III.md 
+    - Week-12 (C/C++ GUI Programming): Week-12-C-Cpp-GUI/ce103-week-12-c-cpp-gui.md
+    - Week-13 (C# GUI Programming-I): Week-13-Csharp-GUI-I/ce103-week-13-csharp-gui-I.md
+    - Week-14 (C# GUI Programming-II): Week-14-Csharp-GUI-II/ce103-week-14-csharp-gui-II.md
+    - Week-15 (Java GUI Programming-II): Week-15-Java-GUI/ce103-week-15-java-gui.md
+    - Week-16 (Final): Week-16-Final/ce103-week-16-final.md
+  - License: license.md
+  - Changelog: changelog/index.md
+
+
 

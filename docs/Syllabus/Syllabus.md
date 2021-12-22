@@ -146,6 +146,5 @@ res.end('Hello, World!');
 var server = http.createServer(requestListener);
 server.listen(3000, function() { console.log("Listening on port 3000")});
 </div>
-</div>
 
 

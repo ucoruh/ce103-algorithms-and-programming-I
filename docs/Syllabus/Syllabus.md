@@ -12,6 +12,10 @@
 
 #### Fall Semester, 2021-2022
 
+
+
+![sample-figure.png](assets/sample-figure.png)
+
 | Instructor                                          | Asst. Prof. Dr. Uğur CORUH                                                                                                                                                                                                                       |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Contact Information**                             | ugur.coruh@erdogan.edu.tr                                                                                                                                                                                                                        |
@@ -129,22 +133,39 @@ $$
 \sum_{n=1}^{10} n^2
 $$
 
-
 <script src="//katacoda.com/embed.js"></script>
+
 <div id="my-element-1" 
-	style="display:inline; height:1000px"
+    style="display:inline; height:1000px"
     data-katacoda-env="node"
-    data-katacoda-layout="editor-terminal"
+    data-katacoda-layout="vscode-terminal-split"
     data-katacoda-port="3000"
-    data-katacoda-filename="app.js" style="border: 2px solid #ccc;" >
-var http = require('http');
-var requestListener = function (req, res) {
-res.writeHead(200);
-res.end('Hello, World!');
+    data-katacoda-filename="main.c" style="border: 2px solid #ccc;" >
+#include <stdio.h>
+int main() {
+  int n, i, flag = 0;
+  printf("Enter a positive integer: ");
+  scanf("%d", &n);
+
+  for (i = 2; i <= n / 2; ++i) {
+    // condition for non-prime
+    if (n % i == 0) {
+      flag = 1;
+      break;
+    }
+  }
+
+  if (n == 1) {
+    printf("1 is neither prime nor composite.");
+  } 
+  else {
+    if (flag == 0)
+      printf("%d is a prime number.", n);
+    else
+      printf("%d is not a prime number.", n);
+  }
+
+  return 0;
 }
 
-var server = http.createServer(requestListener);
-server.listen(3000, function() { console.log("Listening on port 3000")});
 </div>
-
-

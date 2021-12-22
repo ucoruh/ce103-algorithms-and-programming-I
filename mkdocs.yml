@@ -1,10 +1,9 @@
 # Project information
-site_name: "ce103 algorithms and programming I"
+site_name: "RTEU CE103 Algorithms and Programming-I Course Notes"
 site_author: 'Asst. Prof. Dr. Uğur CORUH'
 site_url: 'https://ucoruh.github.io/ce103-algorithms-and-programming-I/'
 site_description: >-
-    Recep Tayyip Erdoğan University, Faculty of Enginnering and Architecture, Computer Enginnering Department
-    CE103 Algorithms and Programming I Course Notes
+    Course Notes for Software Developers
 
 # Repository
 repo_name: 'GitHub'

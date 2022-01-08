@@ -98,7 +98,7 @@ theme:
 extra:
   analytics:
     provider: google
-    property: !ENV GOOGLE_ANALYTICS_KEY
+    property: !ENV GOOGLE_ANALYTICS_KEY_CE103
     feedback:
       title: Was this page helpful?
       ratings:

@@ -1,2 +1,0 @@
-javac LedClock.java
-pause

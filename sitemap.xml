@@ -2,137 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/license/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Homeworks/2021-2022-Fall/Midterm/HW-1/sample-git/</loc>
-         <lastmod>2021-12-22</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Homeworks/2021-2022-Fall/Midterm/HW-2/ce103-hw2-solution/</loc>
-         <lastmod>2021-12-22</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Homeworks/2021-2022-Fall/Midterm/HW-3/CE103-HW3-Template/</loc>
-         <lastmod>2021-12-22</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Syllabus/Syllabus/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Syllabus/syllabus/</loc>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-1-Intro/ce103-week-1-intro/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-10-Java-II/ce103-week-10-java-II/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-11-Java-III/ce103-week-11-java-III/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-12-C-Cpp-GUI/ce103-week-12-c-cpp-gui/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-13-Csharp-GUI-I/ce103-week-13-csharp-gui-I/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-14-Csharp-GUI-II/ce103-week-14-csharp-gui-II/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-15-Java-GUI/ce103-week-15-java-gui/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-16-Final/ce103-week-16-final/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-2-Setup/ce103-week-2-setup/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-2-Setup/sources/llvm-clang-hello-world-apps/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-2-Setup/sources/mingw-gcc-hello-world-apps/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-2-Setup/sources/npp-gcc-hello-world-apps/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-3-Git/ce103-week-3-git/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-4-Test/ce103-week-4-test/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-5-C/ce103-week-5-c/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-5-C/sources/console-snake-game/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-6-Cpp/ce103-week-6-cpp/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-7-Csharp/ce103-week-7-csharp/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-8-Midterm/ce103-week-8-midterm/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/Week-9-Java-I/ce103-week-9-java-I/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ucoruh.github.io/ce103-algorithms-and-programming-I/changelog/</loc>
-         <lastmod>2021-12-22</lastmod>
+         <lastmod>2022-01-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

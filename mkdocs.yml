@@ -210,7 +210,7 @@ extra_javascript:
 # Page tree
 nav:
   - Home: index.md
-  - Syllabus: Syllabus/Syllabus.md
+  - Syllabus: Syllabus/syllabus.md
   - Course Modules:
     - Week-1 (Intro and Developer Roadmap): Week-1-Intro/ce103-week-1-intro.md
     - Week-2 (Development Environments): Week-2-Setup/ce103-week-2-setup.md

@@ -289,6 +289,12 @@ https://www.submarinecablemap.com/
 
 ## Introduction to the command line interface
 
+Reference Books
+
+[Bash Notes For Professionals](files/BashNotesForProfessionals.pdf) 
+[Linux Notes For Professionals](files/LinuxNotesForProfessionals.pdf)
+[PowerShell Notes For Professionals](files/PowerShellNotesForProfessionals.pdf)
+
 ---
 
 ## What is the command line?
@@ -307,13 +313,93 @@ While there are many commands you can use with CLI, they all fall into <u>two ca
 
 ---
 
+## Why Would You Use CLI over GUI?
 
+---
+
+- Less Resource
+  It is not a secret that the text-based program needs very little resources of your computer. This means that with CLI you can do similar tasks with minimum resources.
+
+---
+
+- High Precision
+  You can use a specific command to target specific destinations with ease. As long as you don’t type the wrong command, it will work like a charm. Once you learn the basics, writing syntax is not as hard as you might think.
+
+---
+
+- Repetitive Tasks Friendly
+  GUI has developed well over the years. But, the operating system may not give you all the menus and buttons to perform all tasks. One of the reasons is safety. This leaves you overwhelmed if you have to do repetitive tasks. For example, when you have to handle hundreds of files within a folder, CLI enables you to use a single command to do automate the repetition easily.
+
+---
+
+- Powerful
+  Most operating systems today prevent you from messing up the system’s core process. Windows has system protection and MacOS has SIP (System Integrity Protection). You won’t be able to perform certain tasks which are system protected. However, with CLI, you will have full control over your system.
+
+---
+
+## Open the command-line interface (Windows)
+
+- Go to the Start menu or screen, and enter "Command Prompt" in the search field.
+
+- Go to Start menu → Windows System → Command Prompt.
+
+- Go to Start menu → All Programs → Accessories → Command Prompt.
+
+- Go to the Start screen, hover your mouse in the lower-left corner of the screen, and click the down arrow that appears (on a touch screen, instead flick up from the bottom of the screen). The Apps page should open. Click on Command Prompt in the Windows System section.
+
+- Hold the special Windows key on your keyboard and press the "X" key. Choose "Command Prompt" from the pop-up menu.
+
+- Hold the Windows key and press the "R" key to get a "Run" window. Type "cmd" in the box, and click the OK key.
+
+---
+
+![](assets/2022-01-11-17-39-01-image.png)
+
+---
+
+![](assets/2022-01-11-17-39-12-image.png)
+
+---
+
+![](assets/2022-01-11-17-39-22-image.png)
+
+---
+
+![](assets/2022-01-11-17-39-31-image.png)
+
+---
+
+![](assets/2022-01-11-17-39-40-image.png)
+
+---
+
+## Open the command-line interface (Linux)
+
+ It's probably under 
+
+- Applications → Accessories → Terminal,  
+  or 
+- Applications → System → Terminal, 
+  but that may depend on your system. 
+  If it's not there, you can try to Google it. :)
+
+---
+
+![](assets/2022-01-11-17-57-10-image.png)
+
+---
+
+## Open the command-line interface (MacOS)
+
+- Go to Applications → Utilities → Terminal
+
+![](assets/2022-01-11-17-58-47-image.png)
 
 ---
 
 ## Reference
 
-rNetwork_address_translation
+Network_address_translation
 
 [GitHub - kamranahmedse/developer-roadmap: Roadmap to becoming a web developer in 2021](https://github.com/kamranahmedse/developer-roadmap)
 

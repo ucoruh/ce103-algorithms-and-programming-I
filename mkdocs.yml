@@ -212,22 +212,22 @@ nav:
   - Home: index.md
   - Syllabus: Syllabus/syllabus.md
   - Course Modules:
-    - Week-1 (Intro and Developer Roadmap): Week-1-Intro/ce103-week-1-intro.md
-    - Week-2 (Development Environments): Week-2-Setup/ce103-week-2-setup.md
-    - Week-3 (Git Version Management): Week-3-Git/ce103-week-3-git.md
-    - Week-4 (Unit Testing and Libraries): Week-4-Test/ce103-week-4-test.md
-    - Week-5 (C Console Programming): Week-5-C/ce103-week-5-c.md
-    - Week-6 (C++ Console Programming): Week-6-Cpp/ce103-week-6-cpp.md
-    - Week-7 (C# Console Programming): Week-7-Csharp/ce103-week-7-csharp.md
-    - Week-8 (Midterm): Week-8-Midterm/ce103-week-8-midterm.md
-    - Week-9 (Java Console Programming-I): Week-9-Java-I/ce103-week-9-java-I.md
-    - Week-10 (Java Console Programming-II): Week-10-Java-II/ce103-week-10-java-II.md      
-    - Week-11 (Java Console Programming-III): Week-11-Java-III/ce103-week-11-java-III.md 
-    - Week-12 (C/C++ GUI Programming): Week-12-C-Cpp-GUI/ce103-week-12-c-cpp-gui.md
-    - Week-13 (C# GUI Programming-I): Week-13-Csharp-GUI-I/ce103-week-13-csharp-gui-I.md
-    - Week-14 (C# GUI Programming-II): Week-14-Csharp-GUI-II/ce103-week-14-csharp-gui-II.md
-    - Week-15 (Java GUI Programming-II): Week-15-Java-GUI/ce103-week-15-java-gui.md
-    - Week-16 (Final): Week-16-Final/ce103-week-16-final.md
+    - Week-1 (Intro and Developer Roadmap): week-1-intro/ce103-week-1-intro.md
+    - Week-2 (Development Environments): week-2-setup/ce103-week-2-setup.md
+    - Week-3 (Git Version Management): week-3-git/ce103-week-3-git.md
+    - Week-4 (Unit Testing and Libraries): week-4-test/ce103-week-4-test.md
+    - Week-5 (C Console Programming): week-5-c/ce103-week-5-c.md
+    - Week-6 (C++ Console Programming): week-6-cpp/ce103-week-6-cpp.md
+    - Week-7 (C# Console Programming): week-7-csharp/ce103-week-7-csharp.md
+    - Week-8 (Midterm): week-8-midterm/ce103-week-8-midterm.md
+    - Week-9 (Java Console Programming-I): week-9-java-I/ce103-week-9-java-I.md
+    - Week-10 (Java Console Programming-II): week-10-java-II/ce103-week-10-java-II.md      
+    - Week-11 (Java Console Programming-III): week-11-java-III/ce103-week-11-java-III.md 
+    - Week-12 (C/C++ GUI Programming): week-12-c-cpp-gui/ce103-week-12-c-cpp-gui.md
+    - Week-13 (C# GUI Programming-I): week-13-csharp-gui-I/ce103-week-13-csharp-gui-I.md
+    - Week-14 (C# GUI Programming-II): week-14-csharp-gui-II/ce103-week-14-csharp-gui-II.md
+    - Week-15 (Java GUI Programming-II): week-15-java-gui/ce103-week-15-java-gui.md
+    - Week-16 (Final): week-16-Final/ce103-week-16-final.md
   - License: license.md
   - Changelog: changelog/index.md
 

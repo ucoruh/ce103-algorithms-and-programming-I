@@ -76,7 +76,7 @@ dkms.conf
 # Executables
 
 ### Executable ###
-*.bat
+# *.bat
 *.cgi
 *.com
 *.gadget

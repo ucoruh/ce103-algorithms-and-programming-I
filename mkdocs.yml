@@ -210,7 +210,7 @@ extra_javascript:
 # Page tree
 nav:
   - Home: index.md
-  - Syllabus: Syllabus/syllabus.md
+  - Syllabus: syllabus/syllabus.md
   - Course Modules:
     - Week-1 (Intro and Developer Roadmap): week-1-intro/ce103-week-1-intro.md
     - Week-2 (Development Environments): week-2-setup/ce103-week-2-setup.md
@@ -227,7 +227,7 @@ nav:
     - Week-13 (C# GUI Programming-I): week-13-csharp-gui-I/ce103-week-13-csharp-gui-I.md
     - Week-14 (C# GUI Programming-II): week-14-csharp-gui-II/ce103-week-14-csharp-gui-II.md
     - Week-15 (Java GUI Programming-II): week-15-java-gui/ce103-week-15-java-gui.md
-    - Week-16 (Final): week-16-Final/ce103-week-16-final.md
+    - Week-16 (Final): week-16-final/ce103-week-16-final.md
   - License: license.md
   - Changelog: changelog/index.md
 

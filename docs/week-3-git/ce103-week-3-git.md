@@ -148,6 +148,7 @@ Big projects need a version control system to track the changes and avoid misund
 #### Why Do We Need Source Code Management Systems? (10)
 
 ## Types of Version Control Systems
+
 - Centralized Version Control (TFS, Subversion)
 - Distributed Version Control (Git and Mercurial)
 
@@ -269,7 +270,6 @@ The benefits of distributed version control are:
 
 ### GIT (Distributed Source Code Management) (1)
 
-
 ![alt:"alt" height:200px center](assets/2021-10-19-20-52-48-image.png)
 
 ---
@@ -364,7 +364,6 @@ The benefits of distributed version control are:
 
 ![alt:"alt" height:450px center](assets/2021-10-19-21-11-35-image.png)
 
-
 ---
 
 #### GIT (Distributed Source Code Management) (8)
@@ -421,7 +420,7 @@ In this link you will should download following setup according to your operatin
 
 ##### Installation of GIT (3)
 
-##### GIT Setup Files 
+##### GIT Setup Files
 
 - [Download](http://git-scm.com/download/mac) [git](http://git-scm.com/download/mac) [for](http://git-scm.com/download/mac) [OSX](http://git-scm.com/download/mac)
 
@@ -572,6 +571,7 @@ Mergetool command
 ```textile
 "C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe" -base:"$BASE" -mine:"$LOCAL" -theirs:"$REMOTE" -merged:"$MERGED"
 ```
+
 ---
 
 ##### Configuration of GIT Extension (Windows) (6)
@@ -593,6 +593,7 @@ Difftool command
 ```textile
 "C:/Program Files/KDiff3/kdiff3.exe" "$LOCAL" "$REMOTE"
 ```
+
 ---
 
 ##### Configuration of GIT Extension (Windows) (7)
@@ -707,6 +708,7 @@ https://github.com/sloria/gig
 ```batch
 pip install -U gig
 ```
+
 ---
 
 #### Installation of gig (git ignore creator) (2)
@@ -720,6 +722,7 @@ pip install -U gig
 ```batch
 gig --version
 ```
+
 ---
 
 ### Usage of gig (1)
@@ -730,6 +733,7 @@ List all gitignore templates
 gig list
 gig list -global
 ```
+
 ---
 
 #### Usage of gig (2)
@@ -739,6 +743,7 @@ Sample gitignore for C Java and Visual Studio
 ```bat
 gig C Java VisualStudio > .gitignore
 ```
+
 ---
 
 #### Usage of gig (3)
@@ -748,7 +753,6 @@ There is a portal for this also by Toptal
 •[gitignore.io - Create Useful .gitignore Files For Your Project](https://www.toptal.com/developers/gitignore)
 
 ![alt:"alt" height:350px center](assets/2021-10-20-00-11-16-image.png)
-
 
 ---
 
@@ -774,6 +778,7 @@ git config - - global user.name "<your name>"
 
 git config - - global user.email "<your email>"
 ```
+
 ---
 
 #### Configuration of GIT (2)
@@ -808,7 +813,6 @@ with gitignore file
 
 ![alt:"alt" height:450px center](assets/2021-10-20-00-51-16-image.png)
 
-
 ---
 
 ### Using .gitignore files with git-extension (2)
@@ -836,6 +840,7 @@ without gitignore file (just move to another location)
 ```batch
 git init
 ```
+
 ---
 
 #### git init
@@ -851,6 +856,7 @@ If you enter following command in the git folder you will see nothing
 ```batch
 git remote -v
 ```
+
 That mean this repository do not have a remote upstream repository such as a github or bitbucket repo. 
 
 ---
@@ -946,6 +952,7 @@ The git status command lists all the modified files which are ready to be added 
 ```batch
 git status
 ```
+
 ---
 
 ### Checking Repository Status (2)
@@ -968,7 +975,9 @@ git add <directory>
 git add <file>
 git add *
 ```
+
 ---
+
 ### Adding Files to Index (1)
 
 #### git add
@@ -997,7 +1006,6 @@ works with the diagram below
 
 ![alt:"alt" height:230px center](assets/2021-10-20-01-00-44-image.png)
 
-
 Here, C1 is the initial commit, i.e. the snapshot of the first change from which
 another snapshot is created with changes named C2. Note that the master points
 to the latest commit. Now, when I commit again, another snapshot C3 is created and now the master points to C3 instead of C2.
@@ -1015,7 +1023,6 @@ git commit -m "<message>"
 ```
 
 ![alt:"alt" height:300px center](assets/2021-10-20-01-01-42-image.png)
-
 
 Now, if you want to commit a snapshot of all the changes in the working directory at
 once, you can use the command below
@@ -1041,6 +1048,7 @@ body (optional)
 
 footer (optional)
 ```
+
 ---
 
 #### Writing Good Commit Messages (2)
@@ -1124,6 +1132,7 @@ See also: #456, #789
 ```batch
 git commit -a
 ```
+
 ---
 
 ![alt:"alt" height:450px center](assets/2021-10-20-01-02-26-image.png)
@@ -1169,7 +1178,6 @@ your local repository consists of three "trees" maintained by git. the first one
 ### Add Files to Index (6)
 
 ![alt:"alt" height:450px center](assets/2021-10-20-01-32-48-image.png)
-
 
 ---
 
@@ -1347,6 +1355,7 @@ you can then push them to the central repository by using the following command
 ```batch
 git push <remote> 
 ```
+
 ---
 
 ### Send Changes to Remote Repo (5)
@@ -1410,7 +1419,7 @@ I will use the command `git push origin master` to reflect these files in the ma
 #### git push
 
 > To prevent overwriting, Git does not allow push when it results in a non-fast forward merge in the 
-destination repository.
+> destination repository.
 
 ---
 
@@ -1431,6 +1440,7 @@ forward merge
 ---
 
 ### Branching (1)
+
 #### git branch
 
 Branches in Git are nothing but pointers to a specific commit. Git generally prefers to keep its branches as lightweight as possible.
@@ -1438,6 +1448,7 @@ Branches in Git are nothing but pointers to a specific commit. Git generally pre
 ---
 
 ### Branching (2)
+
 #### git branch
 
 There are basically two types of branches viz. 
@@ -1449,6 +1460,7 @@ There are basically two types of branches viz.
 ---
 
 ### Branching (3)
+
 #### git branch
 
 A local branch is just another path of your working tree. On the other hand, remote tracking branches have special purposes. Some of them are:
@@ -1458,6 +1470,7 @@ They link your work from the local repository to the work on central repository.
 ---
 
 ### Branching (4)
+
 #### git branch
 
 They automatically detect which remote branches to get changes from, when you use git pull.
@@ -1467,6 +1480,7 @@ They automatically detect which remote branches to get changes from, when you us
 ---
 
 ### Branching (5)
+
 #### Learn current branch
 
 You can check what your current branch is by using the command
@@ -1480,6 +1494,7 @@ The one mantra that you should always be chanting while branching is “branch e
 ---
 
 ### Branching (6)
+
 #### List Local Branches
 
 ```batch
@@ -1489,6 +1504,7 @@ git branch -l
 ---
 
 ### Branching (7)
+
 ## List Remote Branches
 
 ```batch
@@ -1498,6 +1514,7 @@ git branch -r
 ---
 
 ### Branching (8)
+
 ## List All Local and Remote Branches
 
 ```batch
@@ -1517,9 +1534,11 @@ If you merged your branch to base branch in github and delete it on github your 
 ```batch
 git remote update --prune
 ```
+
 ---
 
 ### Branching (10)
+
 #### Create Branch
 
 To create a new branch we use the following command
@@ -1533,6 +1552,7 @@ The diagram below shows the workflow when a new branch is created. When we creat
 ---
 
 ### Branching (11)
+
 #### Create Branch
 
 ![alt:"alt" height:350px center](assets/2021-10-20-01-29-13-image.png)
@@ -1540,6 +1560,7 @@ The diagram below shows the workflow when a new branch is created. When we creat
 ---
 
 ### Branching (12)
+
 #### Create Branch
 
 Since there is no storage/memory overhead with making many branches, it is easier to
@@ -1554,6 +1575,7 @@ git checkout -b feature_x
 ---
 
 ### Branching (13)
+
 #### Change Branch
 
 ```batch
@@ -1565,16 +1587,17 @@ git checkout master
 ---
 
 ### Branching (14)
+
 #### Change Branch
 
 ![alt:"alt" height:350px center](assets/2021-10-20-01-30-08-image.png)
-
 
 > Branching includes the work of a particular commit along with all parent commits. As you can see in the diagram above, the newBranch has detached itself from the master and hence will create a different path
 
 ---
 
 ### Branching (15)
+
 #### Delete Local Branch
 
 and delete the branch again, before doing this switch to main or master branches.
@@ -1586,6 +1609,7 @@ git branch -d feature_x
 ---
 
 ### Branching (16)
+
 #### Delete Remote Branch
 
 and delete the branch again, before doing this switch to main or master branches.
@@ -1596,10 +1620,10 @@ git push origin --delete feature_x
 
 [How to delete remote branches in Git](https://www.educative.io/edpresso/how-to-delete-remote-branches-in-git)
 
-
 ---
 
 ### Branching (17)
+
 #### Push Specific Branch to Remote
 
 A branch is not available to others unless you push the branch to your remote
@@ -1612,6 +1636,7 @@ git push origin <branch>
 ---
 
 ### Branching (18)
+
 #### Update & Merge (Conflicts)
 
 to update your local repository to the newest commit, execute
@@ -1631,6 +1656,7 @@ git merge <branch>
 ---
 
 ### Branching (19)
+
 #### Update & Merge (Conflicts)
 
 in both cases git tries to auto-merge changes. Unfortunately, this is not always possible and results in conflicts. You are responsible to merge those conflicts manually by editing the files shown by git. After changing, you need to mark them as merged with
@@ -1647,24 +1673,30 @@ git diff <source_branch> <target_branch>
 
 [Git merge conflicts | Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts)
 
-
 ---
 
 ### Branching (20)
+
 #### Update & Merge (Conflicts)
 
 There are two types of merges Git can perform: a **fast-forward**, or a **no-fast-forward**
 
 ---
+
 ### Branching (21)
+
 #### Update & Merge (Conflicts)
+
 ##### Fast-forward (`--ff`)
 
 A **fast-forward merge** can happen when the current branch has no extra commits compared to the branch we’re merging. Git is... *lazy* and will first try to perform the easiest option: the fast-forward! This type of merge doesn’t create a new commit, but rather merges the commit(s) on the branch we’re merging right in the current branch
 
 ---
+
 ### Branching (22)
+
 #### Update & Merge (Conflicts)
+
 ##### Fast-forward (`--ff`)
 
 ![alt:"alt" height:420px center](https://res.cloudinary.com/practicaldev/image/fetch/s--cT4TSe48--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/894znjv4oo9agqiz4dql.gif)
@@ -1672,6 +1704,7 @@ A **fast-forward merge** can happen when the current branch has no extra commits
 ---
 
 ### Branching (23)
+
 #### Update & Merge (Conflicts)
 
 Perfect! We now have all the changes that were made on the `dev` branch available on the `master` branch. So, what's the **no-fast-forward** all about?
@@ -1679,7 +1712,9 @@ Perfect! We now have all the changes that were made on the `dev` branch availabl
 ---
 
 ### Branching (24)
+
 #### Update & Merge (Conflicts)
+
 ##### No-fast-foward (`--no-ff`)
 
 It's great if your current branch doesn't have any extra commits compared to the branch that you want to merge, but unfortunately that's rarely the case! If we committed changes on the current branch that the branch we want to merge doesn't have, git will perform a *no-fast-forward* merge.
@@ -1687,7 +1722,9 @@ It's great if your current branch doesn't have any extra commits compared to the
 ---
 
 ### Branching (25)
+
 #### Update & Merge (Conflicts)
+
 ##### No-fast-foward (`--no-ff`)
 
 With a no-fast-forward merge, Git creates a new *merging commit* on the active branch. The commit's parent commits point to both the active branch and the branch that we want to merge!
@@ -1695,7 +1732,9 @@ With a no-fast-forward merge, Git creates a new *merging commit* on the active b
 ---
 
 ### Branching (26)
+
 #### Update & Merge (Conflicts)
+
 ##### No-fast-foward (`--no-ff`)
 
 ![alt:"alt" height:420px center](https://res.cloudinary.com/practicaldev/image/fetch/s--zRZ0x2Vc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/rf1o2b6eduboqwkigg3w.gif)
@@ -1703,7 +1742,9 @@ With a no-fast-forward merge, Git creates a new *merging commit* on the active b
 ---
 
 ### Branching (27)
+
 #### Update & Merge (Conflicts)
+
 ##### No-fast-foward (`--no-ff`)
 
 No big deal, a perfect merge!  The `master` branch now contains all the changes that we've made on the `dev` branch.
@@ -1711,6 +1752,7 @@ No big deal, a perfect merge!  The `master` branch now contains all the changes 
 ---
 
 ### Branching (28)
+
 ### Merge Conflicts
 
 Although Git is good at deciding how to merge branches and add changes to files, it cannot always make this decision all by itself  This can happen when the two branches we're trying to merge have changes on the same line in the same file, or if one branch deleted a file that another branch modified, and so on.
@@ -1718,6 +1760,7 @@ Although Git is good at deciding how to merge branches and add changes to files,
 ---
 
 ### Branching (29)
+
 ### Merge Conflicts
 
 In that case, Git will ask you to help decide which of the two options we want to keep! Let's say that on both branches, we edited the first line in the `README.md`.
@@ -1725,6 +1768,7 @@ In that case, Git will ask you to help decide which of the two options we want t
 ---
 
 ### Branching (30)
+
 ### Merge Conflicts
 
 ![alt:"alt" height:420px center](https://res.cloudinary.com/practicaldev/image/fetch/s--jXqGWUai--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/m3nxmp67mqof5sa3iik9.png)
@@ -1734,6 +1778,7 @@ If we want to merge `dev` into `master`, this will end up in a merge conflict: w
 ---
 
 ### Branching (31)
+
 ### Merge Conflicts
 
 When trying to merge the branches, Git will show you where the conflict happens. We can manually remove the changes we don't want to keep, save the changes, add the changed file again, and commit the changes
@@ -1743,6 +1788,7 @@ When trying to merge the branches, Git will show you where the conflict happens.
 ---
 
 ### Branching (32)
+
 ### Merge Conflicts
 
 Although merge conflicts are often quite annoying, it makes total sense: Git shouldn't just *assume* which change we want to keep
@@ -1750,6 +1796,7 @@ Although merge conflicts are often quite annoying, it makes total sense: Git sho
 ---
 
 ### Branching (33)
+
 #### Sample Conflict -1
 
 participants.txt
@@ -1774,6 +1821,7 @@ git commit –m 'Initial list for finance team'
 ---
 
 ### Branching (34)
+
 #### Sample Conflict -1
 
 Create a new branch called marketing using the following syntax
@@ -1785,6 +1833,7 @@ git checkout –b marketing
 ---
 
 ### Branching (35)
+
 #### Sample Conflict -1
 
 Now open the `participants.txt` file and start entering the names for the marketing department below the finance team list, as follows: (**I added a hyphen before each name**)
@@ -1802,9 +1851,11 @@ git add .
 git commit –m 'Unfinished list of marketing team'
 git checkout master
 ```
+
 ---
 
 ### Branching (36)
+
 #### Sample Conflict -1
 
 Open the file and delete the names **Alexander** and **Stacy**, save, close, add the changes, and commit with the commit message Final list from Finance team
@@ -1818,6 +1869,7 @@ git checkout marketing
 ---
 
 ### Branching (37)
+
 #### Sample Conflict -1
 
 Open the file and add the fifth name, **Amanda**, for the marketing team, save, add, and commit
@@ -1836,6 +1888,7 @@ git merge master
 ---
 
 ### Branching (38)
+
 #### Sample Conflict -1
 
 ```batch
@@ -1847,6 +1900,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 ---
 
 ### Branching (39)
+
 #### Sample Conflict -1
 
 ```textile
@@ -1871,6 +1925,7 @@ Marketing team
 ---
 
 ### Branching (40)
+
 #### Sample Conflict -1
 
 ```textile
@@ -1888,18 +1943,18 @@ feature/topic branch.
 ---
 
 ### Branching (41)
+
 #### Sample Conflict -1
 
 - remove them
 - keep the lines you want to see in the final version of the file
 - add and commit
 
-
 ---
 
 ### Branching (42)
-#### Sample Conflict -1
 
+#### Sample Conflict -1
 
 If we want to save all to our version
 
@@ -1912,6 +1967,7 @@ git commit             # commit the merge
 ---
 
 ### Branching (43)
+
 #### Sample Conflict -1
 
 If we want to discard all our revision
@@ -1925,6 +1981,7 @@ git commit             # commit the merge
 ---
 
 ### Branching (44)
+
 #### Sample Conflict -2
 
 You're going to pull some changes, but oops, you're not up to date:
@@ -1942,6 +1999,7 @@ error: Entry 'filename.c' not uptodate. Cannot merge.
 ---
 
 ### Branching (45)
+
 #### Sample Conflict -2
 
 So you get up-to-date and try again, but have a conflict:
@@ -1961,6 +2019,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 ---
 
 ### Branching (46)
+
 #### Sample Conflict -2
 
 So you decide to take a look at the changes:
@@ -1981,6 +2040,7 @@ git commit -m "using theirs"
 ---
 
 ### Branching (47)
+
 #### Sample Conflict -2
 
 And then we try a final time
@@ -2053,6 +2113,7 @@ git log --name-status
 ---
 
 ### Log (5)
+
 These are just a few of the possible parameters you can use. For more, see 
 
 ```batch
@@ -2160,7 +2221,6 @@ Let's say that we don't want to keep the commit `9e78i` which added a `style.css
 
 ![alt:"alt" height:450px center](https://res.cloudinary.com/practicaldev/image/fetch/s---GveiZe---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/je5240aqa5uw9d8j3ibb.gif)
 
-
 --- 
 
 ### Soft Reset (2)
@@ -2181,7 +2241,6 @@ Git has discarded the changes that were introduced on `9e78i` and `035cc`, and r
 
 ![alt:"alt" height:450px center](https://res.cloudinary.com/practicaldev/image/fetch/s--GqjwnYkF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/hlh0kowt3hov1xhcku38.gif)
 
-
 ---
 
 ### Reverting (1)
@@ -2195,7 +2254,6 @@ Another way of undoing changes is by performing a `git revert`. By reverting a c
 Let's say that `ec5be` added an `index.js` file. Later on, we actually realize we didn't want this change introduced by this commit anymore! Let's revert the `ec5be` commit.
 
 ![alt:"alt" height:400px center](https://res.cloudinary.com/practicaldev/image/fetch/s--eckmvr2M--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/3kkd2ahn41zixs12xgpf.gif)
-
 
 Perfect! Commit `9e78i` reverted the changes that were introduced by the `ec5be` commit. 
 
@@ -2234,7 +2292,6 @@ We just saw how we could apply changes from one branch to another by performing 
 A `git rebase` *copies* the commits from the current branch, and puts these copied commits on top of the specified branch.
 
 ![alt:"alt" height:380px center](https://res.cloudinary.com/practicaldev/image/fetch/s--EIY4OOcE--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/dwyukhq8yj2xliq4i50e.gif)
-
 
 Perfect, we now have all the changes that were made on the `master` branch available on the `dev` branch!
 
@@ -2342,6 +2399,28 @@ HEAD@{2}     // reflog order
 
 ---
 
+### GIT Flow
+
+![alt:"alt" height:450px center](assets/44cdc57b2b67fb929aa37fb006dd99b19c1b9247.png)
+
+[A successful Git branching model &raquo; nvie.com](https://nvie.com/posts/a-successful-git-branching-model/)
+
+---
+
+### Hotfix
+
+
+
+![alt:"alt" height:410px center](assets/0a436e14406d5681155b331acb3c699dba2fda34.png)
+
+
+
+[OneFlow – a Git branching model and workflow | End of Line Blog](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow)
+
+[a simple git branching model · GitHub](https://gist.github.com/jbenet/ee6c9ac48068889b0912)
+
+---
+
 ### GIT Decision Tree
 
 http://justinhileman.info/article/git-pretty/git-pretty.png
@@ -2398,7 +2477,6 @@ https://gource.io/
 
 ![alt:"alt" height:450px center](assets/2021-10-20-02-10-45-image.png)
 
-
 ---
 
 ### References (1)
@@ -2435,11 +2513,9 @@ https://harness.io/2018/01/devops-tools-lifecycle-mesh-2018/
 
 https://medium.com/swlh/how-to-become-an-devops-engineer-in-2020-80b8740d5a52
 
-
 https://www.lucidchart.com/blog/devops-process-flow
 
 https://www.researchgate.net/publication/262450962_Rugby_An_Agile_Process_Model_Based_on_Continuous_Delivery
-
 
 ---
 

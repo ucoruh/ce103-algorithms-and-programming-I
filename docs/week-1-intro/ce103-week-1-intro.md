@@ -1,6 +1,11 @@
 ---
 marp: true
 theme: default
+style: |
+    img[alt~="center"] {
+      display: block;
+      margin: 0 auto;
+    }
 _class: lead
 paginate: true
 backgroundColor: #fff
@@ -173,7 +178,7 @@ Visit Job Search Web Portals and Look at Requirements to Understand What is Real
 
 ## Operating System List
 
-![](assets/2022-01-09-22-27-10-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-27-10-image.png)
 
 ---
 
@@ -187,7 +192,7 @@ Visit Job Search Web Portals and Look at Requirements to Understand What is Real
 
 ## Operating Systems Key Comparing Factor
 
-![](assets/2022-01-09-22-28-56-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-28-56-image.png)
 
 [reference](https://www.slideshare.net/quanhan503/comparing-windows-vs-mac-vs-linux)
 
@@ -195,29 +200,29 @@ Visit Job Search Web Portals and Look at Requirements to Understand What is Real
 
 ## Operating System Comparisons
 
-![](assets/2022-01-09-22-29-46-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-29-46-image.png)
 
 [reference](https://www.educba.com/linux-vs-mac-vs-windows/)
 
 ---
 
-![](assets/2022-01-09-22-30-31-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-30-31-image.png)
 
 ---
 
-![](assets/2022-01-09-22-30-40-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-30-40-image.png)
 
 ---
 
-![](assets/2022-01-09-22-31-17-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-31-17-image.png)
 
 ---
 
-![](assets/2022-01-09-22-31-26-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-31-26-image.png)
 
 ---
 
-![](assets/2022-01-09-22-30-57-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-30-57-image.png)
 
 ---
 
@@ -227,15 +232,15 @@ Visit Job Search Web Portals and Look at Requirements to Understand What is Real
 
 ## What is IP Address?
 
-![](assets/2022-01-09-22-32-28-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-32-28-image.png)
 
 ---
 
-![](assets/2022-01-09-22-32-40-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-32-40-image.png)
 
 ---
 
-![](assets/2022-01-09-22-32-50-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-32-50-image.png)
 
 ---
 
@@ -249,17 +254,17 @@ Control Protocol](https://en.wikipedia.org/wiki/Transmission_Control_Protocol) (
 
 ---
 
-![](assets/2022-01-09-22-48-01-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-48-01-image.png)
 
 ---
 
 ## What is Port Forwarding and NAT
 
-![](assets/2022-01-09-22-49-08-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-49-08-image.png)
 
 ---
 
-![](assets/2022-01-09-22-49-18-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-49-18-image.png)
 
 https://www.networkantics.com/sonicwall-port-forwarding/
 
@@ -269,19 +274,19 @@ https://en.wikipedia.org/wiki/Network_address_translation
 
 ## What is Internet Packet (IP)
 
-![](assets/2022-01-09-22-50-08-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-50-08-image.png)
 
 ---
 
 ## What is Domain Name Server (DNS)?
 
-![](assets/2022-01-09-22-51-49-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-51-49-image.png)
 
 ---
 
 ## The Submarine Cable Map
 
-![](assets/2022-01-09-22-52-15-image.png)
+![alt:"alt" height:450px center](assets/2022-01-09-22-52-15-image.png)
 
 https://www.submarinecablemap.com/
 
@@ -353,23 +358,23 @@ While there are many commands you can use with CLI, they all fall into <u>two ca
 
 ---
 
-![](assets/2022-01-11-17-39-01-image.png)
+![alt:"alt" height:450px center](assets/2022-01-11-17-39-01-image.png)
 
 ---
 
-![](assets/2022-01-11-17-39-12-image.png)
+![alt:"alt" height:450px center](assets/2022-01-11-17-39-12-image.png)
 
 ---
 
-![](assets/2022-01-11-17-39-22-image.png)
+![alt:"alt" height:450px center](assets/2022-01-11-17-39-22-image.png)
 
 ---
 
-![](assets/2022-01-11-17-39-31-image.png)
+![alt:"alt" height:450px center](assets/2022-01-11-17-39-31-image.png)
 
 ---
 
-![](assets/2022-01-11-17-39-40-image.png)
+![alt:"alt" height:450px center](assets/2022-01-11-17-39-40-image.png)
 
 ---
 
@@ -385,7 +390,7 @@ While there are many commands you can use with CLI, they all fall into <u>two ca
 
 ---
 
-![](assets/2022-01-11-17-57-10-image.png)
+![alt:"alt" height:450px center](assets/2022-01-11-17-57-10-image.png)
 
 ---
 
@@ -393,7 +398,7 @@ While there are many commands you can use with CLI, they all fall into <u>two ca
 
 - Go to Applications → Utilities → Terminal
 
-![](assets/2022-01-11-17-58-47-image.png)
+![alt:"alt" height:450px center](assets/2022-01-11-17-58-47-image.png)
 
 ---
 

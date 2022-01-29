@@ -1,6 +1,11 @@
 ---
 marp: true
 theme: default
+style: |
+    img[alt~="center"] {
+      display: block;
+      margin: 0 auto;
+    }
 _class: lead
 paginate: true
 backgroundColor: #fff
@@ -57,18 +62,16 @@ Download [DOC](ce103-week-3-git.md_doc.pdf), [SLIDE](ce103-week-3-git.md_slide.p
 
 <!-- paginate: true -->
 
-## Introduction to Source Code Management Systems
+### Introduction to Source Code Management Systems
 
-### Git, Github, Gitlab, Bitbucket, Maven, SVN, TFS
-
----
+#### Git, Github, Gitlab, Bitbucket, Maven, SVN, TFS
 
 Source code management (SCM) is used to track modifications to a source code repository. SCM tracks a running history of changes to a code base and helps resolve conflicts when merging updates from multiple contributors. SCM is also synonymous with Version control. 
 As software projects grow in lines of code and contributor head count, the costs of communication overhead and management complexity also grow. SCM is a critical tool to alleviate the organizational strain of growing development costs.
 
 ---
 
-## Features of Source Code Management Systems
+### Features of Source Code Management Systems
 
 - Authenticated access for commits
 
@@ -78,37 +81,103 @@ As software projects grow in lines of code and contributor head count, the costs
 
 - Versioning/Tagging
 
-## Why Do We Need Source Code Management Systems?
+---
+
+### Why Do We Need Source Code Management Systems? (1)
 
 We can save the file with a different name if it’s our school project or one-time papers but for a well-equipped software development? Not a chance.
 
+---
+
+#### Why Do We Need Source Code Management Systems? (2)
+
 Big projects need a version control system to track the changes and avoid misunderstanding. A good SCM does the following:
 
-**Backup and Restore** – Files can be saved at any moment and can be restored from the last saved.
+- Backup and Restore
+- Synchronization
+- Short-Term Undo
+- Long-Term Undo
+- Track Changes
+- Ownership
+- Branching and Merging
+
+---
+
+#### Why Do We Need Source Code Management Systems? (3)
+
+**Backup and Restore** – Files can be saved at any moment and can be restored from the last saved.
+
+---
+
+#### Why Do We Need Source Code Management Systems? (4)
 
 **Synchronization** – Programmers can get the latest code and fetch the up-to-date codes from the repository.
 
-**Short-Term Undo** – Working with a file and messed it up. We can do a short-term undo to the last known version.
+---
 
-**Long-Term Undo** – It helps when we have to make a release version rollback. Something like going to the last version which was created a year
+#### Why Do We Need Source Code Management Systems? (5)
 
-**Track Change**s – We can track the changes as when anyone is making any change, he can leave a commit message as for why the change was done.
+**Short-Term Undo** – Working with a file and messed it up. We can do a short-term undo to the last known version.
+
+---
+
+#### Why Do We Need Source Code Management Systems? (6)
+
+**Long-Term Undo** – It helps when we have to make a release version rollback. Something like going to the last version which was created a year
+
+---
+
+#### Why Do We Need Source Code Management Systems? (7)
+
+**Track Changes**– We can track the changes as when anyone is making any change, he can leave a commit message as for why the change was done.
+
+---
+
+#### Why Do We Need Source Code Management Systems? (8)
 
 **Ownership**– With every commit made to the master branch, it will ask the owner permission to merge it.
 
-**Branching and Merging** – You can create a branch of your source code and create the changes. Once the changes are approved, you can merge it with the master branch.
+---
+
+#### Why Do We Need Source Code Management Systems? (9)
+
+**Branching and Merging** – You can create a branch of your source code and create the changes. Once the changes are approved, you can merge it with the master branch.
+
+---
+
+#### Why Do We Need Source Code Management Systems? (10)
 
 ## Types of Version Control Systems
+- Centralized Version Control (TFS, Subversion)
+- Distributed Version Control (Git and Mercurial)
 
-### Centralized Version Control (TFS, Subversion)
+---
+
+### Centralized Version Control (TFS, Subversion) (1)
 
 The main concept of Centralized Version Control is that it works in a client and server relationship. The repository is located in one place and allows access to multiple clients.
 
-<img title="" src="assets/2021-10-19-20-40-58-image.png" alt="" data-align="center">
+---
 
-<img title="" src="assets/2021-10-19-20-41-08-image.png" alt="" data-align="center">
+#### Centralized Version Control (TFS, Subversion) (2)
+
+![alt:"alt" height:450px center](assets/2021-10-19-20-40-58-image.png)
+
+---
+
+#### Centralized Version Control (TFS, Subversion) (3)
+
+![alt:"alt" height:450px center](assets/2021-10-19-20-41-08-image.png)
+
+---
+
+#### Centralized Version Control (TFS, Subversion) (4)
 
 It’s very similar to FTP where you have FTP clients which connect to FTP server. Here all the user changes and commits have to pass through the central server. For Ex: Subversion.
+
+---
+
+#### Centralized Version Control (TFS, Subversion) (5)
 
 **The benefits of centralized version control are:**
 
@@ -118,6 +187,10 @@ It’s very similar to FTP where you have FTP clients which connect to FTP serve
 
 - You have more control over the users and access.
 
+---
+
+#### Centralized Version Control (TFS, Subversion) (6)
+
 **We do have drawbacks also:**
 
 - It is dependent on the access to the server. 
@@ -126,13 +199,27 @@ It’s very similar to FTP where you have FTP clients which connect to FTP serve
 
 - Branching and merging strategies are difficult to use.
 
-## Distributed Version Control (Git and Mercurial)
+---
+
+### Distributed Version Control (Git and Mercurial) (1)
 
 These systems are newer to use. In Distributed Version Control, each user has their own copy of the entire repository as well as the files and history. For Ex: Git and Mercurial
 
-<img title="" src="assets/2021-10-19-20-45-02-image.png" alt="" data-align="center">
+---
 
-<img title="" src="assets/2021-10-19-20-45-13-image.png" alt="" data-align="center">
+#### Distributed Version Control (Git and Mercurial) (2)
+
+![alt:"alt" height:450px center](assets/2021-10-19-20-45-02-image.png)
+
+---
+
+#### Distributed Version Control (Git and Mercurial) (3)
+
+![alt:"alt" height:450px center](assets/2021-10-19-20-45-13-image.png)
+
+---
+
+#### Distributed Version Control (Git and Mercurial) (4)
 
 The benefits of distributed version control are:
 
@@ -144,9 +231,15 @@ The benefits of distributed version control are:
 
 - It’s faster than the other one.
 
-## List of Source Code Version Management Tools
+---
 
-![](assets/2021-10-19-20-55-30-image.png)
+### List of Source Code Version Management Tools (1)
+
+![alt:"alt" height:450px center](assets/2021-10-19-20-55-30-image.png)
+
+---
+
+#### List of Source Code Version Management Tools (2)
 
 - Github
 
@@ -158,6 +251,10 @@ The benefits of distributed version control are:
 
 - Beanstalk
 
+---
+
+#### List of Source Code Version Management Tools (3)
+
 - Apache Allura
 
 - AWS CodeCommit
@@ -168,17 +265,36 @@ The benefits of distributed version control are:
 
 - GitBucket
 
-# GIT (Distributed Source Code Management)
+---
 
-<img title="" src="assets/2021-10-19-20-52-48-image.png" alt="" data-align="center">
+### GIT (Distributed Source Code Management) (1)
 
-![](assets/2021-10-19-20-51-35-image.png)
 
-<img title="" src="assets/2021-10-19-20-54-22-image.png" alt="" data-align="center">
+![alt:"alt" height:200px center](assets/2021-10-19-20-52-48-image.png)
 
-![](assets/2021-10-19-20-51-43-image.png)
+---
 
-## A Basic Overview of How Git Works
+#### GIT (Distributed Source Code Management) (2)
+
+![alt:"alt" height:450px center](assets/2021-10-19-20-51-35-image.png)
+
+---
+
+#### GIT (Distributed Source Code Management) (3)
+
+![alt:"alt" height:450px center](assets/2021-10-19-20-54-22-image.png)
+
+---
+
+#### GIT (Distributed Source Code Management) (4)
+
+![alt:"alt" height:450px center](assets/2021-10-19-20-51-43-image.png)
+
+---
+
+#### GIT (Distributed Source Code Management) (5)
+
+##### A Basic Overview of How Git Works (1)
 
 - Create a “repository” (project) with a git hosting tool (like Bitbucket)
 
@@ -187,6 +303,12 @@ The benefits of distributed version control are:
 - Add a file to your local repo and “commit” (save) the changes
 
 - “Push” your changes to your master branch
+
+---
+
+#### GIT (Distributed Source Code Management) (6)
+
+##### A Basic Overview of How Git Works (2)
 
 - Make a change to your file with a git hosting tool and commit
 
@@ -198,7 +320,11 @@ The benefits of distributed version control are:
 
 - “Merge” your branch to the master branch
 
-## Some of The Basic Operations in GIT are
+---
+
+#### GIT (Distributed Source Code Management) (7)
+
+##### Some of The Basic Operations in GIT are
 
 - Initialize
 
@@ -210,7 +336,19 @@ The benefits of distributed version control are:
 
 - Push
 
-![](assets/2021-10-19-21-10-40-image.png)
+---
+
+#### GIT (Distributed Source Code Management) (8)
+
+##### Some of The Basic Operations in GIT are
+
+![alt:"alt" height:450px center](assets/2021-10-19-21-10-40-image.png)
+
+---
+
+#### GIT (Distributed Source Code Management) (9)
+
+##### Some of The Basic Operations in GIT are
 
 - Branching
 
@@ -218,21 +356,48 @@ The benefits of distributed version control are:
 
 - Rebasing
 
-![](assets/2021-10-19-21-11-35-image.png)
+---
 
-## A brief idea about how these operations work with the Git repositories
+#### GIT (Distributed Source Code Management) (10)
 
-<img title="" src="assets/2021-10-19-21-18-28-image.png" alt="" data-align="center">
+##### Some of The Basic Operations in GIT are
 
-![](assets/2021-10-19-21-18-39-image.png)
+![alt:"alt" height:450px center](assets/2021-10-19-21-11-35-image.png)
+
+
+---
+
+#### GIT (Distributed Source Code Management) (8)
+
+##### A brief idea about how these operations work with the Git repositories (1)
+
+![alt:"alt" height:450px center](assets/2021-10-19-21-18-28-image.png)
+
+---
+
+#### GIT (Distributed Source Code Management) (9)
+
+##### A brief idea about how these operations work with the Git repositories (2)
+
+![alt:"alt" height:450px center](assets/2021-10-19-21-18-39-image.png)
+
+---
+
+---
+
+#### GIT (Distributed Source Code Management) (10)
+
+##### A brief idea about how these operations work with the Git repositories (3)
 
 For more detailed cheetsheat please check the following interactive map
 
 [NDP Software :: Git Cheatsheet](https://www.ndpsoftware.com/git-cheatsheet.html)
 
-![](assets/2021-10-19-21-20-15-image.png)
+![alt:"alt" height:450px center](assets/2021-10-19-21-20-15-image.png)
 
-# Installation of GIT
+---
+
+##### Installation of GIT (1)
 
 Check Installation Already Completed
 
@@ -240,7 +405,11 @@ Check Installation Already Completed
 git --version
 ```
 
-<img title="" src="assets/2021-10-19-21-56-24-image.png" alt="" data-align="center">
+![alt:"alt" height:450px center](assets/2021-10-19-21-56-24-image.png)
+
+---
+
+##### Installation of GIT (2)
 
 If your console gives error about git command follow the steps in the link
 
@@ -248,7 +417,11 @@ If your console gives error about git command follow the steps in the link
 
 In this link you will should download following setup according to your operating system
 
-### GIT Setup Files
+---
+
+##### Installation of GIT (3)
+
+##### GIT Setup Files 
 
 - [Download](http://git-scm.com/download/mac) [git](http://git-scm.com/download/mac) [for](http://git-scm.com/download/mac) [OSX](http://git-scm.com/download/mac)
 
@@ -256,25 +429,55 @@ In this link you will should download following setup according to your operatin
 
 - [Download](http://git-scm.com/book/en/Getting-Started-Installing-Git) [git](http://git-scm.com/book/en/Getting-Started-Installing-Git) [for](http://git-scm.com/book/en/Getting-Started-Installing-Git) [Linux](http://git-scm.com/book/en/Getting-Started-Installing-Git)
 
+---
+
+##### Installation of GIT (4)
+
 Download and install GIT from the following links (both have same github release path)
 
 [Git - Downloads](https://git-scm.com/downloads)
 
+---
+
+##### Installation of GIT (5)
+
 After running setup follow the steps below
 
-<img title="" src="assets/2021-10-19-22-05-36-image.png" alt="" width="449">
+![alt:"alt" height:450px center](assets/2021-10-19-22-05-36-image.png)
 
-<img title="" src="assets/2021-10-19-22-05-41-image.png" alt="" width="446">
+---
 
-<img title="" src="assets/2021-10-19-22-05-55-image.png" alt="" width="443">
+##### Installation of GIT (6)
 
-<img title="" src="assets/2021-10-19-22-06-05-image.png" alt="" width="445">
+![alt:"alt" height:450px center](assets/2021-10-19-22-05-41-image.png)
 
-<img title="" src="assets/2021-10-19-22-06-11-image.png" alt="" width="444">
+---
 
-<img title="" src="assets/2021-10-19-22-06-18-image.png" alt="" width="443">
+##### Installation of GIT (7)
 
-### Installation of GIT Extension (Windows)
+![alt:"alt" height:450px center](assets/2021-10-19-22-05-55-image.png)
+
+---
+
+##### Installation of GIT (8)
+
+![alt:"alt" height:450px center](assets/2021-10-19-22-06-05-image.png)
+
+---
+
+##### Installation of GIT (9)
+
+![alt:"alt" height:450px center](assets/2021-10-19-22-06-11-image.png)
+
+---
+
+##### Installation of GIT (10)
+
+![alt:"alt" height:450px center](assets/2021-10-19-22-06-18-image.png)
+
+---
+
+#### Installation of GIT Extension (Windows) (1)
 
 You can install Git GUI from https://git-scm.com/downloads/guis
 I prefer to use git extension https://gitextensions.github.io/ and https://tortoisegit.org/
@@ -283,11 +486,21 @@ Also Download KDiff3 [KDiff3 - Browse Files at SourceForge.net](https://sourcefo
 
 These extensions provide GUI for git operations to make process easier.
 
-### Configuration of GIT Extension (Windows)
+---
 
-![](assets/2021-10-19-23-08-51-image.png)
+#### Configuration of GIT Extension (Windows) (1)
+
+![alt:"alt" height:450px center](assets/2021-10-19-23-08-51-image.png)
+
+---
+
+##### Configuration of GIT Extension (Windows) (2)
 
 If you install git everything should be green and this configuration is stored on  .gitconfig on your home `C:/Windows/Users/<user>/.gitconfig`
+
+---
+
+##### Configuration of GIT Extension (Windows) (3)
 
 ```batch
 [core]
@@ -328,9 +541,17 @@ If you install git everything should be green and this configuration is stored o
     writeCommitGraph = true
 ```
 
+---
+
+##### Configuration of GIT Extension (Windows) (4)
+
 Also in extension you can see similar settings
 
-![](assets/2021-10-25-18-38-57-image.png)
+![alt:"alt" height:450px center](assets/2021-10-25-18-38-57-image.png)
+
+---
+
+##### Configuration of GIT Extension (Windows) (5)
 
 Samples
 
@@ -351,6 +572,9 @@ Mergetool command
 ```textile
 "C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe" -base:"$BASE" -mine:"$LOCAL" -theirs:"$REMOTE" -merged:"$MERGED"
 ```
+---
+
+##### Configuration of GIT Extension (Windows) (6)
 
 Difftool
 
@@ -369,6 +593,9 @@ Difftool command
 ```textile
 "C:/Program Files/KDiff3/kdiff3.exe" "$LOCAL" "$REMOTE"
 ```
+---
+
+##### Configuration of GIT Extension (Windows) (7)
 
 If you see something as merge and diff tool is not configured, follow the similar settings above on your computer. If you installed kdiff3, tortoisegit and extension you will have same diff and merge tools
 
@@ -376,11 +603,27 @@ This topic also help you
 
 [Git: How can I configure KDiff3 as a merge tool and diff tool? - Stack Overflow](https://stackoverflow.com/questions/33308482/git-how-can-i-configure-kdiff3-as-a-merge-tool-and-diff-tool)
 
-<img src="assets/2021-10-25-18-23-19-image.png" title="" alt="" width="562">
+---
+
+##### Configuration of GIT Extension (Windows) (8)
+
+![alt:"alt" height:450px center](assets/2021-10-25-18-23-19-image.png)
+
+---
+
+##### Configuration of GIT Extension (Windows) (9)
 
 Open Git->Config, in your settings you will see path to mergetool and difftool will be empty fill settings like that below find executables in your computer and copy paths to here.
 
-![](assets/2021-10-25-18-38-57-image.png)
+---
+
+##### Configuration of GIT Extension (Windows) (10)
+
+![alt:"alt" height:450px center](assets/2021-10-25-18-38-57-image.png)
+
+---
+
+##### Configuration of GIT Extension (Windows) (11)
 
 Also if we want to change and use different diff and merge tool then we can do this with gitbash console as below
 
@@ -390,7 +633,11 @@ C:\Program Files\TortoiseGit\bin
 
 Find TortoiseGitIDiff.exe and TortoiseGitMerge.exe
 
-![](assets/2021-10-25-18-24-56-image.png)
+![alt:"alt" height:150px center](assets/2021-10-25-18-24-56-image.png)
+
+---
+
+##### Configuration of GIT Extension (Windows) (12)
 
 Copy path of this applications
 
@@ -398,6 +645,10 @@ Copy path of this applications
 C:\Program Files\TortoiseGit\bin\TortoiseGitMerge.exe
 C:\Program Files\TortoiseGit\bin\TortoiseGitIDiff.exe
 ```
+
+---
+
+##### Configuration of GIT Extension (Windows) (13)
 
 open a gitbash console and run following commands 
 
@@ -413,27 +664,37 @@ git config --global difftool.TortoiseGitIDiff.trustExitCode false
 
 This updates will be stored on .gitconfig
 
-### Using the GIT Extension
+---
+
+#### Using the GIT Extension (1)
 
 right click in the git folder and use Git Extension menu for operations.
 
 for sample commit click "Commit"
 
-![](assets/2021-10-19-23-10-32-image.png)
+![alt:"alt" height:450px center](assets/2021-10-19-23-10-32-image.png)
+
+---
+
+#### Using the GIT Extension (1)
 
 from opening window first stage related files and then write a good commit message
 
 finally click commit to local. You can also commit&push it to remote repository.
 
-![](assets/2021-10-19-23-11-19-image.png)
+![alt:"alt" height:450px center](assets/2021-10-19-23-11-19-image.png)
+
+---
 
 ### GIT Installation Completed..
 
-<img title="" src="assets/2021-10-20-00-04-47-image.png" alt="" data-align="center">
+![alt:"alt" height:150px center](assets/2021-10-20-00-04-47-image.png)
 
-![](assets/2021-10-20-00-04-54-image.png)
+![alt:"alt" height:250px center](assets/2021-10-20-00-04-54-image.png)
 
-### Installation of gig (git ignore creator)
+---
+
+### Installation of gig (git ignore creator) (1)
 
 Requirements
 
@@ -446,14 +707,22 @@ https://github.com/sloria/gig
 ```batch
 pip install -U gig
 ```
+---
 
-![](assets/2021-10-20-00-06-35-image.png)
+#### Installation of gig (git ignore creator) (2)
+
+![alt:"alt" height:450px center](assets/2021-10-20-00-06-35-image.png)
+
+---
+
+#### Installation of gig (git ignore creator) (3)
 
 ```batch
 gig --version
 ```
+---
 
-### Usage of gig
+### Usage of gig (1)
 
 List all gitignore templates
 
@@ -461,18 +730,29 @@ List all gitignore templates
 gig list
 gig list -global
 ```
+---
+
+#### Usage of gig (2)
 
 Sample gitignore for C Java and Visual Studio 
 
 ```bat
 gig C Java VisualStudio > .gitignore
 ```
+---
+
+#### Usage of gig (3)
 
 There is a portal for this also by Toptal
 
 •[gitignore.io - Create Useful .gitignore Files For Your Project](https://www.toptal.com/developers/gitignore)
 
-<img title="" src="assets/2021-10-20-00-11-16-image.png" alt="" data-align="center" width="615">
+![alt:"alt" height:350px center](assets/2021-10-20-00-11-16-image.png)
+
+
+---
+
+#### Usage of gig (4)
 
 for samples you can check the following links.
 
@@ -480,7 +760,9 @@ https://github.com/github/gitignore
 
 https://dev.to/shihanng/gig-a-gitignore-generator-opc
 
-## Configuration of GIT
+---
+
+### Configuration of GIT (1)
 
 It is important to configure your Git because any commits that you
 make are associated with your configuration details.
@@ -492,12 +774,23 @@ git config - - global user.name "<your name>"
 
 git config - - global user.email "<your email>"
 ```
+---
 
-![](assets/2021-10-20-00-15-38-image.png)
+#### Configuration of GIT (2)
+
+![alt:"alt" height:250px center](assets/2021-10-20-00-15-38-image.png)
+
+---
+
+#### Configuration of GIT (3)
 
 git configuration files are located on the user folder
 
-![](assets/2021-10-20-00-16-06-image.png)
+![alt:"alt" height:450px center](assets/2021-10-20-00-16-06-image.png)
+
+---
+
+#### Configuration of GIT (4)
 
 If you want to view all your configuration details, use the command below
 
@@ -505,25 +798,36 @@ If you want to view all your configuration details, use the command below
 git config --list
 ```
 
-![](assets/2021-10-20-00-17-00-image.png)
+![alt:"alt" height:450px center](assets/2021-10-20-00-17-00-image.png)
 
-### Using .gitignore files with git-extension
+---
+
+### Using .gitignore files with git-extension (1)
 
 with gitignore file
 
-![](assets/2021-10-20-00-51-16-image.png)
+![alt:"alt" height:450px center](assets/2021-10-20-00-51-16-image.png)
+
+
+---
+
+### Using .gitignore files with git-extension (2)
 
 without gitignore file (just move to another location)
 
-![](assets/2021-10-20-00-51-39-image.png)
+![alt:"alt" height:450px center](assets/2021-10-20-00-51-39-image.png)
 
-# Github Create Repo
+---
 
-<img title="" src="assets/2021-10-20-00-52-14-image.png" alt="" data-align="center">
+### Github Create Repo
 
-# Initilization of Repo (not existing in github)
+![alt:"alt" height:450px center](assets/2021-10-20-00-52-14-image.png)
 
-## git init
+---
+
+### Initilization of Repo (not existing in github)
+
+#### git init
 
 - In order to do that, we use the command **git init**.
 
@@ -532,20 +836,34 @@ without gitignore file (just move to another location)
 ```batch
 git init
 ```
+---
 
-![](assets/2021-10-20-00-56-52-image.png)
+#### git init
 
-# Adding Initiated Repo Remote Upstream Repo (Link with Github Repo)
+![alt:"alt" height:450px center](assets/2021-10-20-00-56-52-image.png)
+
+---
+
+### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (1)
 
 If you enter following command in the git folder you will see nothing
 
 ```batch
 git remote -v
 ```
+That mean this repository do not have a remote upstream repository such as a github or bitbucket repo. 
 
-That mean this repository do not have a remote upstream repository such as a github or bitbucket repo. Open the github and bitbucket repository and copy project path from 
+---
 
-![](assets/2021-10-22-02-12-06-image.png)
+#### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (2)
+
+Open the github and bitbucket repository and copy project path from 
+
+![alt:"alt" height:450px center](assets/2021-10-22-02-12-06-image.png)
+
+---
+
+#### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (3)
 
 you will see the following sample from github code button
 
@@ -553,11 +871,19 @@ you will see the following sample from github code button
 https://github.com/ucoruh/ce103-sample-text.git
 ```
 
+---
+
+#### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (4)
+
 copy link and use with following command
 
 ```batch
 git remote add origin https://github.com/ucoruh/ce103-sample-text.git
 ```
+
+---
+
+#### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (5)
 
 then you can check your remote setting with
 
@@ -567,15 +893,23 @@ origin  https://github.com/ucoruh/ce103-sample-text.git (fetch)
 origin  https://github.com/ucoruh/ce103-sample-text.git (push)
 ```
 
+---
+
+#### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (6)
+
 you can check the following sample 
 
 [How to Add a New Remote to your Git Repo | Assembla Help Center](https://articles.assembla.com/en/articles/1136998-how-to-add-a-new-remote-to-your-git-repo)
 
-## *Now you can push your local changes to remote repository*
+---
 
-## *If you see a repository on Github then you can download with following operation*
+### *Now you can push your local changes to remote repository*
 
-# Checkout a Repository
+### *If you see a repository on Github then you can download with following operation*
+
+---
+
+### Checkout a Repository (1)
 
 create a working copy of a local repository by running the command
 
@@ -583,11 +917,19 @@ create a working copy of a local repository by running the command
 git clone /path/to/repository
 ```
 
+---
+
+### Checkout a Repository (2)
+
 Sample clone command
 
 ```batch
 git clone https://github.com/ucoruh/ce103-sample-text.git
 ```
+
+---
+
+### Checkout a Repository (3)
 
 when using a remote server, your command will be
 
@@ -595,21 +937,28 @@ when using a remote server, your command will be
 git clone username@host:/path/to/repository
 ```
 
-# Checking Repository Status
+### Checking Repository Status (1)
 
-### git status
+#### git status
 
 The git status command lists all the modified files which are ready to be added to the local repository.
 
 ```batch
 git status
 ```
+---
 
-![](assets/2021-10-20-00-57-52-image.png)
+### Checking Repository Status (2)
 
-# Adding Files to Index
+#### git status
 
-### git add
+![alt:"alt" height:450px center](assets/2021-10-20-00-57-52-image.png)
+
+---
+
+### Adding Files to Index (1)
+
+#### git add
 
 This command updates the index using the current content found in the working tree
 and then prepares the content in the staging area for the next commit.
@@ -619,24 +968,45 @@ git add <directory>
 git add <file>
 git add *
 ```
+---
+### Adding Files to Index (1)
+
+#### git add
 
 Created two more files edureka3.txt and edureka4.txt. Let us add the files using the command git add -A. This command will add all the files to the index which are in the directory but not updated in the index yet.
 
-![](assets/2021-10-20-00-59-59-image.png)
+![alt:"alt" height:450px center](assets/2021-10-20-00-59-59-image.png)
 
-# Commit Changes
+---
 
-### git commit
+### Commit Changes (1)
+
+#### git commit
 
 •It refers to recording snapshots of the repository at a given time. Committed
-snapshots will never change unless done explicitly. Let me explain how commit
+snapshots will never change unless done explicitly. 
+
+---
+
+### Commit Changes (2)
+
+#### git commit
+
+Let me explain how commit
 works with the diagram below
 
-![](assets/2021-10-20-01-00-44-image.png)
+![alt:"alt" height:230px center](assets/2021-10-20-01-00-44-image.png)
+
 
 Here, C1 is the initial commit, i.e. the snapshot of the first change from which
 another snapshot is created with changes named C2. Note that the master points
 to the latest commit. Now, when I commit again, another snapshot C3 is created and now the master points to C3 instead of C2.
+
+---
+
+### Commit Changes (3)
+
+#### git commit
 
 Commands:
 
@@ -644,14 +1014,25 @@ Commands:
 git commit -m "<message>"
 ```
 
-![](assets/2021-10-20-01-01-42-image.png)
+![alt:"alt" height:300px center](assets/2021-10-20-01-01-42-image.png)
+
 
 Now, if you want to commit a snapshot of all the changes in the working directory at
 once, you can use the command below
 
+---
+
+### Commit Changes (4)
+
+#### git commit
+
 Please check writing good commit messages article below
 
 [How to write a good commit message - DEV Community](https://dev.to/chrissiemhrk/git-commit-message-5e21)
+
+---
+
+### Writing Good Commit Messages (1)
 
 ```
 type: subject
@@ -660,32 +1041,51 @@ body (optional)
 
 footer (optional)
 ```
+---
 
-### 1. Type
+#### Writing Good Commit Messages (2)
 
-- **feat** - a new feature
-- **fix** - a bug fix
-- **docs** - changes in documentation
-- **style** - everything related to styling
-- **refactor** - code changes that neither fixes a bug or adds a feature
-- **test** - everything related to testing
-- **chore** - updating build tasks, package manager configs, etc
+##### 1. Type
 
-### 2. Subject
+- **feat** - a new feature
+- **fix** - a bug fix
+- **docs** - changes in documentation
+- **style** - everything related to styling
+- **refactor** - code changes that neither fixes a bug or adds a feature
+- **test** - everything related to testing
+- **chore** - updating build tasks, package manager configs, etc
+
+---
+
+#### Writing Good Commit Messages (3)
+
+##### 2. Subject
 
 This contains a short description of the changes made. It shouldn't be greater than 50 characters, should begin with a capital letter and written in the imperative eg. Add instead of Added or Adds.
 
-### 3. Body
+---
+
+#### Writing Good Commit Messages (4)
+
+##### 3. Body
 
 The body is used to explain what changes you made and why you made them. Not all commits are complex enough that they need a body, especially if you are working on a personal project alone, and as such writing a body is optional.
 
 A blank line between the body and the subject is required and each line should have no more than 72 characters.
 
-### 4.Footer
+---
+
+#### Writing Good Commit Messages (5)
+
+##### 4.Footer
 
 The footer is also optional and mainly used when you are using an issue tracker to reference the issue ID.
 
-Example 
+----
+
+#### Writing Good Commit Messages (6)
+
+##### Example Commit Message
 
 ```git
 feat: Summarize changes in around 50 characters or less
@@ -717,11 +1117,20 @@ Resolves: #123
 See also: #456, #789
 ```
 
+---
+
+#### Writing Good Commit Messages (7)
+
 ```batch
 git commit -a
 ```
+---
 
-![](assets/2021-10-20-01-02-26-image.png)
+![alt:"alt" height:450px center](assets/2021-10-20-01-02-26-image.png)
+
+---
+
+### Add Files to Index (1)
 
 I have created two more text files in my working directory viz. edureka5.txt and edureka6.txt but they are not added to the index yet.
 
@@ -731,40 +1140,109 @@ I am adding edureka5.txt using the command
 git add edureka5.txt
 ```
 
-![](assets/2021-10-20-01-03-52-image.png)
+---
 
- I have added edureka5.txt to the index explicitly but not edureka6.txt and made changes in the previous files. I want to commit all changes in the directory at once.
+### Add Files to Index (2)
+
+![alt:"alt" height:450px center](assets/2021-10-20-01-03-52-image.png)
+
+---
+
+### Add Files to Index (3)
+
+I have added edureka5.txt to the index explicitly but not edureka6.txt and made changes in the previous files. I want to commit all changes in the directory at once.
+
+---
+
+### Add Files to Index (4)
 
 > This command will commit a snapshot of all changes in the working directory but only includes modifications to tracked files i.e. the files that have been added with git add at some point in their history. Hence, edureka6.txt was not committed because it was not added to the index yet. But changes in all previous files present in the repository were committed, i.e. edureka1.txt, edureka2.txt, edureka3.txt, edureka4.txt and edureka5.txt.   Now I have made my desired commits in my local repository
 
+---
+
+### Add Files to Index (5)
+
 your local repository consists of three "trees" maintained by git. the first one is your Working Directory which holds the actual files. the second one is the Index which acts as a staging area and finally the HEAD which points to the last commit you've made
 
-![](assets/2021-10-20-01-32-48-image.png)
+---
 
-# Update local repo before sending
+### Add Files to Index (6)
 
-## Fetching
+![alt:"alt" height:450px center](assets/2021-10-20-01-32-48-image.png)
+
+
+---
+
+### Update local repo before sending (1)
+
+#### Fetching
 
 If we have a remote Git branch, for example a branch on Github, it can happen that the remote branch has commits that the current branch doesn't have! Maybe another branch got merged, your colleague pushed a quick fix, and so on.
 
-We can get these changes locally, by performing a `git fetch` on the remote branch! It doesn't affect your local branch in any way: a `fetch` simply downloads new data.
+---
+
+### Update local repo before sending (2)
+
+#### Fetching
+
+We can get these changes locally, by performing a `git fetch` on the remote branch! It doesn't affect your local branch in any way: a `fetch` simply downloads new data.
+
+---
+
+### Update local repo before sending (3)
+
+#### Fetching
 
 ![Alt Text](https://res.cloudinary.com/practicaldev/image/fetch/s--38PuARw2--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bulx1voegfji4vwgndh4.gif)
 
+---
+
+### Update local repo before sending (4)
+
+#### Fetching
+
 We can now see all the changes that have been made since we last pushed! We can decide what we want to do with the new data now that we have it locally.
 
-### Pulling
+---
+
+### Update local repo before sending (5)
+
+#### Pulling
 
 Although a `git fetch` is very useful in order to get the remote information of a branch, we can also perform a `git pull`. A `git pull` is actually two commands in one: a `git fetch`, and a `git merge`. When we're pulling changes from the origin, we're first fetching all the data like we did with a `git fetch`, after which the latest changes are automatically merged into the local branch
 
+---
+
+### Update local repo before sending (6)
+
+#### Pulling
+
 ![Alt Text](https://res.cloudinary.com/practicaldev/image/fetch/s---X5AXldj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/zifpnl1h6a4tk4qdc9sy.gif)
+
+---
+
+### Update local repo before sending (7)
+
+#### Pulling
 
 Awesome, we're now perfectly in sync with the remote branch and have all the latest changes!
 
-### git pull
+---
+
+### Update local repo before sending (8)
+
+#### Pulling
+
+#### git pull
 
 Note that before you affect changes to the central repository you should always pull
 changes from the central repository to your local repository to get updated with the work of all the collaborators that have been contributing in the central repository. For that we will use the pull command.
+
+### Update local repo before sending (9)
+
+#### Pulling
+
+#### git pull
 
 But first, you need to set your central repository as origin using the command
 
@@ -772,9 +1250,19 @@ But first, you need to set your central repository as origin using the command
 git remote add origin <link of your central repository>
 ```
 
-![](assets/2021-10-20-01-06-43-image.png)
+### Update local repo before sending (10)
+
+#### Pulling / `git pull`
+
+![alt:"alt" height:150px center](assets/2021-10-20-01-06-43-image.png)
 
 > Now that my origin is set
+
+---
+
+### Update local repo before sending (11)
+
+#### Pulling / `git pull`
 
 let us extract files from the origin using pull. For that use the command
 
@@ -782,11 +1270,29 @@ let us extract files from the origin using pull. For that use the command
 git pull origin master
 ```
 
-![](assets/2021-10-20-01-07-44-image.png)
+---
+
+### Update local repo before sending (12)
+
+#### Pulling / `git pull`
+
+![alt:"alt" height:300px center](assets/2021-10-20-01-07-44-image.png)
 
 This command will copy all the files from the master branch of remote repository to your local repository.
 
+---
+
+### Update local repo before sending (13)
+
+#### Pulling / `git pull`
+
 > Since my local repository was already updated with files from master branch, hence the message is Already up-to-date. Refer to the screen shot above
+
+---
+
+### Update local repo before sending (14)
+
+#### Pulling / `git pull`
 
 One can also try pulling files from a different branch using the following command:
 
@@ -794,41 +1300,121 @@ One can also try pulling files from a different branch using the following comma
 git pull origin <branch-name>
 ```
 
+---
+
+### Update local repo before sending (15)
+
+#### Pulling / `git pull`
+
 > Your local Git repository is now updated with all the recent changes. It is time you make changes in the central repository by using the push command.
 
-# Send Changes to Remote Repo
+---
 
-### git push
+### Send Changes to Remote Repo (1)
+
+#### git push
 
 - This command transfers commits from your local repository to your remote repository. It is the opposite of pull operation.
 
+---
+
+### Send Changes to Remote Repo (2)
+
+#### git push
+
 - Pulling imports commits to local repositories whereas pushing exports commits to the remote repositories
 
-- The use of git push is to publish your local changes to a central repository. After you’ve accumulated several local commits and are ready to share them with the rest of the team, you can then push them to the central repository by using the following command
+---
+
+### Send Changes to Remote Repo (3)
+
+#### git push
+
+- The use of git push is to publish your local changes to a central repository. After you’ve accumulated several local commits and are ready to share them with the rest of the team, 
+
+---
+
+### Send Changes to Remote Repo (4)
+
+#### git push
+
+you can then push them to the central repository by using the following command
 
 ```batch
 git push <remote> 
 ```
+---
+
+### Send Changes to Remote Repo (5)
+
+#### git push
 
 > This remote refers to the remote repository which had been set before using the pull command.
 
-- This pushes the changes from the local repository to the remote repository along
-  with all the necessary commits and internal objects. This creates a local branch in the destination repository
+---
+
+### Send Changes to Remote Repo (6)
+
+#### git push
+
+- This pushes the changes from the local repository to the remote repository along with all the necessary commits and internal objects. This creates a local branch in the destination repository
+
+---
+
+### Send Changes to Remote Repo (7)
+
+#### git push
 
 The below files are the files which we have already committed previously in the commit section and they are all “push-ready“.
 
-I will use the command `git push origin master` to reflect these files in the master branch of my central repository.
+---
 
-![](assets/2021-10-20-01-12-19-image.png)
+### Send Changes to Remote Repo (8)
 
-![](assets/2021-10-20-01-12-33-image.png)
+#### git push
 
-![](assets/2021-10-20-01-12-47-image.png)
+I will use the command `git push origin master` to reflect these files in the master branch of my central repository.
 
-> To prevent overwriting, Git does not allow push when it results in a non-fast forward merge in the destination repository.
-> 
+---
+
+### Send Changes to Remote Repo (9)
+
+#### git push
+
+![alt:"alt" height:300px center](assets/2021-10-20-01-12-19-image.png)
+
+---
+
+### Send Changes to Remote Repo (10)
+
+#### git push
+
+![alt:"alt" height:300px center](assets/2021-10-20-01-12-33-image.png)
+
+---
+
+### Send Changes to Remote Repo (11)
+
+#### git push
+
+![alt:"alt" height:300px center](assets/2021-10-20-01-12-47-image.png)
+
+---
+
+### Send Changes to Remote Repo (12)
+
+#### git push
+
+> To prevent overwriting, Git does not allow push when it results in a non-fast forward merge in the 
+destination repository.
+
+---
+
+### Send Changes to Remote Repo (13)
+
+#### git push
+
 > A non-fast forward merge means an upstream merge i.e. merging with ancestor or parent branches from a child branch
-> 
 > To enable such merge, use the command below
 > 
 > ```batch
@@ -838,11 +1424,17 @@ I will use the command `git push origin master` to reflect these files in the m
 The above command forces the push operation even if it results in a non-fast
 forward merge
 
-# Branching
+---
 
-### git branch
+### Branching (1)
+#### git branch
 
 Branches in Git are nothing but pointers to a specific commit. Git generally prefers to keep its branches as lightweight as possible.
+
+---
+
+### Branching (2)
+#### git branch
 
 There are basically two types of branches viz. 
 
@@ -850,15 +1442,28 @@ There are basically two types of branches viz.
 
 - remote tracking branches.
 
+---
+
+### Branching (3)
+#### git branch
+
 A local branch is just another path of your working tree. On the other hand, remote tracking branches have special purposes. Some of them are:
 
 They link your work from the local repository to the work on central repository.
 
+---
+
+### Branching (4)
+#### git branch
+
 They automatically detect which remote branches to get changes from, when you use git pull.
 
-![](assets/2021-10-20-01-26-37-image.png)
+![alt:"alt" height:350px center](assets/2021-10-20-01-26-37-image.png)
 
-# Learn current branch
+---
+
+### Branching (5)
+#### Learn current branch
 
 You can check what your current branch is by using the command
 
@@ -868,35 +1473,50 @@ git branch
 
 The one mantra that you should always be chanting while branching is “branch early, and branch often”
 
-## List Local Branches
+---
+
+### Branching (6)
+#### List Local Branches
 
 ```batch
 git branch -l
 ```
 
+---
+
+### Branching (7)
 ## List Remote Branches
 
 ```batch
 git branch -r
 ```
 
+---
+
+### Branching (8)
 ## List All Local and Remote Branches
 
 ```batch
 git branch -a
 ```
 
-There will be another topic and you will need this after pull-request action in github
+---
 
-If you merged your branch to base branch in github and delete it on github your local branch list will not be updated by it self. You have to use the following command to update local and remote branch lists. Use the following command to syncronize your repository with remote upstream repo.
+### Branching (9)
 
 [Removing merged git branches](https://splice.com/blog/cleaning-git-branches/)
+
+(after pull-request action in github)
+
+If you merged your branch to base branch in github and delete it on github your local branch list will not be updated by it self. You have to use the following command to update local and remote branch lists. Use the following command to syncronize your repository with remote upstream repo.
 
 ```batch
 git remote update --prune
 ```
+---
 
-# Create Branch
+### Branching (10)
+#### Create Branch
 
 To create a new branch we use the following command
 
@@ -904,9 +1524,19 @@ To create a new branch we use the following command
 git branch <branch-name>
 ```
 
-The diagram below shows the workflow when a new branch is created.  When we create a new branch it originates from the master branch itself.
+The diagram below shows the workflow when a new branch is created. When we create a new branch it originates from the master branch itself.
 
-![](assets/2021-10-20-01-29-13-image.png)
+---
+
+### Branching (11)
+#### Create Branch
+
+![alt:"alt" height:350px center](assets/2021-10-20-01-29-13-image.png)
+
+---
+
+### Branching (12)
+#### Create Branch
 
 Since there is no storage/memory overhead with making many branches, it is easier to
 logically divide up your work rather than have big chunky branches
@@ -917,7 +1547,10 @@ You can create and change branch with following command, create a new branch nam
 git checkout -b feature_x
 ```
 
-# Change Branch
+---
+
+### Branching (13)
+#### Change Branch
 
 ```batch
 git checkout <branch-name>
@@ -925,11 +1558,20 @@ git checkout <branch-name>
 git checkout master
 ```
 
-![](assets/2021-10-20-01-30-08-image.png)
+---
+
+### Branching (14)
+#### Change Branch
+
+![alt:"alt" height:350px center](assets/2021-10-20-01-30-08-image.png)
+
 
 > Branching includes the work of a particular commit along with all parent commits. As you can see in the diagram above, the newBranch has detached itself from the master and hence will create a different path
 
-# Delete Local Branch
+---
+
+### Branching (15)
+#### Delete Local Branch
 
 and delete the branch again, before doing this switch to main or master branches.
 
@@ -937,7 +1579,10 @@ and delete the branch again, before doing this switch to main or master branches
 git branch -d feature_x
 ```
 
-# Delete Remote Branch
+---
+
+### Branching (16)
+#### Delete Remote Branch
 
 and delete the branch again, before doing this switch to main or master branches.
 
@@ -947,7 +1592,11 @@ git push origin --delete feature_x
 
 [How to delete remote branches in Git](https://www.educative.io/edpresso/how-to-delete-remote-branches-in-git)
 
-# Push Specific Branch to Remote
+
+---
+
+### Branching (17)
+#### Push Specific Branch to Remote
 
 A branch is not available to others unless you push the branch to your remote
 repository
@@ -956,7 +1605,10 @@ repository
 git push origin <branch>
 ```
 
-# Update & Merge (Conflicts)
+---
+
+### Branching (18)
+#### Update & Merge (Conflicts)
 
 to update your local repository to the newest commit, execute
 
@@ -972,6 +1624,11 @@ to merge another branch into your active branch (e.g. master), use
 git merge <branch>
 ```
 
+---
+
+### Branching (19)
+#### Update & Merge (Conflicts)
+
 in both cases git tries to auto-merge changes. Unfortunately, this is not always possible and results in conflicts. You are responsible to merge those conflicts manually by editing the files shown by git. After changing, you need to mark them as merged with
 
 ```
@@ -986,43 +1643,110 @@ git diff <source_branch> <target_branch>
 
 [Git merge conflicts | Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts)
 
+
+---
+
+### Branching (20)
+#### Update & Merge (Conflicts)
+
 There are two types of merges Git can perform: a **fast-forward**, or a **no-fast-forward**
 
-### Fast-forward (`--ff`)
+---
+### Branching (21)
+#### Update & Merge (Conflicts)
+##### Fast-forward (`--ff`)
 
 A **fast-forward merge** can happen when the current branch has no extra commits compared to the branch we’re merging. Git is... *lazy* and will first try to perform the easiest option: the fast-forward! This type of merge doesn’t create a new commit, but rather merges the commit(s) on the branch we’re merging right in the current branch
 
-![](https://res.cloudinary.com/practicaldev/image/fetch/s--cT4TSe48--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/894znjv4oo9agqiz4dql.gif)
+---
+### Branching (22)
+#### Update & Merge (Conflicts)
+##### Fast-forward (`--ff`)
 
-Perfect! We now have all the changes that were made on the `dev` branch available on the `master` branch. So, what's the **no-fast-forward** all about?
+![alt:"alt" height:420px center](https://res.cloudinary.com/practicaldev/image/fetch/s--cT4TSe48--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/894znjv4oo9agqiz4dql.gif)
 
-## No-fast-foward (`--no-ff`)
+---
 
-It's great if your current branch doesn't have any extra commits compared to the branch that you want to merge, but unfortunately that's rarely the case! If we committed changes on the current branch that the branch we want to merge doesn't have, git will perform a *no-fast-forward* merge.
+### Branching (23)
+#### Update & Merge (Conflicts)
 
-With a no-fast-forward merge, Git creates a new *merging commit* on the active branch. The commit's parent commits point to both the active branch and the branch that we want to merge!
+Perfect! We now have all the changes that were made on the `dev` branch available on the `master` branch. So, what's the **no-fast-forward** all about?
 
-![](https://res.cloudinary.com/practicaldev/image/fetch/s--zRZ0x2Vc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/rf1o2b6eduboqwkigg3w.gif)
+---
+
+### Branching (24)
+#### Update & Merge (Conflicts)
+##### No-fast-foward (`--no-ff`)
+
+It's great if your current branch doesn't have any extra commits compared to the branch that you want to merge, but unfortunately that's rarely the case! If we committed changes on the current branch that the branch we want to merge doesn't have, git will perform a *no-fast-forward* merge.
+
+---
+
+### Branching (25)
+#### Update & Merge (Conflicts)
+##### No-fast-foward (`--no-ff`)
+
+With a no-fast-forward merge, Git creates a new *merging commit* on the active branch. The commit's parent commits point to both the active branch and the branch that we want to merge!
+
+---
+
+### Branching (26)
+#### Update & Merge (Conflicts)
+##### No-fast-foward (`--no-ff`)
+
+![alt:"alt" height:420px center](https://res.cloudinary.com/practicaldev/image/fetch/s--zRZ0x2Vc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/rf1o2b6eduboqwkigg3w.gif)
+
+---
+
+### Branching (27)
+#### Update & Merge (Conflicts)
+##### No-fast-foward (`--no-ff`)
 
 No big deal, a perfect merge!  The `master` branch now contains all the changes that we've made on the `dev` branch.
 
+---
+
+### Branching (28)
 ### Merge Conflicts
 
 Although Git is good at deciding how to merge branches and add changes to files, it cannot always make this decision all by itself  This can happen when the two branches we're trying to merge have changes on the same line in the same file, or if one branch deleted a file that another branch modified, and so on.
 
-In that case, Git will ask you to help decide which of the two options we want to keep! Let's say that on both branches, we edited the first line in the `README.md`.
+---
 
-![](https://res.cloudinary.com/practicaldev/image/fetch/s--jXqGWUai--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/m3nxmp67mqof5sa3iik9.png)
+### Branching (29)
+### Merge Conflicts
 
-If we want to merge `dev` into `master`, this will end up in a merge conflict: would you like the title to be `Hello!` or `Hey!`?
+In that case, Git will ask you to help decide which of the two options we want to keep! Let's say that on both branches, we edited the first line in the `README.md`.
+
+---
+
+### Branching (30)
+### Merge Conflicts
+
+![alt:"alt" height:420px center](https://res.cloudinary.com/practicaldev/image/fetch/s--jXqGWUai--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/m3nxmp67mqof5sa3iik9.png)
+
+If we want to merge `dev` into `master`, this will end up in a merge conflict: would you like the title to be `Hello!` or `Hey!`?
+
+---
+
+### Branching (31)
+### Merge Conflicts
 
 When trying to merge the branches, Git will show you where the conflict happens. We can manually remove the changes we don't want to keep, save the changes, add the changed file again, and commit the changes
 
-![](https://res.cloudinary.com/practicaldev/image/fetch/s--7lBksXwA--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bcd5ajtoc0g5dxzmpfbq.gif)
+![alt:"alt" height:420px center](https://res.cloudinary.com/practicaldev/image/fetch/s--7lBksXwA--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bcd5ajtoc0g5dxzmpfbq.gif)
+
+---
+
+### Branching (32)
+### Merge Conflicts
 
 Although merge conflicts are often quite annoying, it makes total sense: Git shouldn't just *assume* which change we want to keep
 
-# Sample Conflict -1
+---
+
+### Branching (33)
+#### Sample Conflict -1
 
 participants.txt
 
@@ -1043,11 +1767,21 @@ git add .
 git commit –m 'Initial list for finance team'
 ```
 
+---
+
+### Branching (34)
+#### Sample Conflict -1
+
 Create a new branch called marketing using the following syntax
 
 ```git
 git checkout –b marketing
 ```
+
+---
+
+### Branching (35)
+#### Sample Conflict -1
 
 Now open the `participants.txt` file and start entering the names for the marketing department below the finance team list, as follows: (**I added a hyphen before each name**)
 
@@ -1064,6 +1798,10 @@ git add .
 git commit –m 'Unfinished list of marketing team'
 git checkout master
 ```
+---
+
+### Branching (36)
+#### Sample Conflict -1
 
 Open the file and delete the names **Alexander** and **Stacy**, save, close, add the changes, and commit with the commit message Final list from Finance team
 
@@ -1072,6 +1810,11 @@ git add .
 git commit –m "Final list from Finance team"
 git checkout marketing
 ```
+
+---
+
+### Branching (37)
+#### Sample Conflict -1
 
 Open the file and add the fifth name, **Amanda**, for the marketing team, save, add, and commit
 
@@ -1086,11 +1829,21 @@ names entered for marketing have been confirmed; now we need to merge these two 
 git merge master
 ```
 
+---
+
+### Branching (38)
+#### Sample Conflict -1
+
 ```batch
 Auto-merging participants.txt
 CONFLICT (content): Merge conflict in participants.txt
 Automatic merge failed; fix conflicts and then commit the result.
 ```
+
+---
+
+### Branching (39)
+#### Sample Conflict -1
 
 ```textile
 Finance team
@@ -1111,6 +1864,11 @@ Marketing team
 >>>>>>> master
 ```
 
+---
+
+### Branching (40)
+#### Sample Conflict -1
+
 ```textile
 <<<<<<<
 Changes made on the branch that is being merged into. In most cases,
@@ -1123,9 +1881,21 @@ feature/topic branch.
 >>>>>>>
 ```
 
+---
+
+### Branching (41)
+#### Sample Conflict -1
+
 - remove them
 - keep the lines you want to see in the final version of the file
 - add and commit
+
+
+---
+
+### Branching (42)
+#### Sample Conflict -1
+
 
 If we want to save all to our version
 
@@ -1135,6 +1905,11 @@ git add -u             # mark all conflicted files as merged
 git commit             # commit the merge
 ```
 
+---
+
+### Branching (43)
+#### Sample Conflict -1
+
 If we want to discard all our revision
 
 ```batch
@@ -1143,7 +1918,10 @@ git add -u             # mark all conflicted files as merged
 git commit             # commit the merge
 ```
 
-# Conflict Sample -2
+---
+
+### Branching (44)
+#### Sample Conflict -2
 
 You're going to pull some changes, but oops, you're not up to date:
 
@@ -1156,6 +1934,11 @@ From ssh://gitosis@example.com:22/projectname
 Updating a030c3a..ee25213
 error: Entry 'filename.c' not uptodate. Cannot merge.
 ```
+
+---
+
+### Branching (45)
+#### Sample Conflict -2
 
 So you get up-to-date and try again, but have a conflict:
 
@@ -1170,6 +1953,11 @@ Auto-merging filename.c
 CONFLICT (content): Merge conflict in filename.c
 Automatic merge failed; fix conflicts and then commit the result.
 ```
+
+---
+
+### Branching (46)
+#### Sample Conflict -2
 
 So you decide to take a look at the changes:
 
@@ -1186,6 +1974,11 @@ git add filename.c
 git commit -m "using theirs"
 ```
 
+---
+
+### Branching (47)
+#### Sample Conflict -2
+
 And then we try a final time
 
 ```batch
@@ -1196,7 +1989,9 @@ From ssh://gitosis@example.com:22/projectname
 Already up-to-date.
 ```
 
-# Tagging
+---
+
+### Tagging
 
 it's recommended to create tags for software releases. this is a known concept,
 which also exists in SVN. You can create a new tag named 1.0.0 by executing
@@ -1208,7 +2003,9 @@ git tag 1.0.0 1b2e1d63ff
 the 1b2e1d63ff stands for the first 10 characters of the commit id you want to
 reference with your tag. You can get the commit id by looking at the...
 
-# Log
+---
+
+### Log (1)
 
 in its simplest form, you can study repository history using.. git log
 
@@ -1219,11 +2016,19 @@ only the commits of a certain author:
 git log --author=bob
 ```
 
+---
+
+### Log (2)
+
 To see a very compressed log where each commit is one line:
 
 ```batch
 git log --pretty=oneline
 ```
+
+---
+
+### Log (3)
 
 Or maybe you want to see an ASCII art tree of all the branches, decorated with the names of tags and branches:
 
@@ -1231,19 +2036,28 @@ Or maybe you want to see an ASCII art tree of all the branches, decorated with t
 git log --graph --oneline --decorate --all
 ```
 
+---
+
+### Log (4)
+
 See only which files have changed: 
 
 ```batch
 git log --name-status
 ```
 
+---
+
+### Log (5)
 These are just a few of the possible parameters you can use. For more, see 
 
 ```batch
 git log --help
 ```
 
-# Replace Local Changes
+---
+
+### Replace Local Changes (1)
 
 In case you did something wrong, which for sure never happens ;), you can replace
 local changes using the command
@@ -1255,11 +2069,19 @@ git checkout -- <filename>
 this replaces the changes in your working tree with the last content in HEAD.
 Changes already added to the index, as well as new files, will be kept.
 
+---
+
+### Replace Local Changes (2)
+
 if you use dot (.) then all local changes will be rollbacked.
 
 ```batch
  git checkout -- .
 ```
+
+---
+
+### Replace Local Changes (3)
 
 If you instead want to drop all your local changes and commits, fetch the latest
 history from the server and point your local master branch at it like this
@@ -1270,85 +2092,175 @@ git fetch origin
 git reset --hard origin/master
 ```
 
-# Reflog
+---
+
+### Reflog (1)
 
 Everyone makes mistakes, and that's totally okay! Sometimes it may feel like you've corrupt your git repo so badly that you just want to delete it entirely.
 
+---
+
+### Reflog (2)
+
 `git reflog` is a very useful command in order to show a log of all the actions that have been taken! This includes merges, resets, reverts: basically any alteration to your branch.
 
-![Alt Text](https://res.cloudinary.com/practicaldev/image/fetch/s--MMUdOS0P--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/1aqek1py1knwl926ele7.gif)
+---
 
-If you made a mistake, you can easily redo this by resetting `HEAD` based on the information that `reflog` gives us!
+### Reflog (3)
 
-Say that we actually didn't want to merge the origin branch. When we execute the `git reflog` command, we see that the state of the repo before the merge is at `HEAD@{1}`. Let's perform a `git reset` to point HEAD back to where it was on `HEAD@{1}`!
+![alt:"alt" height:450px center](https://res.cloudinary.com/practicaldev/image/fetch/s--MMUdOS0P--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/1aqek1py1knwl926ele7.gif)
 
-![Alt Text](https://res.cloudinary.com/practicaldev/image/fetch/s--A1UMM2AH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/9z9rhtbw7mrigp0miijz.gif)
+---
+
+### Reflog (4)
+
+If you made a mistake, you can easily redo this by resetting `HEAD` based on the information that `reflog` gives us!
+
+Say that we actually didn't want to merge the origin branch. When we execute the `git reflog` command, we see that the state of the repo before the merge is at `HEAD@{1}`. Let's perform a `git reset` to point HEAD back to where it was on `HEAD@{1}`!
+
+---
+
+### Reflog (5)
+
+![alt:"alt" height:450px center](https://res.cloudinary.com/practicaldev/image/fetch/s--A1UMM2AH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/9z9rhtbw7mrigp0miijz.gif)
 
 We can see that the latest action has been pushed to the `reflog`
 
-# Resetting
+---
 
-It can happen that we committed changes that we didn't want later on. Maybe it's a `WIP` commit, or maybe a commit that introduced bugs! 🐛 In that case, we can perform a `git reset`.
+### Resetting (1)
 
-A `git reset` gets rid of all the current staged files and gives us control over where `HEAD` should point to.
+It can happen that we committed changes that we didn't want later on. Maybe it's a `WIP` commit, or maybe a commit that introduced bugs!  In that case, we can perform a `git reset`.
 
-### Soft reset
+---
 
-A *soft reset* moves `HEAD` to the specified commit (or the index of the commit compared to `HEAD`), without getting rid of the changes that were introduced on the commits afterward!
+### Resetting (2)
 
-Let's say that we don't want to keep the commit `9e78i` which added a `style.css` file, and we also don't want to keep the commit `035cc` which added an `index.js` file. However, we do want to keep the newly added `style.css` and `index.js` file! A perfect use case for a soft reset.
+A `git reset` gets rid of all the current staged files and gives us control over where `HEAD` should point to.
 
-![](https://res.cloudinary.com/practicaldev/image/fetch/s---GveiZe---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/je5240aqa5uw9d8j3ibb.gif)
+--- 
+
+### Soft Reset (1)
+
+A *soft reset* moves `HEAD` to the specified commit (or the index of the commit compared to `HEAD`), without getting rid of the changes that were introduced on the commits afterward!
+
+--- 
+
+### Soft Reset (2)
+
+Let's say that we don't want to keep the commit `9e78i` which added a `style.css` file, and we also don't want to keep the commit `035cc` which added an `index.js` file. However, we do want to keep the newly added `style.css` and `index.js` file! A perfect use case for a soft reset.
+
+--- 
+
+### Soft Reset (3)
+
+![alt:"alt" height:450px center](https://res.cloudinary.com/practicaldev/image/fetch/s---GveiZe---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/je5240aqa5uw9d8j3ibb.gif)
+
+
+--- 
+
+### Soft Reset (2)
 
 When typing `git status`, you'll see that we still have access to all the changes that were made on the previous commits. This is great, as this means that we can fix the contents of these files and commit them again later on!
 
-### Hard reset
+---
+
+### Hard reset (1)
 
 Sometimes, we don't want to keep the changes that were introduced by certain commits. Unlike a soft reset, we shouldn't need to have access to them any more. Git should simply reset its state back to where it was on the specified commit: this even includes the changes in your working directory and staged files!
 
-![Alt Text](https://res.cloudinary.com/practicaldev/image/fetch/s--GqjwnYkF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/hlh0kowt3hov1xhcku38.gif)
+---
+
+### Hard reset (2)
 
 Git has discarded the changes that were introduced on `9e78i` and `035cc`, and reset its state to where it was on commit `ec5be`.
 
-### Reverting
+![alt:"alt" height:450px center](https://res.cloudinary.com/practicaldev/image/fetch/s--GqjwnYkF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/hlh0kowt3hov1xhcku38.gif)
 
-Another way of undoing changes is by performing a `git revert`. By reverting a certain commit, we create a *new commit* that contains the reverted changes!
 
-Let's say that `ec5be` added an `index.js` file. Later on, we actually realize we didn't want this change introduced by this commit anymore! Let's revert the `ec5be` commit.
+---
 
-![Alt Text](https://res.cloudinary.com/practicaldev/image/fetch/s--eckmvr2M--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/3kkd2ahn41zixs12xgpf.gif)
+### Reverting (1)
 
-Perfect! Commit `9e78i` reverted the changes that were introduced by the `ec5be` commit. Performing a `git revert` is very useful in order to undo a certain commit, without modifying the history of the branch.
+Another way of undoing changes is by performing a `git revert`. By reverting a certain commit, we create a *new commit* that contains the reverted changes!
 
-# Cherry-picking
+---
 
-When a certain branch contains a commit that introduced changes we need on our active branch, we can `cherry-pick` that command! By `cherry-pick`ing a commit, we create a new commit on our active branch that contains the changes that were introduced by the `cherry-pick`ed commit.
+### Reverting (2)
 
-Say that commit `76d12` on the `dev` branch added a change to the `index.js` file that we want in our `master` branch. We don't want the *entire* we just care about this one single commit!
+Let's say that `ec5be` added an `index.js` file. Later on, we actually realize we didn't want this change introduced by this commit anymore! Let's revert the `ec5be` commit.
 
-![Alt Text](https://res.cloudinary.com/practicaldev/image/fetch/s--9vWP_K4S--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/2dkjx4yeaal10xyvj29v.gif)
+![alt:"alt" height:400px center](https://res.cloudinary.com/practicaldev/image/fetch/s--eckmvr2M--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/3kkd2ahn41zixs12xgpf.gif)
+
+
+Perfect! Commit `9e78i` reverted the changes that were introduced by the `ec5be` commit. 
+
+---
+
+### Reverting (3)
+
+Performing a  `git revert` is very useful in order to undo a certain commit, without modifying the history of the branch.
+
+---
+
+### Cherry-picking (1)
+
+When a certain branch contains a commit that introduced changes we need on our active branch, we can `cherry-pick` that command! By `cherry-pick`ing a commit, we create a new commit on our active branch that contains the changes that were introduced by the `cherry-pick`ed commit.
+
+---
+
+### Cherry-picking (1)
+
+Say that commit `76d12` on the `dev` branch added a change to the `index.js` file that we want in our `master` branch. We don't want the *entire* we just care about this one single commit!
+
+![alt:"alt" height:350px center](https://res.cloudinary.com/practicaldev/image/fetch/s--9vWP_K4S--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/2dkjx4yeaal10xyvj29v.gif)
 
 Cool, the master branch now contains the changes that `76d12` introduced
 
-# Rebasing
+---
 
-We just saw how we could apply changes from one branch to another by performing a `git merge`. Another way of adding changes from one branch to another is by performing a `git rebase`.
+### Rebasing (1)
 
-A `git rebase` *copies* the commits from the current branch, and puts these copied commits on top of the specified branch.
+We just saw how we could apply changes from one branch to another by performing a `git merge`. Another way of adding changes from one branch to another is by performing a `git rebase`.
 
-![](https://res.cloudinary.com/practicaldev/image/fetch/s--EIY4OOcE--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/dwyukhq8yj2xliq4i50e.gif)
+---
+
+### Rebasing (2)
+
+A `git rebase` *copies* the commits from the current branch, and puts these copied commits on top of the specified branch.
+
+![alt:"alt" height:380px center](https://res.cloudinary.com/practicaldev/image/fetch/s--EIY4OOcE--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/dwyukhq8yj2xliq4i50e.gif)
+
 
 Perfect, we now have all the changes that were made on the `master` branch available on the `dev` branch!
 
+---
+
+### Rebasing (3)
+
 A big difference compared to merging, is that Git won't try to find out which files to keep and not keep. The branch that we're rebasing always has the latest changes that we want to keep! You won't run into any merging conflicts this way, and keeps a nice linear Git history.
 
-This example shows rebasing on the `master` branch. In bigger projects, however, you usually don't want to do that. A `git rebase` **changes the history of the project** as new hashes are created for the copied commits!
+---
+
+### Rebasing (4)
+
+This example shows rebasing on the `master` branch. In bigger projects, however, you usually don't want to do that. A `git rebase` **changes the history of the project** as new hashes are created for the copied commits!
+
+---
+
+### Rebasing (5)
 
 Rebasing is great whenever you're working on a feature branch, and the master branch has been updated. You can get all the updates on your branch, which would prevent future merging conflicts!
 
-### Interactive Rebase
+---
 
-Before rebasing the commits, we can modify them!  We can do so with an *interactive rebase*. An interactive rebase can also be useful on the branch you're currently working on, and want to modify some commits.
+### Interactive Rebase (1)
+
+Before rebasing the commits, we can modify them!  We can do so with an *interactive rebase*. An interactive rebase can also be useful on the branch you're currently working on, and want to modify some commits.
+
+---
+
+### Interactive Rebase (2)
 
 There are 6 actions we can perform on the commits we're rebasing:
 
@@ -1359,17 +2271,27 @@ There are 6 actions we can perform on the commits we're rebasing:
 - `exec`: Run a command on each commit we want to rebase
 - `drop`: Remove the commit
 
-Awesome! This way, we can have full control over our commits. If we want to remove a commit, we can just `drop` it.
+---
 
-![Alt Text](https://res.cloudinary.com/practicaldev/image/fetch/s--P6jr7igd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/msofpv7k6rcmpaaefscm.gif)
+### Interactive Rebase (3)
+
+Awesome! This way, we can have full control over our commits. If we want to remove a commit, we can just `drop` it.
+
+![alt:"alt" height:410px center](https://res.cloudinary.com/practicaldev/image/fetch/s--P6jr7igd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/msofpv7k6rcmpaaefscm.gif)
+
+---
+
+### Interactive Rebase (4)
 
 Or if we want to squash multiple commits together to get a cleaner history, no problem!
 
-![Alt Text](https://res.cloudinary.com/practicaldev/image/fetch/s--VSQt4g1V--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bc1r460xx1i0blu0lnnm.gif)
+![alt:"alt" height:410px center](https://res.cloudinary.com/practicaldev/image/fetch/s--VSQt4g1V--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bc1r460xx1i0blu0lnnm.gif)
 
 Interactive rebasing gives you a lot of control over the commits you're trying to rebase, even on the current active branch
 
-# Useful Hints
+---
+
+### Useful Hints (1)
 
 built-in git GUI
 
@@ -1377,17 +2299,29 @@ built-in git GUI
 gitk
 ```
 
+---
+
+### Useful Hints (2)
+
 use colorful git output
 
 ```batch
 git config color.ui true
 ```
 
+---
+
+### Useful Hints (3)
+
 show log on just one line per commit
 
 ```batch
 git config format.pretty oneline
 ```
+
+---
+
+### Useful Hints (4)
 
 use interactive adding
 
@@ -1402,35 +2336,68 @@ HEAD@{2}     // reflog order
 18fe5              // previous commit hash
 ```
 
-## GIT Decision Tree
+---
+
+### GIT Decision Tree
 
 http://justinhileman.info/article/git-pretty/git-pretty.png
 
-![](http://justinhileman.info/article/git-pretty/git-pretty.png)
+![alt:"alt" height:410px center](http://justinhileman.info/article/git-pretty/git-pretty.png)
 
-# GIT in action
+---
 
-![](assets/2021-10-20-02-08-27-image.png)
+### GIT in action (1)
 
-![](assets/2021-10-20-02-08-09-image.png)
+![alt:"alt" height:450px center](assets/2021-10-20-02-08-27-image.png)
 
-![](assets/2021-10-20-02-08-16-image.png)
+---
 
-![](assets/2021-10-20-02-08-34-image.png)
+### GIT in action (2)
 
-![](assets/2021-10-20-02-08-46-image.png)
+![alt:"alt" height:450px center](assets/2021-10-20-02-08-09-image.png)
 
-![](assets/2021-10-20-02-08-51-image.png)
+---
 
-![](assets/2021-10-20-02-10-10-image.png)
+### GIT in action (3)
 
-# Gource
+![alt:"alt" height:450px center](assets/2021-10-20-02-08-16-image.png)
+
+---
+
+### GIT in action (4)
+
+![alt:"alt" height:450px center](assets/2021-10-20-02-08-34-image.png)
+
+---
+
+### GIT in action (5)
+
+![alt:"alt" height:450px center](assets/2021-10-20-02-08-46-image.png)
+
+---
+
+### GIT in action (6)
+
+![alt:"alt" height:450px center](assets/2021-10-20-02-08-51-image.png)
+
+---
+
+### GIT in action (7)
+
+![alt:"alt" height:450px center](assets/2021-10-20-02-10-10-image.png)
+
+---
+
+### Gource
 
 https://gource.io/
 
-![](assets/2021-10-20-02-10-45-image.png)
+![alt:"alt" height:450px center](assets/2021-10-20-02-10-45-image.png)
 
-# References
+
+---
+
+### References (1)
 
 [Source Code Management | Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/source-code-management#:~:text=Source%20code%20management%20(SCM)%20is,also%20synonymous%20with%20Version%20control).
 
@@ -1442,6 +2409,10 @@ https://www.edureka.co/blog/git-tutorial/
 
 https://www.edureka.co/blog/install-git/
 
+---
+
+### References (2)
+
 [git - the simple guide - no deep shit!](https://rogerdudler.github.io/git-guide/index.html)
 
 [GitHub - rogerdudler/git-guide: git - the simple guide](https://github.com/rogerdudler/git-guide)
@@ -1452,13 +2423,23 @@ https://www.edureka.co/blog/install-git/
 
 https://blog.xebialabs.com/2016/06/14/periodic-table-devops-tools-v-2/
 
+---
+
+### References (3)
+
 https://harness.io/2018/01/devops-tools-lifecycle-mesh-2018/
 
 https://medium.com/swlh/how-to-become-an-devops-engineer-in-2020-80b8740d5a52
 
+
 https://www.lucidchart.com/blog/devops-process-flow
 
 https://www.researchgate.net/publication/262450962_Rugby_An_Agile_Process_Model_Based_on_Continuous_Delivery
+
+
+---
+
+### References (4)
 
 [git - the simple guide - no deep shit!](https://rogerdudler.github.io/git-guide/index.html)
 
@@ -1467,6 +2448,10 @@ https://www.researchgate.net/publication/262450962_Rugby_An_Agile_Process_Model_
 [How to write a good commit message - DEV Community](https://dev.to/chrissiemhrk/git-commit-message-5e21)
 
 [An Introduction to Git and GitHub by Brian Yu - YouTube](https://www.youtube.com/watch?v=MJUJ4wbFm_A&ab_channel=CS50)
+
+---
+
+### References (5)
 
 https://education.github.com/git-cheat-sheet-education.pdf
 

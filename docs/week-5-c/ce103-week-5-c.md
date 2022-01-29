@@ -1,6 +1,11 @@
 ---
 marp: true
 theme: default
+style: |
+    img[alt~="center"] {
+      display: block;
+      margin: 0 auto;
+    }
 _class: lead
 paginate: true
 backgroundColor: #fff
@@ -35,6 +40,7 @@ footer-center: "License: WTFPL"
 footer-right:
 subparagraph: true
 lang: en-US 
+math: katex
 ---
 
 <!-- _backgroundColor: aquq -->
@@ -677,17 +683,17 @@ Escape sequences are utilized to utilise these characters.
 
 | Escape Sequences | Character             |
 | ---------------- | --------------------- |
-| \b               | Backspace             |
-| \f               | Form feed             |
-| \n               | Newline               |
-| \r               | Return                |
-| \t               | Horizontal Tab        |
-| \v               | Vertical Tab          |
-| \\\              | Backslash             |
-| \'               | Single quotation mark |
-| \"               | Double quotation mark |
-| \?               | Question mark         |
-| \0               | Null character        |
+| `\b`             | Backspace             |
+| `\f`             | Form feed             |
+| `\n`             | Newline               |
+| `\r`             | Return                |
+| `\t`             | Horizontal Tab        |
+| `\v`             | Vertical Tab          |
+| `\\\             | Backslash             |
+| `\'`             | Single quotation mark |
+| `\"`             | Double quotation mark |
+| `\?`             | Question mark         |
+| `\0`             | Null character        |
 
 ### 5. String Literals
 
@@ -1127,10 +1133,10 @@ You entered -3 and 3.400000
 
 As you can see from the samples above, we apply
 
-- `%d` for `int`
-- `%f` for `float`
-- `%lf` for `double`
-- `%c` for `char`
+- `%d` for `int`
+- `%f` for `float`
+- `%lf` for `double`
+- `%c` for `char`
 
 The following is a collection of widely used C data types and associated format specifiers.
 
@@ -1469,12 +1475,12 @@ int main()
 
 **Explanation of logical operator program**
 
-- `(a == b) && (c > 5)` evaluates to 1 because both operands `(a == b)` and `(c > b)` is 1 (true).
-- `(a == b) && (c < b)` evaluates to 0 because operand `(c < b)` is 0 (false).
-- `(a == b) || (c < b)` evaluates to 1 because `(a = b)` is 1 (true).
-- `(a != b) || (c < b)` evaluates to 0 because both operand `(a != b)` and `(c < b)` are 0 (false).
-- `!(a != b)` evaluates to 1 because operand `(a != b)` is 0 (false). Hence, !(a != b) is 1 (true).
-- `!(a == b)` evaluates to 0 because `(a == b)` is 1 (true). Hence, `!(a == b)` is 0 (false).
+- `(a == b) && (c > 5)` evaluates to 1 because both operands `(a == b)` and `(c > b)` is 1 (true).
+- `(a == b) && (c < b)` evaluates to 0 because operand `(c < b)` is 0 (false).
+- `(a == b) || (c < b)` evaluates to 1 because `(a = b)` is 1 (true).
+- `(a != b) || (c < b)` evaluates to 0 because both operand `(a != b)` and `(c < b)` are 0 (false).
+- `!(a != b)` evaluates to 1 because operand `(a != b)` is 0 (false). Hence, !(a != b) is 1 (true).
+- `!(a == b)` evaluates to 0 because `(a == b)` is 1 (true). Hence, `!(a == b)` is 0 (false).
 
 ### C Bitwise Operators
 
@@ -1840,11 +1846,11 @@ int main() {
 1 2 3 4 5 6 7 8 9 10
 ```
 
-1. i is initialized to 1.
-2. The test expression `i < 11` is evaluated. Since 1 less than 11 is true, the body of `for` loop is executed. This will print the **1** (value of i) on the screen.
-3. The update statement `++i` is executed. Now, the value of i will be 2. Again, the test expression is evaluated to true, and the body of `for` loop is executed. This will print **2** (value of i) on the screen.
-4. Again, the update statement `++i` is executed and the test expression `i < 11` is evaluated. This process goes on until i becomes 11.
-5. When i becomes 11, i < 11 will be false, and the `for` loop terminates.
+1. i is initialized to 1.
+2. The test expression `i < 11` is evaluated. Since 1 less than 11 is true, the body of `for` loop is executed. This will print the **1** (value of i) on the screen.
+3. The update statement `++i` is executed. Now, the value of i will be 2. Again, the test expression is evaluated to true, and the body of `for` loop is executed. This will print **2** (value of i) on the screen.
+4. Again, the update statement `++i` is executed and the test expression `i < 11` is evaluated. This process goes on until i becomes 11.
+5. When i becomes 11, i < 11 will be false, and the `for` loop terminates.
 
 ### Example 2: for loop
 
@@ -1879,17 +1885,17 @@ Enter a positive integer: 10
 Sum = 55
 ```
 
-The value entered by the user is stored in the variable num. Suppose, the user entered 10.
+The value entered by the user is stored in the variable num. Suppose, the user entered 10.
 
-The count is initialized to 1 and the test expression is evaluated. Since the test expression `count<=num` (1 less than or equal to 10) is true, the body of `for` loop is executed and the value of sum will equal to 1.
+The count is initialized to 1 and the test expression is evaluated. Since the test expression `count<=num` (1 less than or equal to 10) is true, the body of `for` loop is executed and the value of sum will equal to 1.
 
-Then, the update statement `++count` is executed and count will equal to 2. Again, the test expression is evaluated. Since 2 is also less than 10, the test expression is evaluated to true and the body of the `for` loop is executed. Now, sum will equal 3.
+Then, the update statement `++count` is executed and count will equal to 2. Again, the test expression is evaluated. Since 2 is also less than 10, the test expression is evaluated to true and the body of the `for` loop is executed. Now, sum will equal 3.
 
-This process goes on and the sum is calculated until the count reaches 11.
+This process goes on and the sum is calculated until the count reaches 11.
 
-When the count is 11, the test expression is evaluated to 0 (false), and the loop terminates.
+When the count is 11, the test expression is evaluated to 0 (false), and the loop terminates.
 
-Then, the value of `sum` is printed on the screen.
+Then, the value of `sum` is printed on the screen.
 
 # C while and do...while Loop
 
@@ -1903,7 +1909,7 @@ C programming has three types of loops.
 2. while loop
 3. do...while loop
 
-In the previous tutorial, we learned about `for` loop. In this tutorial, we will learn about `while` and `do..while` loop.
+In the previous tutorial, we learned about `for` loop. In this tutorial, we will learn about `while` and `do..while` loop.
 
 ## while loop
 
@@ -1917,10 +1923,10 @@ while (testExpression) {
 
 ### How while loop works?
 
-- The `while` loop evaluates the `testExpression` inside the parentheses `()`.
-- If `testExpression` is **true**, statements inside the body of `while` loop are executed. Then, `testExpression` is evaluated again.
-- The process goes on until `testExpression` is evaluated to **false**.
-- If `testExpression` is **false**, the loop terminates (ends).
+- The `while` loop evaluates the `testExpression` inside the parentheses `()`.
+- If `testExpression` is **true**, statements inside the body of `while` loop are executed. Then, `testExpression` is evaluated again.
+- The process goes on until `testExpression` is evaluated to **false**.
+- If `testExpression` is **false**, the loop terminates (ends).
 
 ![flowchart of while loop in C programming](https://cdn.programiz.com/sites/tutorial2program/files/c-while-loop_0.jpg)
 
@@ -1952,17 +1958,17 @@ int main() {
 5
 ```
 
-Here, we have initialized i to 1.
+Here, we have initialized i to 1.
 
-1. When `i = 1`, the test expression `i <= 5` is **true**. Hence, the body of the `while` loop is executed. This prints `1` on the screen and the value of i is increased to `2`.
-2. Now, `i = 2`, the test expression `i <= 5` is again **true**. The body of the `while` loop is executed again. This prints `2` on the screen and the value of i is increased to `3`.
-3. This process goes on until i becomes 6. Then, the test expression `i <= 5` will be **false** and the loop terminates.
+1. When `i = 1`, the test expression `i <= 5` is **true**. Hence, the body of the `while` loop is executed. This prints `1` on the screen and the value of i is increased to `2`.
+2. Now, `i = 2`, the test expression `i <= 5` is again **true**. The body of the `while` loop is executed again. This prints `2` on the screen and the value of i is increased to `3`.
+3. This process goes on until i becomes 6. Then, the test expression `i <= 5` will be **false** and the loop terminates.
 
 ## do...while loop
 
-The `do..while` loop is similar to the `while` loop with one important difference. The body of `do...while` loop is executed at least once. Only then, the test expression is evaluated.
+The `do..while` loop is similar to the `while` loop with one important difference. The body of `do...while` loop is executed at least once. Only then, the test expression is evaluated.
 
-The syntax of the `do...while` loop is:
+The syntax of the `do...while` loop is:
 
 ```c
 do {
@@ -1973,10 +1979,10 @@ while (testExpression);
 
 ### How do...while loop works?
 
-- The body of `do...while` loop is executed once. Only then, the `testExpression` is evaluated.
-- If `testExpression` is **true**, the body of the loop is executed again and `testExpression` is evaluated once more.
-- This process goes on until `testExpression` becomes **false**.
-- If `testExpression` is **false**, the loop ends.
+- The body of `do...while` loop is executed once. Only then, the `testExpression` is evaluated.
+- If `testExpression` is **true**, the body of the loop is executed again and `testExpression` is evaluated once more.
+- This process goes on until `testExpression` becomes **false**.
+- If `testExpression` is **false**, the loop ends.
 
 ### Flowchart of do...while Loop
 
@@ -2016,9 +2022,9 @@ Enter a number: 0
 Sum = 4.70
 ```
 
-Here, we have used a `do...while` loop to prompt the user to enter a number. The loop works as long as the input number is not `0`.
+Here, we have used a `do...while` loop to prompt the user to enter a number. The loop works as long as the input number is not `0`.
 
-The `do...while` loop executes at least once i.e. the first iteration runs without checking the condition. The condition is checked only after the first iteration has been executed.
+The `do...while` loop executes at least once i.e. the first iteration runs without checking the condition. The condition is checked only after the first iteration has been executed.
 
 ```c
 do {
@@ -2029,11 +2035,11 @@ do {
 while(number != 0.0);
 ```
 
-So, if the first input is a non-zero number, that number is added to the sum variable and the loop continues to the next iteration. This process is repeated until the user enters `0`.
+So, if the first input is a non-zero number, that number is added to the sum variable and the loop continues to the next iteration. This process is repeated until the user enters `0`.
 
-But if the first input is 0, there will be no second iteration of the loop and sum becomes `0.0`.
+But if the first input is 0, there will be no second iteration of the loop and sum becomes `0.0`.
 
-Outside the loop, we print the value of sum.
+Outside the loop, we print the value of sum.
 
 # C break and continue
 
@@ -2153,9 +2159,9 @@ Enter n10: 12
 Sum = 59.70
 ```
 
-In this program, when the user enters a positive number, the sum is calculated using `sum += number;` statement.
+In this program, when the user enters a positive number, the sum is calculated using `sum += number;` statement.
 
-When the user enters a negative number, the `continue` statement is executed and it skips the negative number from the calculation.
+When the user enters a negative number, the `continue` statement is executed and it skips the negative number from the calculation.
 
 # C switch Statement
 
@@ -2163,13 +2169,13 @@ In this tutorial, you will learn to create the switch statement in C programming
 
 The switch statement allows us to execute one code block among many alternatives.
 
-You can do the same thing with the `if...else..if` ladder. However, the syntax of the `switch` statement is much easier to read and write.
+You can do the same thing with the `if...else..if` ladder. However, the syntax of the `switch` statement is much easier to read and write.
 
 ## Syntax of switch...case
 
 ```c
 switch (expression)
-​{
+{
     case constant1:
       // statements
       break;
@@ -2187,14 +2193,14 @@ switch (expression)
 
 **How does the switch statement work?**
 
-The expression is evaluated once and compared with the values of each case label.
+The expression is evaluated once and compared with the values of each case label.
 
-- If there is a match, the corresponding statements after the matching label are executed. For example, if the value of the expression is equal to constant2, statements after `case constant2:` are executed until `break` is encountered.
+- If there is a match, the corresponding statements after the matching label are executed. For example, if the value of the expression is equal to constant2, statements after `case constant2:` are executed until `break` is encountered.
 - If there is no match, the default statements are executed.
 
-If we do not use `break`, all statements after the matching label are executed.
+If we do not use `break`, all statements after the matching label are executed.
 
-By the way, the `default` clause inside the `switch` statement is optional.
+By the way, the `default` clause inside the `switch` statement is optional.
 
 ![Flowchart of switch statement](https://cdn.programiz.com/sites/tutorial2program/files/flowchart-switch-statement.jpg)
 
@@ -2342,15 +2348,15 @@ if (test > 5) {
 ... .. ...
 ```
 
-Also, the `goto` statement allows you to do bad stuff such as jump out of the scope.
+Also, the `goto` statement allows you to do bad stuff such as jump out of the scope.
 
-That being said, `goto` can be useful sometimes. For example: to break from nested loops.
+That being said, `goto` can be useful sometimes. For example: to break from nested loops.
 
 ### Should you use goto?
 
-If you think the use of `goto` statement simplifies your program, you can use it. That being said, `goto` is rarely useful and you can create any C program without using `goto` altogether.
+If you think the use of `goto` statement simplifies your program, you can use it. That being said, `goto` is rarely useful and you can create any C program without using `goto` altogether.
 
-Here's a quote from Bjarne Stroustrup, creator of C++, **"The fact that 'goto' can do anything is exactly why we don't use it."**
+Here's a quote from Bjarne Stroustrup, creator of C++, **"The fact that 'goto' can do anything is exactly why we don't use it."**
 
 [C Functions](https://www.programiz.com/c-programming/c-functions)
 

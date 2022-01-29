@@ -1,6 +1,11 @@
 ---
 marp: true
 theme: default
+style: |
+    img[alt~="center"] {
+      display: block;
+      margin: 0 auto;
+    }
 _class: lead
 paginate: true
 backgroundColor: #fff
@@ -35,6 +40,8 @@ footer-center: "License: WTFPL"
 footer-right:
 subparagraph: true
 lang: en-US 
+
+math: katex
 ---
 
 <!-- _backgroundColor: aquq -->
@@ -210,21 +217,21 @@ If necessary, you can use the following books and open-source online resources.
 Midterm and Final grades will be calculated with the weighted average of the project or homework-based examinations. Midterm grades will be calculated between term beginning to the midterm week, and Final grades will be calculated between Midterm and Final week homeworks or projects as follow
 
 $$
-\operatorname{a_n}  = \text{Homework or Project Weight}
+a_n=\text{Homework or Project Weight}
 $$
 
 $$
-\operatorname{HW_n} = \text{Homework or Project Points}
+HW_n=\text{Homework or Project Points}
 $$
 
 $$
-\operatorname{n} = \text{Number of Homework or Project}
+n=\text{Number of Homework or Project}
 $$
 
 ---
 
 $$
-Grade = (a_1HW_1+a_2HW_2+...+a_nHW_n)/n
+Grade=(a_1HW_1+a_2HW_2+...+a_nHW_n)/n
 $$
 
 | Homework | Weight |
@@ -233,7 +240,7 @@ $$
 | Final    | %60    |
 
 $$
-\text{Passing Grade} = (40*Midterm_{Grade}+60*Final_{Grade})/100
+\text{Passing Grade}=(40*Midterm_{Grade}+60*Final_{Grade})/100
 $$
 
 ---

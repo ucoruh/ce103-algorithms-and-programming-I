@@ -1238,6 +1238,8 @@ Awesome, we're now perfectly in sync with the remote branch and have all the lat
 Note that before you affect changes to the central repository you should always pull
 changes from the central repository to your local repository to get updated with the work of all the collaborators that have been contributing in the central repository. For that we will use the pull command.
 
+---
+
 ### Update local repo before sending (9)
 
 #### Pulling
@@ -1249,6 +1251,8 @@ But first, you need to set your central repository as origin using the command
 ```batch
 git remote add origin <link of your central repository>
 ```
+
+---
 
 ### Update local repo before sending (10)
 

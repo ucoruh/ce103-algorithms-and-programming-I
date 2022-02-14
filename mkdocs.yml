@@ -45,7 +45,7 @@ theme:
   language: en
   features:
     - content.code.annotate
-    # - content.tabs.link
+    - content.tabs.link
     # - header.autohide
     # - navigation.expand
     - navigation.indexes
@@ -194,18 +194,9 @@ plugins:
       minify_html: false
 
 extra_javascript:
-  - javascripts/mathjax.js
+  - javascript/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
-# markdown_extensions:
-# - pymdownx.arithmatex:
-#     generic: true
-
-#   extra_javascript:
-# - javascripts/mathjax.js
-# - https://polyfill.io/v3/polyfill.min.js?features=es6
-# - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   
 # Page tree
 nav:

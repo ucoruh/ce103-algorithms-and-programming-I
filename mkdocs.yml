@@ -1,8 +1,16 @@
 # Project information
 site_name: "RTEU CE103 Algorithms and Programming-I Course Notes"
+docs_dir: docs  # Where to find the English markdown files
+site_dir: site  # Where to put the English HTML files
 site_author: 'Asst. Prof. Dr. Uğur CORUH'
 site_url: 'https://ucoruh.github.io/ce103-algorithms-and-programming-I/'
 site_description: >-
+    Course Notes for Software Developers
+    
+site_description_en: >-
+    Course Notes for Software Developers
+
+site_description_tr: >-
     Course Notes for Software Developers
 
 # Repository
@@ -11,7 +19,7 @@ repo_url: 'https://github.com/ucoruh/ce103-algorithms-and-programming-I'
 edit_uri: ""
 
 # Copyright
-copyright: Copyleft &copy; 2019 - 2022 Uğur CORUH
+copyright: Copyright &copy; 2019 - 2022 Uğur CORUH
 
 #theme:
 #    name: material
@@ -186,13 +194,91 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+  - codehilite:
+      guess_lang: true
 
 plugins:
+  - mkdocs-video #https://pypi.org/project/mkdocs-video/
   - search
+  - i18n:
+      default_language: !ENV [DEFAULT_LANGUAGE, "en"]
+      default_language_only: !ENV [DEFAULT_LANGUAGE_ONLY, false]
+      languages:
+        default:
+          name: English
+          build: true
+        en:
+          name: English
+          build: true
+          site_name: "RTEU CE103 Algorithms and Programming-I Course Notes"
+        tr:
+          name: Türkçe
+          build: true
+          site_name: "RTEU CE103 Algorithms and Programming-I Course Notes"
+      nav_translations:
+        tr:
+          Home: 'Home'
+          Syllabus: 'Syllabus'
+          Course Modules: 'Course Modules'
+          Week-1 (Intro and Developer Roadmap): 'Week-1 (Intro and Developer Roadmap)'
+          Week-2 (Development Environments): 'Week-2 (Development Environments)'
+          Week-3 (Git Version Management): 'Week-3 (Git Version Management)'
+          Week-4 (Unit Testing and Libraries): 'Week-4 (Unit Testing and Libraries)'
+          Week-5 (C Console Programming): 'Week-5 (C Console Programming)'
+          Week-6 (C++ Console Programming): 'Week-6 (C++ Console Programming)'
+          Week-7 (C# Console Programming): 'Week-7 (C# Console Programming)'
+          Week-8 (Midterm): 'Week-8 (Midterm)'
+          Week-9 (Java Console Programming-I): 'Week-9 (Java Console Programming-I)'
+          Week-10 (Java Console Programming-II): 'Week-10 (Java Console Programming-II)'
+          Week-11 (Java Console Programming-III): 'Week-11 (Java Console Programming-III)'
+          Week-12 (C/C++ GUI Programming): 'Week-12 (C/C++ GUI Programming)'
+          Week-13 (C# GUI Programming-I): 'Week-13 (C# GUI Programming-I)'
+          Week-14 (C# GUI Programming-II): 'Week-14 (C# GUI Programming-II)'
+          Week-15 (Java GUI Programming-II): 'Week-15 (Java GUI Programming-II)'
+          Week-16 (Final): 'Week-16 (Final)'
+          License: 'License'
+          Resume: 'Resume'
+          Changelog: 'Changelog'
   - git-revision-date-localized
   - minify:
       minify_html: false
-
+  #- with-pdf:
+      #author: Dr. Uğur CORUH
+      #copyright: ANY TEXT
+      #
+      #cover: false
+      #back_cover: true
+      #cover_title: TITLE TEXT
+      #cover_subtitle: SUBTITLE TEXT
+      #custom_template_path: TEMPLATES PATH
+      #
+      #toc_title: TOC TITLE TEXT
+      #heading_shift: false
+      #toc_level: 3
+      #ordered_chapter_level: 2
+      #excludes_children:
+      #    - 'release-notes/:upgrading'
+      #    - 'release-notes/:changelog'
+      #
+      #exclude_pages:
+      #    - 'bugs/'
+      #    - 'appendix/contribute/'
+      #convert_iframe:
+      #    - src: IFRAME SRC
+      #      img: POSTER IMAGE URL
+      #      text: ALTERNATE TEXT
+      #    - src: ...
+      #two_columns_level: 3
+      #
+      #render_js: true
+      #headless_chrome_path: headless-chromium
+      #
+      #output_path: any-place/document.pdf
+      #enabled_if_env: ENABLE_PDF_EXPORT
+      #
+      #debug_html: true
+      #show_anchors: true
+      #verbose: true
 extra_javascript:
   - javascript/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
@@ -220,6 +306,7 @@ nav:
     - Week-15 (Java GUI Programming-II): week-15-java-gui/ce103-week-15-java-gui.md
     - Week-16 (Final): week-16-final/ce103-week-16-final.md
   - License: license.md
+  - Resume: resume/index.md
   - Changelog: changelog/index.md
 
 

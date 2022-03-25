@@ -1,0 +1,908 @@
+=============================MODULE9=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+
+//Opening and closing file example
+#include <stdio.h>
+#include <stdlib.h>
+
+//SUCCESS = 0, FAIL = 1 using enumeration
+enum {SUCCESS, FAIL};
+
+int main (void)
+{
+	FILE   *fptr;
+	//the filename is tkk1103.txt and located
+	//in the same folder as this program
+	char filename[] = "tkk1103.txt";
+
+	//set the value reval to 0
+	int reval = SUCCESS;
+	//test opening file for reading, if fail...
+	if((fptr = fopen(filename, "r")) == NULL)
+	{
+		printf("Cannot open %s.\n", filename);
+		reval = FAIL;      //reset reval to 1
+	}
+	//if successful do...
+	else
+	{
+		printf("Opening the %s file successfully\n", filename);
+		//the program will display the address where
+		//the file pointer points to..
+		printf("The value of fptr: 0x%p\n", fptr);
+		printf("\n....file processing should be done here....\n");
+		printf("\nReady to close the %s file.\n", filename);
+		//close the file stream...	
+		if(fclose(fptr)==0)
+		printf("Closing the %s file successfully\n", filename);
+	}
+        //for Borland…can remove the following pause and the library,
+        //stdlib.h for other compilers 
+	system("pause");
+	return reval;
+}
+
+------------------------------testtwo.txt--------------------------------------------------
+
+OPENING, READING, WRITING AND CLOSING FILE
+-------------------------------------------
+Testing file. This file named testtwo.txt. 
+After opening files for reading and writing, 
+without error, content of this file (testtwo.txt) 
+will be read and output (write) to the other 
+file named testone.txt and standard 
+output(screen/console) character by character!!!
+
+---HAPPY LEARNING FOLKS!!!----
+--------------------------------------------------------------------------------------------
+
+//Reading and writing one character at a time
+#include <stdio.h>
+#include <stdlib.h>
+
+//enumerated data type, SUCCESS = 0, FAIL = 1
+enum  {SUCCESS, FAIL};
+
+//prototype function for reading from and writing...
+void CharReadWrite(FILE *fin, FILE *fout);
+	
+int main()
+{
+	//declare two file pointers...
+	FILE *fptr1, *fptr2;
+	//define the two files name...
+	char filename1[] = "testone.txt";
+	char filename2[] = "testtwo.txt";
+	int reval = SUCCESS;
+	
+	//test the opening filename1 for writing....
+	//if fails....
+	if ((fptr1 = fopen(filename1, "w")) == NULL)
+	{
+		printf("Problem, cannot open %s.\n", filename1);
+		reval = FAIL;
+	}
+	//if opening filename1 for writing is successful,
+	//test for opening for reading filename2, if fails...
+	else if ((fptr2 = fopen(filename2, "r")) == NULL)
+	{
+		printf("Problem, cannot open %s.\n", filename2);
+		reval = FAIL;
+	}
+	//if successful opening for reading from filename2 
+	//and writing to filename1...
+	else
+	{
+		//function call for reading and writing...
+		CharReadWrite(fptr2, fptr1);
+		//close both files...
+		if(fclose(fptr1)==0)
+	           printf("%s close successfully\n", filename1);
+		if(fclose(fptr2)==0)
+	           printf("%s close successfully\n", filename2);
+	}
+	//For Borland if compiled using its IDE…
+	system("pause");
+	return reval;
+	}
+	
+	//read write function definition
+	void  CharReadWrite(FILE *fin, FILE *fout)
+	{
+		int  c;
+		//if the end of file is reached, do...
+		while ((c = fgetc(fin)) != EOF)
+		{
+			//write to a file...
+			fputc(c, fout);
+			//display on the screen...
+			putchar(c);
+		}
+		printf("\n");
+	}
+
+------------------------------------testfour.txt-------------------------------------
+
+OPENING, READING, WRITING one line of characters
+----------------------------------------------------
+This is file testfour.txt.  This file's content will
+be read line by line of characters till no more line
+of character found.  Then, it will be output to the 
+screen and also will be copied to file testhree.txt.
+Check the content of testhree.txt file...
+----------------------------------------------------
+------------------HAVE A NICE DAY-------------------
+
+-------------------------------------------------------------------------------------
+
+//Reading and writing one line at a time
+#include <stdio.h>
+#include <stdlib.h>
+
+enum  {SUCCESS, FAIL, MAX_LEN = 100};
+
+//function prototype for read and writes by line...
+void  LineReadWrite(FILE *fin, FILE *fout);
+
+int main(void)
+{
+	FILE *fptr1, *fptr2;
+	//file testhree.txt is located at the root, c:
+	//you can put this file at any location provided
+	//you provide the full path, same for testfour.txt
+	char filename1[] = "c:\\testhree.txt";
+	char  filename2[] = "c:\\testfour.txt";
+	char  reval = SUCCESS;
+
+	//test opening testhree.txt file for writing, if fail...
+	if((fptr1 = fopen(filename1,"w")) == NULL)
+	{
+		printf("Problem, cannot open %s for writing.\n", filename1);
+		reval = FAIL;
+	}
+
+	//test opening testfour.txt file for reading, if fail...
+	else if((fptr2=fopen(filename2, "r"))==NULL)
+	{
+		printf("Problem, cannot open %s for reading.\n", filename2);
+		reval = FAIL;
+	}
+
+	//if opening fro writing and reading successful, do...
+	else
+	{
+		//function call for read and write, line by line...
+		LineReadWrite(fptr2, fptr1);
+		//close both files stream...
+		if(fclose(fptr1)==0)
+		   printf("%s successfully closed.\n", filename1); 
+		if(fclose(fptr2)==0)
+		   printf("%s successfully closed.\n", filename2);
+	}
+	//For Borland screenshot
+	system("pause");
+	return reval;
+}
+	
+//function definition for line read, write…
+void LineReadWrite(FILE *fin, FILE *fout)
+{
+	//local variable...
+	char buff[MAX_LEN];
+	while(fgets(buff, MAX_LEN, fin) !=NULL)
+	{
+		//write to file...
+		fputs(buff, fout);
+		//write to screen...
+		printf("%s", buff);
+	}
+}
+
+-----------------------------------------testsix.txt----------------------------------------------
+
+OPENING, READING AND WRITING ONE BLOCK OF DATA
+-----------------------------------------------
+This is file testsix.txt. Its content will be
+read and then output to the screen/console and
+copied to testfive.txt file.  The reading and 
+writing based on block of data.  May be this 
+method is faster compared to read/write by 
+character, by line.....
+-----------------------------------------------
+------------------END--------------------------
+
+--------------------------------------------------------------------------------------------------
+
+//Reading and writing one block at a time
+#include <stdio.h>
+#include <stdlib.h>
+
+//declare enum data type, you will this
+//learn in other module...
+enum  {SUCCESS, FAIL, MAX_LEN = 80};
+
+//function prototype for block reading and writing
+void  BlockReadWrite(FILE  *fin, FILE  *fout);
+//function prototype for error messages...
+int   ErrorMsg(char  *str);
+
+int main(void)
+{
+	FILE  *fptr1, *fptr2;
+	//define the filenames...
+	//the files location is at c:\Temp
+	char  filename1[] = "c:\\Temp\\testfive.txt";
+	char  filename2[] = "c:\\Temp\\testsix.txt";
+	int  reval = SUCCESS;
+
+	//test opening testfive.txt file for writing, if fail...
+	if((fptr1 = fopen(filename1, "w")) == NULL)
+	{
+		reval = ErrorMsg(filename1);
+	}
+
+	//test opening testsix.txt file for reading, if fail...
+	else if ((fptr2 = fopen(filename2, "r")) == NULL)
+	{
+		reval = ErrorMsg(filename2);
+	}
+	//if opening files for writing and reading is successful, do...
+	else
+	{
+		//call function for reading and writing
+		BlockReadWrite(fptr2, fptr1);
+		//close both files streams...
+		if(fclose(fptr1)==0)
+		  printf("%s successfully closed\n", filename1);
+		if(fclose(fptr2)==0)
+		  printf("%s successfully closed\n", filename2);
+	}
+	printf("\n");
+	//for Borland...
+	system("pause");
+	return  reval;
+}
+
+//function definition for block read, write
+void   BlockReadWrite(FILE  *fin, FILE  *fout)
+{
+	int   num;
+	char  buff[MAX_LEN + 1];
+	//while not end of file for input file, do...
+	while(!feof(fin))
+	{
+		//reading...
+		num = fread(buff, sizeof(char), MAX_LEN, fin);
+		//append a null character
+		buff[num * sizeof(char)] = '\0';
+		printf("%s", buff);
+		//writing...
+		fwrite(buff, sizeof(char), num, fout);
+	}
+}
+
+//function definition for error message
+int  ErrorMsg(char  *str)
+{
+	//display the error message...
+	printf("Problem, cannot open %s.\n", str);
+	return    FAIL;
+}
+
+-----------------------------------------tesseven.txt------------------------------------------------------
+
+THIS IS THE FIRST LINE OF TEXT, tesseven.txt file
+THIS IS THE SECOND LINE OF TEXT, tesseven.txt file
+THIS IS THE THIRD LINE OF TEXT, tesseven.txt file
+THIS IS THE FOURTH LINE OF TEXT, tesseven.txt file
+
+------------------------------------------------------------------------------------------------
+
+//Random access to a file
+#include <stdio.h>
+#include <stdlib.h>
+
+enum  {SUCCESS, FAIL, MAX_LEN = 120};
+
+//function prototypes, seek the file position indicator
+void  PtrSeek(FILE  *fptr);
+//function prototype, tell the file position indicator…
+long  PtrTell(FILE  *fptr);
+//function prototype read and writes…
+void  DataRead(FILE  *fptr);
+int   ErrorMsg(char  *str);
+
+int main(void)
+{
+	FILE  *fptr;
+	char filename[] = "c:\\Temp\\tesseven.txt";
+	int  reval  = SUCCESS;
+
+	//if there is some error opening file for reading…
+	if((fptr = fopen(filename, "r")) == NULL)
+	{
+		reval = ErrorMsg(filename);
+	}
+	//if opening is successful…
+	else
+	{
+		//PtrSeek() function call…
+		PtrSeek(fptr);
+		//close the file stream…
+		if(fclose(fptr)==0)
+	            printf("%s successfully closed.\n", filename);
+	}
+        //for Borland...
+	system("pause");
+	return  reval;
+}
+
+//PtrSeek() function definition
+void  PtrSeek(FILE  *fptr)
+{
+	long   offset1, offset2, offset3, offset4;
+
+	offset1 = PtrTell(fptr);
+	DataRead(fptr);
+	offset2 = PtrTell(fptr);
+	DataRead(fptr);
+	offset3 = PtrTell(fptr);
+	DataRead(fptr);
+	offset4 = PtrTell(fptr);
+        DataRead(fptr); 
+
+	printf("\nReread the tesseven.txt, in random order:\n");
+	//reread the 2nd line of the tesseven.txt
+	fseek(fptr, offset2, SEEK_SET);
+	DataRead(fptr);
+	//reread the 1st line of the tesseven.txt
+	fseek(fptr, offset1, SEEK_SET);
+	DataRead(fptr);
+	//reread the 4th line of the tesseven.txt
+	fseek(fptr, offset4, SEEK_SET);
+	DataRead(fptr);
+	//reread the 3rd line of the tesseven.txt
+	fseek(fptr, offset3, SEEK_SET);
+	DataRead(fptr);
+}
+	
+//PtrTell() function definition
+long   PtrTell(FILE  *fptr)
+{
+	long  reval;
+	//tell the fptr position…
+	reval = ftell(fptr);
+	printf("The fptr is at %ld\n", reval);
+	return  reval;
+}
+
+//DataRead() function definition
+void  DataRead(FILE  *fptr)
+{
+	char  buff[MAX_LEN];
+	//reading line of text at the fptr position…
+	fgets(buff, MAX_LEN, fptr);
+	//and display the text…
+	printf("-->%s\n", buff);
+}
+
+//Error message function definition
+int  ErrorMsg(char *str)
+{
+	//display this error message…
+	printf("Problem, cannot open %s.\n", str);
+	return FAIL;
+}
+
+--------------------------------------------------------------------------------------------
+
+//Reading, writing, rewind and binary data
+#include <stdio.h>
+#include <stdlib.h>
+
+enum   {SUCCESS, FAIL, MAX_NUM = 5};
+
+//functions prototype...
+void  DataWrite(FILE  *fout);
+void  DataRead(FILE  *fin);
+int   ErrorMsg(char  *str);
+
+int main(void)
+{
+	FILE  *fptr;
+	//binary type files...
+	char  filename[] = "c:\\Temp\\teseight.bin";
+	int  reval = SUCCESS;
+
+	//test for creating, opening binary file for writing...
+	if((fptr = fopen(filename, "wb+")) == NULL)
+	{
+		reval   =  ErrorMsg(filename);
+	}
+	else
+	{
+		//Write data into file teseight.bin
+		DataWrite(fptr);
+		//reset the file position indicator...
+		rewind(fptr);
+		//read data...
+		DataRead(fptr);
+		//close the file stream...
+		if(fclose(fptr)==0)
+	           printf("%s successfully closed\n", filename);
+	}
+        //for Borland
+	system("pause");
+	return  reval;
+}
+
+//DataWrite() function definition
+void  DataWrite(FILE  *fout)
+{
+	int   i;
+	double   buff[MAX_NUM] = { 145.23, 589.69, 122.12, 253.21, 987.234};
+
+	printf("The size of buff: %d-byte\n", sizeof(buff));
+	for(i=0; i<MAX_NUM; i++)
+	{
+		printf("%5.2f\n", buff[i]);
+		fwrite(&buff[i], sizeof(double), 1, fout);
+	}
+}
+
+//DataRead() function definition
+void  DataRead(FILE  *fin)
+{
+	int   i;
+	double  x;
+
+	printf("\nReread from the binary file:\n");
+	for(i=0; i<MAX_NUM; i++)
+	{
+		fread(&x, sizeof(double), (size_t)1, fin);
+		printf("%5.2f\n", x);
+	}
+}
+	
+//ErrorMsg() function definition
+int  ErrorMsg(char  *str)
+{
+	printf("Cannot open %s.\n", str);
+	return  FAIL;
+}
+
+---------------------------------------testcal.txt---------------------------------------
+
+23 12 33 10 4 6 44 31 7 50
+
+-----------------------------------------------------------------------------------------
+
+/*C Program to calculate the average of a list of numbers.*/
+/*calculate the total from one file, output the average*/
+/*into another file*/ 
+#include <stdio.h>
+/*for exit()*/
+#include <stdlib.h>
+
+int main(void)
+{
+int value, total = 0, count = 0; 
+
+/*fileptrIn and fileptrOut are variables of type (FILE *)*/
+FILE * fileptrIn, * fileptrOut;  
+char filenameIn[100], filenameOut[100];
+
+printf("Please enter an input filename (use path if needed):\n");
+scanf("%s", filenameIn);
+printf("Please enter an output filename (use path if needed):\n");
+scanf("%s", filenameOut);
+
+/*open files for reading, "r" and writing, "w"*/
+if((fileptrIn = fopen(filenameIn, "r")) == NULL) 
+{
+	printf("Error opening %s for reading.\n", filenameIn);
+	exit (1);
+}
+else
+printf("Opening %s for reading is OK.\n", filenameIn);
+
+if((fileptrOut = fopen(filenameOut, "w")) == NULL)
+{
+	printf("Error opening %s for writing.\n", filenameOut);
+	exit (1);
+}
+else
+printf("Opening %s for writing is OK.\n", filenameOut);
+
+/*fscanf*/
+printf("\nCalculate the total...\n");
+while(EOF != fscanf(fileptrIn, "%i", &value))
+{	
+	total += value;
+	++count;
+}/*end of while loop*/
+
+/*Write the average value to the file.*/
+/*fprintf*/
+printf("Calculate the average...\n\n");
+fprintf(fileptrOut, "Average of %i numbers = %f \n", count, total/(double)count);
+printf("Average of %i numbers = %f \n\n", count, total/(double)count);
+printf("Check also your %s file content\n", filenameOut);
+
+if(fclose(fileptrIn) == 0)
+printf("%s closed successfully\n", filenameIn);
+if(fclose(fileptrOut) == 0)
+printf("%s closed successfully\n", filenameOut);
+return 0;
+}
+
+---------------------------------------------------------------------------------------------
+
+//Redirecting a standard stream
+#include <stdio.h>
+#include <stdlib.h>
+
+enum  {SUCCESS, FAIL, STR_NUM = 6};
+
+void  StrPrint(char  **str);
+int   ErrorMsg(char  *str);
+
+int main(void)
+{
+	//declare and define a pointer to string...
+	char   *str[STR_NUM] = {
+		"Redirecting a standard stream to the text file.",
+		"These 5 lines of text will be redirected",
+		"so many things you can do if you understand the",
+		"concept, fundamental idea - try this one!",
+		"--------------DONE--------------------------"};
+	
+	char filename[] = "c:\\Temp\\testnine.txt";
+	int  reval = SUCCESS;
+
+	StrPrint(str);
+	//create file if not exist and open for writing...
+	//if exist, discard the previous content...
+	if(freopen(filename, "w", stdout) == NULL)
+	{
+		reval = ErrorMsg(filename);
+	}
+	else
+	{
+		//call StrPrint() function...
+		StrPrint(str);
+		//close the standard output...
+		fclose(stdout);
+        }
+	return reval;
+}
+
+//StrPrint() function definition
+void  StrPrint(char  **str)
+{
+	int  i;
+
+	for(i=0; i<STR_NUM; i++)
+	//to standard output-screen/console...
+	printf("%s\n", str[i]);
+	system("pause");
+}
+
+//ErrorMsg() function definition
+int  ErrorMsg(char  *str)
+{
+	printf("Problem, cannot open %s.\n", str);
+	return  FAIL;
+}
+
+--------------------------------------------------------------------------------------
+
+//Demonstrate the remove() function
+#include <stdio.h>
+#include <stdlib.h>
+	
+void main()
+{
+	//declare an array to store file name...
+	char  filename[80];
+
+	printf("Enter the filename to be deleted:  ");
+	gets(filename);
+
+	//check any error...
+	if(remove(filename) == 0)
+		printf("File %s  has been deleted.\n", filename);
+	else
+		fprintf(stderr, "Error deleting file %s.\n", filename);
+	system("pause");
+}
+
+---------------------------------------------------------------------------------------
+
+//Using rename() to change a filename
+#include <stdio.h>
+#include <stdlib.h>
+
+void main()
+{
+	char  oldname[80], newname[80];
+
+	printf("Enter current filename: ");
+	gets(oldname);
+	printf("Enter new name for file: ");
+	gets(newname);
+	
+	if(rename(oldname, newname) == 0)
+	{
+		printf("%s has been rename %s.\n", oldname, newname);
+	}
+	else
+	{
+		fprintf(stderr, "An error has occurred renaming %s.\n", oldname);
+	}
+	system("pause");
+}
+
+--------------------------------------------------------------------------------------------
+
+//Copying a file
+#include <stdio.h>
+#include <stdlib.h>
+	
+int  file_copy(char   *oldname, char   *newname);
+
+void  main()
+{
+	char  source[80], destination[80];
+	
+	//get the source and destination names
+	printf("\nEnter source file: ");
+	gets(source);
+	printf("\nEnter destination file: ");
+	gets(destination);
+	
+	if(file_copy(source, destination) == 0)
+		puts("Copy operation successful");
+	else
+		fprintf(stderr, "Error during copy operation");
+	system("pause");
+}
+	
+int  file_copy(char *oldname, char  *newname)
+{
+	FILE  *fold, *fnew;
+	int  c;
+
+	//Open the source file for reading in binary mode
+	if((fold = fopen(oldname, "rb")) == NULL)
+		return  -1;
+	//Open the destination file for writing in binary mode
+		if((fnew = fopen(newname, "wb" )) == NULL)
+	{
+		fclose(fold);
+		return  -1;
+	}
+
+	//Read one byte at a time from the source, if end of file
+	//has not been reached, write the byte to the destination
+	while(1)
+	{
+		c  =  fgetc(fold);
+
+		if(!feof(fold))
+			fputc(c, fnew);
+		else
+			break;
+	}
+	fclose(fnew);
+	fclose(fold);
+	return  0;
+}
+
+-------------------------------testfour.txt------------------------------------
+
+------------------LINUX LOR!------------------------
+------------FEDORA 3, gcc x.x.x--------------------
+OPENING, READING, WRITING one line of characters
+----------------------------------------------------
+This is file testfour.txt.  This file's content will
+be read line by line of characters till no more line
+of character found.  Then, it will be output to the
+screen and also will be copied to file testhree.txt.
+Check the content of testhree.txt file...
+----------------------------------------------------
+------------------HAVE A NICE DAY-------------------
+
+-------------------------------------------------------------------------------
+
+/***************readline.c************
+/*Reading and writing one line at a time*/
+#include <stdio.h>
+#include <stdlib.h>
+
+enum  {SUCCESS, FAIL, MAX_LEN = 100};
+
+/*function prototype for read and writes by line...*/
+void LineReadWrite(FILE *fin, FILE *fout);
+
+int main(void)
+{
+FILE *fptr1, *fptr2;
+/*file testhree.txt is located at current directory.
+  you can put this file at any location provided
+  you provide the full path, same for testfour.txt*/
+
+char filename1[] = "testhree.txt";
+char filename2[] = "testfour.txt";
+char reval = SUCCESS;
+
+/*test opening testhree.txt file for writing, if fail...*/
+if((fptr1 = fopen(filename1,"w")) == NULL)
+{
+        printf("Problem, cannot open %s for writing.\n", filename1);
+        reval = FAIL;
+}
+
+/*test opening testfour.txt file for reading, if fail...*/
+else if((fptr2=fopen(filename2, "r"))==NULL)
+{
+        printf("Problem, cannot open %s for reading.\n", filename2);
+        reval = FAIL;
+}
+
+/*if opening fro writing and reading successful, do...*/
+else
+{
+/*function call for read and write, line by line...*/
+LineReadWrite(fptr2, fptr1);
+/*close both files stream...*/
+if(fclose(fptr1)==0)
+printf("%s successfully closed.\n", filename1);
+if(fclose(fptr2)==0)
+  printf("%s successfully closed.\n", filename2);
+}
+return reval;
+}
+
+/*function definition for line read, write.*/
+void LineReadWrite(FILE *fin, FILE *fout)
+{
+        /*local variable...*/
+        char buff[MAX_LEN];
+        while(fgets(buff, MAX_LEN, fin) !=NULL)
+        {
+                /*write to file...*/
+                fputs(buff, fout);
+                /*write to screen...*/
+                printf("%s", buff);
+        }
+}
+
+----------------------------------------------------------------------------------------------
+
+////////////rwbinary.c///////////
+/////FEDORA 3, gcc x.x.x/////
+//Reading, writing, rewind and binary data
+#include <stdio.h>
+
+enum   {SUCCESS, FAIL, MAX_NUM = 5};
+
+//functions prototype...
+void DataWrite(FILE  *fout);
+void DataRead(FILE  *fin);
+int   ErrorMsg(char  *str);
+
+int main(void)
+{
+        FILE *fptr;
+        //binary type files...
+        char filename[] = "/testo1/testo2/teseight.bin";
+        int reval = SUCCESS;
+
+        //test for creating, opening binary file for writing...
+        if((fptr = fopen(filename, "wb+")) == NULL)
+        {
+                reval   =  ErrorMsg(filename);
+        }
+        else
+        {
+                //Write data into file teseight.bin
+                DataWrite(fptr);
+                //reset the file position indicator...
+                rewind(fptr);
+                //read data...
+                DataRead(fptr);
+                //close the file stream...
+                if(fclose(fptr) == 0)
+           printf("%s successfully closed\n", filename);
+        }
+        return reval;
+        }
+
+//DataWrite() function definition
+void DataWrite(FILE  *fout)
+{
+        int   i;
+        double   buff[MAX_NUM] = {145.23, 589.69, 122.12, 253.21, 987.234};
+
+        printf("The size of buff: %d-byte\n", sizeof(buff));
+        for(i=0; i<MAX_NUM; i++)
+        {
+                printf("%5.2f\n", buff[i]);
+                fwrite(&buff[i], sizeof(double), 1, fout);
+        }
+}
+
+//DataRead() function definition
+void DataRead(FILE  *fin)
+{
+        int   i;
+        double x;
+
+        printf("\nReread from the binary file:\n");
+        for(i=0; i<MAX_NUM; i++)
+        {
+                fread(&x, sizeof(double), (size_t)1, fin);
+                printf("%5.2f\n", x);
+        }
+}
+
+//ErrorMsg() function definition
+int ErrorMsg(char *str)
+{
+        printf("Cannot open %s.\n", str);
+        return FAIL;
+}
+
+====================================================================================================
+

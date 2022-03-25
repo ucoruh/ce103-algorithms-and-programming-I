@@ -1,0 +1,472 @@
+===============================Module1=====================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+
+#include <stdio.h>
+
+int main()
+{
+   return 0;
+}
+
+-----------------------------------------------------------
+
+/*More simplest program example*/
+/*preprocessor directives - header file*/
+#include <stdio.h>
+#include <stdlib.h>
+
+/*main() function with no argument*/
+/*and int return value…*/
+int main()                             
+{
+   printf("Testing 1...2...3...\n");
+   printf("Hello dude!\n");
+   return 0;
+}
+
+-----------------------------------------------------------------
+
+/*More simplest program example*/
+/*preprocessor directives - header file*/
+#include <stdio.h>
+#include <stdlib.h>
+
+/*main() function with no argument*/
+/*and no return value…*/
+void main()                             
+{
+   printf("Testing 1...2...3...\n");
+   printf("Hello dude!\n");
+   return;
+}
+
+-----------------------------------------------------------------
+
+/*More simplest program example*/
+/*preprocessor directives - header file*/
+#include <stdio.h
+#include <stdlib.h>
+
+/*main() function with no argument*/
+/*and no return value…*/
+void main()                             
+{
+   printf("Testing 1...2...3...\n");
+   printf("Hello dude!\n");
+}
+
+-----------------------------------------------------------------
+
+//Another simplest program example
+//preprocessor directives - header files
+//Change the header files accordingly for C++ codes...using
+//VC++/VC++ .Net and other C++ standard compliance compiler...
+//#include <iostream>
+//#include <cstdlib>
+//using namespace std;
+#include <iostream.h>
+#include <stdlib.h>
+
+//main() function with no argument
+//and int return value…
+int main( )                             
+{
+  cout<<"testing 1..2..3..\n";
+  //system call ‘pause’
+  //command to wait temporarily for user action
+  //by calling the system pause command
+  //pause is Borland specific, for other compilers you may
+  //discard this and its header <stdlib.h>
+  system("pause");
+
+  //return to Operating System, no error
+  return 0;
+}
+
+---------------------------------------------------------------------------------
+
+//More simplest program example
+//preprocessor directives - header files
+#include <iostream.h>
+#include <stdlib.h>
+
+//main() function with no argument
+//and int return value…
+int main()                             
+{
+  cout<<"testing 1..2..3..\n";
+
+  //system call ‘pause’
+  //command to wait temporarily for user action
+  //by calling the system pause command
+  //pause is Borland specific, for other compilers you may
+  //discard this and its header <stdlib.h>
+  system("pause");
+
+  //return to Operating System, no error
+  return 0;
+}
+
+------------------------------------------------------------------------------------
+
+//Simple greeting program using an array, pointer and selection
+//you will learn more about array, pointer and selection later.
+//The following #include … called preprocessor directive/header files.
+//Means include the iostream.h file so that the compiler can find the
+//definition for the cin and cout, then the cin and cout can function properly
+//#include <iostream>
+//for system()
+//#include <cstdlib>
+//using namespace std;
+
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+int main(void)
+{
+  //normal variable and array with their respective data type
+  char name[11], name1[11], sex;
+
+  cout<<"\nEnter your first name (max 10 characters): ";
+  cin>>name;
+
+  cout<<"Enter your last name (max 10 characters): ";
+  cin>>name1;
+  cout<<"\nEnter your sex (M or F): ";
+  cin>>sex;
+
+  //test whether male or female
+  if (sex == 'M')		
+
+  //array name without brackets is the pointer to the first
+  //array's element
+  cout<<"\nHow are you, Mr. "<<name<<" "<<name1<<endl;
+      else
+  cout<<"\nHow are you, Ms/Mrs  "<<name<<" "<<name1<<endl;
+
+  system("pause");
+  
+  return 0;
+}
+
+-----------------------------------------------------------------------------------
+
+#include <stdio.h>
+
+int main()
+{
+  /*normal variable and array with their respective data type*/
+  char sex, name[11], name1[11];
+  
+  printf("Enter your sex (M or F): ");
+  scanf("%c", &sex);
+
+  printf("Enter your first name (max 10 characters): ");
+  scanf("%s", &name);
+
+  printf("Enter your last name (max 10 characters): ");
+  scanf("%s", &name1);
+
+  /*test whether male or female*/
+  if (sex == 'M')
+		
+  /*array name without brackets is the pointer to the first*/
+  /*array's element*/
+     printf("\nHow are you, Mr. %s %s.\n", name, name1);
+  else
+     printf("\nHow are you, Ms/Mrs. %s %s\n", name, name1);
+
+  return 0;
+}
+
+---------------------------------------------------------------------------------------
+
+//one line comment in program, C++
+/*multiple lines comment, C - Program to display 
+square and square root for a given number*/
+/*for sqrt() function*/
+#include <math.h>
+/*for printf() and scanf()*/
+#include <stdio.h>
+//for system()
+#include <stdlib.h>
+
+int main()
+{
+  /*variable named x and floating-point data type*/
+  float	x;
+
+  /*standard output*/
+  printf("\nEnter one positive number (1, 2, 3. . .): ");
+  /*standard input*/
+  scanf("%f", &x);
+
+  printf("\nx = %f ", x);
+  printf("\nSquare for x is = %f", x * x);
+  
+  //sqrt() is the predefined function, defined in math.h
+  printf("\nSquare root for x is = %f\n", sqrt(x));
+  system("pause");
+  
+  return 0;
+}
+
+----------------------------------------------------------------------------------
+
+/*Simple mathematics calculation
+header files…*/
+#include <stdio.h>
+#include <stdlib.h>
+
+/*main() function…*/
+int main( )
+{
+  /*variables declaration*/
+  int x, y, z;
+
+  /*variables initialization*/
+  /*assign 20 to variable x…*/
+  /*or put the value of 20 in memory location labeled by x*/
+  x = 20;
+  y = 2;
+
+  printf("Given x = 20, y = 2\n");
+  printf("\nx / y = %d", x / y);
+  
+  /*do some calculation*/
+  x = x * y;
+  y = y + y;
+  
+  /*print values*/
+  printf("\nx = x * y");
+  printf("\ny = y + y");
+  printf("\nNew value for x / y = %d", x / y);
+  
+  z = 20 * y / x;
+  printf("\nz = 20 * (y / x) = %d\n", z);
+  system("pause");
+  return 0;
+}
+
+-------------------------------------------------------------------------------
+
+//Another simple mathematics calculation
+//#include <iostream>
+//#include <cstdlib>
+#include <iostream.h>
+#include <stdlib.h>
+
+int main(void)
+{
+  //variables declaration
+  //variable names and type
+  float a, b, c;
+  
+  //variables initialization
+  a = 2.0;
+  b = 5.0;
+  c = b / a;
+  
+  cout<<"\nGiven a = 2.0, b = 5.0, c = b/a";
+  cout<<"\nc = "<<c;
+  
+  c = c + (a/b);
+  
+  cout<<"\nc = c + (a/b) = "<<c<<endl;
+  
+  //call the predefined function
+  //for Borland...
+  system("pause");
+  return 0;
+}
+
+------------------------------------------------------------------------------
+
+//another mathematics calculation
+#include <iostream.h>
+#include <stdlib.h>
+
+int main(void)
+{
+  float x, y, z;
+
+  //Display for user data on standard output, screen
+  cout<<"\nKey in 1st positive integer, then press Enter key: ";
+
+  //Read the data from standard input, keyboard
+  cin>>x;
+
+  cout<<"Key in 2nd positive integer, then press Enter key: ";
+  cin>>y;
+
+  cout<<"Key in 3rd positive integer, then press Enter key: ";
+  cin>>z;
+
+  cout<<"\nAverage for three numbers is \n";
+  cout<<"\n    = ("<<x<<"+"<<y<<"+"<<z<<")/3 = "<<(x+y+z)/3<<"\n";
+  
+  system("pause");
+  return 0;
+}
+
+----------------------------------------------------------------------------
+
+//echo program command-line arguments
+//program example
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+  int x;
+
+  for(x = 1; x < argc; x++)
+    printf("%s%s", argv[x],(x<argc-1) ? " ": "");
+  printf("\n");
+  return 0;
+}
+
+-------------------------------------------------------------------------
+
+//another mathematics calculation
+//compiled using VC++/VC++ .Net
+#include <iostream>
+using namespace std;
+
+int main(void)
+{
+  float x, y, z;
+
+  //Display for user data on standard output, screen
+  cout<<"\nKey in 1st positive integer, then press Enter key: ";
+
+  //Read the data from standard input, keyboard
+  cin>>x;
+
+  cout<<"Key in 2nd positive integer, then press Enter key: ";
+  cin>>y;
+
+  cout<<"Key in 3rd positive integer, then press Enter key: ";
+  cin>>z;
+
+  cout<<"\nAverage for three numbers is \n";
+  cout<<"\n    = ("<<x<<"+"<<y<<"+"<<z<<")/3 = "<<(x+y+z)/3<<"\n";
+
+  return 0;
+}
+
+------------------------------VC++/VC++ .Net--------------------------------
+
+//Previous example compiled using
+//VC++/VC++ .Net...using C header in C++
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main(void)
+{
+float x, y, z;
+
+//Display for user data on standard output, screen
+cout<<"\nKey in 1st positive integer, then press Enter key: ";
+//Read the data from standard input, keyboard
+cin>>x;
+cout<<"Key in 2nd positive integer, then press Enter key: ";
+cin>>y;
+cout<<"Key in 3rd positive integer, then press Enter key: ";
+cin>>z;
+cout<<"\nAverage for three numbers is \n";
+cout<<"\n = ("<<x<<"+"<<y<<"+"<<z<<")/3 = "<<(x+y+z)/3<<"\n";
+system("pause");
+return 0;
+}
+
+-------------------------------gcc------------------------------------------
+
+/*Simple mathematics calculation-simath.c header files.*/
+#include <stdio.h>
+#include <stdlib.h>
+
+/*main() function.*/
+int main()
+{
+  /*variables declaration*/
+  int x, y, z;
+
+  /*variables initialization*/
+  /*assign 20 to variable x.*/
+  /*or put the value of 20 in memory location labeled by x*/
+  x = 20;
+  y = 2;
+
+  printf("Given x = 20, y = 2\n");
+  printf("\nx / y = %d", x / y);
+
+  /*do some calculation*/
+  x = x * y;
+  y = y + y;
+
+  printf("\nx = x * y");
+  printf("\ny = y + y");
+  printf("\nNew value for x / y = %d", x / y);
+
+  z = 20 * y / x;
+
+  printf("\nz = 20 * (y / x) = %d\n", z);
+ 
+  return 0;
+}
+
+============================================================================================
+
+

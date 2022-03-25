@@ -1,0 +1,970 @@
+============================ModuleX=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+
+//Using functions isdigit(), isalpha(), isalnum(), and isxdigit()
+//but using C++ :o), cout…
+#include <iostream.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main()
+{
+cout<<"Using functions isdigit(), isalpha(),"<<endl;
+cout<<"isalnum(), and isxdigit()"<<endl;
+cout<<"-------------------------------------"<<endl;
+
+cout<<"\nAccording to isdigit():"<<endl;
+isdigit('8') ? cout<<"8 is a digit\n" : cout<<"8 is not a digit\n";
+isdigit('#') ? cout<<"# is a digit\n" : cout<<"# is not a digit\n";
+
+cout<<"\nAccording to isalpha():"<<endl;
+isalpha('A') ? cout<<"A is a letter\n" : cout<<"A is not a letter\n";
+isalpha('b') ? cout<<"b is a letter\n" : cout<<"b is not a letter\n";
+isalpha('&') ? cout<<"& is a letter\n" : cout<<"& is not a letter\n";
+isalpha('4') ? cout<<"4 is a letter\n" : cout<<"4 is not a letter\n";
+
+cout<<"\nAccording to isalnum():"<<endl;
+isalnum('A') ? cout<<"A is a digit or a letter\n" : cout<<"A is not a digit or a letter\n";
+isalnum('8') ? cout<<"8 is a digit or a letter\n" : cout<<"8 is not a digit or a letter\n";
+isalnum('#') ? cout<<"# is a digit or a letter\n" : cout<<"# is not a digit or a letter\n";
+
+cout<<"\nAccording to isxdigit():"<<endl;
+isxdigit('F') ? cout<<"F is a hexadecimal\n" : cout<<"F is not a hexadecimal\n";
+isxdigit('J') ? cout<<"J is a hexadecimal\n" : cout<<"J is not a hexadecimal\n";
+isxdigit('7') ? cout<<"7 is a hexadecimal\n" : cout<<"7 is not a hexadecimal\n";
+isxdigit('$') ? cout<<"$ is a hexadecimal\n" : cout<<"$ is not a hexadecimal\n";
+isxdigit('f') ? cout<<"f is a hexadecimal\n" : cout<<"f is not a hexadecimal\n";
+
+system("pause");
+return 0;
+}
+
+------------------------------------------VC++/VC++ .Net----------------------------------------------------
+
+//Using functions isdigit(), isalpha(), isalnum(), and isxdigit()
+//but using C++, VC++/VC++ .Net
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+cout<<"Using functions isdigit(), isalpha(),"<<endl;
+cout<<"isalnum(), and isxdigit()"<<endl;
+cout<<"-------------------------------------"<<endl;
+
+cout<<"\nAccording to isdigit():"<<endl;
+isdigit('8') ? cout<<"8 is a digit\n" : cout<<"8 is not a digit\n";
+isdigit('#') ? cout<<"# is a digit\n" : cout<<"# is not a digit\n";
+
+cout<<"\nAccording to isalpha():"<<endl;
+isalpha('A') ? cout<<"A is a letter\n" : cout<<"A is not a letter\n";
+isalpha('b') ? cout<<"b is a letter\n" : cout<<"b is not a letter\n";
+isalpha('&') ? cout<<"& is a letter\n" : cout<<"& is not a letter\n";
+isalpha('4') ? cout<<"4 is a letter\n" : cout<<"4 is not a letter\n";
+
+cout<<"\nAccording to isalnum():"<<endl;
+isalnum('A') ? cout<<"A is a digit or a letter\n" : cout<<"A is not a digit or a letter\n";
+isalnum('8') ? cout<<"8 is a digit or a letter\n" : cout<<"8 is not a digit or a letter\n";
+isalnum('#') ? cout<<"# is a digit or a letter\n" : cout<<"# is not a digit or a letter\n";
+
+cout<<"\nAccording to isxdigit():"<<endl;
+isxdigit('F') ? cout<<"F is a hexadecimal\n" : cout<<"F is not a hexadecimal\n";
+isxdigit('J') ? cout<<"J is a hexadecimal\n" : cout<<"J is not a hexadecimal\n";
+isxdigit('7') ? cout<<"7 is a hexadecimal\n" : cout<<"7 is not a hexadecimal\n";
+isxdigit('$') ? cout<<"$ is a hexadecimal\n" : cout<<"$ is not a hexadecimal\n";
+isxdigit('f') ? cout<<"f is a hexadecimal\n" : cout<<"f is not a hexadecimal\n";
+
+system("pause");
+return 0;
+}
+
+------------------------------------------VC++/VC++ .Net----------------------------------------------------
+
+//Using functions islower(), isupper(), tolower(), toupper()
+//For VC++/VC++ .Net use the following header files...
+//#include <iostream>
+//#include <cstdlib>
+//using namespace std;
+
+#include <iostream.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main()
+{
+
+cout<<"Using functions islower(), isupper(),"<<endl;
+cout<<"tolower(), toupper()"<<endl;
+cout<<"-------------------------------------"<<endl;
+
+cout<<"\nAccording to islower():"<<endl;
+islower('p') ? cout<<"p is a lowercase letter\n" : cout<<"p is not a lowercase letter\n";
+islower('P') ? cout<<"P is a lowercase letter\n" : cout<<"P is not a lowercase letter\n";
+islower('5') ? cout<<"5 is a lowercase letter\n" : cout<<"5 is not a lowercase letter\n";
+islower('!') ? cout<<"! is a lowercase letter\n" : cout<<"! is not a lowercase letter\n";
+
+cout<<"\nAccording to isupper():"<<endl;
+isupper('D') ? cout<<"D is a uppercase letter\n" : cout<<"D is not a uppercase letter\n";
+isupper('d') ? cout<<"d is a uppercase letter\n" : cout<<"d is not a uppercase letter\n";
+isupper('8') ? cout<<"8 is a uppercase letter\n" : cout<<"8 is not a uppercase letter\n";
+isupper('$') ? cout<<"$ is a uppercase letter\n" : cout<<"$ is not a uppercase letter\n";
+
+cout<<"\nConversion...."<<endl;
+cout<<"u converted to uppercase is "<<(char)toupper('u')<<endl;
+cout<<"7 converted to uppercase is "<<(char)toupper('7')<<endl;
+cout<<"$ converted to uppercase is "<<(char)toupper('$')<<endl;
+cout<<"L converted to lowercase is "<<(char)tolower('L')<<endl;
+system("pause");
+return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//using functions isspace(), iscntrl(), ispunct(),
+//isprint(), isgraph()
+#include <iostream.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main()
+{
+cout<<"using functions isspace(), iscntrl(),"<<endl;
+cout<<"ispunct(), isprint(), isgraph()"<<endl;
+cout<<"-------------------------------------"<<endl;
+
+cout<<"According to isspace(): "<<endl;
+isspace('\n') ? cout<<"Newline is a whitespace character\n" :
+		cout<<"Newline is not a whitespace character\n";
+isspace('\t') ? cout<<"Horizontal tab is a whitespace character\n" :
+		cout<<"Horizontal tab is not a whitespace character\n";
+isspace('%') ? cout<<"% is a whitespace character\n" :
+		cout<<"% is not a whitespace character\n";
+
+cout<<"\nAccording to iscntrl(): "<<endl;
+iscntrl('\n') ? cout<<"Newline is a control character\n" :
+		cout<<"Newline is not a control character\n";
+iscntrl('$') ? cout<<"$ is a control character\n" :
+		cout<<"$ is not a control character\n";
+
+cout<<"\nAccording to ispunct(): "<<endl;
+ispunct('y') ? cout<<"y is a punctuation character\n" :
+		cout<<"y is not a punctuation character\n";
+ispunct('\'') ? cout<<"\' is a punctuation character\n" :
+		cout<<"\' is not a punctuation character\n";
+ispunct('"') ? cout<<"\" is a punctuation character\n" :
+		cout<<"\" is not a punctuation character\n";
+
+cout<<"\nAccording to isprint(): "<<endl;
+isprint('$') ? cout<<"$ is a printing character\n" :
+		cout<<"$ is not a printing character\n";
+isprint('\a') ? cout<<"Alert is a printing character\n" :
+		cout<<"Alert is not a printing character\n";
+
+cout<<"\nAccording to isgraph(): "<<endl;
+isgraph('Q') ? cout<<"Q is a printing character other than a space\n" :
+		cout<<"Q is not a printing character other than a space\n";
+isgraph(' ') ? cout<<"Space is a printing character other than a space\n":
+		cout<<"Space is not a printing character other than a space\n";
+system("pause");
+return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//using atof() - converting string to double
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+		double  dou;
+		dou = atof("95.0");
+
+		printf("Using atof() - converting string to double\n");
+		printf("------------------------------------------\n\n");
+
+		printf("The string \"95.0\" when converted to double is %.3f\n", dou);
+		printf("The converted value, %.3f divided by 2 is %.3f\n", dou, dou / 2.0);
+
+		system("pause");
+		return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//using atoi() - converting string to integer
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int  i;
+	i = atoi("1234");
+
+	printf("Using atoi() - converting string to integer\n");
+	printf("-------------------------------------------\n\n");
+
+	printf("The string \"1234\" converted to int is %d\n", i);
+	printf("The converted value %d minus 123 is %d\n", i, i - 123);
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using atol() - converting string to long
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	long newlong;
+	newlong = atol("123456");
+
+	printf("Using atol() - converting string to long\n");
+	printf("----------------------------------------\n\n");
+
+	printf("The string \"123456\" converted to long int is %ld\n", newlong);
+	printf("The converted value, %ld divided by 2 is %ld\n", newlong, newlong / 2);
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//using strtod() - string to double
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	double p;
+	char *thestring = "41.2% sample string";
+	char *thestringPtr;
+
+	p = strtod(thestring, &thestringPtr);
+
+	printf("Using strtod() - converting string to double...\n");
+	printf("-------------------------------------------\n\n");
+
+	printf("The string \"%s\" is converted to the\n", thestring);
+	printf("double value %.2f and the string \"%s\" \n", p, thestringPtr);
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strtol()-converting string to
+//long with 3 arguments
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	long x;
+	char  *thestring = "-1234567abc", *remainderPtr;
+
+	x = strtol(thestring, &remainderPtr, 0);
+
+	printf("Using strtol() - converting string to long,\n");
+	printf("              3 arguments...\n");
+	printf("-------------------------------------------\n\n");
+
+	printf("The original string is \"%s\"\n", thestring);
+	printf("The converted value is %ld\n", x);
+	printf("The remainder of the original string is \"%s\"\n", remainderPtr);
+	printf("The converted value, %ld plus 567 is %ld\n", x, x + 567);
+	system("pause");
+	return  0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strtoul() - converting string to
+//unsigned long with 3 arguments
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	unsigned long x;
+	char *thestring = "1234567def", *remainderPtr;
+
+	x = strtoul(thestring, &remainderPtr, 0);
+
+	printf("Using strtoul() - converting string to\n");
+	printf("   unsigned long, 3 arguments\n");
+	printf("---------------------------------------\n\n");
+
+	printf("The original string is \"%s\"\n", thestring);
+	printf("The converted value is %lu\n", x);
+	printf("The remainder of the original string is \"%s\"\n", remainderPtr);
+	printf("The converted value, %lu minus 567 is %lu\n", x, x - 567);
+	system("pause");
+	return  0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using gets() and putchar()
+#include <stdio.h>
+#include <stdlib.h>
+
+//function prototype...
+void  reverse(char *);
+
+int main()
+{
+	//an array for storing the string...
+	char sentence[80];
+
+	printf("Using gets() and putchar()\n");
+	printf("--------------------------\n");
+
+	//prompt for user input...
+	printf("Enter a line of text:\n");
+	gets(sentence);
+
+	printf("\nThe line printed backward is:\n");
+	//reverse() function call...
+	reverse(sentence);
+	printf("\n");
+	system("pause");
+	return 0;
+}
+
+void reverse(char *s)
+{
+	//test if nothing entered...
+	if(s[0] == '\0')
+		return;
+	//if something entered...
+	else
+	{
+		reverse(&s[1]);
+		putchar(s[0]);
+	}
+} 	
+
+--------------------------------------------------------------------------------------------------------
+
+//using getchar() and puts()
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	char  c, sentence[80];
+	int i = 0;
+
+	printf("Using getchar() and puts()\n");
+	printf("--------------------------\n");
+	puts("Enter a line of text: ");
+
+	//while iteration/loop…
+	while (( c = getchar()) != '\n')
+		sentence[i++] = c;
+		//insert NULL at the end of string
+		sentence[i] = '\0';
+		puts("\nThe line of text entered was: ");
+		puts(sentence);
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using sprintf()
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	char s[80];
+	int  x;
+	float  y;
+
+	printf("Using sprint()\n");
+	printf("--------------\n");
+	printf("Enter an integer and a float, separated by space: \n");
+	scanf("%d%f", &x, &y);
+	sprintf(s, "Integer:%6d\nFloat:%8.2f", x, y);
+	printf("\n%s\n%s\n",
+   		"The formatted output stored in array s is:  ", s);
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using sscanf()
+#include <stdio.h>
+#include <stdlib.h>
+  
+int main()
+{
+	char s[] = "31298    87.375";
+	int  x;
+	float  y;
+
+	printf("Using sscanf()\n");
+	printf("--------------\n");
+	sscanf(s, "%d%f", &x, &y);
+	printf("array, s[] = 31298    87.375\n");
+	printf("\n%s\n%s%6d\n%s%8.3f\n",
+    		"The values stored in character array s are: ",
+    		"Integer: ",  x,  "Float: ", y);
+	system("pause");
+	return   0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strcpy() and strncpy()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char  x[] = "Yo! Happy Birthday to me";
+	char  y[25],  z[15];
+
+	printf("Using strcpy() and strncpy()\n");
+	printf("----------------------------\n");
+
+	printf("The string in array x is: %s\n", x);
+	printf("The string in array y is: %s\n", strcpy(y, x));
+
+	strncpy(z, x, 14);
+	z[14] = '\0';
+	
+	printf("Only 14 characters ....\n", z);
+	printf("The string in array z is: %s\n", z);
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strcat() and strncat()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char s1[20] = "Happy ";
+	char s2[] = "New Year ";
+	char s3[40] = " ";
+
+	printf("Using strcat() and strncat()\n");
+	printf("--------------------------\n");
+
+	printf("s1 = %s\ns2 = %s\n", s1, s2);
+	printf("\nstrcat (s1, s2) = %s\n", strcat(s1, s2));
+	printf("strncat (s1, s2, 6) = %s\n", strncat(s3, s1, 6));
+	printf("strcat(s3, s1) = %s\n", strcat(s3, s1));
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strcmp() and strncmp()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char * s1 = "Happy New Year";
+	char  *s2 = "Happy New Year";
+	char  *s3 = "Happy Birthday";
+
+	printf("Using strcmp() and strncmp()\n");
+	printf("----------------------------\n");
+
+	printf("s1 = %s\n", s1);
+	printf("s2 = %s\n", s2); 
+	printf("s3 = %s\n", s3);
+	printf("\nstrcmp(s1, s2) = %2d\n", strcmp(s1, s2));
+	printf("strcmp(s1, s3) = %2d\n", strcmp(s1, s3));
+	printf("strcmp(s3, s1) = %2d\n", strcmp(s3, s2));
+	
+	printf("\nstrncmp(s1, s3, 6) = %2d\n", strncmp(s1, s3, 6));
+	printf("strncmp(s1, s3, 7) = %2d\n", strncmp(s1, s3, 7));
+	printf("strncmp(s1, s1, 7) = %2d\n", strncmp(s1, s3, 7));
+	system("pause");
+	return  0;
+} 
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strchr()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char *string = "This is a test statement, testing! ";
+	char character1 = ‘e’, character2 = ‘z’;
+
+	printf("		Using strchr()\n");
+	printf("		--------------\n");
+
+	if (strchr(string, character1) != NULL)
+		printf("\’%c\’ was found in \"%s\".\n", character1, string);
+	else
+		printf("\’%c\’ was not found in \"%s\".\n", character1, string);
+
+	if(strchr(string, character2) != NULL)
+		printf("\’%c\’ was found in \"%s\".\n", character2, string);
+	else
+		printf("\’%c\’ was not found in \"%s\".\n", character2, string);
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strcspn()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char *string1 = "The value is 3.14159";
+	char *string2 = "1234567890";
+
+	printf("	Using strcspn()\n");
+	printf("	---------------\n");
+	printf("string1 = %s\n", string1);
+	printf("string2 = %s\n", string2);
+	printf("\nThe length of the initial segment of string1\n");
+	printf("not containing characters from string2 = %u", strcspn(string1, string2));
+	printf("\n");
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strpbrk()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char *string1 = "This is a test statement";
+	char *string2 = "search";
+
+	printf("	Using strpbrk()\n");
+	printf("	---------------\n");
+
+		printf("In \"%s\" string, a character \’%c\’\n", string2, *strpbrk(string1, string2));
+	printf("is the first character to appear in\n\"%s\"\n", string1);
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strchr()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char *string1 = "A zoo has many animals including birds";
+	int c = ‘m’;
+
+	printf("	Using strchr()\n");
+	printf(“	---------------\n");
+   	printf("string1 = %s\n", string1);
+
+	printf("\nThe remainder of string1 beginning with the\n");
+	printf("last occurrence of character \’%c\’", c);
+	printf("\nis:  %s\n", strrchr(string1, c));
+	system("pause");
+	return 0;
+} 
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strspn()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char *string1 = "The initial value is 3.14159";
+	char *string2 = "aehilsTuv";
+
+
+	printf("	Using strspn()\n");
+	printf("	---------------\n");
+
+	printf("string1 = %s\n", string1);
+   	printf("string2 = %s\n", string2);
+	printf("\nThe length of the initial segment of string1\n");
+	printf("containing only characters from string2 is = %u\n", strspn(string1, string2));
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strstr()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char *string1 = "abcdefgabcdefgabcdefg";
+	char *string2 = "defg";
+
+	printf("	Using strstr()\n");
+	printf("	---------------\n");
+
+	printf("string1 = %s\n", string1);
+	printf("string2 = %s\n", string2);
+	printf("\nThe remainder of string1 beginning with the");
+	printf("\nfirst occurrence of string2 is: %s\n", strstr(string1, string2));
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strtok()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char string[] = "Is this sentence has 6 tokens?";
+	char *tokenPtr;
+
+	printf("	Using strtok()\n");
+	printf("	--------------\n");
+
+	printf("The string to be tokenized is:\n%s\n", string);
+	printf("\nThe tokens are: \n\n");
+	
+	tokenPtr = strtok(string, " ");
+	while (tokenPtr != NULL)
+		{
+			printf("%s\n", tokenPtr);
+			tokenPtr  =  strtok(NULL, " ");
+		}
+	system("pause");
+	return   0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using memcpy()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char s1[20], s2[] = "Copying this string into s1";
+
+	memcpy(s1, s2, 17);
+
+	printf("	Using memcpy()\n");
+	printf("	--------------\n");
+
+	printf("s1[20] = ?\n", s1);
+	printf("s2[] = %s\n", s2);
+
+	printf("\nAfter s2 is copied into s1 with memcpy(),\n");
+	printf("using memcpy(s1, s2, 17)\n");
+	printf("\ns1 contains \"%s\"\n", s1);
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using memmove()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char x[] = "My home is home sweet home";
+
+	printf("	Using memmove()\n");
+	printf("	--------------\n");
+	printf("The string in array x before memmove() is: \n%s", x);
+	printf("\nThe string in array x after memmove() using \n");
+	printf("memmove(x, &x[7], 12) is:\n %s\n", memmove(x, &x[7], 12));
+	system("pause");
+	return  0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using memcmp()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char s1[] = "ABCDEFGHIJK", s2[] = "ABCDXYZPQR";
+
+	printf("Using memcmp()\n");
+	printf("--------------\n");
+
+	printf("s1 = %s\n", s1);
+	printf("s2 = %s\n", s2);
+	printf("\nmemcmp(s1, s2, 4) = %2d\n", memcmp(s1, s2, 4));
+	printf("memcmp(s1, s2, 7) = %2d\n", memcmp(s1, s2, 7));
+	printf("memcmp(s2, s1, 7) = %2d\n", memcmp(s2, s1, 7));
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using memchr()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char *s = "This is a test string";
+	char p = 'e';
+	
+	printf("Using memchr()\n");
+	printf("--------------\n");
+
+	printf("char p = \'e\'\n");
+	printf("s = %s\n", s);
+
+	printf("\nThe remainder of string s, after character \'%c\'", p);
+	printf("\nis found, using memchr(s, p, 15)");
+	printf("\nis \"%s\"\n", memchr(s, p, 15));
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using memset()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char string[40] = "AAAAAAAABBBBBBBBBCCCCCCCCCC";
+
+	printf("Using memset()\n");
+	printf("--------------\n");
+
+	printf("string = %s\n", string);
+	printf("string after memset(string, 'b', 15) =\n%s\n",
+			memset(string, 'b', 15));
+	system("pause");
+	return  0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//Using strerror()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	printf("strerror() - string errors\n");
+	printf("--------------------------\n");
+	printf("strerror(1)->%s", strerror(1));
+	printf("strerror(2)->%s", strerror(2));
+	printf("strerror(3)->%s", strerror(3));
+	printf("strerror(4)->%s", strerror(4));
+	printf("strerror(5)->%s", strerror(5));
+	printf("strerror(6)->%s", strerror(6));
+	printf("strerror(7)->%s", strerror(7));
+	printf("strerror(8)->%s", strerror(8));
+	printf("strerror(9)->%s", strerror(9));
+	printf("strerror(9)->%s", strerror(9));
+	printf("strerror(10)->%s", strerror(10));
+	system("pause");
+	return 0;
+}
+
+----------------------------VC++/VC++ .net---------------------------------------------------------------
+
+//Using strchr()
+#include <cstdio>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+	char *string1 = "A zoo has many animals including birds";
+	int c = 'm';
+
+	printf("	Using strchr()\n");
+	printf("	---------------\n");
+   	printf("string1 = %s\n", string1);
+
+	printf("\nThe remainder of string1 beginning with the\n");
+	printf("last occurrence of character \'%c\'", c);
+	printf("\nis:  %s\n", strrchr(string1, c));
+	return 0;
+} 
+
+------------------------------------G++--------------------------------------------------------------------
+
+//*****ctystring.cpp******
+//Using sprintf()
+#include <cstdio>
+using namespace std;
+
+int main()
+{
+  char s[80];
+  int  x;
+  float  y;
+
+  printf("Using sprint()\n");
+  printf("--------------\n");
+  printf("Enter an integer and a float, separated by space: \n");
+  scanf("%d%f", &x, &y);
+  sprintf(s, "Integer:%6d\nFloat:%8.2f", x, y);
+  printf("\n%s\n%s\n",
+        "The formatted output stored in array s is:  ", s);
+  return 0;
+}
+
+-------------------------------------GCc-------------------------------------------------------------------
+
+/****ctstring2.c, using memcpy()*/
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+  char s1[20], s2[] = "Copying this string into s1";
+  memcpy(s1, s2, 17);
+  printf("      Using memcpy()\n");
+  printf("      --------------\n");
+  printf("s1[20] = ?\n", s1);
+  printf("s2[] = %s\n", s2);
+  printf("\nAfter s2 is copied into s1 with memcpy(),\n");
+  printf("using memcpy(s1, s2, 17)\n");
+  printf("\ns1 contains \"%s\"\n", s1);
+  return 0;
+}
+
+-------------------------------------Gcc-------------------------------------------------------------------
+
+/*******************cstr.c**************************/
+/*Using functions isdigit(), isalpha(), isalnum(), and isxdigit()*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main()
+{
+printf("Using functions isdigit(), isalpha(),\n");
+printf("isalnum(), and isxdigit()\n");
+printf("-------------------------------------\n");
+
+printf("\nAccording to isdigit():\n");
+isdigit('7') ? printf("7 is a digit\n") : printf("7 is not a digit\n");
+isdigit('$') ? printf("$ is a digit\n") : printf("$ is not a digit\n");
+
+printf("\nAccording to isalpha():\n");
+isalpha('B') ? printf("B is a letter\n") : printf("B is not a letter\n");
+isalpha('b') ? printf("b is a letter\n") : printf("b is not a letter\n");
+isalpha('&') ? printf("& is a letter\n") : printf("& is not a letter\n");
+isalpha('4') ? printf("4 is a letter\n") : printf("4 is not a letter\n");
+
+printf("\nAccording to isalnum():\n");
+isalnum('A') ? printf("A is a digit or a letter\n") : printf("A is not a digit or a letter\n");
+isalnum('8') ? printf("8 is a digit or a letter\n") : printf("8 is not a digit or a letter\n");
+isalnum('#') ? printf("# is a digit or a letter\n") : printf("# is not a digit or a letter\n");
+
+printf("\nAccording to isxdigit():\n");
+isxdigit('F') ? printf("F is a hexadecimal\n") : printf("F is not a hexadecimal\n");
+isxdigit('J') ? printf("J is a hexadecimal\n") : printf("J is not a hexadecimal\n");
+isxdigit('7') ? printf("7 is a hexadecimal\n") : printf("7 is not a hexadecimal\n");
+isxdigit('$') ? printf("$ is a hexadecimal\n") : printf("$ is not a hexadecimal\n");
+isxdigit('f') ? printf("f is a hexadecimal\n") : printf("f is not a hexadecimal\n");
+
+return 0;
+}
+
+===========================================================================================================
+

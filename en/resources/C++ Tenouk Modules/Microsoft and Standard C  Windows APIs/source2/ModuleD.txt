@@ -1,0 +1,360 @@
+==============================ModuleD=====================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+
+Compiled using VC++/VC++ .Net.....unmanaged...
+
+//WinXp Pro
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+char *lpReplacedFileName = "C:\\module20.txt";
+char *lpReplacementFileName = "C:\\testfile.txt";
+LPVOID lpExclude;
+LPVOID lpReserved;
+
+int main()
+{
+BOOL test = ReplaceFile(
+  lpReplacedFileName,
+  lpReplacementFileName,
+  "C:\\backup.txt",
+  REPLACEFILE_IGNORE_MERGE_ERRORS,
+  lpExclude,
+  lpReserved
+);
+
+printf("The original file   = %s\n", lpReplacedFileName);
+printf("The replacement file  = %s\n", lpReplacementFileName);
+printf("The return value = %d\n", test);
+return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+DWORD nBufferLength = 100;
+char lpBuffer[50];
+
+//Get temp path
+DWORD temPathLength = 
+GetTempPath(
+nBufferLength,
+lpBuffer 
+);
+
+printf("Temp path = %s.\n", lpBuffer);
+printf("Temp path length = %d.\n", temPathLength);
+return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+HANDLE hFile;
+HANDLE hTempFile; 
+DWORD  dwBytesRead, dwBytesWritten;
+char szTempName[MAX_PATH];
+char buffer[4096];
+char fname[50] = "c:\\testfile.txt"; 
+
+//Open the existing file. 
+hFile = CreateFile(fname,  //file name 
+    GENERIC_READ,          //open for reading 
+    0,                     //do not share 
+    NULL,                  //default security 
+    OPEN_EXISTING,         //existing file only 
+    FILE_ATTRIBUTE_NORMAL, //normal file 
+    NULL);                 //no template 
+
+if(hFile == INVALID_HANDLE_VALUE) 
+{ 
+    printf("Could not open %s file.\n", fname); 
+} 
+else
+    printf("%s file opened successfully.\n", fname);
+
+//Create a temporary file.  Make sure is are c:\temp folder 
+GetTempFileName("c:\\temp", //directory for temp files 
+    "testmp",               //temp file name prefix 
+    0,                      //create unique name 
+    szTempName);            //buffer for name 
+
+hTempFile = CreateFile((LPTSTR) szTempName,  //file name 
+    GENERIC_READ | GENERIC_WRITE, //open for read/write 
+    0,                            //do not share 
+    NULL,                         //default security 
+    CREATE_ALWAYS,                //overwrite existing file
+    FILE_ATTRIBUTE_NORMAL,        //normal file 
+    NULL);                        //no attribute template 
+
+if(hTempFile == INVALID_HANDLE_VALUE) 
+    printf("Could not create %s temporary file.\n", szTempName); 
+else
+    printf("%s temporary file created successfully.\n", szTempName);
+ 
+//Read 2K blocks of the content to the buffer. 
+//Change all characters in the buffer to uppercase. 
+//Write the buffer to the temporary file.
+printf("Reading the %s file, change to the uppercase and\n", fname);
+printf("write to %s temporary file\n", szTempName);
+do 
+{
+    if(ReadFile(hFile, buffer, 2048, &dwBytesRead, NULL)) 
+    { 
+        CharUpperBuff(buffer, dwBytesRead); 
+        WriteFile(hTempFile, buffer, dwBytesRead, &dwBytesWritten, NULL); 
+    } 
+} while (dwBytesRead == 2048); 
+ 
+//Close both files' handles. 
+if(CloseHandle(hFile) != 0)
+	printf("%s handle closed successfully.\n", fname);
+if(CloseHandle(hTempFile) != 0) 
+	printf("%s handle closed successfully.\n", szTempName); 
+
+//Move the temporary file to the new text file
+if(!MoveFile(szTempName, "c:\\newfile.txt")) 
+    printf("Could not move %s temp file.\n", szTempName);
+else
+	printf("%s temp file moved successfully.\n", szTempName);
+return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+WIN32_FIND_DATA FileData; 
+HANDLE hSearch; 
+DWORD dwAttrs; 
+char szDirPath[] = "G:\\newdir\\"; 
+char szNewPath[MAX_PATH]; 
+BOOL fFinished = FALSE; 
+ 
+//Create a new directory. If something wrong
+if(!CreateDirectory(szDirPath, NULL)) 
+{
+	printf("Could not create %s directory.\n", szDirPath); 
+ //just exit	
+	exit (0);
+}
+else
+	printf("%s directory successfully created.\n", szDirPath);
+ 
+//Start searching for .txt files in the current directory.
+//Failed when tested with a path...need to change the current working
+//directory??? 
+hSearch = FindFirstFile("*.txt", &FileData); 
+if(hSearch == INVALID_HANDLE_VALUE) 
+{ 
+    printf("No .txt files found lol.\n");
+    //just exit	
+    exit (0);
+} 
+ 
+//Copy each .txt file to the new directory 
+//and change it to read only, if not already. 
+while(!fFinished) 
+{  //Copies a string in szDirPath to szNewPath buffer...
+   lstrcpy(szNewPath, szDirPath);
+   //Appends the filename to the path...
+   lstrcat(szNewPath, FileData.cFileName);
+
+   //In the buffer, do the file copy...
+    if(CopyFile(FileData.cFileName, szNewPath, FALSE))
+   { 
+	      printf("%s file successfully copied.\n", FileData.cFileName);
+	      //And gets the file attribute...
+      dwAttrs = GetFileAttributes(FileData.cFileName);
+      //Change to read only where applicable...
+      if(!(dwAttrs & FILE_ATTRIBUTE_READONLY)) 
+        SetFileAttributes(szNewPath, dwAttrs | FILE_ATTRIBUTE_READONLY); 
+   } 
+   else 
+       printf("Could not copy %s file.\n", FileData.cFileName); 
+     
+    if(!FindNextFile(hSearch, &FileData)) 
+    {
+        if(GetLastError() == ERROR_NO_MORE_FILES) 
+        { 
+            printf("No more file lol!\n"); 
+            fFinished = TRUE; 
+        } 
+        else 
+           printf("Could not find next file.\n"); 
+     }
+} 
+//Close the search handle. 
+FindClose(hSearch);
+return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+#include <windows.h>
+#include <stdio.h>
+
+char lpBuffer[500];
+LPSTR *lpFilePart;
+
+int main(int argc, char *argv[])
+{
+//If not enough arguments supplied  
+if(argc != 3)
+{
+	printf("Usage: %s <path> <filename.ext>\n", argv[0]);
+	exit (1);
+}
+
+  DWORD test = SearchPath(
+  argv[1],
+  argv[2],
+  NULL,
+  500,
+  lpBuffer,
+  lpFilePart
+);
+  //if something wrong to the SearchPath()
+  if(!test)
+  {
+	  printf("%s file not found!\n", argv[2]);
+	  exit (1);
+  }
+  //Display the result...
+  else
+  {
+   printf("The return value is: %d, error: %d\n", test, GetLastError());
+   printf("The path is %s\n", lpBuffer);
+   printf("The path is %p\n", lpFilePart);
+  }
+return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+//handle for file
+HANDLE hFile;
+DWORD lpBinaryType[100];
+
+//file and path
+char fname[20] = "c:\\test.doc";
+char fname2[30] = "c:\\windows\\NOTEPAD.EXE";
+
+hFile = CreateFile(fname,        //file to be opened 
+                GENERIC_READ,    //open for reading 
+                FILE_SHARE_READ, //share for reading 
+                NULL,            //default security 
+                OPEN_EXISTING,   //open existing file 
+                FILE_ATTRIBUTE_READONLY, //the file is read only 
+                NULL);           //no attribute template 
+ 
+if(hFile == INVALID_HANDLE_VALUE) 
+    printf("Could not open %s file, error %d\n", fname, GetLastError());
+
+printf("File's HANDLE is OK!\n");
+
+if(GetFileType(hFile) == 0)
+	printf("The %s file is character type.\n", fname);
+else if (GetFileType(hFile) == 1)
+	printf("The %s file is disk file.\n", fname);
+else if (GetFileType(hFile) == 2)
+	printf("The %s file is socket or named pipe.\n", fname);
+else if (GetFileType(hFile) == 4)
+	printf("The %s file is UNKNOWN type or GetFileType() failed!\n", fname);
+CloseHandle(hFile);
+
+if(GetBinaryType(fname2, lpBinaryType) != 0)
+	printf("The %s file is executable.\n", fname2);
+else
+	printf("The %s is file non-executable.\n", fname2);
+return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+//the files' handles
+HANDLE hFile, hFile1;
+//filenames...
+char fname[] = "c:\\test.doc";
+char fname1[] = "c:\\txtcodes\\module11.txt";
+//temporary storage for file sizes
+DWORD dwFileSize;
+DWORD dwFileType;
+
+//Create the test file. Open it "Create Always" to overwrite any
+//existing file...
+  hFile = CreateFile(fname, GENERIC_READ | GENERIC_WRITE, 0, NULL, 
+                     CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
+  if(hFile == INVALID_HANDLE_VALUE)
+  {
+    printf("hFile is NULL\n");
+    printf("Could not create %s\n", fname);
+	   //return error
+    return 4;
+  }
+//Get the file type...
+dwFileType = GetFileType(hFile);
+//Verify that the correct file size was written.
+dwFileSize = GetFileSize(hFile, NULL);
+printf("%s size is %d bytes and file type is %d\n", fname, dwFileSize, dwFileType);
+CloseHandle(hFile);   //close the file handle and the file itself
+
+//Opening the existing file
+hFile1 = CreateFile(fname1,           // file to open 
+                GENERIC_READ,         // open for reading 
+                FILE_SHARE_READ,      // share for reading 
+                NULL,                 // default security 
+                OPEN_EXISTING,        // existing file only 
+                FILE_ATTRIBUTE_NORMAL,// normal file 
+                NULL);                // no attribute template 
+ 
+if(hFile1 == INVALID_HANDLE_VALUE) 
+{ 
+    printf("Could not open %s file, error %d\n", fname1, GetLastError());
+    return 1;
+}
+dwFileType = GetFileType(hFile1);
+dwFileSize = GetFileSize(hFile1, NULL);
+printf("%s size is %d bytes and file type is %d\n", fname1, dwFileSize, dwFileType);
+//close the file's handle and itself
+CloseHandle(hFile1);
+return 0;
+}
+
+===========================================================================================================

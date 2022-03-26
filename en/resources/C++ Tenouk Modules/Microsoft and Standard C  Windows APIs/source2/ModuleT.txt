@@ -1,0 +1,134 @@
+============================MODULET========================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+If you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (It is C++ header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module 23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes, let the compiler
+decide... :o)
+==============================================================================================
+=======================Just Microsoft & Standard C Codes HERE=================================
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+#include <conio.h>
+
+DWORD WINAPI MyThreadFunction(LPVOID lpParam) 
+{ 
+       printf("The parameter: %d.\n", *(DWORD*)lpParam);
+    return 0; 
+} 
+
+int main(void) 
+{ 
+    DWORD dwThreadId, dwThrdParam = 1; 
+    HANDLE hThread; 
+
+    hThread = CreateThread( 
+        NULL,             // default security attributes 
+        0,                // use default stack size  
+        MyThreadFunction, // thread function 
+        &dwThrdParam,     // argument to thread function 
+        0,                // use default creation flags 
+        &dwThreadId);     // returns the thread identifier 
+
+       printf("The thread ID: %d.\n", dwThreadId);
+   // Check the return value for success. If something wrong... 
+   if (hThread == NULL) 
+         printf("CreateThread() failed, error: %d.\n", GetLastError());
+   //else, gives some prompt...
+   else 
+      printf("It seems the CreateThread() is OK lol!\n");
+
+   if (CloseHandle(hThread) != 0)
+      printf("Handle to thread closed successfully.\n");        
+  return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+void main(void)
+{
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+
+    ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
+    ZeroMemory(&pi, sizeof(pi));
+
+    // Start the child process. 
+    if (!CreateProcess("C:\\WINDOWS\\system32\\cmd.exe", // module name. 
+        NULL,    // Command line. 
+        NULL,    // Process handle not inheritable. 
+        NULL,    // Thread handle not inheritable. 
+        FALSE,   // Set handle inheritance to FALSE. 
+        0,       // No creation flags. 
+        NULL,    // Use parent’s environment block. 
+        NULL,    // Use parent’s starting directory. 
+        &si,     // Pointer to STARTUPINFO structure.
+        &pi)     // Pointer to PROCESS_INFORMATION structure.
+    ) 
+
+              printf("\nSorry! CreateProcess() failed.\n\n");
+       else
+              printf("\nWell, CreateProcess() looks OK.\n\n");
+
+    // Wait until child process exits (in milliseconds). If INFINITE,
+    // the function’s time-out interval never elapses except with
+    // user or other intervention.
+    WaitForSingleObject(pi.hProcess, INFINITE);
+    printf("\n");
+
+    // Close process and thread handles. 
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
+}
+
+================================================================================================

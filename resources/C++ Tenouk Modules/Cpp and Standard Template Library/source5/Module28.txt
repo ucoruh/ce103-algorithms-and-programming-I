@@ -1,0 +1,1083 @@
+============================MODULE28=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+g++ are given at the end of every Module. For example if you want
+to compile C++ codes using VC++/VC++ .Net, change the header file accordingly.
+Just need some modification for the header files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+============================HERE, ALL C++ codes==========================
+
+//list example
+#include <iostream>
+#include <list>
+using namespace std;
+
+int main()
+{
+//list container for character elements
+list<char> elem;
+
+//append elements from 'a' to 'z'
+for(char chs='a'; chs<= 'z'; ++chs)
+elem.push_back(chs);
+
+//while there are elements
+//print and remove the element
+while(!elem.empty())
+{
+cout<<elem.front()<<' ';
+elem.pop_front();
+}
+cout<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------------------------
+
+//list constructors
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+list <int>::iterator li0Iter, li1Iter, li2Iter, li3Iter, li4Iter, li5Iter, li6Iter;
+
+//Create an empty list li0
+list <int> li0;
+
+//Create a list li1 with 10 elements of default value 0
+list <int> li1(10);
+
+//Create a list li2 with 8 elements of value 7
+list <int> li2(8, 7);
+
+//Create a list li3 with 9 elements of value 8 and with the 
+//allocator of list li2
+list <int> li3(9, 8, li2.get_allocator());
+
+//li4, a copy of list li2
+list <int> li4(li2);
+
+//Create a list li5 by copying the range of li4[_First, _Last)
+li4Iter = li4.begin();
+li4Iter++;
+li4Iter++;
+li4Iter++;
+li4Iter++;
+list <int> li5(li4.begin(), li4Iter);
+
+//Create a list li6 by copying the range of li4[_First, _Last) and with 
+//the allocator of list li2
+li4Iter = li4.begin();
+li4Iter++;
+li4Iter++;
+li4Iter++;
+list <int> li6(li4.begin(), li4Iter, li2.get_allocator());
+
+//----------------------------------------------------
+cout<<"Operation: list <int> li0\n";
+cout<<"li0 data: ";
+for(li0Iter = li0.begin(); li0Iter != li0.end(); li0Iter++)
+cout<<" "<<*li0Iter;
+cout<<endl;
+
+cout<<"\nOperation: list <int> li1(10)\n";
+cout<<"li1 data: ";
+for(li1Iter = li1.begin(); li1Iter != li1.end(); li1Iter++)
+cout<<" "<<*li1Iter;
+cout<<endl;
+
+cout<<"\nOperation: list <int> li2(8, 7)\n";
+cout<<"li2 data: ";
+for(li2Iter = li2.begin(); li2Iter != li2.end(); li2Iter++)
+cout<<" "<<*li2Iter;
+cout<<endl;
+
+cout<<"\nOperation: list <int> li3(9, 8, li2.get_allocator())\n";
+cout<<"li3 data: ";
+for(li3Iter = li3.begin(); li3Iter != li3.end(); li3Iter++)
+cout<<" "<<*li3Iter;
+cout<<endl;
+
+cout<<"\nOperation: list <int> li4(li2);\n";
+cout<<"li4 data: ";
+for(li4Iter = li4.begin(); li4Iter != li4.end(); li4Iter++)
+cout<<" "<<*li4Iter;
+cout<<endl;
+
+cout<<"\nOperation1: li4Iter = li4.begin(), li4Iter++...\n";
+cout<<"Operation2: list <int> li5(li4.begin(), li4Iter)\n";
+cout<<"li5 data: ";
+for(li5Iter = li5.begin(); li5Iter != li5.end(); li5Iter++)
+cout<<" "<<*li5Iter;
+cout<<endl;
+
+cout<<"\nOperation1: li4Iter = li4.begin(), li4Iter++...\n";
+cout<<"Operation2: list <int> li6(li4.begin(), li4Iter,\n"
+"    li2.get_allocator())\n";
+cout<<"li6 data: ";
+for(li6Iter = li6.begin(); li6Iter != li6.end(); li6Iter++)
+cout<<" "<<*li6Iter;
+cout<<endl;
+return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+//list, insert()
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+list <int> lis1, lis2;
+list <int>::iterator Iter;
+
+lis1.push_back(13);
+lis1.push_back(22);
+lis1.push_back(15);
+lis2.push_back(9);
+lis2.push_back(5);
+lis2.push_back(45);
+
+cout<<"lis1 data: ";
+for(Iter = lis1.begin(); Iter != lis1.end(); Iter++)
+cout<<" "<<*Iter;
+cout<<endl;
+
+cout<<"lis2 data: ";
+for(Iter = lis2.begin(); Iter != lis2.end(); Iter++)
+cout<<" "<<*Iter;
+cout<<endl;
+
+cout<<"\nOperation1: lis1.begin() then Iter++...\n";
+cout<<"Operation2: lis1.insert(Iter, 55)\n";
+Iter = lis1.begin();
+Iter++;
+lis1.insert(Iter, 55);
+cout<<"lis1 data: ";
+for(Iter = lis1.begin(); Iter != lis1.end(); Iter++)
+cout<<" "<<*Iter;
+cout<<endl;
+
+cout<<"\nOperation1: lis1.begin() then Iter++...\n";
+cout<<"Operation2: lis1.insert(Iter, 3, 30)\n";
+Iter = lis1.begin();
+Iter++;
+Iter++;
+lis1.insert(Iter, 3, 30);
+
+cout<<"lis1 data: ";
+for(Iter = lis1.begin(); Iter != lis1.end(); Iter++)
+cout<<" "<<*Iter;
+cout<<endl;
+
+cout<<"\nOperation2: lis1.insert(++lis1.begin(),\n"
+"     lis2.begin(),--lis2.end())\n";
+lis1.insert(++lis1.begin(), lis2.begin(),--lis2.end());
+cout<<"lis1 data: ";
+for(Iter = lis1.begin(); Iter != lis1.end(); Iter++)
+cout<<" "<<*Iter;
+cout<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------------------------
+
+//list, remove()
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main( ) 
+{
+list <int> lis1;
+list <int>::iterator lis1Iter, lis2Iter;
+
+lis1.push_back(7);
+lis1.push_back(12);
+lis1.push_back(25);
+lis1.push_back(7);
+lis1.push_back(9);
+lis1.push_back(7);
+lis1.push_back(21);
+
+cout<<"The initial lis1 data is: ";
+for(lis1Iter = lis1.begin(); lis1Iter != lis1.end(); lis1Iter++)
+cout<<" "<<*lis1Iter;
+cout<<endl;
+
+cout<<"\nOperation1: list <int> lis2 = lis1\n";
+cout<<"Operation2: lis2.remove(7)\n";
+list <int> lis2 = lis1;
+lis2.remove(7);
+cout<<"Removing elements of value 7, \nthe list data, lis2 is: ";
+for(lis2Iter = lis2.begin(); lis2Iter != lis2.end(); lis2Iter++)
+cout<<" "<<*lis2Iter;
+cout<<endl;
+return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+//list, sort()
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+list <int> ls1;
+list <int>::iterator ls1Iter;
+
+ls1.push_back(31);
+ls1.push_back(12);
+ls1.push_back(40);
+ls1.push_back(15);
+ls1.push_back(9);
+ls1.push_back(44);
+
+cout<<"Before sorting, ls1 data: ";
+for(ls1Iter = ls1.begin(); ls1Iter != ls1.end(); ls1Iter++)
+cout<<" "<<*ls1Iter;
+cout<<endl;
+
+cout<<"\nOperation: ls1.sort()\n";
+ls1.sort();
+cout<<"After sorting, ls1 data: ";
+for(ls1Iter = ls1.begin(); ls1Iter != ls1.end(); ls1Iter++)
+cout<<" "<<*ls1Iter;
+cout<<endl;
+
+cout<<"\nOperation: ls1.sort(greater<int>())\n";
+ls1.sort(greater<int>());
+cout<<"Re sort with 'greater than' operation,\nls1 =";
+for(ls1Iter = ls1.begin(); ls1Iter != ls1.end(); ls1Iter++)
+cout<<" "<<*ls1Iter;
+cout<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------
+
+//list, splice()
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main( )
+{
+list <int> ls1, ls2, ls3, ls4;
+list <int>::iterator ls1Iter, ls2Iter, ls3Iter, ls4Iter, PIter, QIter, RIter;
+
+ls1.push_back(7);
+ls1.push_back(15);
+ls2.push_back(9);
+ls2.push_back(22);
+ls2.push_back(12);
+ls3.push_back(29);
+ls3.push_back(30);
+ls4.push_back(33);
+ls4.push_back(25);
+ls4.push_back(51);
+
+cout<<"ls1 data: ";
+for(ls1Iter = ls1.begin(); ls1Iter != ls1.end(); ls1Iter++)
+cout<<" "<<*ls1Iter;
+cout<<endl;
+
+cout<<"ls2 data: ";
+for(ls2Iter = ls2.begin(); ls2Iter != ls2.end(); ls2Iter++)
+cout<<" "<<*ls2Iter;
+cout<<endl;
+
+cout<<"ls3 data: ";
+for(ls3Iter = ls3.begin(); ls3Iter != ls3.end(); ls3Iter++)
+cout<<" "<<*ls3Iter;
+cout<<endl;
+
+cout<<"ls4 data: ";
+for(ls4Iter = ls4.begin(); ls4Iter != ls4.end(); ls4Iter++)
+cout<<" "<<*ls4Iter;
+cout<<endl;
+
+cout<<"\nOperation: ls2.splice(PIter, ls1)\n";
+PIter = ls2.begin();
+PIter++;
+ls2.splice(PIter, ls1);
+cout<<"ls2 data, after splicing \nls1 into ls2: ";
+for(ls2Iter = ls2.begin(); ls2Iter != ls2.end(); ls2Iter++)
+cout<<" "<<*ls2Iter;
+cout<<endl;
+
+cout<<"\nOperation: ls2.splice(PIter, ls3, QIter)\n";
+QIter = ls3.begin();
+ls2.splice(PIter, ls3, QIter);
+cout<<"ls2 data, after splicing the first \nelement of ls3 into ls2: ";
+for(ls2Iter = ls2.begin(); ls2Iter != ls2.end(); ls2Iter++)
+cout<<" "<<*ls2Iter;
+cout<<endl;
+
+cout<<"\nOperation: ls2.splice(PIter, ls4, QIter, RIter)\n";
+QIter = ls4.begin();
+RIter = ls4.end();
+RIter--;
+ls2.splice(PIter, ls4, QIter, RIter);
+cout<<"ls2 data, after splicing a range \nof ls4 into ls2: ";
+for(ls2Iter = ls2.begin(); ls2Iter != ls2.end(); ls2Iter++)
+cout<<" "<<*ls2Iter;
+cout<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//list, unique()
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+list <int> ls1;
+list <int>::iterator ls1Iter, ls2Iter, ls3Iter;
+not_equal_to<int> mypred;
+
+ls1.push_back(-12);
+ls1.push_back(12);
+ls1.push_back(12);
+ls1.push_back(22);
+ls1.push_back(22);
+ls1.push_back(13);
+ls1.push_back(-12);
+ls1.push_back(14);
+
+cout<<"ls1 data, the initial list:\n";
+for(ls1Iter = ls1.begin(); ls1Iter != ls1.end(); ls1Iter++)
+cout<<" "<<*ls1Iter;
+cout<<endl;
+
+cout<<"\nOperation1: list <int> ls2 = ls1\n";
+cout<<"Operation2: ls2.unique()\n";
+list <int> ls2 = ls1;
+ls2.unique();
+cout<<"ls2 data, after removing successive duplicate\nelements: ";
+for(ls2Iter = ls2.begin(); ls2Iter != ls2.end(); ls2Iter++)
+cout<<" "<<*ls2Iter;
+cout<<endl;
+
+cout<<"\nOperation1: list <int> ls3 = ls2\n";
+cout<<"Operation2: ls3.unique(mypred)\n";
+list <int> ls3 = ls2;
+ls3.unique(mypred);
+cout<<"ls3 data, after removing successive unequal\nelements: ";
+for(ls3Iter = ls3.begin(); ls3Iter != ls3.end(); ls3Iter++)
+cout<<" "<<*ls3Iter;
+cout<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------------------------
+
+//set, constructor
+#include <set>
+#include <iostream>
+using namespace std;
+
+char main()
+{
+   set <char>::iterator st0_Iter, st1_Iter, st2_Iter, st3_Iter, st4_Iter, st5_Iter, st6_Iter;
+
+   //Create an empty set st0 of key type char
+   set <char> st0;
+
+   //Create an empty set st1 with the key comparison
+   //function of less than, then insert 6 elements
+   set <char, less<char> > st1;
+   st1.insert('p');
+   st1.insert('e');
+   st1.insert('g');
+   st1.insert('P');
+   st1.insert('y');
+   st1.insert('b');
+
+   //Create an empty set st2 with the key comparison
+   //function of greater than, then insert 2 elements
+   set <char, greater<char> > st2;
+   st2.insert('f');
+   st2.insert('k');
+
+   //Create a set st3 with the 
+   //allocator of set st1
+   set <char>::allocator_type st1_Alloc;
+   st1_Alloc = st1.get_allocator();
+   set <char> st3(less<char>(), st1_Alloc);
+   st3.insert('u');
+   st3.insert('U');
+
+   //set st4, a copy of set st1
+   set <char> st4(st1);
+
+   //Create a set st5 by copying the range st1[_First, _Last)
+   set <char>::const_iterator st1_PIter, st1_QIter;
+   st1_PIter = st1.begin();
+   st1_QIter = st1.begin();
+   st1_QIter++;
+   st1_QIter++;
+   st1_QIter++;
+   set <char> st5(st1_PIter, st1_QIter);
+
+   //Create a set st6 by copying the range st4[_First, _Last)
+   //and with the allocator of set st2
+   set <char>::allocator_type st2_Alloc;
+   st2_Alloc = st2.get_allocator();
+   set <char> st6(st4.begin(), ++st4.begin(), less<char>(), st2_Alloc);
+
+   //------------------------------------------------
+   cout<<"Operation: set <char> st0\n";
+   cout<<"st0 data: ";
+   for(st0_Iter = st0.begin(); st0_Iter != st0.end(); st0_Iter++)
+      cout<<" "<<*st0_Iter;
+   cout<<endl;
+
+   cout<<"\nOperation1: set <char, less<char> > st1\n";
+   cout<<"Operation2: st1.insert('p')...\n";
+   cout<<"st1 data: ";
+   for(st1_Iter = st1.begin(); st1_Iter != st1.end(); st1_Iter++)
+      cout<<" "<<*st1_Iter;
+   cout<<endl;
+   
+   cout<<"\nOperation1: set <char, greater<char> > st2\n";
+   cout<<"Operation2:  st2.insert('f')...\n";
+   cout<<"st2 data: "<<*st2.begin()<<" "<<*++st2.begin()<<endl;
+
+   cout<<"\nOperation1: set <char> st3(less<char>(), st1_Alloc)\n";
+   cout<<"Operation2: st3.insert('u')\n";
+   cout<<"st3 data: ";
+   for(st3_Iter = st3.begin(); st3_Iter != st3.end(); st3_Iter++)
+      cout<<" "<<*st3_Iter;
+   cout<<endl;
+
+   cout<<"\nOperation: set <char> st4(st1)\n";
+   cout<<"st4 data: ";
+   for(st4_Iter = st4.begin(); st4_Iter != st4.end(); st4_Iter++)
+      cout<<" "<<*st4_Iter;
+   cout<<endl;
+
+   cout<<"\nOperation: set <char> st5(st1_PIter, st1_QIter)\n";
+   cout<<"st5 data: ";
+   for(st5_Iter = st5.begin(); st5_Iter != st5.end(); st5_Iter++)
+      cout<<" "<<*st5_Iter;
+   cout<<endl;
+
+   cout<<"\nOperation: set <char> st6(st4.begin(), \n++st4.begin(), less<char>(), st2_Alloc)\n";
+   cout<<"st6 data: ";
+   for(st6_Iter = st6.begin(); st6_Iter != st6.end(); st6_Iter++)
+      cout<<" "<<*st6_Iter;
+   cout<<endl;
+   return 0;
+}
+
+----------------------------------------------------------------------------------------------------------
+
+//set, count()
+//some warning during the compilation
+#include <set>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+set <int> st1;
+int i;
+
+st1.insert(1);
+st1.insert(2);
+st1.insert(1);
+
+//Keys must be unique in set, duplicates are ignored
+i = st1.count(1);
+cout<<"The number of elements in st1 with a sort key of 1 is: "<<i<<endl;
+
+i = st1.count(2);
+cout<<"The number of elements in st1 with a sort key of 2 is: "<<i<<endl;
+
+i = st1.count(3);
+cout<<"The number of elements in st1 with a sort key of 3 is: "<<i<<endl;
+
+return 0;
+}
+
+-------------------------------------------------------------------------------------------------
+
+//set, equal_range()
+//some warning during compilation
+#include <set>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+typedef set<int, less<int> > IntSet;
+IntSet st1;
+set <int>::iterator st1Iter;
+set <int, less< int > > :: const_iterator st1_RcIter;
+
+st1.insert(10);
+st1.insert(20);
+st1.insert(30);
+st1.insert(40);
+st1.insert(50);
+
+cout<<"st1 data: ";
+for(st1Iter = st1.begin(); st1Iter != st1.end(); st1Iter++)
+cout<<" "<<*st1Iter;
+cout<<endl;
+
+pair <IntSet::const_iterator, IntSet::const_iterator> p1, p2;
+p1 = st1.equal_range(30);
+
+cout<<"\nThe upper bound of the element with\n"
+    <<"a key of 30 in the set st1 is: "
+    <<*(p1.second)<<endl;
+
+cout<<"\nThe lower bound of the element with\n"
+    <<"a key of 30 in the set st1 is: "
+    <<*(p1.first)<<endl;
+
+//Compare the upper_bound called directly 
+st1_RcIter = st1.upper_bound(30);
+cout<<"\nA direct call of upper_bound(30) gives "
+    <<*st1_RcIter<<" matching\nthe 2nd element of the pair"
+    <<" returned by equal_range(30)."<<endl;
+
+cout<<"\nOperation: p2 = st1.equal_range(60)\n";
+p2 = st1.equal_range(60);
+
+//If no match is found for the key,
+//both elements of the pair return end()
+if ((p2.first == st1.end()) && (p2.second == st1.end()))
+cout<<"\nThe set st1 doesn't have an element\n"
+    <<"with a key less than 60."<<endl;
+else
+cout<<"The element of set st1 with a key >= 60 is: "
+    <<*(p1.first)<<endl;
+return 0;
+}
+
+------------------------------------------------------------------------------------------------
+
+//set, key_comp()
+#include <set>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+set <int, less<int> > st1;
+set<int, less<int> >::key_compare kc1 = st1.key_comp();
+bool res1 = kc1(3, 7);
+if(res1 == true)   
+{
+cout<<"kc1(3,7) returns value of true, "
+    <<"where kc1\nis the function object of st1."
+    <<endl;
+}
+else   
+{
+cout<<"kc1(3,7) returns value of false "
+    <<"where kc1\nis the function object of st1."
+    <<endl;
+}
+
+set <int, greater<int> > st2;
+set<int, greater<int> >::key_compare kc2 = st2.key_comp();
+bool res2 = kc2(3, 7);
+if(res2 == true)   
+{
+cout<<"kc2(3,7) returns value of true, "
+    <<"where kc2\nis the function object of st2."
+    <<endl;
+}
+else   
+{
+cout<<"kc2(3,7) returns value of false, "
+    <<"where kc2\nis the function object of st2."
+    <<endl;
+}
+return 0;
+}
+
+-------------------------------------------------------------------------------------------------
+
+//set, lower_bound()
+#include <set>
+#include <iostream>
+using namespace std;
+
+int main( )
+{
+set <int> st1;
+set <int> :: const_iterator st1Iter, st1_PIter, st1_QIter;
+
+st1.insert(11);
+st1.insert(21);
+st1.insert(30);
+st1.insert(10);
+st1.insert(22);
+
+cout<<"st1 data: ";
+for(st1Iter = st1.begin(); st1Iter != st1.end(); st1Iter++)
+cout<<" "<<*st1Iter;
+cout<<endl;
+
+st1_QIter = st1.lower_bound(21);
+cout<<"The element of set st1 with a key of 21 is: "
+    <<*st1_QIter<<endl;
+
+st1_QIter = st1.lower_bound(60);
+
+//If no match is found for the key, end() is returned
+if(st1_QIter == st1.end())
+cout<<"The set st1 doesn't have an element "
+    <<"with a key of 60."<<endl;
+else
+cout<<"The element of set st1 with a key of 60 is: "
+    <<*st1_QIter<<endl;
+
+//The element at a specific location in the set can be found 
+//by using a dereferenced iterator that addresses the location
+st1_PIter = st1.end();
+st1_PIter--;
+st1_QIter = st1.lower_bound(*st1_PIter);
+cout<<"The element of st1 with a key matching "
+    <<"that\nof the last element is: "
+    <<*st1_QIter<<endl;
+return 0;
+}
+
+----------------------------------------------------------------------------------------------
+
+//set, upper_bound()
+#include <set>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+set <int> st1;
+set <int> :: const_iterator st1Iter, st1PIter, st1QIter;
+
+st1.insert(9);
+st1.insert(12);
+st1.insert(20);
+st1.insert(13);
+st1.insert(11);
+
+cout<<"st1 data: ";
+for(st1Iter = st1.begin(); st1Iter != st1.end(); st1Iter++)
+cout<<" "<<*st1Iter;
+cout<<endl;
+
+st1QIter = st1.upper_bound(9);
+cout<<"The first element of set st1 with a key greater "
+   <<"than 9 is: "<<*st1QIter<<endl;
+
+st1QIter = st1.upper_bound(22);
+
+//If no match is found for the key, end( ) is returned
+if(st1QIter == st1.end())
+cout<<"The set st1 doesn't have an element "
+    <<"with a key greater than 22."<<endl;
+else
+cout<<"The element of set st1 with a key > 22 is: "
+    <<*st1QIter<<endl;
+
+//The element at a specific location in the set can be found 
+//by using a dereferenced iterator addressing the location
+st1PIter = st1.begin();
+st1QIter = st1.upper_bound(*st1PIter);
+cout<<"The first element of st1 with a key greater than\n"
+   <<"that of the initial element of st1 is: "
+   <<*st1QIter<<endl;
+return 0;
+}
+
+---------------------------------------------------------------------------------------------
+
+//set, value_comp()
+#include <set>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+set <int, less<int> > st1;
+set <int, less<int> >::value_compare vcom1 = st1.value_comp();
+bool result1 = vcom1(5, 9);
+if(result1 == true)   
+{
+cout<<"vcom1(5,9) returns value of true, "
+    <<"\nwhere vcom1 is the function object of st1."
+    <<endl;
+}
+else   
+{
+cout<<"vcom1(5,9) returns value of false, "
+    <<"\nwhere vcom1 is the function object of st1."
+    <<endl;
+}
+
+set <int, greater<int> > st2;
+set<int, greater<int> >::value_compare vcom2 = st2.value_comp();
+bool result2 = vcom2(5, 9);
+if(result2 == true)   
+{
+cout<<"vcom2(5,9) returns value of true, "
+    <<"\n0where vcom2 is the function object of st2."
+    <<endl;
+}
+else   
+{
+cout<<"vcom2(5,9) returns value of false, "
+    <<"\nwhere vcom2 is the function object of st2."
+    <<endl;
+}
+return 0;
+}
+
+---------------------------------------------------------------------------------------------
+
+//multiset, constructor
+#include <set>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   multiset <int>::iterator mst0_Iter, mst1_Iter, mst2_Iter, mst3_Iter;
+   multiset <int>::iterator mst4_Iter, mst5_Iter, mst6_Iter;
+
+   //Create an empty multiset mst0 of key type integer
+   multiset <int> mst0;
+
+   //Create an empty multiset mst1 with the key comparison
+   //function of less than, then insert 6 elements
+   multiset <int, less<int> > mst1;
+   mst1.insert(41);
+   mst1.insert(15);
+   mst1.insert(30);
+   mst1.insert(10);
+   mst1.insert(15);
+   mst1.insert(35);
+
+   //Create an empty multiset mst2 with the key comparison
+   //function of greater than, then insert 4 elements
+   multiset <int, greater<int> > mst2;
+   mst2.insert(10);
+   mst2.insert(21);
+   mst2.insert(8);
+   mst2.insert(21);
+
+   //Create a multiset mst3 with the 
+   //allocator of multiset mst1
+   multiset <int>::allocator_type mst1_Alloc;
+   mst1_Alloc = mst1.get_allocator();
+   multiset <int> mst3(less<int>(), mst1_Alloc);
+   mst3.insert(7);
+   mst3.insert(12);
+   mst3.insert(9);
+
+   //multiset mst4, a copy of multiset mst1
+   multiset <int> mst4(mst1);
+
+   //Create a multiset mst5 by copying the range mst1[_First, _Last)
+   multiset <int>::const_iterator mst1_PIter, mst1_QIter;
+   mst1_PIter = mst1.begin();
+   mst1_QIter = mst1.begin();
+   mst1_QIter++;
+   mst1_QIter++;
+   multiset <int> mst5(mst1_PIter, mst1_QIter);
+
+   //Create a multiset mst6 by copying the range mst4[_First, _Last)
+   //and with the allocator of multiset mst2
+   multiset <int>::allocator_type mst2_Alloc;
+   mst2_Alloc = mst2.get_allocator();
+   multiset <int> mst6(mst4.begin(), ++mst4.begin(), less<int>(), mst2_Alloc);
+
+   //-----------------------------------------------------
+   cout<<"Operation: multiset <int> mst0\n";
+   cout<<"mst0 data: ";
+   for(mst0_Iter = mst0.begin(); mst0_Iter != mst0.end(); mst0_Iter++)
+      cout<<" " <<*mst0_Iter;
+   cout<<endl;
+
+   cout<<"\nOperation: multiset <int, less<int> > mst1\n";
+   cout<<"Operation: mst1.insert(41)...\n";
+   cout<<"mst1 data: ";
+   for(mst1_Iter = mst1.begin(); mst1_Iter != mst1.end(); mst1_Iter++)
+      cout<<" "<<*mst1_Iter;
+   cout<<endl;
+   
+   cout<<"\nOperation: multiset <int, greater<int> > mst2\n";
+   cout<<"Operation: mst2.insert(10)...\n";
+   cout<<"mst2 data: "<<*mst2.begin()<<" "<<*++mst2.begin()<<endl;
+
+   cout<<"\nOperation: multiset <int> mst3(less<int>(), mst1_Alloc)\n";
+   cout<<"Operation: mst3.insert(7)...\n";
+   cout<<"mst3 data: ";
+   for(mst3_Iter = mst3.begin(); mst3_Iter != mst3.end(); mst3_Iter++)
+      cout<<" "<<*mst3_Iter;
+   cout<<endl;
+
+   cout<<"\nOperation: multiset <int> mst4(mst1)\n";
+   cout<<"mst4 data: ";
+   for(mst4_Iter = mst4.begin(); mst4_Iter != mst4.end(); mst4_Iter++)
+      cout<<" "<<*mst4_Iter;
+   cout<<endl;
+
+   cout<<"\nOperation: multiset <int> mst5(mst1_PIter, mst1_QIter)\n";
+   cout<<"mst5 data: ";
+   for(mst5_Iter = mst5.begin(); mst5_Iter != mst5.end(); mst5_Iter++)
+      cout<<" "<<*mst5_Iter;
+   cout<<endl;
+
+   cout<<"\nOperation: multiset <int> mst6(mst4.begin(), \n++mst4.begin(), less<int>(), mst2_Alloc);\n";
+   cout<<"mst6 data: ";
+   for(mst6_Iter = mst6.begin(); mst6_Iter != mst6.end(); mst6_Iter++)
+      cout<<" "<<*mst6_Iter;
+   cout<<endl;
+   return 0;
+}
+
+------------------------------------------------------------------------------------------------------------
+
+//multiset, find()
+#include <set>
+#include <iostream>
+using namespace std;   
+
+int main()
+{
+multiset <int> mst1;
+multiset <int>::const_iterator mst1_QIter, mst1_PIter, mst1_RIter;
+
+mst1.insert(6);
+mst1.insert(2);
+mst1.insert(14);
+mst1.insert(6);
+mst1.insert(10);
+
+cout<<"mst1 data: ";
+for(mst1_RIter = mst1.begin(); mst1_RIter != mst1.end(); mst1_RIter++)
+cout<<" "<<*mst1_RIter;
+cout<<endl;
+
+mst1_PIter = mst1.find(10);
+cout<<"The first element of multiset mst1 with a key of 10 is: "
+    <<*mst1_PIter<<endl;
+
+mst1_PIter = mst1.find(21);
+
+//If no match is found for the key, end() is returned
+if(mst1_PIter == mst1.end())
+cout<<"\nThe multiset mst1 doesn't have an element "
+    <<"with a key of 21"<<endl;
+else
+cout<<"\nThe element of multiset mst1 with a key of 21 is: "
+    <<*mst1_PIter<<endl;
+
+//The element at a specific location in the multiset can be
+//found using a dereferenced iterator addressing the location
+mst1_QIter = mst1.end();
+mst1_QIter--;
+mst1_PIter = mst1.find(*mst1_QIter);
+cout<<"\nThe first element of mst1 with a\nkey matching "
+    <<"that of the last element is: "
+    <<*mst1_PIter<<endl;
+
+//Note that the first element with a key equal to
+//the key of the last element is not the last element
+if(mst1_PIter == --mst1.end())
+cout<<"\nThis is the last element of multiset mst1."
+    <<endl;
+else
+cout<<"\nThis is not the last element of multiset mst1."
+   <<endl;
+return 0;
+}
+
+-------------------------------------------G++ on Linux/Fedora------------------------------------------
+
+//*****listsort.cpp******
+//list, sort()
+#include <list>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+list <int> ls1;
+list <int>::iterator ls1Iter;
+
+ls1.push_back(31);
+ls1.push_back(12);
+ls1.push_back(40);
+ls1.push_back(15);
+ls1.push_back(9);
+ls1.push_back(44);
+
+cout<<"Before sorting, ls1 data: ";
+for(ls1Iter = ls1.begin(); ls1Iter != ls1.end(); ls1Iter++)
+cout<<" "<<*ls1Iter;
+cout<<endl;
+
+cout<<"\nOperation: ls1.sort()\n";
+ls1.sort();
+cout<<"After sorting, ls1 data: ";
+for(ls1Iter = ls1.begin(); ls1Iter != ls1.end(); ls1Iter++)
+cout<<" "<<*ls1Iter;
+cout<<endl;
+
+cout<<"\nOperation: ls1.sort(greater<int>())\n";
+ls1.sort(greater<int>());
+cout<<"Re sort with 'greater than' operation,\nls1 =";
+for(ls1Iter = ls1.begin(); ls1Iter != ls1.end(); ls1Iter++)
+cout<<" "<<*ls1Iter;
+cout<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------------
+
+//******setcount.cpp*******
+//set, count()
+//some warning during the compilation
+#include <set>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+set <int> st1;
+int i;
+
+st1.insert(1);
+st1.insert(2);
+st1.insert(1);
+
+//Keys must be unique in set, duplicates are ignored
+i = st1.count(1);
+cout<<"The number of elements in st1 with a sort key of 1 is: "<<i<<endl;
+
+i = st1.count(2);
+cout<<"The number of elements in st1 with a sort key of 2 is: "<<i<<endl;
+
+i = st1.count(3);
+cout<<"The number of elements in st1 with a sort key of 3 is: "<<i<<endl;
+
+return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//******multisetfind.cpp******
+//multiset, find()
+#include <set>
+#include <iostream>
+using namespace std;   
+
+int main()
+{
+multiset <int> mst1;
+multiset <int>::const_iterator mst1_QIter, mst1_PIter, mst1_RIter;
+
+mst1.insert(6);
+mst1.insert(2);
+mst1.insert(14);
+mst1.insert(6);
+mst1.insert(10);
+
+cout<<"mst1 data: ";
+for(mst1_RIter = mst1.begin(); mst1_RIter != mst1.end(); mst1_RIter++)
+cout<<" "<<*mst1_RIter;
+cout<<endl;
+
+mst1_PIter = mst1.find(10);
+cout<<"The first element of multiset mst1 with a key of 10 is: "
+    <<*mst1_PIter<<endl;
+
+mst1_PIter = mst1.find(21);
+
+//If no match is found for the key, end() is returned
+if(mst1_PIter == mst1.end())
+cout<<"\nThe multiset mst1 doesn't have an element "
+    <<"with a key of 21"<<endl;
+else
+cout<<"\nThe element of multiset mst1 with a key of 21 is: "
+    <<*mst1_PIter<<endl;
+
+//The element at a specific location in the multiset can be
+//found using a dereferenced iterator addressing the location
+mst1_QIter = mst1.end();
+mst1_QIter--;
+mst1_PIter = mst1.find(*mst1_QIter);
+cout<<"\nThe first element of mst1 with a\nkey matching "
+    <<"that of the last element is: "
+    <<*mst1_PIter<<endl;
+
+//Note that the first element with a key equal to
+//the key of the last element is not the last element
+if(mst1_PIter == --mst1.end())
+cout<<"\nThis is the last element of multiset mst1."<<endl;
+else
+cout<<"\nThis is not the last element of multiset mst1."<<endl;
+return 0;
+}
+
+======================================================================================================
+

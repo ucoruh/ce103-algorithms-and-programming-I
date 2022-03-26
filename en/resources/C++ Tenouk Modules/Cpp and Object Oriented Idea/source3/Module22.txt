@@ -1,0 +1,1045 @@
+============================MODULE22=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+//For VC++ (Version > 4.0) / VC++ .Net change the header files
+//to the following accordingly...Same for other examples lol!
+//#include <iostream>
+//#include <cstdlib>
+//using namespace std;
+
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+	int sum = 1000;
+	int count = 21;
+
+	double average1 = sum/count;
+	cout<<"Before conversion = "<<average1<<endl;
+
+	double average2 = static_cast<double>(sum)/count;
+
+	cout<<"After conversion  = "<<average2<<endl;
+
+	system("pause");
+	return 0;
+}
+
+-------------------------------------------------------------------------
+
+#include <iostream.h>
+#include <stdlib.h>
+
+//enum data type
+enum color {blue, yellow, red, green, magenta};
+
+int main()
+{
+	int p1 = 3;
+
+	cout<<"integer type, p1 = "<<p1<<endl;
+	cout<<"color c1 = static_cast<color> (p1)"<<endl;
+	color c1 = static_cast<color> (p1);
+	cout<<"enum type, c1 = "<<c1<<endl;
+
+	system("pause");
+	return 0;
+}
+
+-------------------------------------------------------------------------
+
+//demonstrates const_cast
+#include <iostream.h>
+#include <stdlib.h>
+
+int main()
+{
+	//p = 10 is a constant value, cannot be modified
+	const int p = 20;
+
+	cout<<"const p = "<<p<<"\nq = p + 20 = "<<(p + 20)<<endl;
+	//The following code should generate error, because
+	//we try to modify the constant value...
+	//uncomment, recompile and re run, notice the error...
+	//p = 15;
+	//p++;
+
+	//remove the const...
+	int r = const_cast<int&> (p);
+	//the value of 10 should be modified now...
+	--r;
+	cout<<"Removing the const, decrement by 1,\nNew value = "<<r<<endl;
+
+	system("pause");
+}
+
+-----------------------------------------------------------------------------
+
+//Demonstrate const_cast
+#include <iostream.h>
+#include <stdlib.h>
+
+struct One
+{
+	//test function...
+	void funct1()
+	{ cout<<"Testing..."<<endl;}
+};
+
+//const argument, cannot be modified...
+void funct2(const One& c)
+{
+	//will generate warning/error...
+	c.funct1();
+}
+
+int main()
+{
+	One b;
+
+	funct2(b);
+
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------
+
+//Change c.funct1(); to the following statements recompile and rerun the program.
+
+//remove the const...
+One &noconst = const_cast<One&> (c);
+cout<<"The reference = "<<&noconst<<endl;
+noconst.funct1():
+
+---------------------------------------------------------------------------------
+
+//Demonstrates type casting
+#include <iostream.h>
+#include <stdlib.h>
+
+double funct1(double& f)
+{
+	//do some work here...
+	f++;
+	cout<<"f = "<<f<<endl;
+	//return the incremented value...
+	return f;
+}
+
+//const argument, can't be modified...
+void funct2(const double& d)
+{
+	cout<<"d = "<<d<<endl;
+	//remove const...
+	//use the non-const argument, making function call...
+	double value = funct1(const_cast<double&> (d));
+	//display the returned value...
+	cout<<"value = "<<value<<endl;
+}
+
+int main()
+{
+	double c = 4.324;
+
+	//first function call...
+	funct2(c);
+
+	system("pause");
+	return 0;
+}
+
+------------------------------------------------------------------------------------
+
+//Demonstrate type casting
+#include <iostream.h>
+#include <stdlib.h>
+
+class One
+{
+	public:
+	void funct()
+	{cout<<"Testing..."<<endl;};
+};
+
+
+//const and volatile...
+const volatile int* Test1;
+//const...
+const int* Test2;
+
+void TestConstVol()
+{
+	One Test3;
+
+	//remove const...
+	const_cast<One&>(Test3).funct();
+	//remove const and volatile...
+	const_cast<int*> (Test1);
+}
+
+int main()
+{
+	TestConstVol();
+
+	system("pause");
+	return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+//removing the const-ness of the
+//this pointer
+#include <iostream.h>
+#include <stdlib.h>
+
+class Test
+{
+public:
+void GetNumber(int);
+//Read only function...
+void DisplayNumber() const;
+
+private:
+int Number;
+};
+
+void Test::GetNumber(int Num)
+{Number = Num;}
+
+void Test::DisplayNumber() const
+{
+	cout<<"\nBefore removing const-ness: "<<Number;
+	const_cast<Test*>(this)->Number+=2;
+	cout<<"\nAfter removing const-ness: "<<Number<<endl;
+}
+
+int main()
+{
+	Test p;
+
+	p.GetNumber(20);
+	p.DisplayNumber();
+
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------
+
+//using mutable to remove the
+//const-ness of the function...
+#include <iostream.h>
+#include <stdlib.h>
+
+class Test
+{
+	//using mutable
+	mutable int count;
+	mutable const int* ptr;
+	public:
+	//Read only function can't
+	//change const arguments.
+	int funct(int num = 10) const
+	{
+		//should be valid expression...
+		count = num+=3;
+		ptr = &num;
+		cout<<"After some operation, the new value: "<<*ptr<<endl;
+		return count;
+	}
+};
+
+int main(void)
+{
+	Test var;
+
+	cout<<"Initial value of the argument is: 10"<<endl;
+	var.funct(10);
+
+	system("pause");
+	return 0;
+}
+
+--------------------------------------------------------------------------------------
+
+//upcast conversion using dynamic_cast
+#include <iostream.h>
+#include <stdlib.h>
+
+//base class
+class Base1 {};
+
+//derived class...
+class Derived1:public Base1 {};
+
+//another derived class
+class Derived2:public Derived1{};
+
+//dynamic_cast test function...
+void funct1()
+{
+	//instantiate an object…
+	Derived2* Test1 = new Derived2;
+
+	//upcasting, from derived class to base class,
+	//Derived1 is a direct from Base1
+	//making Test2 pointing to Derived1 sub-object of Test1
+	Derived1* Test2 = dynamic_cast<Derived1*>(Test1);
+	cout<<"Derived1* Test2 = dynamic_cast<Derived1*>(Test1);"<<endl;
+	if(!Test2)
+		cout<<"The conversion is fail..."<<endl;
+	else
+		cout<<"The conversion is successful..."<<endl;
+
+	//upcasting, from derived class to base class
+	//Derived2 is an indirect from Base1
+	Base1* Test3 = dynamic_cast<Derived1*>(Test1);
+	cout<<"\nBase1* Test3 = dynamic_cast<Derived1*>(Test1);"<<endl;
+
+	if(!Test3)
+		cout<<"The conversion is fail..."<<endl;
+	else
+		cout<<"The conversion is successful..."<<endl;
+}
+
+int main()
+{
+   funct1();
+	  system("pause");
+   return 0;
+}
+
+----------------------------------------------------------------------------------------
+
+//If new_name is void*, the result of
+//conversion is a pointer to the complete
+//object pointed to by the expression
+
+//void* and dynamic_cast
+#include <iostream.h>
+#include <stdlib.h>
+
+//base class
+class Base1
+{
+	public:
+	virtual void funct1(){};
+};
+
+//another base class...
+class  Base2
+{
+	public:
+	virtual void funct2(){};
+};
+
+//dynamic_cast test function...
+void funct3()
+{
+ //instantiate objects…
+ Base1 * Test1 = new Base1;
+ Base2 * Test2 = new Base2;
+
+ //making Test3 pointing to an object of type Base1
+ void* Test3 = dynamic_cast<void*>(Test1);
+ cout<<"void* Test3 = dynamic_cast<void*>(Test1);"<<endl;
+ if(!Test3)
+ 	cout<<"The conversion is fail..."<<endl;
+ else
+ 	cout<<"The conversion is successful..."<<endl;
+
+ //making Test3 pointing to an object of type Base2
+ Test3 = dynamic_cast<void*>(Test2);
+ cout<<"\nTest3 = dynamic_cast<void*>(Test2);"<<endl;
+  if(!Test3)
+ 	cout<<"The conversion is fail..."<<endl;
+  else
+ 	cout<<"The conversion is successful..."<<endl;
+ }
+
+int main()
+{
+   funct3();
+   system("pause");
+   return 0;
+}
+
+---------------------------------------------------------------------------------
+
+//downcast conversion using dynamic_cast
+#include <iostream.h>
+#include <stdlib.h>
+
+//base class
+class Base1 {
+	public:
+	virtual void funct1(){};
+};
+
+//derived class...
+class Derived1:public Base1 {
+	public:
+	virtual void funct2(){};
+};
+
+//dynamic_cast test function...
+void funct3()
+{
+	//instantiate objects…
+	Base1* Test1 = new Derived1;
+	Base1* Test2 = new Base1;
+
+	//making Test1 pointing to Derived1
+	Derived1* Test3 = dynamic_cast<Derived1*>(Test1);
+	cout<<"Derived1* Test3 = dynamic_cast<Derived1*>(Test1);"<<endl;
+	if(!Test3)
+		cout<<"The conversion is fail..."<<endl;
+	else
+ 		cout<<"The conversion is successful..."<<endl;
+
+ 	//should fails coz Test2 pointing
+ 	//to Base1 not Derived1, Test4 == NULL
+ 	Derived1* Test4 = dynamic_cast<Derived1*>(Test2);
+ 	cout<<"\nDerived1* Test4 = dynamic_cast<Derived1*>(Test2);"<<endl;
+ 	if(!Test4)
+ 		cout<<"The conversion is fail..."<<endl;
+ 	else
+ 		cout<<"The conversion is successful..."<<endl;
+	//reconfirm, should be NULL pointer…
+	cout<<"Should be NULL pointer =  "<<Test4<<endl;
+}
+
+int main()
+{
+
+   funct3();
+
+   system("pause");
+   return 0;
+}
+
+----------------------------------------------------------------------------------
+
+//multiple inheritance
+//conversion using dynamic_cast
+#include <iostream.h>
+#include <stdlib.h>
+
+//base class
+class Base1 {};
+
+class Derived1:public Base1{};
+
+class Derived2:public Base1{};
+
+//derived class...
+class Derived3:public Derived1, public Derived2
+{
+	public:
+	virtual void funct1(){}
+};
+
+//dynamic_cast test function...
+void funct2()
+{
+	//instantiate an object…
+	Derived3 *Test1 = new Derived3;
+
+	//-------start comment out---------
+	//may fail, ambiguous...from Derived3 direct
+	//conversion to Base1...
+	//if you use good compiler, please comment out this
+	//part, there should be run time error:-)
+	Base1* Test2 = dynamic_cast<Base1*>(Test1);
+	cout<<"Base1* Test2 = dynamic_cast<Base1*>(Test1);"<<endl;
+	if(!Test2)
+		cout<<"The conversion is fail..."<<endl;
+	else
+		cout<<"The conversion is successful..."<<endl;
+	//reconfirm the pointer
+	cout<<"The pointer should be NULL ==> "<<Test2<<endl;
+	//---------end comment out----------
+
+	//solution, traverse, recast...
+	//firstly, cast to Derived1
+	Derived1* Test3 = dynamic_cast<Derived1*>(Test1);
+	cout<<"\nDerived1* Test3 = dynamic_cast<Derived1*>(Test1);"<<endl;
+	if(!Test3)
+		cout<<"The conversion is fail..."<<endl;
+	else
+		cout<<"The conversion is successful..."<<endl;
+
+	//then cast to base1....
+	Base1* Test4 = dynamic_cast<Base1*>(Test3);
+	cout<<"\nBase1* Test4 = dynamic_cast<Base1*>(Test3);"<<endl;
+	if(!Test4)
+		cout<<"The conversion is fail..."<<endl;
+	else
+		cout<<"The conversion is successful..."<<endl;
+}
+
+int main()
+{
+	funct2();
+
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------------
+
+//testing the crosscast: downcast, upcast and crosscast
+//conversion using dynamic_cast
+#include <iostream.h>
+#include <stdlib.h>
+
+//base class
+class Base1 
+{
+	public:
+	virtual void funct1(){};
+};
+
+class Derived1:public Base1 
+{
+	public:
+	virtual void funct2(){};
+};
+
+class Derived2:public Base1{
+	public:
+	virtual void funct3(){};
+};
+
+//derived class...
+class Base2
+{
+	public:
+	virtual void funct4(){};
+};
+
+class Derived3:public Derived1,public Derived2,public Base2
+{};
+
+//dynamic_cast test function...
+void funct5()
+{
+	//instantiate an object
+	//Test1 of type Base2...
+	//or test1 of type Derived2...
+	//you can choose either one:-)
+	
+	Base2* Test1 = new Base2;
+	//Derived2* Test1 = new Derived2;
+
+	//start with downcast, type Base2/Derived2 to Derived3...
+	Derived3* Test2 = dynamic_cast<Derived3*>(Test1);
+	cout<<"Firstly, Derived3* Test2 = dynamic_cast<Derived3*>(Test1);"<<endl;
+	if(!Test2)
+	{
+		cout<<"The conversion is fail lor!"<<endl;
+		cout<<"Checking the pointer = "<<Test2<<endl;
+	}
+
+	else
+		cout<<"The conversion is successful..."<<endl;
+
+	//Upcast, type derived3 to type derived1...
+	Derived1* Test3 = dynamic_cast<Derived1*>(Test2);
+	cout<<"\nThen, Derived1* Test3 = dynamic_cast<Derived1*>(Test2);"<<endl;
+	if(!Test3)
+	{
+		cout<<"The conversion is fail lor!"<<endl;
+		cout<<"Checking the pointer = "<<Test3<<endl;
+	}
+	else
+		cout<<"The conversion is successful..."<<endl;
+
+	//crosscast, direct, type Base2/Derived2 to Derived1...
+	Derived1* Test4 = dynamic_cast<Derived1*>(Test1);
+	cout<<"\nThen, Derived1* Test4 = dynamic_cast<Derived1*>(Test1);"<<endl;
+	if(!Test4)
+	{
+		cout<<"The conversion is fail lor!"<<endl;
+		cout<<"Checking the pointer = "<<Test3<<endl;
+	}
+		
+	else
+		cout<<"The conversion is successful..."<<endl;
+	delete Test1;
+}
+
+int main()
+{
+	funct5();
+
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------------------
+
+//dynamic_cast ambiguous conversion experiment
+#include <iostream.h>
+#include <stdlib.h>
+
+//a class with virtual function...
+//polymorphic…
+class Base1
+{
+	public:
+	virtual void FuncBase1()
+	{};
+};
+
+//another class with virtual function...
+class Base2
+{
+	public:
+	virtual void FuncBase2()
+	{};
+};
+
+//derived class from Base1 and Base2 classes
+//public virtual and private...
+class Derived1:public virtual Base1, private Base2
+{};
+
+//dynamic_cast test function...
+void DynamicCastSample()
+{
+	//instantiate an object of type Derived1 class...
+	Derived1 DerivedObj;
+
+	//simple assignment, derived to base class, upcasting...
+	//cast needed to break private protection...
+	Base2* Base2Obj = (Base2*) &DerivedObj;
+
+	//another assignment, derived to base class, upcasting...
+	//public inheritance, no need casting..
+	Base1* Base1Obj = &DerivedObj;
+
+	//base class to derived class, downcast
+	Derived1& Derived1Obj = dynamic_cast<Derived1&>(*Base2Obj);
+	if(!&Derived1Obj)
+		cout<<"Conversion is failed!...."<<endl;
+	else
+   		cout<<"Conversion is OK...."<<endl;
+   	cout<<"The address.."<<&Derived1Obj<<endl;
+
+	//base class to derived class, downcast
+	Base1Obj = dynamic_cast<Base1*>(Base2Obj);
+	if(!Base1Obj)
+		cout<<"Conversion is failed!...."<<endl;
+	else
+		cout<<"Conversion is OK...."<<endl;
+	cout<<"The address.."<<Base1Obj<<endl;
+
+	//base class to base class, ????
+	//no inheritance…
+	Base2Obj = dynamic_cast<Base2*>(Base1Obj);
+	if(!Base2Obj)
+		cout<<"Conversion is failed!...."<<endl;
+	else
+		cout<<"Conversion is OK...."<<endl;
+	cout<<"The address.."<<Base2Obj<<endl;
+
+	//derived class to base class, upcast
+	Base1Obj = dynamic_cast<Base1*>(&Derived1Obj);
+
+	if(!Base1Obj)
+		cout<<"Conversion is failed!...."<<endl;
+	else
+		cout<<"Conversion is OK...."<<endl;
+	cout<<"The address.."<<Base1Obj<<endl;
+
+	//derived class to base class...
+	//Derived1Obj is derived from non-virtual, private Base2…
+	Base2Obj = dynamic_cast<Base2*>(&Derived1Obj);
+	if(!Base2Obj)
+		cout<<"Conversion is failed!...."<<endl;
+	else
+		cout<<"Conversion is OK...."<<endl;
+	cout<<"The address.."<<Base2Obj<<endl;
+}
+
+int main()
+{
+	int *ptr = NULL;
+	int var;
+
+	cout<<"Benchmarking..."<<endl;
+	cout<<"Address of var = "<<&var<<endl;
+	//NULL pointer
+	cout<<"NULL *ptr = "<<ptr<<endl;
+	cout<<endl;
+
+	//call the function for dynamic_cast testing...
+	DynamicCastSample();
+
+	system("pause");
+	return 0;
+}
+
+-----------------------------------------------------------------------------------
+
+//using typeid operator, type_info::before()
+//and type_info::name() member functions
+#include <iostream.h>
+#include <stdlib.h>
+#include <typeinfo.h>
+
+//T - True, F - False
+#define T 1
+#define F 0
+
+//a base class
+class A { };
+//a derived class
+class B : A { };
+
+int main() 
+{
+	char c;
+	float f;
+
+	//using typeinfo operator, == for comparison
+	if (typeid(c) == typeid(f))
+		cout<<"c and f are the same type."<<endl;
+	else
+		cout<<"c and f are different type."<<endl;
+
+	//using true and false comparison...
+	//name() and before() are typeinfo member functions...
+	cout<<typeid(int).name();
+	cout<<" before "<<typeid(double).name()<<": "<<
+	(typeid(int).before(typeid(double)) ? T:F)<<endl;
+
+	cout<<typeid(double).name();
+	cout<<" before "<<typeid(int).name()<<": "<<
+	(typeid(double).before(typeid(int)) ? T:F)<<endl;
+
+	cout<<typeid(A).name();
+	cout<<" before "<<typeid(B).name()<<": "<<
+	(typeid(A).before(typeid(B)) ? T:F)<<endl;
+
+	system("pause");
+	return 0;
+}
+
+-------------------------------------------------------------------------------------
+
+//getting the run time type information...
+#include <iostream.h>
+#include <stdlib.h>
+#include <typeinfo.h>
+
+//polymorphic base class...
+class __rtti Test
+{
+	//This makes Test a polymorphic class type.
+	virtual void func() {};
+};
+
+//derived class...
+class Derived : public Test {};
+
+int main(void)
+{
+	//Instantiate Derived type object...
+	Derived DerivedObj;
+	//Declare a Derived type pointer
+	Derived *DerivedPtr;
+	//Initialize the pointer
+	DerivedPtr = &DerivedObj;
+
+	//do the run time checking...
+	if(typeid(*DerivedPtr) == typeid(Derived))
+		//check the type of *DerivedPtr
+		cout<<"Ptr *DerivedPtr type name is "<<typeid(*DerivedPtr).name();
+	if(typeid(*DerivedPtr) != typeid(Test))
+		cout<<"\nPointer DerivedPtr is not a Test class type.\n";
+
+	system("pause");
+	return 0;
+}
+
+-----------------------------------------------------------------------------------------
+
+//run time type information...
+#include <iostream.h>
+#include <stdlib.h>
+#include <typeinfo.h>
+
+class Base
+{
+	public:
+	virtual void funct(){}
+};
+
+class Derived:public Base{};
+
+int main()
+{
+	Derived* Test1 = new Derived;
+	Base* Test2 = Test1;
+
+	cout<<"The type name of Test1 is: ";
+	cout<<typeid(Test1).name()<<endl;
+	cout<<"The type name of *Test1 is: ";
+	cout<<typeid(*Test1).name()<<endl;
+	cout<<"The type name of Test2 is: ";
+	cout<<typeid(Test2).name()<<endl;
+	cout<<"The type name of *Test2 is: ";
+	cout<<typeid(*Test2).name()<<endl;
+
+	delete Test1;
+
+	system("pause");
+	return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+//using reinterpret_cast, int to
+//unsigned int pointers conversion
+#include <iostream.h>
+#include <stdlib.h>
+
+unsigned int* Test(int *q)
+{
+	//convert int pointer to unsigned int pointer
+	unsigned int* code = reinterpret_cast<unsigned int*>(q);
+	//return the converted type data, a pointer...
+	return code;
+}
+
+int main(void)
+{
+        //array name is a pointer...
+	int a[10];
+
+        cout<<"int pointer           unsigned int pointer"<<endl;
+	for(int i = 0;i<=10;i++)
+		cout<<(a+i)<<" converted to "<<Test(a+i)<<endl;
+
+	system("pause");
+   	return 0;
+}
+
+--------------------------------------VC++/VC++ .Net onward----------------------------------------------
+
+//simple class
+//compiled using visual C++ .Net
+#include  <iostream>
+using namespace std;
+
+class  MyStack
+{
+public:
+//create a stack with initial size
+MyStack(int initsize);
+~MyStack(void);
+};
+
+MyStack::MyStack(int initsize)
+{
+static x;
+cout<<"Constructor: Pass #"<<x<<endl;
+x++;
+}
+
+MyStack::~MyStack(void)
+{
+static y;
+cout<<"Destructor: Pass #"<<y<<endl;
+y++;
+}
+
+//----main program----
+int main()
+{
+//The initial stack size is 10
+MyStack p(20);
+
+//but, there will be new stack objects
+//with size of 30!
+p = 30;
+cout<<"Without the explicit keyword!\n";
+return 0;
+}
+
+----------------------------------------------------------------------------------------------
+
+//simple class
+//compiled using visual C++ .Net
+#include  <iostream>
+using namespace std;
+
+class  MyStack
+{
+public:
+//create a stack with initial size
+explicit MyStack(int initsize);
+~MyStack(void);
+};
+
+MyStack::MyStack(int initsize)
+{
+static x;
+cout<<"Constructor: Pass #"<<x<<endl;
+x++;
+}
+
+MyStack::~MyStack(void)
+{
+static y;
+cout<<"Destructor: Pass #"<<y<<endl;
+y++;
+}
+
+//----main program----
+int main()
+{
+//The initial stack size is 10
+MyStack p(20);
+//but, there will be new stack objects
+//with size of 30!
+//p = 30;
+cout<<"With the explicit keyword!\n";
+return 0;
+}
+
+--------------------------------------VC++/VC++ .Net---------------------------------------------------
+
+//run time type information...
+//compiled using VC++/VC++ .Net
+#include <iostream>
+#include <typeinfo.h>
+using namespace std;
+
+class Base
+{
+	public:
+	virtual void funct(){}
+};
+
+class Derived:public Base{};
+
+int main()
+{
+	Derived* Test1 = new Derived;
+	Base* Test2 = Test1;
+
+	cout<<"The type name of Test1 is: ";
+	cout<<typeid(Test1).name()<<endl;
+	cout<<"The type name of *Test1 is: ";
+	cout<<typeid(*Test1).name()<<endl;
+	cout<<"The type name of Test2 is: ";
+	cout<<typeid(Test2).name()<<endl;
+	cout<<"The type name of *Test2 is: ";
+	cout<<typeid(*Test2).name()<<endl;
+	delete Test1;
+	return 0;
+}
+
+-----------------------------------------G++ Linux / Fedora--------------------------------------------
+
+//**********-typecast.cpp-**********
+//upcast conversion using dynamic_cast
+#include <iostream>
+using namespace std;
+
+//base class
+class Base1 {};
+
+//derived class...
+class Derived1:public Base1 {};
+
+//another derived class
+class Derived2:public Derived1{};
+
+//dynamic_cast test function...
+void funct1()
+{
+      //instantiate an object.
+      Derived2* Test1 = new Derived2;
+      
+      //upcasting, from derived class to base class,
+      //Derived1 is a direct from Base1
+      //making Test2 pointing to Derived1 sub-object of Test1
+      Derived1* Test2 = dynamic_cast<Derived1*>(Test1);
+      cout<<"Derived1* Test2 = dynamic_cast<Derived1*>(Test1);"<<endl;
+      if(!Test2)
+         cout<<"The conversion is fail..."<<endl;
+      else
+         cout<<"The conversion is successful..."<<endl;
+
+      //upcasting, from derived class to base class
+      //Derived2 is an indirect from Base1
+      Base1* Test3 = dynamic_cast<Derived1*>(Test1);
+      cout<<"\nBase1* Test3 = dynamic_cast<Derived1*>(Test1);"<<endl;
+      if(!Test3)
+        cout<<"The conversion is fail..."<<endl;
+      else
+        cout<<"The conversion is successful..."<<endl;
+}
+
+int main()
+{
+   funct1();
+   return 0;
+}
+
+==================================================================================================

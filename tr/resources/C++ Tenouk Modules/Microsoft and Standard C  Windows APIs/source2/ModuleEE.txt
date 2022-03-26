@@ -1,0 +1,1826 @@
+============================MODULEE=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+If you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (It is C++ header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module 23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes, let the compiler
+decide... :o)
+==============================================================================================
+=======================Just Microsoft & Standard C Codes HERE=================================
+
+// For WinXp, don't forget to add
+// Advapi32.lib library if needed...
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+// Prototypes, just empty skeletons...
+void SvcDebugOut(LPSTR String, DWORD Status);
+void  WINAPI MyServiceCtrlHandler(DWORD opcode); 
+void  MyServiceStart(DWORD argc, LPTSTR *argv); 
+DWORD MyServiceInitialization(DWORD argc, LPTSTR *argv, DWORD *specificError); 
+
+void main() 
+{ 
+       // Using 2-D array as a table...
+       // The name of a service to be run in this service process - "MyService",
+       // The function as the starting point for a service - MyServiceStart or
+       // a pointer to a ServiceMain() function...
+       // The members of the last entry in the table must have NULL values
+       // to designate the end of the table...
+       SERVICE_TABLE_ENTRY  DispatchTable[] = {{"MyService", (LPSERVICE_MAIN_FUNCTION)MyServiceStart}, {NULL, NULL}};
+
+   if (!StartServiceCtrlDispatcher(DispatchTable))
+       SvcDebugOut("StartServiceCtrlDispatcher() failed, error: %d\n", GetLastError());
+   else
+       printf("StartServiceCtrlDispatcher() looks OK.\n");
+   return;
+}
+
+// ==========================================================================
+// Prototype definitions...just skeletons here...
+void  WINAPI MyServiceCtrlHandler(DWORD opcode)
+{
+       // Service control information here...
+       return;
+}
+
+void  MyServiceStart(DWORD argc, LPTSTR *argv)
+{
+       // Starting service information here...
+       return;
+}
+
+DWORD MyServiceInitialization(DWORD argc, LPTSTR *argv, DWORD *specificError)
+{
+       // Service initialization information here...
+       return 0;
+}
+
+// Very simple info to the standard output...
+void SvcDebugOut(LPSTR String, DWORD Status)
+{
+   CHAR  Buffer[1024];
+
+   printf("In SvcDebugOut() lol!\n");
+   if (strlen(String) < 1000)
+   {
+      sprintf(Buffer, String, Status);
+      OutputDebugStringA(Buffer);
+   }
+   else
+      printf("String too long...\n");
+
+   return;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+// Just another skeleton example as previous one...
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+SERVICE_STATUS          MyServiceStatus;
+SERVICE_STATUS_HANDLE   MyServiceStatusHandle;
+
+DWORD MyServiceInitialization(DWORD   argc, LPTSTR  *argv, DWORD *specificError);
+// Application define ServiceMain()...
+void WINAPI MyServiceStart(DWORD argc, LPTSTR *argv);
+void WINAPI MyServiceCtrlHandler(DWORD opcode);
+void SvcDebugOut(LPSTR String, DWORD Status);
+
+void main()
+{
+   SERVICE_TABLE_ENTRY DispatchTable[] = {{"MyService", MyServiceStart}, {NULL, NULL}};
+
+   if (!StartServiceCtrlDispatcher(DispatchTable))
+   {
+       SvcDebugOut("StartServiceCtrlDispatcher() failed, error: %d.\n", GetLastError()); 
+   }
+   else
+       printf("StartServiceCtrlDispatcher() looks OK.\n");
+   return;
+}
+
+// Stub initialization function...
+DWORD MyServiceInitialization(DWORD argc, LPTSTR *argv, DWORD *specificError)
+{ 
+    *argv;
+    argc;
+    specificError;
+    // should return status...
+    return 0;
+}
+
+void WINAPI MyServiceStart(DWORD argc, LPTSTR *argv)
+{ 
+    DWORD status;
+    DWORD specificError;
+
+    // Type of service, application or driver...
+    MyServiceStatus.dwServiceType        = SERVICE_WIN32;
+    // The service is starting...
+    MyServiceStatus.dwCurrentState       = SERVICE_START_PENDING;
+    // The service can be stopped & can be paused and continued.
+    MyServiceStatus.dwControlsAccepted   = SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_PAUSE_CONTINUE;
+    MyServiceStatus.dwWin32ExitCode      = 0;
+    MyServiceStatus.dwServiceSpecificExitCode = 0;
+    MyServiceStatus.dwCheckPoint         = 0;
+    MyServiceStatus.dwWaitHint           = 0;
+
+    MyServiceStatusHandle = RegisterServiceCtrlHandler("MyService", MyServiceCtrlHandler);
+
+    if (MyServiceStatusHandle == (SERVICE_STATUS_HANDLE)0)
+    { 
+       SvcDebugOut("[MY_SERVICE] RegisterServiceCtrlHandler() failed, error: %d.\n", GetLastError());
+        return; 
+    }
+    else
+       printf("RegisterServiceCtrlHandler() looks OK.\n");
+
+       //===============================================================
+       // Initialization code goes here. Return the status...
+       status = MyServiceInitialization(argc, argv, &specificError);
+
+    // Handle error condition
+    if (status != NO_ERROR)
+    {
+        // The service is not running...
+        MyServiceStatus.dwCurrentState       = SERVICE_STOPPED;
+        MyServiceStatus.dwCheckPoint         = 0;
+        MyServiceStatus.dwWaitHint           = 0;
+        MyServiceStatus.dwWin32ExitCode      = status;
+        MyServiceStatus.dwServiceSpecificExitCode = specificError;
+        SetServiceStatus(MyServiceStatusHandle, &MyServiceStatus);
+        return;
+    }
+
+    // Initialization complete - report running status.
+    MyServiceStatus.dwCurrentState       = SERVICE_RUNNING;
+    MyServiceStatus.dwCheckPoint         = 0;
+    MyServiceStatus.dwWaitHint           = 0;
+
+    if (!SetServiceStatus(MyServiceStatusHandle, &MyServiceStatus))
+    {
+       status = GetLastError();
+       SvcDebugOut("SetServiceStatus() error: %ld\n", status);
+    }
+    else
+       printf("SetServiceStatus() looks OK.\n");
+
+    // By assuming starting and initializing the service is OK, this
+    // is where the service does its work...
+    SvcDebugOut("Returning the Main Thread.\n", 0);
+
+       return;
+}
+
+void  WINAPI MyServiceCtrlHandler(DWORD opcode)
+{
+       // Just a skeleton here...
+}
+
+void SvcDebugOut(LPSTR String, DWORD Status) 
+{
+   CHAR  Buffer[1024];
+
+   if (strlen(String) < 1000) 
+   {
+      sprintf(Buffer, String, Status); 
+      OutputDebugStringA(Buffer); 
+   }
+   else
+      printf("String too long...\n");
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+SERVICE_STATUS          MyServiceStatus;
+SERVICE_STATUS_HANDLE   MyServiceStatusHandle;
+
+DWORD MyServiceInitialization(DWORD argc, LPTSTR *argv, DWORD *specificError);
+void WINAPI MyServiceStart(DWORD argc, LPTSTR *argv);
+void WINAPI MyServiceCtrlHandler(DWORD opcode);
+void SvcDebugOut(LPSTR String, DWORD Status);
+
+void main()
+{
+   SERVICE_TABLE_ENTRY DispatchTable[] = {{"MyService", MyServiceStart}, {NULL, NULL}};
+
+   if (!StartServiceCtrlDispatcher(DispatchTable))
+      SvcDebugOut("StartServiceCtrlDispatcher() failed, error: %d.\n", GetLastError()); 
+   else
+      printf("StartServiceCtrlDispatcher() looks OK.\n");
+   return;
+}
+
+// Stub initialization function...
+DWORD MyServiceInitialization(DWORD argc, LPTSTR *argv, DWORD *specificError)
+{ 
+       *argv;
+       argc;
+       specificError;
+    return 0;
+}
+
+void WINAPI MyServiceStart(DWORD argc, LPTSTR *argv)
+{
+    DWORD status;
+    DWORD specificError;
+
+    // Type of service, application or driver...
+    MyServiceStatus.dwServiceType        = SERVICE_WIN32;
+    // The service is starting...
+    MyServiceStatus.dwCurrentState       = SERVICE_START_PENDING;
+    // The service can be stopped & can be paused and continued.
+    MyServiceStatus.dwControlsAccepted   = SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_PAUSE_CONTINUE;
+    MyServiceStatus.dwWin32ExitCode      = 0;
+    MyServiceStatus.dwServiceSpecificExitCode = 0;
+    MyServiceStatus.dwCheckPoint         = 0;
+    MyServiceStatus.dwWaitHint           = 0;
+
+    MyServiceStatusHandle = RegisterServiceCtrlHandler("MyService", MyServiceCtrlHandler);
+
+    if (MyServiceStatusHandle == (SERVICE_STATUS_HANDLE)0)
+    {
+       SvcDebugOut("RegisterServiceCtrlHandler() failed, error: %d.\n", GetLastError());
+       return;
+    }
+    else
+       printf("RegisterServiceCtrlHandler() looks OK.\n");
+
+    // Initialization code goes here...return the status...
+    status = MyServiceInitialization(argc, argv, &specificError);
+
+    // Handle error condition
+    if (status != NO_ERROR)
+    {
+        // The service is not running...
+        MyServiceStatus.dwCurrentState       = SERVICE_STOPPED;
+        MyServiceStatus.dwCheckPoint         = 0;
+        MyServiceStatus.dwWaitHint           = 0;
+        MyServiceStatus.dwWin32ExitCode      = status;
+        MyServiceStatus.dwServiceSpecificExitCode = specificError;
+
+        SetServiceStatus(MyServiceStatusHandle, &MyServiceStatus);
+        return;
+    }
+
+    // Initialization complete - report running status.
+    MyServiceStatus.dwCurrentState       = SERVICE_RUNNING;
+    MyServiceStatus.dwCheckPoint         = 0;
+    MyServiceStatus.dwWaitHint           = 0;
+
+    if (!SetServiceStatus(MyServiceStatusHandle, &MyServiceStatus))
+    {
+       status = GetLastError();
+       SvcDebugOut("SetServiceStatus() error: %ld\n", status);
+    }
+    else
+       printf("SetServiceStatus() looks OK.\n");
+
+    // This is where the service does its work...
+    SvcDebugOut("Returning the Main Thread.\n", 0);
+
+    return;
+}
+
+// Handler function - receives Opcode, calls SetServiceStstus()
+void WINAPI MyServiceCtrlHandler(DWORD Opcode)
+{
+   DWORD status;
+switch(Opcode)
+{
+              case SERVICE_CONTROL_PAUSE:
+                // Do whatever it takes to pause here...
+                MyServiceStatus.dwCurrentState = SERVICE_PAUSED;
+                break;
+
+              case SERVICE_CONTROL_CONTINUE:
+                // Do whatever it takes to continue here...
+                MyServiceStatus.dwCurrentState = SERVICE_RUNNING;
+                break;
+
+              case SERVICE_CONTROL_STOP:
+                // Do whatever it takes to stop here...
+                MyServiceStatus.dwWin32ExitCode = 0;
+                MyServiceStatus.dwCurrentState  = SERVICE_STOPPED;
+                MyServiceStatus.dwCheckPoint    = 0;
+                MyServiceStatus.dwWaitHint      = 0;
+
+                if (!SetServiceStatus(MyServiceStatusHandle, &MyServiceStatus))
+                {
+                    status = GetLastError();
+                    SvcDebugOut("[MY_SERVICE] SetServiceStatus() error: %ld\n", status);
+                }
+                SvcDebugOut("Leaving MyService.\n", 0);
+                return;
+
+              case SERVICE_CONTROL_INTERROGATE:
+                // Fall through to send current status.
+                break;
+
+              default:
+                // else
+                SvcDebugOut("Unrecognized opcode %ld.\n", Opcode);
+   }
+
+   // Send current status.
+   if (!SetServiceStatus(MyServiceStatusHandle, &MyServiceStatus))
+   {
+       status = GetLastError();
+       SvcDebugOut("SetServiceStatus error %ld.\n", status);
+       return;
+   }
+   else
+       printf("SetServiceStatus() is OK.\n");
+}
+
+// Some debug info...
+void SvcDebugOut(LPSTR String, DWORD Status)
+{
+   CHAR  Buffer[1024];
+
+   if (strlen(String) < 1000)
+   {
+      sprintf(Buffer, String, Status);
+      OutputDebugStringA(Buffer);
+   }
+   else
+      printf("Too many string...\n");
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <tchar.h>
+#include <stdio.h>
+
+HANDLE hStopEvent;
+// Three thread handle...
+HANDLE hThreads[3] = {NULL, NULL, NULL};
+LPTSTR lpszServiceName;
+SERVICE_STATUS_HANDLE ssh;
+
+DWORD WINAPI ThreadProc(LPVOID lpParameter);
+// Service start...
+void  WINAPI  Service_Main(DWORD dwArgc, LPTSTR *lpszArgv);
+// Service control...
+void  WINAPI  Service_Ctrl(DWORD dwCtrlCode);
+// Stop service...
+void  ErrorStopService(LPTSTR lpszAPI);
+void  SetTheServiceStatus(DWORD dwCurrentState, DWORD dwWin32ExitCode, DWORD dwCheckPoint, DWORD dwWaitHint);
+
+// Entry point for service. Calls StartServiceCtrlDispatcher()
+// and then blocks until the Service_Main() function returns...
+// void wmain(int argc, wchar_t *argv[])
+void _tmain(int argc, TCHAR *argv[])
+{
+   SERVICE_TABLE_ENTRY ste[] =
+{{TEXT("Myservice"), (LPSERVICE_MAIN_FUNCTION)Service_Main}, {NULL, NULL}};
+
+   if (!StartServiceCtrlDispatcher(ste))
+   {
+      TCHAR error[256];
+ 
+      wsprintf(error, TEXT("Error code for StartServiceCtrlDispatcher(): %u.\n"), GetLastError());
+      OutputDebugString(error);
+   }
+   else
+      OutputDebugString(TEXT("StartServiceCtrlDispatcher() returned!\n"));
+}
+
+// Called by the service control manager after the call to 
+// StartServiceCtrlDispatcher()...
+void WINAPI Service_Main(DWORD dwArgc, LPTSTR *lpszArgv)
+{
+   DWORD ThreadId;
+   DWORD t;
+   DWORD dwWaitRes;
+
+   // Obtain the name of the service...
+   lpszServiceName = lpszArgv[0];
+
+   // Register the service ctrl handler...
+   ssh = RegisterServiceCtrlHandler(lpszServiceName, (LPHANDLER_FUNCTION)Service_Ctrl);
+
+   // Create the event to signal the service to stop...
+   hStopEvent = CreateEvent(NULL, TRUE, FALSE, "ThisIsMyEvent");
+   if (hStopEvent == NULL)
+      ErrorStopService(TEXT("CreateEvent()"));
+   else
+      printf("CreateEvent() looks OK.\n");
+
+   // Insert one-time work that you want to complete before starting.
+   for (t = 0; t < 3; t++)
+   {
+      hThreads[t] = CreateThread(NULL, 0, ThreadProc, (LPVOID)t, 0, &ThreadId);
+      if (hThreads[t] == INVALID_HANDLE_VALUE)
+         ErrorStopService(TEXT("CreateThread()"));
+      else
+       printf("CreateThread() looks OK.\n");
+
+       printf("Thread ID: %lu.\n", ThreadId);
+   }
+
+   // The service has started...
+   SetTheServiceStatus(SERVICE_RUNNING, 0, 0, 0);
+   OutputDebugString(TEXT("SetTheServiceStatus(), SERVICE_RUNNING.\n"));
+
+   // Main loop for the service...
+   while(WaitForSingleObject(hStopEvent, 1000) != WAIT_OBJECT_0)
+   {
+          printf("Main loop for the service...\n");
+       /***************************************************************/
+       // Main loop for service.
+       /***************************************************************/
+   }
+
+   // Wait for threads to exit...
+   for (t = 1; TRUE; t++)
+   {
+      if ((dwWaitRes = WaitForMultipleObjects(3, hThreads, TRUE, 1000)) == WAIT_OBJECT_0)
+         break;
+      else if ((dwWaitRes == WAIT_FAILED) || (dwWaitRes==WAIT_ABANDONED))
+         ErrorStopService(TEXT("WaitForMultipleObjects()"));
+      else
+         SetTheServiceStatus(SERVICE_STOP_PENDING, 0, t, 3000);
+   }
+
+   // Close the event handle and the thread handle.
+   if (!CloseHandle(hStopEvent))
+      ErrorStopService(TEXT("CloseHandle()"));
+   if (!CloseHandle(hThreads[0]))
+      ErrorStopService(TEXT("CloseHandle()"));
+   if (!CloseHandle(hThreads[1]))
+      ErrorStopService(TEXT("CloseHandle()"));
+   if (!CloseHandle(hThreads[2]))
+      ErrorStopService(TEXT("CloseHandle()"));
+
+   // Stop the service.
+   OutputDebugString(TEXT("SetTheServiceStatus(), SERVICE_STOPPED.\n"));
+   SetTheServiceStatus(SERVICE_STOPPED, NO_ERROR, 0, 0);
+}
+
+// Handles control signals from the service control manager...
+// WINAPI - using __stdcall convention explicitly instead of __cdecl...
+void WINAPI Service_Ctrl(DWORD dwCtrlCode)
+{
+   DWORD dwState = SERVICE_RUNNING;
+
+   switch (dwCtrlCode)
+   {
+      case SERVICE_CONTROL_STOP:
+         dwState = SERVICE_STOP_PENDING;
+         break;
+
+      case SERVICE_CONTROL_SHUTDOWN:
+         dwState = SERVICE_STOP_PENDING;
+         break;
+
+      case SERVICE_CONTROL_INTERROGATE:
+         break;
+
+      default:
+         break;
+   }
+
+   // Set the status of the service.
+   SetTheServiceStatus(dwState, NO_ERROR, 0, 0);
+   OutputDebugString(TEXT("SetTheServiceStatus(), Service_Ctrl() function\n"));
+
+   // Tell Service_Main thread to stop...
+   if ((dwCtrlCode == SERVICE_CONTROL_STOP) || (dwCtrlCode == SERVICE_CONTROL_SHUTDOWN))
+   {
+      if (!SetEvent(hStopEvent))
+         ErrorStopService(TEXT("SetEvent()"));
+      else
+         OutputDebugString(TEXT("Signal Service_Main() thread.\n"));
+   }
+}
+
+// Thread procedure for all five worker threads...
+DWORD WINAPI ThreadProc(LPVOID lpParameter)
+{
+   int nThreadNum = (int)lpParameter;
+   TCHAR szOutput[25];
+
+   while(WaitForSingleObject(hStopEvent, 1000) != WAIT_OBJECT_0)
+   {
+      // Just to have something to do, it will beep every second.
+      Sleep(2000);
+      wsprintf(szOutput, TEXT("\nThread %d says Beep\n"), nThreadNum);
+      //Send visual to debugger.
+      OutputDebugString(szOutput);
+   }
+   return 0;
+}
+
+//  Wraps SetServiceStatus()...
+void SetTheServiceStatus(DWORD dwCurrentState, DWORD dwWin32ExitCode, DWORD dwCheckPoint, DWORD dwWaitHint)
+{
+    // Current status of the service.
+       SERVICE_STATUS ss;
+
+   // Disable control requests until the service is started.
+   if (dwCurrentState == SERVICE_START_PENDING)
+      ss.dwControlsAccepted = 0;
+   else
+      ss.dwControlsAccepted = SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SHUTDOWN;
+      // Other flags include SERVICE_ACCEPT_PAUSE_CONTINUE
+      // and SERVICE_ACCEPT_SHUTDOWN.
+
+   // Initialize ss structure.
+   ss.dwServiceType             = SERVICE_WIN32_OWN_PROCESS;
+   ss.dwServiceSpecificExitCode = 0;
+   ss.dwCurrentState            = dwCurrentState;
+   ss.dwWin32ExitCode           = dwWin32ExitCode;
+   ss.dwCheckPoint              = dwCheckPoint;
+   ss.dwWaitHint                = dwWaitHint;
+
+   // Send status of the service to the Service Controller.
+   if (!SetServiceStatus(ssh, &ss))
+      ErrorStopService(TEXT("SetServiceStatus()"));
+   else
+      printf("SetServiceStatus() looks OK.\n");
+
+   return;
+}
+
+//  Handle API errors or other problems by ending the service and
+//  displaying an error message to the debugger.
+void ErrorStopService(LPTSTR lpszAPI)
+{
+   INT t;
+   TCHAR   buffer[256]  = TEXT("");
+   TCHAR   error[1024]  = TEXT("");
+   LPVOID lpvMessageBuffer;
+   DWORD  dwWaitRes;
+
+   wsprintf(buffer, TEXT("API = %s, "), lpszAPI);
+   lstrcat(error, buffer);
+
+   ZeroMemory(buffer, sizeof(buffer));
+   wsprintf(buffer, TEXT("error code = %d, "), GetLastError());
+   lstrcat(error, buffer);
+
+   // Obtain the error string.
+   FormatMessage(
+      FORMAT_MESSAGE_ALLOCATE_BUFFER|FORMAT_MESSAGE_FROM_SYSTEM,
+      NULL, GetLastError(), MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+      (LPTSTR)&lpvMessageBuffer, 0, NULL);
+
+   ZeroMemory((LPVOID)buffer, (DWORD)sizeof(buffer));
+   wsprintf(buffer, TEXT("message = %s"), (TCHAR *)lpvMessageBuffer);
+   lstrcat(error, buffer);
+
+   // Free the buffer allocated by the system.
+   LocalFree(lpvMessageBuffer);
+
+   // Write the error string to the debugger.
+   OutputDebugString(error);
+
+   // If you have threads running, tell them to stop. Something went
+   // wrong, and you need to stop them so you can inform the SCM.
+   SetEvent(hStopEvent);
+
+   // Wait for the threads to stop.
+   for (t = 1; TRUE; t++)
+   {
+      if ((dwWaitRes = WaitForMultipleObjects(3, hThreads, TRUE, 1000)) == WAIT_OBJECT_0)
+         break;
+      else if ((dwWaitRes == WAIT_FAILED)|| (dwWaitRes == WAIT_ABANDONED))
+         break; // Our wait failed
+      else
+      {
+         SetTheServiceStatus(SERVICE_STOP_PENDING, 0, t, 3000);
+      }
+   }
+
+   // Stop the service.
+   SetTheServiceStatus(SERVICE_STOPPED, GetLastError(), 0, 0);
+   return;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+SC_HANDLE schSCManager;
+
+// Open a handle to the SC Manager database...
+schSCManager = OpenSCManager( 
+    NULL,                    // local machine
+    NULL,                    // SERVICES_ACTIVE_DATABASE database is opened by default
+    SC_MANAGER_ALL_ACCESS);  // full access rights
+
+if (NULL == schSCManager) 
+printf("OpenSCManager() failed, error: %d.\n", GetLastError());
+else
+       printf("OpenSCManager() looks OK.\n");
+
+return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+       SC_HANDLE schSCManager, schService;
+	 // The service executable location, just dummy here else make
+	 // sure the executable is there :o)...
+	 LPCTSTR lpszBinaryPathName = "%SystemRoot%\\system\\mytestservice.exe";
+	 // Service display name...
+       LPCTSTR lpszDisplayName = "My_Sample_Service";
+	 // Registry Subkey
+       LPCTSTR lpszServiceName = "MySampleSrv";
+
+// Open a handle to the SC Manager database...
+schSCManager = OpenSCManager( 
+    NULL,                    // local machine
+    NULL,                    // SERVICES_ACTIVE_DATABASE database is opened by default
+    SC_MANAGER_ALL_ACCESS);  // full access rights
+
+if (NULL == schSCManager) 
+       printf("OpenSCManager() failed, error: %d.\n", GetLastError());
+else
+       printf("OpenSCManager() looks OK.\n");
+
+// Create/install service...
+schService = CreateService( 
+        schSCManager,              // SCManager database
+        lpszServiceName,           // name of service
+        lpszDisplayName,           // service name to display
+        SERVICE_ALL_ACCESS,        // desired access
+        SERVICE_WIN32_OWN_PROCESS, // service type
+        SERVICE_DEMAND_START,      // start type
+        SERVICE_ERROR_NORMAL,      // error control type
+        lpszBinaryPathName,        // service's binary
+        NULL,                      // no load ordering group
+        NULL,                      // no tag identifier
+        NULL,                      // no dependencies
+        NULL,                      // LocalSystem account
+        NULL);                     // no password
+
+    if (schService == NULL) 
+    {
+        printf("CreateService() failed.\n"); 
+        return FALSE;
+    }
+    else
+    {
+        printf("CreateService() for %s looks OK.\n", lpszServiceName);
+
+       if (CloseServiceHandle(schService) == 0)
+              printf("CloseServiceHandle() failed, error: %d.\n", GetLastError());
+       else
+              printf("CloseServiceHandle() is OK.\n");
+
+        return 0;
+    }
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main()
+{
+       SC_HANDLE schSCManager, schService;
+
+       // The service name...
+       LPCTSTR lpszServiceName = "MySampleSrv";
+
+// Open a handle to the SC Manager database...
+schSCManager = OpenSCManager( 
+    NULL,                    // local machine
+    NULL,                    // SERVICES_ACTIVE_DATABASE database is opened by default
+    SC_MANAGER_ALL_ACCESS);  // full access rights
+
+if (NULL == schSCManager) 
+       printf("OpenSCManager() failed, error: %d.\n", GetLastError());
+else
+       printf("OpenSCManager() looks OK.\n");
+
+schService = OpenService( 
+        schSCManager,       // SCManager database 
+        lpszServiceName,    // name of service 
+        DELETE);            // only need DELETE access 
+
+    if (schService == NULL) 
+       printf("OpenService() failed, error: %d.\n", GetLastError());
+    else
+       printf("OpenService() looks OK.\n");
+
+    if (!DeleteService(schService)) 
+       printf("DeleteService() failed, error: %d.\n", GetLastError());
+
+    else 
+        printf("DeleteService(), %s is deleted.\n", lpszServiceName); 
+
+    if (CloseServiceHandle(schService) == 0)
+       printf("CloseServiceHandle() failed, error: %d.\n", GetLastError());
+    else
+       printf("CloseServiceHandle() looks OK.\n");
+
+    return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+// lpDescription - string description of the service
+// fDisable - service start type
+
+void ReconfigureMySampleService(BOOL, LPSTR);
+
+int main()
+{
+       BOOL fDisable = FALSE;
+       LPSTR lpDesc = "This is an added description for MySampleSrv";
+       // Call the function...
+       ReconfigureMySampleService(fDisable, lpDesc);
+
+       return 0;
+}
+
+void ReconfigureMySampleService(BOOL fDisable, LPSTR lpDesc)
+{
+       LPCTSTR lpszServiceName = "MySampleSrv";
+       SC_HANDLE schSCManager, schService;
+       SC_LOCK sclLock;
+       LPQUERY_SERVICE_LOCK_STATUS lpqslsBuf;
+       SERVICE_DESCRIPTION sdBuf;
+       DWORD dwBytesNeeded, dwStartType;
+
+// Open a handle to the SC Manager database...
+schSCManager = OpenSCManager( 
+    NULL,                    // local machine
+    NULL,                    // SERVICES_ACTIVE_DATABASE database is opened by default
+    SC_MANAGER_ALL_ACCESS);  // full access rights
+
+	if (NULL == schSCManager) 
+       printf("OpenSCManager() failed, error: %d.\n", GetLastError());
+	else
+       printf("OpenSCManager() looks OK.\n");
+ 
+     // Need to acquire database lock before reconfiguring.
+     sclLock = LockServiceDatabase(schSCManager);
+
+     // If the database cannot be locked, report the details.
+     if (sclLock == NULL)
+     {
+         // Exit if the database is not locked by another process.
+         if (GetLastError() != ERROR_SERVICE_DATABASE_LOCKED)
+               printf("LockServiceDatabase() failed, error: %d.\n", GetLastError());
+         else
+               printf("LockServiceDatabase() is OK.\n");
+
+         // Allocate a buffer to get details about the lock.
+         lpqslsBuf = (LPQUERY_SERVICE_LOCK_STATUS) LocalAlloc(
+            LPTR, sizeof(QUERY_SERVICE_LOCK_STATUS)+256);
+
+               if (lpqslsBuf == NULL)
+                     printf("LocalAlloc() failed, error: %d.\n", GetLastError());
+              else
+                     printf("LocalAlloc() is OK.\n");
+
+         // Get and print the lock status information.
+         if (!QueryServiceLockStatus(
+            schSCManager,
+            lpqslsBuf,
+            sizeof(QUERY_SERVICE_LOCK_STATUS)+256, &dwBytesNeeded))
+
+              printf("QueryServiceLockStatus() failed, error: %d.\n", GetLastError());
+         else
+              printf("QueryServiceLockStatus() looks OK.\n");
+
+        if (lpqslsBuf->fIsLocked)
+            printf("Locked by: %s, duration: %d seconds\n", lpqslsBuf->lpLockOwner, lpqslsBuf->dwLockDuration);
+        else
+            printf("No longer locked.\n");
+
+        LocalFree(lpqslsBuf);
+        printf("Could not lock the database.\n");
+    }
+
+    // The database is locked, so it is safe to make changes.
+    // Open a handle to the service.
+    schService = OpenService(
+        schSCManager,           // SCManager database
+        lpszServiceName,        // name of service
+        SERVICE_CHANGE_CONFIG); // need CHANGE access
+    if (schService == NULL)
+       printf("OpenService() failed, error: %d.\n", GetLastError());
+    else
+       printf("OpenService() looks OK.\n");
+
+    dwStartType = (fDisable) ? SERVICE_DISABLED : SERVICE_DEMAND_START;
+
+    // Make the changes.
+    if (! ChangeServiceConfig(
+        schService,        // handle of service
+        SERVICE_NO_CHANGE, // service type: no change
+        dwStartType,       // change service start type
+        SERVICE_NO_CHANGE, // error control: no change
+        NULL,              // binary path: no change
+        NULL,              // load order group: no change
+        NULL,              // tag ID: no change
+        NULL,              // dependencies: no change
+        NULL,              // account name: no change
+        NULL,              // password: no change
+        NULL))             // display name: no change
+    {
+        printf("ChangeServiceConfig() failed, error: %d.\n", GetLastError());
+    }
+    else 
+        printf("ChangeServiceConfig() looks OK, service config changed.\n");
+
+       sdBuf.lpDescription = lpDesc;
+
+    if(!ChangeServiceConfig2(
+        schService,                 // handle to service
+        SERVICE_CONFIG_DESCRIPTION, // change: description
+        &sdBuf))                    // value: new description
+    {
+         printf("ChangeServiceConfig2() failed, error: %d.\n", GetLastError());
+    }
+    else
+        printf("ChangeServiceConfig2() looks OK, service description changed.\n");
+
+    // Release the database lock.
+    if (UnlockServiceDatabase(sclLock) == 0)
+       printf("UnlockServiceDatabase() failed, error: %d.\n");
+    else
+       printf("UnlockServiceDatabase() looks oK.\n");
+
+       // Close the handle to the service.
+    if (CloseServiceHandle(schService) == 0)
+       printf("CloseServiceHandle() failed, error: %d.\n");
+    else
+       printf("CloseServiceHandle() looks OK.\n");
+return;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+void GetSampleServiceConfig(void);
+
+int main()
+{
+       // Call the function...
+       printf("In main(), just some test...\n\n");
+       GetSampleServiceConfig();
+
+       return 0;
+}
+
+void GetSampleServiceConfig()
+{
+       // This should be a Subkey name in
+       // HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services
+       // registry key. Here we test querying the winmgmt service...
+       // Try querying other service...
+       LPCTSTR lpszServiceName = "winmgmt";
+       SC_HANDLE schSCManager, schService;
+       LPQUERY_SERVICE_CONFIG lpqscBuf;
+	 LPSERVICE_DESCRIPTION lpqscBuf2;
+	 DWORD dwBytesNeeded;
+
+// Open a handle to the SC Manager database...
+schSCManager = OpenSCManager(
+       NULL,                    // local machine
+       NULL,                    // SERVICES_ACTIVE_DATABASE database is opened by default
+       SC_MANAGER_ALL_ACCESS);  // full access rights
+
+	if (NULL == schSCManager) 
+       printf("OpenSCManager() failed, error: %d.\n", GetLastError());
+	else
+       printf("OpenSCManager() looks OK.\n");
+
+     // Open a handle to the service.
+     schService = OpenService(
+        schSCManager,           // SCManager database
+        lpszServiceName,        // name of service
+        SERVICE_QUERY_CONFIG);  // need QUERY access
+    if (schService == NULL)
+       printf("OpenService() failed, error: %d.\n", GetLastError());
+    else
+       printf("OpenService() looks OK.\n");
+
+     // Allocate a buffer for the configuration information.
+     lpqscBuf = (LPQUERY_SERVICE_CONFIG) LocalAlloc(LPTR, 4096);
+        if (lpqscBuf == NULL)
+              printf("LocalAlloc() for lpqscBuf failed, error: %d.\n", GetLastError());
+        else
+              printf("LocalAlloc() for lpqscBuf looks OK.\n");
+
+    lpqscBuf2 = (LPSERVICE_DESCRIPTION) LocalAlloc(LPTR, 4096);
+    if (lpqscBuf2 == NULL)
+       printf("LocalAlloc() for lpqscBuf2 failed, error: %d.\n", GetLastError());
+    else
+       printf("LocalAlloc() for lpqscBuf2 looks OK.\n");
+
+     // Get the configuration information.
+     if (!QueryServiceConfig(
+        schService,
+        lpqscBuf,
+        4096,
+        &dwBytesNeeded))
+       {
+          printf("QueryServiceConfig() failed, error: %d.\n", GetLastError());
+       }
+      else
+          printf("QueryServiceConfig() looks OK.\n");
+
+   // May fail and can be scrapped coz can use the following lpqscBuf2->lpDescription...
+   if (!QueryServiceConfig2(
+        schService,
+        SERVICE_CONFIG_DESCRIPTION,
+        (LPBYTE)lpqscBuf2,
+        4096,
+        &dwBytesNeeded))
+     {
+        printf("QueryServiceConfig2() failed, error: %d.\n", GetLastError());
+     }
+   else
+       printf("QueryServiceConfig2() failed, error: %d.\n", GetLastError());
+
+    // Print the configuration information...
+    printf("\n%s configuration: \n", lpszServiceName);
+    printf(" Type: 0x%x\n", lpqscBuf->dwServiceType);
+    printf(" Start Type: 0x%x\n", lpqscBuf->dwStartType);
+    printf(" Error Control: 0x%x\n", lpqscBuf->dwErrorControl);
+    printf(" Binary path: %s\n", lpqscBuf->lpBinaryPathName);
+
+    if (lpqscBuf->lpLoadOrderGroup != NULL)
+        printf(" Load order group: %s\n", lpqscBuf->lpLoadOrderGroup);
+    if (lpqscBuf->dwTagId != 0)
+        printf(" Tag ID: %d\n", lpqscBuf->dwTagId);
+    if (lpqscBuf->lpDependencies != NULL)
+        printf(" Dependencies: %s\n", lpqscBuf->lpDependencies);
+    if (lpqscBuf->lpServiceStartName != NULL)
+        printf(" Start Name: %s\n", lpqscBuf->lpServiceStartName);
+    if (lpqscBuf2->lpDescription != NULL)
+        printf(" Description: %s\n", lpqscBuf2->lpDescription);
+
+    if (LocalFree(lpqscBuf) == NULL)
+       printf("LocalFree() for lpqscBuf is OK.\n");
+    else
+       printf("LocalFree() for lpqscBuf failed.\n");
+
+       if (LocalFree(lpqscBuf2) == NULL)
+              printf("LocalFree() for lpqscBuf2 is OK.\n");
+       else
+              printf("LocalFree() for lpqscBuf2 failed.\n");
+
+       return;
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+BOOL StartSampleService(SC_HANDLE);
+
+int main()
+{
+       SC_HANDLE schSCManager;
+
+       // Open a handle to the SC Manager database...
+       schSCManager = OpenSCManager( 
+       NULL,                    // local machine
+       NULL,                    // SERVICES_ACTIVE_DATABASE database is opened by default
+       SC_MANAGER_ALL_ACCESS);  // full access rights
+
+if (NULL == schSCManager) 
+       printf("OpenSCManager() failed, error: %d.\n", GetLastError());
+else
+       printf("OpenSCManager() looks OK.\n");
+       // Call the StartSampleService()...
+       StartSampleService(schSCManager);
+
+       return 0;
+}
+
+BOOL StartSampleService(SC_HANDLE schSCManager)
+{
+    SC_HANDLE schService;
+    SERVICE_STATUS ssStatus;
+    DWORD dwOldCheckPoint;
+    DWORD dwStartTickCount;
+    DWORD dwWaitTime;
+       // You can try to accept the service name through the command line...
+       // To test this program, make sure the dhcp client is installed and
+       // in the stop state...
+       LPCTSTR lpszServiceName = "dhcp";
+
+       schService = OpenService(
+        schSCManager,          // SCM database
+        lpszServiceName,       // service name
+        SERVICE_ALL_ACCESS);
+
+    if (schService == NULL)
+    {
+       printf("OpenService() failed, error: %d.\n", GetLastError());
+       return 0;
+    }
+   else
+       printf("OpenService() looks OK.\n");
+       // Proceed to other task...
+
+    if (!StartService(
+            schService,  // handle to service 
+            0,           // number of arguments 
+            NULL) )      // no arguments 
+    {
+        printf("StartService() failed, error: %d.\n", GetLastError());
+              return 0;
+    }
+    else
+        printf("StartService(), service start pending.\n");
+
+       // Check the status until the service is no longer start pending.
+    if (!QueryServiceStatus(
+            schService,   // handle to service
+            &ssStatus))   // address of status information structure
+    {
+        printf("StartService(), service still start pending.\n");
+       return 0;
+    }
+    else
+       printf("StartService(), service no longer start pending.\n");
+
+    // Save the tick count and initial checkpoint.
+    dwStartTickCount = GetTickCount();
+    dwOldCheckPoint = ssStatus.dwCheckPoint;
+
+    while (ssStatus.dwCurrentState == SERVICE_START_PENDING)
+    {
+        // Just some info...
+        printf("Wait Hint: %d\n", ssStatus.dwWaitHint);
+        // Do not wait longer than the wait hint. A good interval is
+        // one tenth the wait hint, but no less than 1 second and no
+        // more than 10 seconds...
+        dwWaitTime = ssStatus.dwWaitHint / 10;
+
+        if (dwWaitTime < 1000)
+            dwWaitTime = 1000;
+        else if (dwWaitTime > 10000)
+            dwWaitTime = 10000;
+
+        Sleep(dwWaitTime);
+
+        // Check the status again...
+        if (!QueryServiceStatus( 
+                schService,   // handle to service 
+                &ssStatus))   // address of structure
+            break; 
+
+        if (ssStatus.dwCheckPoint > dwOldCheckPoint)
+        {
+            // The service is making progress...
+            printf("Service starting in progress...\n");
+            dwStartTickCount = GetTickCount();
+            dwOldCheckPoint = ssStatus.dwCheckPoint;
+        }
+        else
+        {
+            if ((GetTickCount()-dwStartTickCount) > ssStatus.dwWaitHint)
+            {
+                // No progress made within the wait hint
+                printf("Well, starting the service looks no progress...\n");
+                break;
+            }
+        }
+    } 
+
+    if (CloseServiceHandle(schService) == 0)
+       printf("CloseServiceHandle() failed, error: %d.\n", GetLastError());
+    else
+       printf("CloseServiceHandle() looks OK.\n");
+
+    if (ssStatus.dwCurrentState == SERVICE_RUNNING) 
+    {
+        printf("StartService(), %s service successfully started.\n", lpszServiceName); 
+        return 1;
+    }
+    else
+    {
+        printf("\nService %s not started.\n", lpszServiceName);
+        printf("  Current State: %d\n", ssStatus.dwCurrentState);
+        printf("  Exit Code: %d\n", ssStatus.dwWin32ExitCode);
+        printf("  Service Specific Exit Code: %d\n", ssStatus.dwServiceSpecificExitCode);
+        printf("  Check Point: %d\n", ssStatus.dwCheckPoint);
+        printf("  Wait Hint: %d\n", ssStatus.dwWaitHint);
+        return 0;
+    }
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <Windows.h>
+#include <stdio.h>
+
+#define SCHED_CLASS             TEXT("SAGEWINDOWCLASS")
+#define SCHED_TITLE             TEXT("SYSTEM AGENT COM WINDOW")
+#define SCHED_SERVICE_APP_NAME  TEXT("mstask.exe")
+#define SCHED_SERVICE_NAME      TEXT("Schedule")
+
+int main(int argc, char **argv)
+{
+  OSVERSIONINFO osver;
+  osver.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+
+  // Determine which version of OS you are running.
+  GetVersionEx(&osver);
+
+  if (osver.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
+  {
+    // If Windows 95, check to see if Windows 95
+    // version of Task Scheduler is running.
+    HWND hwnd = FindWindow(SCHED_CLASS, SCHED_TITLE);
+
+    if (hwnd != NULL)
+    {
+      // It is already running.
+      printf("Task Scheduler is already running.\n");
+      return 0;
+    }
+
+    // Execute the task scheduler process.
+    STARTUPINFO         sui;
+    PROCESS_INFORMATION pi;
+    ZeroMemory(&sui, sizeof(sui));
+    sui.cb = sizeof (STARTUPINFO);
+    TCHAR szApp[MAX_PATH];
+    LPTSTR pszPath;
+
+    DWORD dwRet = SearchPath(NULL,
+                             SCHED_SERVICE_APP_NAME,
+                             NULL,
+                             MAX_PATH,
+                             szApp,
+                             &pszPath);
+
+    if (dwRet == 0)
+        { return GetLastError(); }
+    else
+        printf("SearchPath() is OK.\n");
+
+    BOOL fRet = CreateProcess(szApp,
+               NULL,
+               NULL,
+               NULL,
+               FALSE,
+               CREATE_NEW_CONSOLE | CREATE_NEW_PROCESS_GROUP,
+               NULL,
+               NULL,
+               &sui,
+               &pi);
+
+    if (fRet == 0)
+    {
+      return GetLastError();
+    }
+    else
+       printf("CreateProcess() is OK.\n");
+
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
+    return S_OK;
+  }
+  else
+  {
+    // If not Windows 95, check to see if Windows NT 
+    // version of Task Scheduler is running.
+
+    SC_HANDLE   hSC = NULL;
+    SC_HANDLE   hSchSvc = NULL;
+
+    hSC = OpenSCManager(NULL, NULL, SC_MANAGER_CONNECT);
+    if (hSC == NULL)
+    {
+      return GetLastError();
+    }
+    else
+       printf("OpenSCManager() is OK.\n");
+
+    hSchSvc = OpenService(hSC, SCHED_SERVICE_NAME, SERVICE_START | SERVICE_QUERY_STATUS);
+
+    CloseServiceHandle(hSC);
+    if (hSchSvc == NULL)
+    {
+      return GetLastError();
+    }
+    else
+       printf("OpenService() is OK.\n");
+
+    SERVICE_STATUS SvcStatus;
+
+    if (QueryServiceStatus(hSchSvc, &SvcStatus) == FALSE)
+    {
+      CloseServiceHandle(hSchSvc);
+      return GetLastError();
+    }
+    else
+       printf("QueryServiceStatus() is OK.\n");
+
+    if (SvcStatus.dwCurrentState == SERVICE_RUNNING)
+    {
+      // The service is already running.
+      CloseServiceHandle(hSchSvc);
+      printf("Task Scheduler is already running.\n");
+      return 0;
+    }
+
+    if (StartService(hSchSvc, 0, NULL) == FALSE)
+    {
+      CloseServiceHandle(hSchSvc);
+      printf("Could not start Task Scheduler.\n");
+      return GetLastError();
+    }
+
+    CloseServiceHandle(hSchSvc);
+    printf("Task Scheduler has been started.\n");
+    return S_OK;
+  }
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <tchar.h>
+#include <stdio.h>
+
+DWORD StopService(SC_HANDLE, SC_HANDLE, BOOL, DWORD);
+void DisplayError(LPTSTR, DWORD);
+
+// Entry point for the program. This function contains sample code 
+// demonstrating how to use the StopService function implemented 
+// above.
+// 
+// Parameters:   
+//   argc - the number of command-line arguments
+//   argv[] - an array of command-line arguments
+// Using _tmain(), TCHAR - A WCHAR if UNICODE is defined, a CHAR otherwise.
+void _tmain(int argc, TCHAR *argv[]) 
+{
+   SC_HANDLE hSCM;
+   SC_HANDLE hService;
+   DWORD     dwError;
+
+   // If no command line argument supplied...
+   if (argc < 2) 
+   {
+      _tprintf(TEXT("usage: %s <ServiceName>\n"), argv[0]);
+      _tprintf(TEXT("Please try again.\n"));
+      return;
+   }
+
+   // Exception handling...
+   __try 
+   {
+      // Open the SCM database
+      hSCM = OpenSCManager(NULL, NULL, SC_MANAGER_CONNECT);
+      if (!hSCM) 
+      {
+         DisplayError(TEXT("OpenSCManager() failed.\n"), GetLastError());
+         __leave;
+      }
+      else
+       _tprintf(TEXT("OpenSCManager() looks OK.\n"));
+
+      // Open the specified service
+      hService = OpenService(hSCM, argv[1], SERVICE_STOP | SERVICE_QUERY_STATUS | SERVICE_ENUMERATE_DEPENDENTS);
+      if (!hService) 
+      {
+         DisplayError(TEXT("OpenService() failed.\n"), GetLastError());
+         __leave;
+      }
+      else
+         _tprintf(TEXT("OpenService() looks OK.\n"));
+
+      // Try to stop the service, specifying a 40 second timeout
+      dwError = StopService(hSCM, hService, TRUE, 40000);
+      if (dwError == ERROR_SUCCESS)
+         _tprintf(TEXT("The %s service was successfully stopped.\n"), argv[1]);
+      else
+         DisplayError(TEXT("StopService(), stopping the service failed.\n"), dwError);
+   } 
+   __finally 
+   {
+      if (hService)
+         CloseServiceHandle(hService);
+ 
+      if (hSCM)
+         CloseServiceHandle(hSCM);
+   }
+}
+
+// This function attempts to stop a service. It allows the caller to
+// specify whether dependent services should also be stopped. It also
+// accepts a timeout value, to prevent a scenario in which a service
+// shutdown hangs, then the application stopping the service hangs.
+// 
+// Parameters:
+//   hSCM - Handle to the service control manager.
+//   hService - Handle to the service to be stopped.
+//   fStopDependencies - Indicates whether to stop dependent services.
+//   dwTimeout - maximum time (in milliseconds) to wait
+// 
+// If the operation is successful, returns ERROR_SUCCESS. Otherwise, returns a system error code.
+DWORD StopService(SC_HANDLE hSCM, SC_HANDLE hService, BOOL fStopDependencies, DWORD dwTimeout)
+{
+   SERVICE_STATUS ss;
+   DWORD dwStartTime = GetTickCount();
+
+   // Make sure the service is not already stopped...
+   if (!QueryServiceStatus(hService, &ss))
+      return GetLastError();
+   else
+       _tprintf(TEXT("QueryServiceStatus(), querying the service status...\n"));
+
+   if (ss.dwCurrentState == SERVICE_STOPPED)
+   {
+       _tprintf(TEXT("Service already stopped.\n"));
+       return ERROR_SUCCESS;
+    }
+
+   // If a stop is pending, just wait for it..
+   _tprintf(TEXT("Checking the service pending status...\n"));
+   while (ss.dwCurrentState == SERVICE_STOP_PENDING) 
+   {
+      Sleep(ss.dwWaitHint);
+      if (!QueryServiceStatus(hService, &ss))
+         return GetLastError();
+
+      if (ss.dwCurrentState == SERVICE_STOPPED)
+         return ERROR_SUCCESS;
+
+      if (GetTickCount() - dwStartTime > dwTimeout)
+         return ERROR_TIMEOUT;
+   }
+
+   // If the service is running, dependencies must be stopped first
+   if (fStopDependencies) 
+   {
+      DWORD i;
+      DWORD dwBytesNeeded;
+      DWORD dwCount;
+
+      LPENUM_SERVICE_STATUS   lpDependencies = NULL;
+      ENUM_SERVICE_STATUS     ess;
+      SC_HANDLE               hDepService;
+
+      // Pass a zero-length buffer to get the required buffer size
+      if ((EnumDependentServices(hService, SERVICE_ACTIVE, 
+         lpDependencies, 0, &dwBytesNeeded, &dwCount)) != 0)
+      {
+            _tprintf(TEXT("EnumDependentServices(), no dependencies lol!\n"));
+		// If the Enum call succeeds, then there are no dependent
+		// services so do nothing...
+      }
+      else 
+      {
+         _tprintf(TEXT("EnumDependentServices(), there are dependencies lol!\n"));
+         
+	   if (GetLastError() != ERROR_MORE_DATA)
+            return GetLastError(); // Unexpected error
+
+         // Allocate a buffer for the dependencies
+         lpDependencies = (LPENUM_SERVICE_STATUS) HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, dwBytesNeeded);
+
+         if (!lpDependencies)
+            return GetLastError();
+
+         __try {
+            // Enumerate the dependencies
+            if (!EnumDependentServices(hService, SERVICE_ACTIVE, 
+                  lpDependencies, dwBytesNeeded, &dwBytesNeeded, &dwCount))
+               return GetLastError();
+
+              _tprintf(TEXT("The number of dependencies: %d.\n"), dwCount);
+              for (i = 0; i < dwCount; i++)
+               {
+              ess = *(lpDependencies + i);
+              _tprintf(TEXT("Dependencies #%d: %s.\n"), i, ess.lpServiceName);
+
+               // Open the service
+               hDepService = OpenService(hSCM, ess.lpServiceName, SERVICE_STOP | SERVICE_QUERY_STATUS);
+               if (!hDepService)
+                  return GetLastError();
+
+               __try {
+                     _tprintf(TEXT("Stopping dependency #%d.\n"), i);                   
+                       // Send a stop code
+                       if (!ControlService(hDepService, SERVICE_CONTROL_STOP, &ss))
+                          return GetLastError();
+
+                  // Wait for the service to stop
+                  while (ss.dwCurrentState != SERVICE_STOPPED) 
+                  {
+                     Sleep(10000);
+                     //Sleep(ss.dwWaitHint);
+                     if (!QueryServiceStatus(hDepService, &ss))
+                        return GetLastError();
+
+                    if (ss.dwCurrentState == SERVICE_STOPPED)
+                     _tprintf(TEXT("the %s service was stopped...\n"), ess.lpServiceName);
+                     // Dependency was stopped
+                     break;
+
+                    if (GetTickCount() - dwStartTime > dwTimeout)
+                        return ERROR_TIMEOUT;
+                  }
+               } 
+               __finally 
+               {
+                  // Always release the service handle
+                  if (CloseServiceHandle(hDepService) == 0)
+                    _tprintf(TEXT("CloseServiceHandle() failed, error: %d.\n"), GetLastError());
+                 else
+                    _tprintf(TEXT("CloseServiceHandle() looks OK.\n"));
+               }
+            }
+         } 
+         __finally 
+         {
+            // Always free the enumeration buffer
+            if (HeapFree(GetProcessHeap(), 0, lpDependencies) == 0)
+              _tprintf(TEXT("HeapFree() failed, error: %d.\n"), GetLastError());
+            else
+              _tprintf(TEXT("HeapFree() looks OK.\n"));
+         }
+      }
+   }
+
+   // Assuming all dependencies already stopped,
+   // send a stop code to the main service
+   if (!ControlService(hService, SERVICE_CONTROL_STOP, &ss))
+      return GetLastError();
+
+   // Wait for the service to stop
+   while (ss.dwCurrentState != SERVICE_STOPPED)
+   {
+      Sleep(10000);
+          //Sleep(ss.dwWaitHint);
+      if (!QueryServiceStatus(hService, &ss))
+         return GetLastError();
+
+      if (ss.dwCurrentState == SERVICE_STOPPED)
+         // The main service was stopped...
+         break;
+
+      if (GetTickCount() - dwStartTime > dwTimeout)
+         return ERROR_TIMEOUT;
+   }
+
+   // Return success
+   return ERROR_SUCCESS;
+}
+
+// Helper function to display an error message
+void DisplayError(LPTSTR szAPI, DWORD dwError)
+{
+   LPTSTR lpBuffer = NULL;
+
+   FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER |
+         FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwError,
+         MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+         (LPTSTR) &lpBuffer, 0, NULL);
+
+   _tprintf(TEXT("%s failed:\n"), szAPI);
+   _tprintf(TEXT("    error code = %u\n"), dwError);
+   _tprintf(TEXT("    message    = %s\n"), lpBuffer);
+
+   if (LocalFree(lpBuffer) == NULL)
+     _tprintf(TEXT("LocalFree() looks OK.\n"));
+   else
+     _tprintf(TEXT("LocalFree() failed.\n"));
+}
+
+----------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <tchar.h>
+#include <stdio.h>
+
+// This example try to stop a service by sending
+// a control code.  It ONLY for services that don't
+// have dependencies...else it will fail
+// For services that have dependencies, use the previous example...
+// Parameters:   
+//   argc - the number of command-line arguments
+//   argv[] - an array of command-line arguments
+int main(int argc, char *argv[]) 
+{
+       SC_HANDLE schSCManager, schService;
+       LPCTSTR lpszServiceName;
+       SERVICE_STATUS ssStatus; 
+    DWORD fdwAccess;
+       // Try sending stop control code...
+       // Notifies a service that it should stop...
+       DWORD fdwControl = SERVICE_CONTROL_STOP;
+
+   // If no command line argument supplied...
+   if (argc < 2) 
+   {
+      printf("usage: %s <ServiceName>\n", argv[0]);
+         printf("Try again.\n");
+      return 1;
+   }
+
+	 lpszServiceName = argv[1];
+
+	 // Open a handle to the SC Manager database...
+       schSCManager = OpenSCManager( 
+       NULL,                    // local machine
+       NULL,                    // SERVICES_ACTIVE_DATABASE database is opened by default
+       SC_MANAGER_ALL_ACCESS);  // full access rights
+
+if (NULL == schSCManager) 
+   printf("OpenSCManager(), Open a handle to the SC Manager database failed, error: %d.\n", GetLastError());
+else
+   printf("OpenSCManager(), Open a handle to the SC Manager database looks OK.\n");
+
+    // The required service object access depends on the control...
+    switch (fdwControl)
+    {
+        case SERVICE_CONTROL_STOP:
+            fdwAccess = SERVICE_STOP;
+            break;
+
+        case SERVICE_CONTROL_PAUSE:
+        case SERVICE_CONTROL_CONTINUE:
+            fdwAccess = SERVICE_PAUSE_CONTINUE;
+            break; 
+
+        case SERVICE_CONTROL_INTERROGATE: 
+            fdwAccess = SERVICE_INTERROGATE; 
+            break;
+
+        default:
+            fdwAccess = SERVICE_INTERROGATE;
+    }
+
+    // Open a handle to the service.
+    schService = OpenService(
+        schSCManager,        // SCManager database
+        lpszServiceName,     // name of service
+        fdwAccess);          // specify the access right
+
+       if (schService == NULL)
+         printf("OpenService(), open a handle to a service with appropriate access failed, error: %d", GetLastError());
+       else
+         printf("OpenService(), open a handle to a service with appropriate access looks OK.\n");
+
+    // Send a control value to the service...
+    if (!ControlService( 
+            schService,   // handle to service
+            fdwControl,   // control value to send, here is SERVICE_CONTROL_STOP
+            &ssStatus))   // address of status info
+
+       printf("ControlService(), sending control value to stop a service failed, error: %d\n", GetLastError());
+    else
+       printf("ControlService(), sending control value to a stop service looks OK.\n");
+
+    // Print the service status.
+    printf("\nStatus of %s: \n", lpszServiceName);
+    printf("  Service Type: 0x%x\n", ssStatus.dwServiceType);
+    printf("  Current State: 0x%x\n", ssStatus.dwCurrentState);
+    printf("  Controls Accepted: 0x%x\n", ssStatus.dwControlsAccepted);
+    printf("  Exit Code: %d\n", ssStatus.dwWin32ExitCode);
+    printf("  Service Specific Exit Code: %d\n", ssStatus.dwServiceSpecificExitCode);
+    printf("  Check Point: %d\n", ssStatus.dwCheckPoint);
+    printf("  Wait Hint: %d\n", ssStatus.dwWaitHint);
+
+   return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------------
+
+// For WinXp
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <aclapi.h>
+#include <stdio.h>
+#include <tchar.h>
+
+// Simple user defined error messages...
+void DisplayError(DWORD dwError, LPTSTR pszAPI)
+{
+   LPVOID lpvMessageBuffer;
+
+   FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER |
+                 FORMAT_MESSAGE_FROM_SYSTEM,
+                 NULL, dwError,
+                 MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+                (LPTSTR)&lpvMessageBuffer, 0, NULL);
+
+   // Display the string.
+   _tprintf(TEXT("ERROR: API        = %s.\n"), pszAPI);
+   _tprintf(TEXT("       error code = %u.\n"), dwError);
+   _tprintf(TEXT("       message    = %s.\n"), (LPTSTR)lpvMessageBuffer);
+
+   // Free the buffer allocated by the system.
+   LocalFree(lpvMessageBuffer);
+
+   ExitProcess(dwError);
+}
+
+// Using _tmain(), TCHAR - A WCHAR if UNICODE/wide character is defined, a CHAR otherwise.
+int _tmain(int argc, TCHAR *argv[])
+{
+   BOOL                 bDaclPresent   = FALSE;
+   BOOL                 bDaclDefaulted = FALSE;
+   DWORD                dwError        = 0;
+   DWORD                dwSize         = 0;
+   EXPLICIT_ACCESS      ea;
+   PACL                 pacl           = NULL;
+   PACL                 pNewAcl        = NULL;
+   PSECURITY_DESCRIPTOR psd;
+   SC_HANDLE            schManager     = NULL;
+   SC_HANDLE            schService     = NULL;
+   SECURITY_DESCRIPTOR  sd;
+
+   if (argc != 2)
+   {
+       _tprintf(TEXT("Usage: %s [service name].\n"), argv[0]);
+       _tprintf(TEXT("Please try again.\n"));
+       return 1;
+   }
+
+   // Obtain a handle to the Service Controller.
+   schManager = OpenSCManager(NULL, NULL, SC_MANAGER_CONNECT);
+   if (schManager == NULL)
+      DisplayError(GetLastError(), TEXT("OpenSCManager()"));
+   else
+      _tprintf(TEXT("OpenSCManager(), handle to the service controller obtained successfully.\n"));
+
+   // Obtain a handle to the service.
+   schService = OpenService(schManager, argv[1], READ_CONTROL | WRITE_DAC);
+   if (schService == NULL)
+      DisplayError(GetLastError(), TEXT("OpenService()"));
+   else
+      _tprintf(TEXT("OpenSCManager(), handle to the service obtained successfully.\n"));
+
+   // Get the current security descriptor.
+   if (!QueryServiceObjectSecurity(schService, DACL_SECURITY_INFORMATION, &psd, 0, &dwSize))
+   {
+      if (GetLastError() == ERROR_INSUFFICIENT_BUFFER)
+      {
+         psd = (PSECURITY_DESCRIPTOR)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, dwSize);
+         if (psd == NULL)
+         {
+            DisplayError(0, TEXT("HeapAlloc()"));
+            // note HeapAlloc() does not support GetLastError()
+         }
+         else
+           _tprintf(TEXT("HeapAlloc() looks OK.\n"));
+
+         if (!QueryServiceObjectSecurity(schService, DACL_SECURITY_INFORMATION, psd, dwSize, &dwSize))
+
+            DisplayError(GetLastError(), TEXT("QueryServiceObjectSecurity()"));
+         else
+           _tprintf(TEXT("QueryServiceObjectSecurity() looks OK.\n"));
+      }
+      else
+         DisplayError(GetLastError(), TEXT("QueryServiceObjectSecurity()"));
+   }
+
+   // Get the DACL...
+   if (!GetSecurityDescriptorDacl(psd, &bDaclPresent, &pacl, &bDaclDefaulted))
+      DisplayError(GetLastError(), TEXT("GetSecurityDescriptorDacl()"));
+   else
+       _tprintf(TEXT("GetSecurityDescriptorDacl() looks OK.\n"));
+
+   // Build the ACE.
+   BuildExplicitAccessWithName(&ea, TEXT("GUEST"), SERVICE_START | SERVICE_STOP | READ_CONTROL | DELETE, SET_ACCESS, NO_INHERITANCE);
+
+   dwError = SetEntriesInAcl(1, &ea, pacl, &pNewAcl);
+
+   if (dwError != ERROR_SUCCESS)
+      DisplayError(dwError, TEXT("SetEntriesInAcl()"));
+   else
+       _tprintf(TEXT("SetEntriesInAcl() looks OK.\n"));
+
+   // Initialize a NEW Security Descriptor.
+   if (!InitializeSecurityDescriptor(&sd, SECURITY_DESCRIPTOR_REVISION))
+      DisplayError(GetLastError(), TEXT("InitializeSecurityDescriptor()"));
+   else
+       _tprintf(TEXT("SetEntriesInAcl() looks OK.\n"));
+
+   // Set the new DACL in the Security Descriptor.
+   if (!SetSecurityDescriptorDacl(&sd, TRUE, pNewAcl, FALSE))
+      DisplayError(GetLastError(), TEXT("SetSecurityDescriptorDacl()"));
+   else
+       _tprintf(TEXT("SetSecurityDescriptorDacl() looks OK.\n"));
+
+   // Set the new DACL for the service object.
+   if (!SetServiceObjectSecurity(schService, DACL_SECURITY_INFORMATION, &sd))
+      DisplayError(GetLastError(), TEXT("SetServiceObjectSecurity()"));
+   else
+       _tprintf(TEXT("SetServiceObjectSecurity() looks OK.\n"));
+
+   // Close the handles.
+   if (!CloseServiceHandle(schManager))
+      DisplayError(GetLastError(), TEXT("CloseServiceHandle() schManager"));
+   else
+       _tprintf(TEXT("CloseServiceHandle() schManager looks OK.\n"));
+
+   if (!CloseServiceHandle(schService))
+      DisplayError(GetLastError(), TEXT("CloseServiceHandle() schService"));
+   else
+       _tprintf(TEXT("CloseServiceHandle() schService looks OK.\n"));
+
+   // Free buffers.
+   LocalFree((HLOCAL)pNewAcl);
+   HeapFree(GetProcessHeap(), 0, (LPVOID)psd);
+
+  return 0;
+}
+
+==================================================================================================
+

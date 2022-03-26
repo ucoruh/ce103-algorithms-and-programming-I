@@ -1,0 +1,615 @@
+===========================MODULE14========================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+
+//class declaration part, vehicle.h, header file
+//save and include this file in your project
+//do not compile or run
+
+#ifndef  VEHICLE_H        //preprocessor directive
+#define  VEHICLE_H
+
+//----class declaration part – the interface-----
+class Cvehicle
+{
+	protected: //new keyword
+	int  wheels;
+	int  weight;
+	public:
+	void  initialize(int input_wheels, float  input_weight);
+	int   get_wheels(void);
+	float get_weight(void);
+	float wheel_load (void);
+};
+#endif
+
+-------------------------------------------------------------------------------------------
+
+//Program vehicle.cpp, implementation part,
+//compile without error, generating object file, do not run
+#include "vehicle.h"
+
+//-----class implementation part------
+//initialize to data input by user
+void  Cvehicle::initialize(int input_wheels, float input_weight)
+{
+   wheels = input_wheels;
+   weight = input_weight;
+}
+
+//get the number of wheels of this vehicle
+int  Cvehicle::get_wheels()
+{
+   return wheels;
+}
+
+//return the weight of this vehicle
+float Cvehicle::get_weight()
+{
+   return  weight;
+}
+
+//return the load on each wheel
+float  Cvehicle::wheel_load()
+{
+   return  (weight/wheels);
+}
+
+-----------------------------------------------------------------------------------------------
+
+//program transprt.cpp, the main program,
+//compile and run...
+//For VC++/VC++ .Net change the header files accordingly...
+//#include <iostream>
+//#include <cstdlib>
+//using namespace std;
+
+#include <iostream.h>
+#include <stdlib.h>
+#include "vehicle.h"
+//user define header file and put it in the same folder as this program
+
+void main()
+{
+    Cvehicle    car, motorcycle, truck, sedan_car;
+    //4 objects instantiated
+
+    //data initialization
+    car.initialize(4,3000.0);
+    truck.initialize(20,30000.0);
+    motorcycle.initialize(2,900.0);
+    sedan_car.initialize(4,3000.0);
+
+   //Display the data
+   cout<<"The car has "<<car.get_wheels()<< " tires.\n";
+   cout<<"Truck has load "<<truck.wheel_load()<<" kg per tire.\n";
+   cout<<"Motorcycle weight is  "<<motorcycle.get_weight()<<" kg.\n";
+   cout<<"Weight of sedan car is "<<sedan_car.get_weight()<<" kg, and has "<<sedan_car.get_wheels()<<" tires.\n";
+   
+   system("pause");
+}
+
+--------------------------------------------------------------------------------------------------
+
+//another class declaration car.h
+//save and include this file in your project
+//do not compile or run.
+
+#ifndef   CAR_H
+#define   CAR_H
+
+#include  "vehicle.h"
+
+//-----derived class declaration part-----
+//Ccar class derived from Cvehicle class
+class Ccar : public Cvehicle
+{
+    int passenger_load;
+    public:
+    //This method will be used instead of the same 
+    //method in Cvehicle class - overriding
+    void initialize(int input_wheels, float input_weight, int people = 4);
+    int passengers(void);
+};
+
+#endif
+
+------------------------------------------------------------------------------------------------
+
+//Implementation file car.cpp for derived Ccar class
+//compile without error and include in your project,
+//Do not run
+
+#include  "car.h"
+
+//-------implementation part of the derived class car.h----------
+void Ccar::initialize(int input_wheels, float input_weight, int people)
+{
+  passenger_load = people;
+  wheels = input_wheels;
+  weight = input_weight;
+}
+
+int Ccar::passengers(void)
+{
+   return    passenger_load;
+}
+
+--------------------------------------------------------------------------------------------------
+
+//Another class declaration, truck.h,
+//Save this file in your project
+//Do not compile or run
+
+#ifndef  TRUCK_H
+#define  TRUCK_H
+
+#include  "vehicle.h"
+
+//------class declaration part of derived class truck------
+class Ctruck : public Cvehicle
+{
+    int     passenger_load;
+    float   payload;
+   public:
+   void  init_truck(int how_many = 2, float max_load = 24000.0);
+   float efficiency(void);
+   int   passengers(void);
+};
+#endif
+
+-----------------------------------------------------------------------------------------------------
+
+//Derive class truck.cpp implementation
+//Compile and include in your project
+//Do not run
+
+#include  "truck.h"
+
+//----implementation part of the Ctruck derived class------
+void Ctruck::init_truck(int how_many, float max_load)
+{
+   passenger_load = how_many;
+   payload = max_load;
+}
+
+float Ctruck::efficiency(void)
+{
+   return  payload/(payload + weight);
+}
+
+int Ctruck::passengers(void)
+{
+   return passenger_load;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+//The new main program for inheritance, allvehicle.cpp
+//Compile and run this program
+
+#include  <iostream.h>
+#include  <stdlib.h>
+#include  "vehicle.h"  //the interface of the Cvehicle class
+#include  "car.h"      //the interface of the Ccar class
+#include  "truck.h"    //the interface of the Ctruck class
+
+void main()
+{
+   Cvehicle   unicycle;      //base class
+
+   cout<<"Unicycle using the Cvehicle base class\n";
+   cout<<"--------------------------------------\n";
+
+    unicycle.initialize(1,12.5);
+
+   cout<<"Unicycle has "<<unicycle.get_wheels()<<" tire.\n";
+   cout<<"Unicycle wheel load is "<<unicycle.wheel_load()<<"kg on one tire.\n";
+   cout<<"Unicycle weight is "<<unicycle.get_weight()<<" kg.\n\n";
+
+      Ccar  sedan;    //derived class
+
+   cout<<"Sedan car using the Ccar derived class\n";
+   cout<<"--------------------------------------\n";
+
+    	sedan.initialize(4,3500.0,5);
+
+   cout<<"Sedan car carries "<<sedan.passengers()<<" passengers.\n";
+   cout<<"Sedan car weight is "<<sedan.get_weight()<<" kg.\n";
+   cout<<"Sedan car wheel load is "<<sedan.wheel_load()<<"kg per tire.\n\n";
+
+    	Ctruck  trailer;    //derived class
+
+   cout<<"Trailer using the Ctruck derived class\n";
+   cout<<"--------------------------------------\n";
+
+	trailer.initialize(18,12500.0);
+	trailer.init_truck(1,33675.0);
+
+   cout<<"Trailer weight is "<<trailer.get_weight()<<" kg.\n";
+   cout<<"Trailer efficiency is "<<100.00 * trailer.efficiency()<<"%.\n";
+   
+   system("pause");
+ }
+
+-----------------------------------------------------------------------------------------------------
+
+//inheritance
+#include <iostream.h>
+#include <stdlib.h>
+
+//base class
+class Base
+{
+	//member variables and member
+	//functions...
+	public:
+	Base(){}
+	~Base(){}
+	protected:
+	private:
+};
+
+//derived class...
+class Derived:public Base
+{
+	//same as normal class actually...
+	//member variables and member function...
+	public:
+	Derived(){}
+	~Derived(){}
+	private:
+	protected:
+};
+
+void main()
+{
+	cout<<"Testing the program skeleton..."<<endl;
+
+	system("pause");
+}
+
+----------------------------------------------------------------------------------------------------
+
+//inheritance
+#include <iostream.h>
+#include <stdlib.h>
+
+//---class declaration and implementation------
+//base class...
+class MyFather
+{
+	//member variables and member
+	//functions...
+	private:
+	char* EyeColor;
+	char* HairType;
+	double FamSaving;
+
+	protected:
+
+	public:
+	MyFather(){}
+	~MyFather(){}
+	char* GetEye()
+	{ return EyeColor = "Brown";}
+	char* GetHair()
+	{ return HairType = "Straight";}
+	double GetSaving()
+	{return FamSaving = 30000;}
+};
+
+//derived class...
+class MySelf:public MyFather
+{
+	//same as normal class actually...
+	private:
+	char* MyEye;
+	char* MyHair;
+
+	public:
+	MySelf(){}
+	~MySelf(){}
+	char* GetMyEye()
+	{ return MyEye = "Blue";}
+	char* GetMyHair()
+	{return MyHair = "Curly";}
+	protected:
+};
+
+//another derived class...
+class MySister:public MyFather
+{
+	private:
+	char* SisEye;
+	char* SisHair;
+
+	public:
+	MySister(){}
+	~MySister(){}
+	char* GetSisEye()
+	{return SisEye = "Black";}
+	char* GetSisHair()
+	{ return SisHair = "Blonde";}
+};
+
+//-------main program--------
+int main()
+{
+  //base class object...
+  MyFather Test1;
+
+  cout<<"Testing the inheritance program...\n"<<endl;
+  cout<<"My father's eye is = "<<Test1.GetEye()<<endl;
+  cout<<"My father's hair is = "<<Test1.GetHair()<<endl;
+
+  //derived class object...
+  MySelf Test2;
+  cout<<"\nMy eye is = "<<Test2.GetMyEye()<<endl;
+  cout<<"My hair is = "<<Test2.GetMyHair()<<endl;
+  //the following are inherited from MyFather class...
+  cout<<"Our family saving is = $"<<Test2.GetSaving()<<endl;
+  cout<<"My father's eye is = "<<Test2.GetEye()<<endl;
+  cout<<"My father's hair is = "<<Test2.GetHair()<<endl;
+
+  //another derived class object...
+  MySister Test3;
+  cout<<"\nMy sister's eye is = "<<Test3.GetSisEye()<<endl;
+  cout<<"My sister's hair is = "<<Test3.GetSisHair()<<endl;
+  //the following are inherited from MyFather class...
+  cout<<"Our family saving is = $"<<Test3.GetSaving()<<endl;
+  cout<<"My father's eye is = "<<Test3.GetEye()<<endl;
+  cout<<"My father's hair is = "<<Test3.GetHair()<<"\n\n";
+  system("pause");
+  return 0;
+}
+
+---------------------------------------------VC++/VC++ .Net------------------------------------------------------
+
+//inheritance
+#include <iostream>
+using namespace std;
+
+//---class declaration and implementation------
+//base class...
+class MyFather
+{
+	//member variables and member
+	//functions...
+	private:
+	char* EyeColor;
+	char* HairType;
+	double FamSaving;
+
+	protected:
+	//protected members here…
+	
+	public:
+	MyFather(){}
+	~MyFather(){}
+	char* GetEye()
+	{ return EyeColor = "Brown";}
+	char* GetHair()
+	{ return HairType = "Straight";}
+	double GetSaving()
+	{return FamSaving = 30000;}
+};
+
+//derived class...
+class MySelf:public MyFather
+{
+	//same as normal class actually...
+	private:
+	char* MyEye;
+	char* MyHair;
+
+	public:
+	MySelf(){}
+	~MySelf(){}
+	char* GetMyEye()
+	{ return MyEye = "Blue";}
+	char* GetMyHair()
+	{return MyHair = "Curly";}
+	protected:
+};
+
+//another derived class...
+class MySister:public MyFather
+{
+	private:
+	char* SisEye;
+	char* SisHair;
+
+	public:
+	MySister(){}
+	~MySister(){}
+	char* GetSisEye()
+	{return SisEye = "Black";}
+	char* GetSisHair()
+	{ return SisHair = "Blonde";}
+};
+
+//------main program--------
+int main()
+{
+  //base class object...
+  MyFather Test1;
+
+  cout<<"Testing the inheritance program...\n"<<endl;
+  cout<<"My father's eye is = "<<Test1.GetEye()<<endl;
+  cout<<"My father's hair is = "<<Test1.GetHair()<<endl;
+
+  //derived class object...
+  MySelf Test2;
+
+  cout<<"\nMy eye is = "<<Test2.GetMyEye()<<endl;
+  cout<<"My hair is = "<<Test2.GetMyHair()<<endl;
+  //the following are inherited from MyFather class...
+  cout<<"Our family saving is = $"<<Test2.GetSaving()<<endl;
+  cout<<"My father's eye is = "<<Test2.GetEye()<<endl;
+  cout<<"My father's hair is = "<<Test2.GetHair()<<endl;
+
+  //another derived class object...
+  MySister Test3;
+
+  cout<<"\nMy sister's eye is = "<<Test3.GetSisEye()<<endl;
+  cout<<"My sister's hair is = "<<Test3.GetSisHair()<<endl;
+  //the following are inherited from MyFather class...
+  cout<<"Our family saving is = $"<<Test3.GetSaving()<<endl;
+  cout<<"My father's eye is = "<<Test3.GetEye()<<endl;
+  cout<<"My father's hair is = "<<Test3.GetHair()<<"\n\n";
+  return 0;
+}
+
+----------------------------------------------G++ on Linux/Fedora------------------------------------------------
+
+//**************herit2.cpp**************
+//**************FEDORA 3, g++ x.x.x****
+//inheritance
+#include <iostream>
+using namespace std;
+
+//---class declaration and implementation------
+//base class...
+class MyFather
+{
+          //member variables and member
+          //functions...
+          private:
+          char* EyeColor;
+          char* HairType;
+          double FamSaving;
+
+          protected:
+
+          public:
+          MyFather(){}
+          ~MyFather(){}
+          char* GetEye()
+          {return EyeColor = "Brown";}
+          char* GetHair()
+          {return HairType = "Straight";}
+          double GetSaving()
+          {return FamSaving = 30000;}
+};
+
+//derived class...
+class MySelf:public MyFather
+{
+          //same as normal class actually...
+          private:
+          char* MyEye;
+          char* MyHair;
+
+          public:
+          MySelf(){}
+          ~MySelf(){}
+          char* GetMyEye()
+          {return MyEye = "Blue";}
+          char* GetMyHair()
+          {return MyHair = "Curly";}
+          protected:
+          //...
+};
+
+//another derived class...
+class MySister:public MyFather
+{
+          private:
+          char* SisEye;
+          char* SisHair;
+
+          public:
+          MySister(){}
+          ~MySister(){}
+          char* GetSisEye()
+          {return SisEye = "Black";}
+          char* GetSisHair()
+          {return SisHair = "Blonde";}
+};
+
+//----main program--------
+int main()
+{
+  //base classes object...
+  MyFather Test1;
+
+  cout<<"Testing the inheritance program...\n"<<endl;
+  cout<<"My father's eye is = "<<Test1.GetEye()<<endl;
+  cout<<"My father's hair is = "<<Test1.GetHair()<<endl;
+
+  //derived class object...
+  MySelf Test2;
+
+  cout<<"\nMy eye is = "<<Test2.GetMyEye()<<endl;
+  cout<<"My hair is = "<<Test2.GetMyHair()<<endl;
+  //the following are inherited from MyFather class...
+  cout<<"Our family saving is = $"<<Test2.GetSaving()<<endl;
+  cout<<"My father's eye is = "<<Test2.GetEye()<<endl;
+  cout<<"My father's hair is = "<<Test2.GetHair()<<endl;
+
+  //another derived class object...
+  MySister Test3;
+
+  cout<<"\nMy sister's eye is = "<<Test3.GetSisEye()<<endl;
+  cout<<"My sister's hair is = "<<Test3.GetSisHair()<<endl;
+  //the following are inherited from MyFather class...
+  cout<<"Our family saving is = $"<<Test3.GetSaving()<<endl;
+  cout<<"My father's eye is = "<<Test3.GetEye()<<endl;
+  cout<<"My father's hair is = "<<Test3.GetHair()<<"\n\n";
+
+  return 0;
+}
+
+========================================================================================================
+
+

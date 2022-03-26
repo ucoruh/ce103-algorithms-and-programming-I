@@ -1,0 +1,364 @@
+==============================ModuleQ=====================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+
+Compiled using VC++/VC++ .Net.....unmanaged...
+
+// Don't forget to add netapi32.lib
+// The return value of share functions code can be found in
+// Network Management Error Codes in MSDN
+
+// For Win Xp Pro, adjust accordingly for other Windows version
+#define _WIN32_WINNT 0x0501
+#define UNICODE
+#include <windows.h>
+#include <stdio.h>
+#include <lm.h>
+
+// Unicode main()...
+int wmain(int argc, TCHAR *argv[ ])
+{
+   NET_API_STATUS res;
+   SHARE_INFO_2 p;
+   DWORD parm_err = 0;
+   
+   // Some prompt...
+   if(argc < 5)
+      printf("Usage: %ls <server_name> <share_name> <share_remark> <share_pass>\n", argv[0]);
+   else
+   {
+      // Fill in the SHARE_INFO_2 structure.
+      p.shi2_netname = LPWSTR(argv[2]);    
+      p.shi2_type = STYPE_DISKTREE;     // disk drive including the directory...
+      p.shi2_remark = LPWSTR(argv[3]);  // share remark
+      p.shi2_permissions = ACCESS_ALL;  // all permission
+      p.shi2_max_uses = -1;             // unlimited
+      p.shi2_current_uses = 0;          // no current uses
+      // Try finding a way to accept the share path through the command line...
+      p.shi2_path = TEXT("F:\\myfolder"); // share path, here we want to share a folder
+      p.shi2_passwd = argv[4];       // password
+
+      // Call the NetShareAdd function, specifying level 2.
+      res = NetShareAdd(argv[1], 2, (LPBYTE) &p, &parm_err);
+
+      // If the call succeeds, inform the user.
+      if(res==0)
+         printf("%ls share created successfully.\n", p.shi2_netname);
+      
+      // Otherwise, print an error, and identify the parameter in error.
+      else
+          printf("Failed to create %ls, error: %u parmerr = %u\n", p.shi2_netname, res, parm_err);
+   }
+   return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+// add the netapi32.lib...
+// The return value of share functions code can be found in
+// Network Management Error Codes in MSDN
+// For Win Xp Pro, adjust accordingly for other Windows version
+#define _WIN32_WINNT 0x0501
+#define UNICODE
+#include <windows.h>
+#include <stdio.h>
+#include <lm.h>
+
+// accept 3 arguments...
+int wmain(int argc, TCHAR *argv[])
+{
+   SHARE_INFO_1004 p;
+   NET_API_STATUS res;
+   DWORD parm_err = 0;
+
+   if(argc < 4)
+      printf("Usage: %ls <server_name> <share_name> <share \"remark\">\n", argv[0]);
+   else
+   {
+      // Fill in SHARE_INFO_1004 structure member.
+      p.shi1004_remark = argv[3];
+
+      // Call the NetShareSetInfo function, specifying information level 1004.
+      res = NetShareSetInfo(argv[1], argv[2], 1004, (LPBYTE)&p, &parm_err);
+
+      // Display the result of the call.
+      if(res == 0)
+         printf("Remark for the %ls share successfully set.\n", argv[2]);
+      else
+         printf("Cannot set the \"remark\", error: %u parmerr = %u\n", res, parm_err);
+   }
+   return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+// add the netapi32.lib...
+// The return value of share functions code can be found in
+// Network Management Error Codes in MSDN
+// For Win Xp Pro, adjust accordingly for other Windows version
+#define _WIN32_WINNT 0x0501
+#define UNICODE
+#include <windows.h>
+#include <stdio.h>
+#include <lm.h>
+
+int wmain(int argc, TCHAR *argv[])
+{
+   NET_API_STATUS res;
+   DWORD devType = 0;
+
+   if(argc < 3)
+      printf("Usage: %ls <server_name> <device_name>\n", argv[0]);
+   else
+   {
+      // Call the NetShareCheck() function.
+      res = NetShareCheck(argv[1], _wcsupr(argv[2]), &devType);
+
+      // If the function succeeds, inform the user.
+      if(res == 0)
+	  switch(devType)
+	  {
+		  case 0 : printf("Device is shared as type STYPE_DISKTREE - disk drive/folder.");
+			  break;
+		  case 1 : printf("Device is shared as type STYPE_PRINTQ - Print queue.");
+			  break;
+		  case 2 : printf("Device is shared as type STYPE_DEVICE - Communication device.");
+			  break;
+		  case 3 : printf("Device is shared as type STYPE_IPC - Interprocess communication (IPC).");
+			  break;
+		  case 4 : printf("Device is shared as type STYPE_SPECIAL - Special share reserved \
+					   for interprocess communication (IPC$) or \
+					   remote administration of the server (ADMIN$). \
+					   Can also refer to administrative shares such as C$, D$, E$, and so forth.");
+			  break;
+		  case 5 : printf("Device is shared as type STYPE_TEMPORARY - A temporary share.");
+			  break;
+	  }
+
+      // Otherwise, print the return error code.
+      else
+         printf("Something wrong, error: %u\n", res);
+   }
+   return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+// add the netapi32.lib...
+// Network Management Error Codes, Platform SDK: Network Management
+// For Win Xp Pro, adjust accordingly for other Windows version
+#define _WIN32_WINNT 0x0501
+#define UNICODE
+#include <windows.h>
+#include <stdio.h>
+#include <lm.h>
+
+int wmain( int argc, TCHAR *lpszArgv[ ])
+{
+   PSHARE_INFO_502 BufPtr, pth;
+   NET_API_STATUS  res;
+   LPTSTR          lpszServer = NULL;
+   DWORD er = 0, tr = 0, resume = 0, i;
+
+   if(argc != 2)
+   {
+	   printf("Usage: %ls <server_name>\n", lpszArgv[0]);
+	   exit (1);
+   }
+  else
+     lpszServer = lpszArgv[1];
+  
+   // Print a report header.
+   printf("\nShare        Local Path                 Uses     Sec. Descriptor\n");
+   printf("----------------------------------------------------------------\n");
+
+   // Call the NetShareEnum function; specify level 502.
+   do // begin do
+   {
+      res = NetShareEnum(lpszServer, 502, (LPBYTE *)&BufPtr, -1, &er, &tr, &resume);
+
+	  // If the call succeeds,
+      if(res == ERROR_SUCCESS || res == ERROR_MORE_DATA)
+      {
+         pth = BufPtr;
+         // Loop through the entries, print the retrieved data.
+         for(i=1; i<=er; i++)
+         {
+            printf("%-16S%-26S%-8u",pth->shi502_netname, pth->shi502_path, pth->shi502_current_uses);
+            // Validate the value of the shi502_security_descriptor member.
+            if (IsValidSecurityDescriptor(pth->shi502_security_descriptor))
+               printf("Yes\n");
+            else
+               printf("No\n");
+            pth++;
+         }
+
+		 // Free the allocated buffer.
+         NetApiBufferFree(BufPtr);
+      }
+      else 
+         printf("Something wrong, error: %ld\n", res);
+   }
+   // Continue to call NetShareEnum() while there are more entries. 
+   while (res == ERROR_MORE_DATA); // end do
+   return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+// add the netapi32.lib...
+// Network Management Error Codes, Platform SDK: Network Management
+// For Win Xp Pro, adjust accordingly for other Windows version
+#define _WIN32_WINNT 0x0501
+#define UNICODE
+#include <windows.h>
+#include <stdio.h>
+#include <lm.h>
+
+int wmain(int argc, TCHAR *argv[ ])
+{
+   NET_API_STATUS res;
+
+   if(argc != 3)
+      printf("Usage: %ls <server_name> <share_name>\n", argv[0]);
+   else
+   {
+      // Call the NetShareDel() function to delete the share.
+      res = NetShareDel(argv[1], argv[2], 0);
+ 
+      //Display the result of the call.
+      if(res == 0)
+         printf("%ls share successfully removed.\n", argv[2]);
+      else
+         printf("Something wrong, error: %u\n", res);
+   }
+   return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------
+
+// This example run on member server creating share on the
+// domain controller (DC)...
+// Don’t forget to add netapi32.lib to your project…
+// The return value of share functions code can be found in
+// Network Management Error Codes in MSDN…
+// For Win 2000 server, adjust accordingly for other Windows version
+#define _WIN32_WINNT 0x0500
+#define UNICODE
+#include <windows.h>
+#include <stdio.h>
+#include <lm.h>
+
+// Unicode main()...
+int wmain(int argc, TCHAR *argv[ ])
+{
+   NET_API_STATUS res;
+   SHARE_INFO_2 p;
+   DWORD parm_err = 0;
+
+   // Some prompt...
+   if(argc != 4)
+      printf("Usage: %ls <server_name> <share_name> <share_remark>\n", argv[0]);
+   else
+   {
+      // Fill in the SHARE_INFO_2 structure.
+      p.shi2_netname = LPWSTR(argv[2]);   
+      p.shi2_type = STYPE_DISKTREE;     // disk drive including the directory...
+      p.shi2_remark = LPWSTR(argv[3]);  // share remark
+      p.shi2_permissions = ACCESS_ALL;  // all permission
+      p.shi2_max_uses = -1;             // unlimited
+      p.shi2_current_uses = 0;          // no current uses
+      // Try finding a way to accept the share path through the command line...
+      p.shi2_path = TEXT("E:\\Domainshare"); // share path, here we want to share a folder
+      p.shi2_passwd = NULL;       // no password
+
+      // Call the NetShareAdd() function, specifying level 2.
+      res = NetShareAdd(argv[1], 2, (LPBYTE) &p, &parm_err);
+
+      // If the call succeeds, inform the user.
+      if(res==0)
+	printf("%ls share created successfully.\n", p.shi2_netname);
+
+      // Otherwise, print an error, and identify the parameter in error.
+      else
+          printf("Failed to create %ls, error: %u parmerr = %u\n", p.shi2_netname, res, parm_err);
+   }
+   return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+// add the netapi32.lib...
+// The return value of share functions code can be found in
+// Network Management Error Codes in MSDN
+// For Win 2000 server, adjust accordingly for other Windows version
+#define _WIN32_WINNT 0x0500
+#define UNICODE
+#include <windows.h>
+#include <stdio.h>
+#include <lm.h>
+
+int wmain(int argc, TCHAR *lpszArgv[ ])
+{
+   PSHARE_INFO_502 BufPtr, pth;
+   NET_API_STATUS  res;
+   LPTSTR          lpszServer = NULL;
+   DWORD er = 0, tr = 0, resume = 0, i;
+
+   if(argc != 2)
+   {
+          printf("Usage: %ls <server_name>\n", lpszArgv[0]);
+          exit (1);
+   }
+else
+     lpszServer = lpszArgv[1];
+
+   // Print a report...
+   printf("\nShare        Local Path                                   Uses     Sec. Descriptor\n");
+   printf("------------------------------------------------------------------------------------\n");
+
+   // Call the NetShareEnum() function; specifying level 502.
+   do // begin do
+   {
+      res = NetShareEnum(lpszServer, 502, (LPBYTE *)&BufPtr, -1, &er, &tr, &resume);
+
+      // If the call succeeds...
+      if(res == ERROR_SUCCESS || res == ERROR_MORE_DATA)
+      {
+         pth = BufPtr;
+         // Loop through the entries, print the retrieved data.
+         for(i=1; i<=er; i++)
+         {
+            printf("%-16S%-44S%-8u",pth->shi502_netname, pth->shi502_path, pth->shi502_current_uses);
+            // Validate the value of the shi502_security_descriptor member.
+            if (IsValidSecurityDescriptor(pth->shi502_security_descriptor))
+               printf("Yes\n");
+            else
+               printf("No\n");
+            pth++;
+         }
+
+         // Free the allocated buffer.
+         NetApiBufferFree(BufPtr);
+      }
+      else
+         printf("Something wrong, error: %ld\n", res);
+   }
+   // Continue to call NetShareEnum() while there are more entries.
+   while (res == ERROR_MORE_DATA); // end do
+   return 0;
+}
+
+=================================================================================================================

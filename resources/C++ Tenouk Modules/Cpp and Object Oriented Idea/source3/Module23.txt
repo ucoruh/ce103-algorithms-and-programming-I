@@ -1,0 +1,590 @@
+============================MODULE23=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+=========================================================================
+
+//namespace with using directive.  For VC++ (Ver > 4.0)/VC++ .Net
+//change the header files accordingly....more info at the end of
+//this Module...
+//#include <iostream>
+//#include <cstdlib>
+//using namespace std;
+
+#include <iostream>
+#include <stdlib.h>
+
+namespace SampleOne
+{
+	float p = 10.34;
+}
+
+namespace SampleTwo
+{
+	using namespace SampleOne;
+   	float q = 77.12;
+   	namespace InSampleTwo
+   	{
+   		float r = 34.725;
+   	}
+}
+
+int main()
+{
+	//this directive gives you everything declared in SampleTwo
+	using namespace SampleTwo;
+	//this directive gives you only InSampleTwo
+	using namespace SampleTwo::InSampleTwo;
+	//local declaration, take precedence
+	float p = 23.11; 
+
+	cout<<"p = "<<p<<endl;
+	cout<<"q = "<<q<<endl;
+	cout<<"r = "<<r<<endl;
+
+	system("pause");
+	return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+
+//namespace without using directive
+#include <iostream>
+#include <stdlib.h>
+
+namespace NewNsOne
+{
+	//declare namespace NewNsOne variable
+	int p = 4;
+	//declare namespace NewNsOne function
+	int funct(int q);
+}
+
+namespace NewNsTwo
+{
+	//declare namespace NewNsTwo variable
+	int r = 6;
+	//declare namespace NewNsTwo function
+	int funct1(int numb);
+   	//declare nested namespace
+	namespace InNewNsTwo
+	{
+		//declare namespace InNewNsTwo variable
+		long tst = 20.9456;
+      }
+}
+
+int main()
+{
+	//The following four lines of code will generate error
+	//because it is not at global scope...
+
+	//namespace local
+	//{
+	//int k;
+	//}
+
+	cout<<"NewNsOne::p is "<<(NewNsOne::p)<<endl;
+	cout<<"NewNsTwo::r is "<<(NewNsTwo::r)<<endl;
+
+	cout<<"NewNsTwo::InNewNsTwo::tst is"<<(NewNsTwo::InNewNsTwo::tst)<<endl;
+
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------------------------------
+
+//namespace alias
+#include <iostream>
+#include <stdlib.h>
+
+namespace TheFirstLongNamespaceSample
+{
+ float p = 23.44;
+	namespace TheNestedFirstLongNamespaceSample
+	{
+ 		int q = 100;
+	}
+}
+
+//Alias namespace
+namespace First = TheFirstLongNamespaceSample;
+
+//Use access qualifier to alias a nested namespace
+namespace Second = TheFirstLongNamespaceSample::TheNestedFirstLongNamespaceSample;
+
+int main()
+{
+	using namespace First;
+	using namespace Second;
+
+	cout<<"p = "<<p<<endl;
+	cout<<"q = "<<q<<endl;
+
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------------------------------
+
+//namespace extension
+//cannot be compiled, no output, just sample code
+
+//original namespace
+namespace One
+{
+	//declare namespace One variable
+	int p;
+	int q;
+}
+
+namespace Two
+{
+	float r;
+	int s;
+}
+
+//namespace extension of the One
+namespace One
+{
+   	//declare namespace One function
+	void funct1(void);
+	int funct2(int p);
+}
+
+int main()
+{
+}
+	//no output
+
+----------------------------------------------------------------------------------------------------------
+
+//namespace extension
+#include <iostream>
+#include <stdlib.h>
+
+struct SampleOne
+{};
+struct SampleTwo
+{};
+
+//original namespace
+namespace NsOne
+{
+   	//original function...
+	void FunctOne(struct SampleOne)
+	{
+		cout<<"Processing the struct argument..."<<endl;
+	}
+}
+
+using NsOne::FunctOne;  //using-declaration...
+
+//extending the NsOne namespace
+namespace NsOne
+{
+   	//overloaded function...
+	void FunctOne(SampleTwo&)
+	{
+		cout<<"Processing the function argument..."<<endl;
+	}
+}
+
+int main()
+{
+      SampleOne TestStruct;
+      SampleTwo TestClass;
+
+      FunctOne(TestStruct);
+      //The following function call fails because there are
+      //no overloaded version for this one
+      //FunctOne(TestClass);
+
+	system("pause");
+	return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------
+
+//anonymous or unnamed namespace
+#include <iostream>
+#include <stdlib.h>
+
+//Anonymous namespace
+namespace
+{
+	int p = 1;  //unique::p
+}
+
+void funct1()
+{
+	++p;  //unique::++p
+}
+
+namespace One
+{
+	//Nested anonymous namespace
+	namespace
+	{
+		int p;      //One::unique::p
+		int q = 3;  //One::unique::q
+	}
+}
+
+//using-declaration
+using namespace One;  
+
+void testing()
+{
+	//++p;   // error, unique::p or One::unique::p?
+	//One::++p;   //error, One::p is undefined
+	cout<<"++q = "<<++q<<endl;
+}
+
+int main()
+{
+	testing();
+	system("pause");
+	return 0;
+}
+
+------------------------------------------------------------------------------------------------------------
+
+//using directive
+#include <iostream>
+#include <stdlib.h>
+
+namespace One
+{
+	float p = 3.1234;
+}
+
+namespace Two
+{
+	using namespace One;
+
+	float q = 4.5678;
+	namespace InTwo
+	{
+		float r = 5.1234;
+	}
+}
+
+int main()
+{
+
+	//This using directive gives you all declared in Two
+	using namespace Two;
+	//This using directive gives you only the InTwo namespace
+	using namespace Two::InTwo;
+	//This is local declaration, it takes precedence
+	//comment this code and re run this program, see the different...
+	float p = 6.12345;
+
+	cout<<"p = "<<p<<endl;
+	cout<<"q = "<<q<<endl;
+	cout<<"r = "<<r<<endl;
+
+	system("pause");
+	return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+//using declaration
+//Function funct2() defined in two different namespaces
+#include <iostream>
+#include <stdlib.h>
+
+namespace One
+{
+	float funct1(float q)
+   	{
+    		return q;
+    	}
+
+   //First funct2() definition
+   void funct2()
+   {
+   	cout<<"funct2() function, One namespace..."<<endl;
+   }
+ }
+namespace Two
+{
+   	//Second funct2() definition
+	void funct2()
+	{
+		cout<<"funct2() function, Two namespace..."<<endl;
+	}
+}
+
+int main()
+{
+   	//The using declaration identifies the desired version of funct2()
+	using One::funct1;  //Becomes qualified identifier
+	using Two::funct2;  //Becomes qualified identifier
+	float p = 4.556;    //Local declaration, takes precedence
+
+	cout<<"First p value, local = "<<p<<endl;
+
+	p = funct1(3.422);
+	cout<<"Second p value, by function call = "<<p<<endl;
+
+	funct2();
+
+	system("pause");
+	return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------
+
+//Explicit access, namespace within a class
+#include <iostream>
+#include <stdlib.h>
+
+class One
+{
+	public:
+	void funct1(char chs)
+	{cout<<"character = "<<chs<<endl;}
+};
+
+class Two:public One
+{
+	public:
+   	//The using directive is not allowed in class
+   	//using namespace One;
+	void funct1(char *str)
+	{cout<<"String = "<<str<<endl;}
+	
+	//using declaration is OK in class
+	using One::funct1;  //overload Two::funct1()
+};
+
+int main()
+{
+   Two Sample;
+
+ //Calling One::funct1()
+   Sample.funct1('P');
+   //Calling Two::funct1()
+   Sample.funct1("This is string");
+
+   system("pause");
+   return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+//namespace std example
+//notice the omitted .h header files
+#include <iostream>
+//using C header in C++...the wrapper
+#include <cstdlib>
+
+void main()
+{
+   std::cout<<"Demonstrating ";
+   using namespace std;
+   cout<<"the std namespace."<<endl;
+
+   system("pause");
+}
+
+------------------------------------------------------------------------------------------------------------------
+
+/*Simple mathematics calculation*/
+//This program is from module 1, C program.
+//header files used is the C++ wrapper, no .h anymore.
+//The stdlib.h for system("pause") also has been removed
+#include <cstdio>
+
+//main() function
+int main( )
+{
+ 	//variables declaration and initialization
+	int	x, y, z;
+ 	x = 20;
+ 	y = 2;
+       
+	printf("\nGiven x = 20, y = 2\n");
+ 	printf("\nx / y = %d", x / y);
+ 	x = x * y;
+ 	y = y + y;
+	printf("\nx = x * y");
+	printf("\ny = y + y");
+ 	printf("\nNew value for x / y = %d", x / y);
+ 	z = 20 * y / x;
+ 	printf("\nz = 20 * (y / x )= %d\n", z);
+   	
+   	return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+//demonstrates the use of function prototypes
+//C++ program, no .h anymore
+#include <iostream>
+//but has to explicitly use the 'using namespace std'
+using namespace std;
+
+typedef unsigned short USHORT;
+//another method simplifying type identifier
+
+USHORT FindTheArea(USHORT length, USHORT width);  
+//function prototype
+
+int main()
+{
+	USHORT lengthOfYard;
+	USHORT widthOfYard;
+	USHORT areaOfYard;
+
+	cout<< "\nThe wide of your yard(meter)? ";
+	cin>> widthOfYard;
+	cout<< "\nThe long of your yard(meter)? ";
+	cin>> lengthOfYard;
+
+	areaOfYard = FindTheArea(lengthOfYard, widthOfYard);
+
+	cout<< "\nYour yard is ";
+	cout<< areaOfYard;
+	cout<< " square meter\n\n";
+	
+	return 0;
+}
+
+USHORT FindTheArea(USHORT l, USHORT w)
+{
+   return (l * w);
+}
+
+-----------------------------------------------------------------------------------------------------------------
+
+//demonstrates the use of function prototypes
+//variation of the C++ program, no .h anymore
+//without the 'using namespace std;'
+#include <iostream>
+
+typedef unsigned short USHORT;
+//another method simplifying type identifier
+
+USHORT FindTheArea(USHORT length, USHORT width);  
+//function prototype
+
+int main()
+{
+	USHORT lengthOfYard;
+	USHORT widthOfYard;
+	USHORT areaOfYard;
+
+	//without using namespace std globally, you have to
+	//explicitly use the std for every occurrences of the...
+	std::cout<< "\nThe wide of your yard(meter)? ";
+	std::cin>> widthOfYard;
+	std::cout<< "\nThe long of your yard(meter)? ";
+	std::cin>> lengthOfYard;
+
+	areaOfYard = FindTheArea(lengthOfYard, widthOfYard);
+
+	std::cout<< "\nYour yard is ";
+	std::cout<< areaOfYard;
+	std::cout<< " square meter\n\n";
+	
+	return 0;
+}
+
+USHORT FindTheArea(USHORT l, USHORT w)
+{
+   return (l * w);
+}
+
+-------------------------------------------------G++-----------------------------------------------------
+
+//***************namespace.cpp**************/
+//demonstrates the use of function prototypes
+//variation of the C++ program, no .h anymore
+//without the 'using namespace std;'
+#include <iostream>
+
+typedef unsigned short USHORT;
+//another method simplifying type identifier
+
+USHORT FindTheArea(USHORT length, USHORT width);  
+//function prototype
+
+int main()
+{
+	USHORT lengthOfYard;
+	USHORT widthOfYard;
+	USHORT areaOfYard;
+
+	//without using namespace std globally, you have to
+	//explicitly use the std for every occurrences of the...
+	std::cout<< "\nThe wide of your yard(meter)? ";
+	std::cin>> widthOfYard;
+	std::cout<< "\nThe long of your yard(meter)? ";
+	std::cin>> lengthOfYard;
+
+	areaOfYard = FindTheArea(lengthOfYard, widthOfYard);
+
+	std::cout<< "\nYour yard is ";
+	std::cout<< areaOfYard;
+	std::cout<< " square meter\n\n";
+	
+	return 0;
+}
+
+USHORT FindTheArea(USHORT l, USHORT w)
+{
+   return (l * w);
+}
+
+=====================================================================================================

@@ -1,0 +1,1235 @@
+==============================MODULE41=====================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+
+Compiled using gcc on Linux/Fedora Core 3 machine...
+
+/*******select.c*********/
+/*******Using select() for I/O multiplexing*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+/* port we're listening on */
+#define PORT 2020
+
+int main(int argc, char *argv[])
+{
+/* master file descriptor list */
+fd_set master;
+/* temp file descriptor list for select() */
+fd_set read_fds;
+/* server address */
+struct sockaddr_in serveraddr;
+/* client address */
+struct sockaddr_in clientaddr;
+/* maximum file descriptor number */
+int fdmax;
+/* listening socket descriptor */
+int listener;
+/* newly accept()ed socket descriptor */
+int newfd;
+/* buffer for client data */
+char buf[1024];
+int nbytes;
+/* for setsockopt() SO_REUSEADDR, below */
+int yes = 1;
+int addrlen;
+int i, j;
+/* clear the master and temp sets */
+FD_ZERO(&master);
+FD_ZERO(&read_fds);
+
+/* get the listener */
+if((listener = socket(AF_INET, SOCK_STREAM, 0)) == -1)
+{
+perror("Server-socket() error lol!");
+/*just exit lol!*/
+exit(1);
+}
+printf("Server-socket() is OK...\n");
+/*"address already in use" error message */
+if(setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1)
+{
+perror("Server-setsockopt() error lol!");
+exit(1);
+}
+printf("Server-setsockopt() is OK...\n");
+
+/* bind */
+serveraddr.sin_family = AF_INET;
+serveraddr.sin_addr.s_addr = INADDR_ANY;
+serveraddr.sin_port = htons(PORT);
+memset(&(serveraddr.sin_zero), '\0', 8);
+
+if(bind(listener, (struct sockaddr *)&serveraddr, sizeof(serveraddr)) == -1)
+{
+perror("Server-bind() error lol!");
+exit(1);
+}
+printf("Server-bind() is OK...\n");
+
+/* listen */
+if(listen(listener, 10) == -1)
+{
+perror("Server-listen() error lol!");
+exit(1);
+}
+printf("Server-listen() is OK...\n");
+
+/* add the listener to the master set */
+FD_SET(listener, &master);
+/* keep track of the biggest file descriptor */
+fdmax = listener; /* so far, it's this one*/
+
+/* loop */
+for(;;)
+{
+/* copy it */
+read_fds = master;
+
+if(select(fdmax+1, &read_fds, NULL, NULL, NULL) == -1)
+{
+perror("Server-select() error lol!");
+exit(1);
+}
+printf("Server-select() is OK...\n");
+
+/*run through the existing connections looking for data to be read*/
+for(i = 0; i <= fdmax; i++)
+{
+if(FD_ISSET(i, &read_fds))
+{ /* we got one... */
+if(i == listener)
+{
+/* handle new connections */
+addrlen = sizeof(clientaddr);
+if((newfd = accept(listener, (struct sockaddr *)&clientaddr, &addrlen)) == -1)
+{
+perror("Server-accept() error lol!");
+}
+else
+{
+printf("Server-accept() is OK...\n");
+
+FD_SET(newfd, &master); /* add to master set */
+if(newfd > fdmax)
+{ /* keep track of the maximum */
+fdmax = newfd;
+}
+printf("%s: New connection from %s on "
+"socket %d\n", argv[0], inet_ntoa(clientaddr.sin_addr), newfd);
+}
+}
+else
+{
+/* handle data from a client */
+if((nbytes = recv(i, buf, sizeof(buf), 0)) <= 0)
+{
+/* got error or connection closed by client */
+if(nbytes == 0)
+ /* connection closed */
+ printf("%s: socket %d hung up\n", argv[0], i);
+
+else
+perror("recv() error lol!");
+
+/* close it... */
+close(i);
+/* remove from master set */
+FD_CLR(i, &master);
+}
+else
+{
+/* we got some data from a client*/
+for(j = 0; j <= fdmax; j++)
+{
+/* send to everyone! */
+	if(FD_ISSET(j, &master)) 
+	{
+	/*except the listener and ourselves */
+		if(j != listener && j != i)
+		{
+			if(send(j, buf, nbytes, 0) == -1)
+				perror("send() error lol!");
+		}
+	}
+}
+}
+}
+}
+}
+}
+return 0;
+}
+
+---------------------------------------------------------------------------------------
+
+/************tcpserver.c************************/
+/* Header files needed to use the sockets API. */
+/* File contain Macro, Data Type and Structure */
+/***********************************************/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <errno.h>
+#include <unistd.h>
+/* BufferLength is 100 bytes */
+#define BufferLength 100
+/* Server port number */
+#define SERVPORT 3111
+
+int main()
+{
+/* Variable and structure definitions. */
+int sd, sd2, rc, length = sizeof(int);
+int totalcnt = 0, on = 1;
+char temp;
+char buffer[BufferLength];
+struct sockaddr_in serveraddr;
+struct sockaddr_in their_addr;
+
+fd_set read_fd;
+struct timeval timeout;
+timeout.tv_sec = 15;
+timeout.tv_usec = 0;
+
+/* The socket() function returns a socket descriptor */
+/* representing an endpoint. The statement also */
+/* identifies that the INET (Internet Protocol) */
+/* address family with the TCP transport (SOCK_STREAM) */
+/* will be used for this socket. */
+/************************************************/
+/* Get a socket descriptor */
+if((sd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+{
+perror("Server-socket() error");
+/* Just exit */
+exit (-1);
+}
+else
+printf("Server-socket() is OK\n");
+
+/* The setsockopt() function is used to allow */
+/* the local address to be reused when the server */
+/* is restarted before the required wait time */
+/* expires. */
+/***********************************************/
+/* Allow socket descriptor to be reusable */
+if((rc = setsockopt(sd, SOL_SOCKET, SO_REUSEADDR, (char *)&on, sizeof(on))) < 0)
+{
+perror("Server-setsockopt() error");
+close(sd);
+exit (-1);
+}
+else
+printf("Server-setsockopt() is OK\n");
+
+/* bind to an address */
+memset(&serveraddr, 0x00, sizeof(struct sockaddr_in));
+serveraddr.sin_family = AF_INET;
+serveraddr.sin_port = htons(SERVPORT);
+serveraddr.sin_addr.s_addr = htonl(INADDR_ANY);
+
+printf("Using %s, listening at %d\n", inet_ntoa(serveraddr.sin_addr), SERVPORT);
+
+/* After the socket descriptor is created, a bind() */
+/* function gets a unique name for the socket. */
+/* In this example, the user sets the */
+/* s_addr to zero, which allows the system to */
+/* connect to any client that used port 3005. */
+if((rc = bind(sd, (struct sockaddr *)&serveraddr, sizeof(serveraddr))) < 0)
+{
+perror("Server-bind() error");
+/* Close the socket descriptor */
+close(sd);
+/* and just exit */
+exit(-1);
+}
+else
+printf("Server-bind() is OK\n");
+
+/* The listen() function allows the server to accept */
+/* incoming client connections. In this example, */
+/* the backlog is set to 10. This means that the */
+/* system can queue up to 10 connection requests before */
+/* the system starts rejecting incoming requests.*/
+/*************************************************/
+/* Up to 10 clients can be queued */
+if((rc = listen(sd, 10)) < 0)
+{
+perror("Server-listen() error");
+close(sd);
+exit (-1);
+}
+else
+printf("Server-Ready for client connection...\n");
+
+/* The server will accept a connection request */
+/* with this accept() function, provided the */
+/* connection request does the following: */
+/* - Is part of the same address family */
+/* - Uses streams sockets (TCP) */
+/* - Attempts to connect to the specified port */
+/***********************************************/
+/* accept() the incoming connection request. */
+
+ int sin_size = sizeof(struct sockaddr_in);
+if((sd2 = accept(sd, (struct sockaddr *)&their_addr, &sin_size)) < 0)
+{
+perror("Server-accept() error");
+close(sd);
+exit (-1);
+}
+else
+printf("Server-accept() is OK\n");
+
+/*client IP*/
+printf("Server-new socket, sd2 is OK...\n");
+printf("Got connection from the f***ing client: %s\n", inet_ntoa(their_addr.sin_addr));
+
+/* The select() function allows the process to */
+/* wait for an event to occur and to wake up */
+/* the process when the event occurs. In this */
+/* example, the system notifies the process */
+/* only when data is available to read. */
+/***********************************************/
+/* Wait for up to 15 seconds on */
+/* select() for data to be read. */
+FD_ZERO(&read_fd);
+FD_SET(sd2, &read_fd);
+rc = select(sd2+1, &read_fd, NULL, NULL, &timeout);
+if((rc == 1) && (FD_ISSET(sd2, &read_fd)))
+{
+/* Read data from the client. */
+totalcnt = 0;
+
+while(totalcnt < BufferLength)
+{
+/* When select() indicates that there is data */
+/* available, use the read() function to read */
+/* 100 bytes of the string that the */
+/* client sent. */
+/***********************************************/
+/* read() from client */
+rc = read(sd2, &buffer[totalcnt], (BufferLength - totalcnt));
+if(rc < 0)
+{
+perror("Server-read() error");
+close(sd);
+close(sd2);
+exit (-1);
+}
+else if (rc == 0)
+{
+printf("Client program has issued a close()\n");
+close(sd);
+close(sd2);
+exit(-1);
+}
+else
+{
+    totalcnt += rc;
+    printf("Server-read() is OK\n");
+}
+
+}
+}
+else if (rc < 0)
+{
+perror("Server-select() error");
+close(sd);
+close(sd2);
+exit(-1);
+}
+/* rc == 0 */
+else 
+{
+printf("Server-select() timed out.\n");
+close(sd);
+close(sd2);
+exit(-1);
+}
+
+/*Shows the data*/
+printf("Received data from the f***ing client: %s\n", buffer);
+
+/* Echo some bytes of string, back */
+/* to the client by using the write() */
+/* function. */
+/************************************/
+/* write() some bytes of string, */
+/* back to the client. */
+printf("Server-Echoing back to client...\n");
+rc = write(sd2, buffer, totalcnt);
+if(rc != totalcnt)
+{
+perror("Server-write() error");
+/* Get the error number. */
+rc = getsockopt(sd2, SOL_SOCKET, SO_ERROR, &temp, &length);
+if(rc == 0)
+{
+/* Print out the asynchronously */
+/* received error. */
+errno = temp;
+perror("SO_ERROR was: ");
+}
+else
+printf("Server-write() is OK\n");
+
+close(sd);
+close(sd2);
+exit(-1);
+}
+
+/* When the data has been sent, close() */
+/* the socket descriptor that was returned */
+/* from the accept() verb and close() the */
+/* original socket descriptor. */
+/*****************************************/
+/* Close the connection to the client and */
+/* close the server listening socket. */
+/******************************************/
+close(sd2);
+close(sd);
+exit(0);
+return 0;
+}
+
+---------------------------------------------------------------------------------------
+
+/************tcpclient.c************************/
+/* Header files needed to use the sockets API. */
+/* File contains Macro, Data Type and */
+/* Structure definitions along with Function */
+/* prototypes. */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <errno.h>
+/* BufferLength is 100 bytes */
+#define BufferLength 100
+/* Default host name of server system. Change it to your default */
+/* server hostname or IP.  If the user do not supply the hostname */
+/* as an argument, the_server_name_or_IP will be used as default*/
+#define SERVER "The_server_name_or_IP"
+/* Server's port number */
+#define SERVPORT 3111
+
+/* Pass in 1 parameter which is either the */
+/* address or host name of the server, or */
+/* set the server name in the #define SERVER ... */
+int main(int argc, char *argv[])
+{
+/* Variable and structure definitions. */
+int sd, rc, length = sizeof(int);
+struct sockaddr_in serveraddr;
+char buffer[BufferLength];
+char server[255];
+char temp;
+int totalcnt = 0;
+struct hostent *hostp;
+char data[100] = "This is a test string from client lol!!! ";
+
+/* The socket() function returns a socket */
+/* descriptor representing an endpoint. */
+/* The statement also identifies that the */
+/* INET (Internet Protocol) address family */
+/* with the TCP transport (SOCK_STREAM) */
+/* will be used for this socket. */
+/******************************************/
+/* get a socket descriptor */
+if((sd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+{
+perror("Client-socket() error");
+exit(-1);
+}
+else
+printf("Client-socket() OK\n");
+/*If the server hostname is supplied*/
+if(argc > 1)
+{
+/*Use the supplied argument*/
+strcpy(server, argv[1]);
+printf("Connecting to the f***ing %s, port %d ...\n", server, SERVPORT);
+}
+else
+/*Use the default server name or IP*/
+strcpy(server, SERVER);
+
+memset(&serveraddr, 0x00, sizeof(struct sockaddr_in));
+serveraddr.sin_family = AF_INET;
+serveraddr.sin_port = htons(SERVPORT);
+
+if((serveraddr.sin_addr.s_addr = inet_addr(server)) == (unsigned long)INADDR_NONE)
+{
+
+/* When passing the host name of the server as a */
+/* parameter to this program, use the gethostbyname() */
+/* function to retrieve the address of the host server. */
+/***************************************************/
+/* get host address */
+hostp = gethostbyname(server);
+if(hostp == (struct hostent *)NULL)
+{
+printf("HOST NOT FOUND --> ");
+/* h_errno is usually defined */
+/* in netdb.h */
+printf("h_errno = %d\n",h_errno);
+printf("---This is a client program---\n");
+printf("Command usage: %s <server name or IP>\n", argv[0]);
+close(sd);
+exit(-1);
+}
+memcpy(&serveraddr.sin_addr, hostp->h_addr, sizeof(serveraddr.sin_addr));
+}
+
+/* After the socket descriptor is received, the */
+/* connect() function is used to establish a */
+/* connection to the server. */
+/***********************************************/
+/* connect() to server. */
+if((rc = connect(sd, (struct sockaddr *)&serveraddr, sizeof(serveraddr))) < 0)
+{
+perror("Client-connect() error");
+close(sd);
+exit(-1);
+}
+else
+printf("Connection established...\n");
+
+/* Send string to the server using */
+/* the write() function. */
+/*********************************************/
+/* Write() some string to the server. */
+printf("Sending some string to the f***ing %s...\n", server);
+rc = write(sd, data, sizeof(data));
+
+if(rc < 0)
+{
+perror("Client-write() error");
+rc = getsockopt(sd, SOL_SOCKET, SO_ERROR, &temp, &length);
+if(rc == 0)
+{
+/* Print out the asynchronously received error. */
+errno = temp;
+perror("SO_ERROR was");
+}
+close(sd);
+exit(-1);
+}
+else
+{
+printf("Client-write() is OK\n");
+printf("String successfully sent lol!\n");
+printf("Waiting the %s to echo back...\n", server);
+}
+
+totalcnt = 0;
+while(totalcnt < BufferLength)
+{
+
+/* Wait for the server to echo the */
+/* string by using the read() function. */
+/***************************************/
+/* Read data from the server. */
+rc = read(sd, &buffer[totalcnt], BufferLength-totalcnt);
+if(rc < 0)
+{
+perror("Client-read() error");
+close(sd);
+exit(-1);
+}
+else if (rc == 0)
+{
+printf("Server program has issued a close()\n");
+close(sd);
+exit(-1);
+}
+else
+totalcnt += rc;
+}
+printf("Client-read() is OK\n");
+printf("Echoed data from the f***ing server: %s\n", buffer);
+
+/* When the data has been read, close() */
+/* the socket descriptor. */
+/****************************************/
+/* Close socket descriptor from client side. */
+close(sd);
+exit(0);
+return 0;
+}
+
+---------------------------------------------------------------------------------------
+
+/*******************udpserver.c*****************/
+/* Header files needed to use the sockets API. */
+/* File contain Macro, Data Type and Structure */
+/* definitions along with Function prototypes. */
+/* header files */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+/* Server's port number, listen at 3333 */
+#define SERVPORT 3333
+
+/* Run the server without argument */
+int main(int argc, char *argv[])
+{
+/* Variable and structure definitions. */
+int sd, rc;
+struct sockaddr_in serveraddr, clientaddr;
+int clientaddrlen = sizeof(clientaddr);
+int serveraddrlen = sizeof(serveraddr);
+char buffer[100];
+char *bufptr = buffer;
+int buflen = sizeof(buffer);
+
+/* The socket() function returns a socket */
+/* descriptor representing an endpoint. */
+/* The statement also identifies that the */
+/* INET (Internet Protocol) address family */
+/* with the UDP transport (SOCK_DGRAM) will */
+/* be used for this socket. */
+/******************************************/
+/* get a socket descriptor */
+if((sd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
+{
+perror("UDP server - socket() error");
+exit(-1);
+}
+else
+printf("UDP server - socket() is OK\n");
+
+printf("UDP server - try to bind...\n");
+
+/* After the socket descriptor is received, */
+/* a bind() is done to assign a unique name */
+/* to the socket. In this example, the user */
+/* set the s_addr to zero. This allows the */
+/* system to connect to any client that uses */
+/* port 3333. */
+/********************************************/
+/* bind to address */
+memset(&serveraddr, 0x00, serveraddrlen);
+serveraddr.sin_family = AF_INET;
+serveraddr.sin_port = htons(SERVPORT);
+serveraddr.sin_addr.s_addr = htonl(INADDR_ANY);
+if((rc = bind(sd, (struct sockaddr *)&serveraddr, serveraddrlen)) < 0)
+{
+perror("UDP server - bind() error");
+close(sd);
+/* If something wrong with socket(), just exit lol */
+exit(-1);
+}
+else
+printf("UDP server - bind() is OK\n");
+
+printf("Using IP %s and port %d\n", inet_ntoa(serveraddr.sin_addr), SERVPORT);
+printf("UDP server - Listening...\n");
+
+/* Use the recvfrom() function to receive the */
+/* data. The recvfrom() function waits */
+/* indefinitely for data to arrive. */
+/************************************************/
+/* This example does not use flags that control */
+/* the reception of the data. */
+/************************************************/
+/* Wait on client requests. */
+rc = recvfrom(sd, bufptr, buflen, 0, (struct sockaddr *)&clientaddr, &clientaddrlen);
+if(rc < 0)
+{
+perror("UDP Server - recvfrom() error");
+close(sd);
+exit(-1);
+}
+else
+printf("UDP Server - recvfrom() is OK...\n");
+
+printf("UDP Server received the following:\n \"%s\" message\n", bufptr);
+printf("from port %d and address %s.\n", ntohs(clientaddr.sin_port),
+inet_ntoa(clientaddr.sin_addr));
+
+/* Send a reply by using the sendto() function. */
+/* In this example, the system echoes the received */
+/* data back to the client. */
+/************************************************/
+/* This example does not use flags that control */
+/* the transmission of the data */
+/************************************************/
+/* Send a reply, just echo the request */
+printf("UDP Server replying to the stupid UDP client...\n");
+rc = sendto(sd, bufptr, buflen, 0, (struct sockaddr *)&clientaddr, clientaddrlen);
+if(rc < 0)
+{
+perror("UDP server - sendto() error");
+close(sd);
+exit(-1);
+}
+else
+printf("UDP Server - sendto() is OK...\n");
+
+/* When the data has been sent, close() the */
+/* socket descriptor. */
+/********************************************/
+/* close() the socket descriptor. */
+close(sd);
+exit(0);
+}
+
+------------------------------------------------------------------------------------------------------------
+
+/****************udpclient.c********************/
+/* Header files needed to use the sockets API. */
+/* File contain Macro, Data Type and Structure */
+/* definitions along with Function prototypes. */
+/***********************************************/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+
+/* Host name of my system, change accordingly */
+/* Put the server hostname that run the UDP server program */
+/* This will be used as default UDP server for client connection */
+#define SERVER "bakawali"
+/* Server's port number */
+#define SERVPORT 3333
+/* Pass in 1 argument (argv[1]) which is either the */
+/* address or host name of the server, or */
+/* set the server name in the #define SERVER above. */
+
+int main(int argc, char *argv[])
+{
+/* Variable and structure definitions. */
+int sd, rc;
+struct sockaddr_in serveraddr, clientaddr;
+int serveraddrlen = sizeof(serveraddr);
+char server[255];
+char buffer[100];
+char *bufptr = buffer;
+int buflen = sizeof(buffer);
+struct hostent *hostp;
+memset(buffer, 0x00, sizeof(buffer));
+/* 36 characters + terminating NULL */
+memcpy(buffer, "Hello! A client request message lol!", 37);
+
+/* The socket() function returns a socket */
+/* descriptor representing an endpoint. */
+/* The statement also identifies that the */
+/* INET (Internet Protocol) address family */
+/* with the UDP transport (SOCK_DGRAM) will */
+/* be used for this socket. */
+/******************************************/
+/* get a socket descriptor */
+if((sd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
+{
+perror("UDP Client - socket() error");
+/* Just exit lol! */
+exit(-1);
+}
+else
+printf("UDP Client - socket() is OK!\n");
+
+/* If the hostname/IP of the server is supplied */
+/* Or if(argc = 2) */
+if(argc > 1)
+strcpy(server, argv[1]);
+else
+{
+/*Use default hostname or IP*/
+printf("UDP Client - Usage %s <Server hostname or IP>\n", argv[0]);
+printf("UDP Client - Using default hostname/IP!\n");
+
+strcpy(server, SERVER);
+}
+
+memset(&serveraddr, 0x00, sizeof(struct sockaddr_in));
+serveraddr.sin_family = AF_INET;
+serveraddr.sin_port = htons(SERVPORT);
+
+if((serveraddr.sin_addr.s_addr = inet_addr(server)) == (unsigned long)INADDR_NONE)
+{
+/* Use the gethostbyname() function to retrieve */
+/* the address of the host server if the system */
+/* passed the host name of the server as a parameter. */
+/************************************************/
+/* get server address */
+hostp = gethostbyname(server);
+if(hostp == (struct hostent *)NULL)
+{
+printf("HOST NOT FOUND --> ");
+/* h_errno is usually defined */
+/* in netdb.h */
+printf("h_errno = %d\n", h_errno);
+exit(-1);
+}
+else
+{
+printf("UDP Client - gethostname() of the server is OK... \n");
+printf("Connected to UDP server %s on port %d.\n", server, SERVPORT);
+}
+memcpy(&serveraddr.sin_addr, hostp->h_addr, sizeof(serveraddr.sin_addr));
+}
+
+/* Use the sendto() function to send the data */
+/* to the server. */
+/************************************************/
+/* This example does not use flags that control */
+/* the transmission of the data. */
+/************************************************/
+/* send request to server */
+rc = sendto(sd, bufptr, buflen, 0, (struct sockaddr *)&serveraddr, sizeof(serveraddr));
+if(rc < 0)
+{
+perror("UDP Client - sendto() error");
+close(sd);
+exit(-1);
+}
+else
+printf("UDP Client - sendto() is OK!\n");
+
+printf("Waiting a reply from UDP server...\n");
+
+/* Use the recvfrom() function to receive the */
+/* data back from the server. */
+/************************************************/
+/* This example does not use flags that control */
+/* the reception of the data. */
+/************************************************/
+/* Read server reply. */
+/* Note: serveraddr is reset on the recvfrom() function. */
+rc = recvfrom(sd, bufptr, buflen, 0, (struct sockaddr *)&serveraddr, &serveraddrlen);
+
+if(rc < 0)
+{
+perror("UDP Client - recvfrom() error");
+close(sd);
+exit(-1);
+}
+else
+{
+printf("UDP client received the following: \"%s\" message\n", bufptr);
+printf(" from port %d, address %s\n", ntohs(serveraddr.sin_port),
+inet_ntoa(serveraddr.sin_addr));
+}
+
+/* When the data has been received, close() */
+/* the socket descriptor. */
+/********************************************/
+/* close() the socket descriptor. */
+close(sd);
+exit(0);
+}
+
+----------------------------------------------------------------------------------------------------------
+
+/**** iserver.c ****/
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#define SERVER_PORT 12345
+
+/* Run with a number of incoming connection as argument */
+int main(int argc, char *argv[])
+{
+int i, len, num, rc;
+int listen_sd, accept_sd;
+/* Buffer for data */
+char buffer[100];
+struct sockaddr_in addr;
+
+/* If an argument was specified, use it to */
+/* control the number of incoming connections */
+if(argc >= 2)
+num = atoi(argv[1]);
+/* Prompt some message */
+else
+{
+printf("Usage: %s <The_number_of_client_connection else 1 will be used>\n", argv[0]);
+num = 1;
+}
+
+/* Create an AF_INET stream socket to receive */
+/* incoming connections on */
+listen_sd = socket(AF_INET, SOCK_STREAM, 0);
+if(listen_sd < 0)
+{
+perror("Iserver - socket() error");
+exit(-1);
+}
+else
+printf("Iserver - socket() is OK\n");
+
+printf("Binding the socket...\n");
+/* Bind the socket */
+memset(&addr, 0, sizeof(addr));
+addr.sin_family = AF_INET;
+addr.sin_addr.s_addr = htonl(INADDR_ANY);
+addr.sin_port = htons(SERVER_PORT);
+rc = bind(listen_sd, (struct sockaddr *)&addr, sizeof(addr));
+if(rc < 0)
+{
+perror("Iserver - bind() error");
+close(listen_sd);
+exit(-1);
+}
+else
+printf("Iserver - bind() is OK\n");
+
+/* Set the listen backlog */
+rc = listen(listen_sd, 5);
+if(rc < 0)
+{
+perror("Iserver - listen() error");
+close(listen_sd);
+exit(-1);
+}
+else
+printf("Iserver - listen() is OK\n");
+
+/* Inform the user that the server is ready */
+printf("The Iserver is ready!\n");
+/* Go through the loop once for each connection */
+for(i=0; i < num; i++)
+{
+/* Wait for an incoming connection */
+printf("Iteration: #%d\n", i+1);
+printf(" waiting on accept()\n");
+accept_sd = accept(listen_sd, NULL, NULL);
+if(accept_sd < 0)
+{
+perror("Iserver - accept() error");
+close(listen_sd);
+exit(-1);
+}
+else
+printf("accept() is OK and completed successfully!\n");
+
+/* Receive a message from the client */
+printf("I am waiting client(s) to send message(s) to me...\n");
+rc = recv(accept_sd, buffer, sizeof(buffer), 0);
+if(rc <= 0)
+{
+perror("Iserver - recv() error");
+close(listen_sd);
+close(accept_sd);
+exit(-1);
+}
+else
+printf("The message from client: \"%s\"\n", buffer);
+/* Echo the data back to the client */
+printf("Echoing it back to client...\n");
+len = rc;
+rc = send(accept_sd, buffer, len, 0);
+if(rc <= 0)
+{
+perror("Iserver - send() error");
+close(listen_sd);
+close(accept_sd);
+exit(-1);
+}
+else
+printf("Iserver - send() is OK.\n");
+/* Close the incoming connection */
+close(accept_sd);
+}
+/* Close the listen socket */
+close(listen_sd);
+return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+/****** comclient.c ******/
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+/*Our server port as in the previous program */
+#define SERVER_PORT 12345
+
+main (int argc, char *argv[])
+{
+int len, rc;
+int sockfd;
+char send_buf[100];
+char recv_buf[100];
+struct sockaddr_in addr;
+
+if(argc !=2)
+{
+printf("Usage: %s <Server_name or Server_IP_address>\n", argv[0]);
+exit (-1);
+}
+/* Create an AF_INET stream socket */
+sockfd = socket(AF_INET, SOCK_STREAM, 0);
+if(sockfd < 0)
+{
+perror("client - socket() error");
+exit(-1);
+}
+else
+printf("client - socket() is OK.\n");
+/* Initialize the socket address structure */
+memset(&addr, 0, sizeof(addr));
+addr.sin_family = AF_INET;
+addr.sin_addr.s_addr = htonl(INADDR_ANY);
+addr.sin_port = htons(SERVER_PORT);
+/* Connect to the server */
+rc = connect(sockfd, (struct sockaddr *)&addr, sizeof(struct sockaddr_in));
+if(rc < 0)
+{
+perror("client - connect() error");
+close(sockfd);
+exit(-1);
+}
+else
+{
+printf("client - connect() is OK.\n");
+printf("connect() completed successfully.\n");
+printf("Connection with %s using port %d established!\n", argv[1], SERVER_PORT);
+}
+
+/* Enter data buffer that is to be sent */
+printf("Enter message to be sent to server:\n");
+gets(send_buf);
+/* Send data buffer to the worker job */
+len = send(sockfd, send_buf, strlen(send_buf) + 1, 0);
+if(len != strlen(send_buf) + 1)
+{
+perror("client - send() error");
+close(sockfd);
+exit(-1);
+}
+else
+printf("client - send() is OK.\n");
+printf("%d bytes sent.\n", len);
+/* Receive data buffer from the worker job */
+len = recv(sockfd, recv_buf, sizeof(recv_buf), 0);
+if(len != strlen(send_buf) + 1)
+{
+perror("client - recv() error");
+close(sockfd);
+exit(-1);
+}
+else
+{
+printf("client - recv() is OK.\n");
+printf("The sent message: \"%s\" successfully received by server and echoed back to client!\n", recv_buf);
+printf("%d bytes received.\n", len);
+}
+/* Close the socket */
+close(sockfd);
+return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------------
+
+/* Send Multicast Datagram code example. */
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+struct in_addr localInterface;
+struct sockaddr_in groupSock;
+int sd;
+char databuf[1024] = "Multicast test message lol!";
+int datalen = sizeof(databuf);
+
+int main (int argc, char *argv[])
+{
+/* Create a datagram socket on which to send. */
+sd = socket(AF_INET, SOCK_DGRAM, 0);
+if(sd < 0)
+{
+perror("Opening datagram socket error");
+exit(1);
+}
+else
+printf("Opening the datagram socket...OK.\n");
+
+/* Initialize the group sockaddr structure with a */
+/* group address of 225.1.1.1 and port 5555. */
+memset((char *) &groupSock, 0, sizeof(groupSock));
+groupSock.sin_family = AF_INET;
+groupSock.sin_addr.s_addr = inet_addr("226.1.1.1");
+groupSock.sin_port = htons(4321);
+
+/* Disable loopback so you do not receive your own datagrams.
+{
+char loopch = 0;
+if(setsockopt(sd, IPPROTO_IP, IP_MULTICAST_LOOP, (char *)&loopch, sizeof(loopch)) < 0)
+{
+perror("Setting IP_MULTICAST_LOOP error");
+close(sd);
+exit(1);
+}
+else
+printf("Disabling the loopback...OK.\n");
+}
+*/
+
+/* Set local interface for outbound multicast datagrams. */
+/* The IP address specified must be associated with a local, */
+/* multicast capable interface. */
+localInterface.s_addr = inet_addr("203.106.93.94");
+if(setsockopt(sd, IPPROTO_IP, IP_MULTICAST_IF, (char *)&localInterface, sizeof(localInterface)) < 0)
+{
+perror("Setting local interface error");
+exit(1);
+}
+else
+printf("Setting the local interface...OK\n");
+/* Send a message to the multicast group specified by the*/
+/* groupSock sockaddr structure. */
+/*int datalen = 1024;*/
+if(sendto(sd, databuf, datalen, 0, (struct sockaddr*)&groupSock, sizeof(groupSock)) < 0)
+{perror("Sending datagram message error");}
+else
+printf("Sending datagram message...OK\n");
+
+/* Try the re-read from the socket if the loopback is not disable
+if(read(sd, databuf, datalen) < 0)
+{
+perror("Reading datagram message error\n");
+close(sd);
+exit(1);
+}
+else
+{
+printf("Reading datagram message from client...OK\n");
+printf("The message is: %s\n", databuf);
+}
+*/
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------
+
+/* Receiver/client multicast Datagram example. */
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+struct sockaddr_in localSock;
+struct ip_mreq group;
+int sd;
+int datalen;
+char databuf[1024];
+
+int main(int argc, char *argv[])
+{
+/* Create a datagram socket on which to receive. */
+sd = socket(AF_INET, SOCK_DGRAM, 0);
+if(sd < 0)
+{
+perror("Opening datagram socket error");
+exit(1);
+}
+else
+printf("Opening datagram socket....OK.\n");
+
+/* Enable SO_REUSEADDR to allow multiple instances of this */
+/* application to receive copies of the multicast datagrams. */
+{
+int reuse = 1;
+if(setsockopt(sd, SOL_SOCKET, SO_REUSEADDR, (char *)&reuse, sizeof(reuse)) < 0)
+{
+perror("Setting SO_REUSEADDR error");
+close(sd);
+exit(1);
+}
+else
+printf("Setting SO_REUSEADDR...OK.\n");
+}
+
+/* Bind to the proper port number with the IP address */
+/* specified as INADDR_ANY. */
+memset((char *) &localSock, 0, sizeof(localSock));
+localSock.sin_family = AF_INET;
+localSock.sin_port = htons(4321);
+localSock.sin_addr.s_addr = INADDR_ANY;
+if(bind(sd, (struct sockaddr*)&localSock, sizeof(localSock)))
+{
+perror("Binding datagram socket error");
+close(sd);
+exit(1);
+}
+else
+printf("Binding datagram socket...OK.\n");
+
+/* Join the multicast group 226.1.1.1 on the local 203.106.93.94 */
+/* interface. Note that this IP_ADD_MEMBERSHIP option must be */
+/* called for each local interface over which the multicast */
+/* datagrams are to be received. */
+group.imr_multiaddr.s_addr = inet_addr("226.1.1.1");
+group.imr_interface.s_addr = inet_addr("203.106.93.94");
+if(setsockopt(sd, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&group, sizeof(group)) < 0)
+{
+perror("Adding multicast group error");
+close(sd);
+exit(1);
+}
+else
+printf("Adding multicast group...OK.\n");
+
+/* Read from the socket. */
+datalen = sizeof(databuf);
+if(read(sd, databuf, datalen) < 0)
+{
+perror("Reading datagram message error");
+close(sd);
+exit(1);
+}
+else
+{
+printf("Reading datagram message...OK.\n");
+printf("The message from multicast server is: \"%s\"\n", databuf);
+}
+return 0;
+}
+
+==================================================================================================

@@ -1,0 +1,1595 @@
+============================Module25=======================================
+|                                                                         |
+|  The program examples' source codes have been arranged in the same      |
+|  order that appeared in the Tutorial. This is unedited and unverified   |
+|  compilation. Published as is basis for educational, reacretional and   |
+|  brain teaser purposes. All trademarks, copyrights and IPs, wherever    |
+|  exist, are the sole property of their respective owner and/or          |
+|  holder. Any damage or loss by using the materials presented in this    |
+|  tutorial is USER responsibility. Part or full distribution,            |
+|  reproduction and modification is granted to any body.                  |
+|     Copyright 2003-2005 © Tenouk, Inc. All rights reserved.		  |
+|          Distributed through http://www.tenouk.com			        |
+|        		                                                        |
+|									                    |
+===========================================================================
+Originally programs compiled using Borland C++. Examples compiled using
+VC++/VC++ .Net and gcc or g++ are given at the end of every Module.
+For example if you want to compile C++ codes using VC++/VC++ .Net, change
+the header file accordingly.  Just need some modification for the header
+files...:
+
+-------------------------------------------------
+#include <iostream.h>
+//for system()
+#include <stdlib.h>
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+should be changed to:
+-------------------------------------------------
+#include <iostream>
+//use C++ wrapper to call C functions from C++ programs...
+#include <cstdlib>
+using namespace std;
+
+...
+{
+C++ codes...
+}
+-------------------------------------------------
+In VC++/VC++ .Net the iostream.h (header with .h) is not valid anymore.
+It should be C++ header, <iostream> so that it comply to the standard.
+In older Borland C++ compiler this still works, but not proper any more...
+and for standard C/C++ the portability should be no problem or better
+you read Module23 at http://www.tenouk.com/Module23.html to get
+the big picture...For C codes, they still C codes :o)
+=========================================================================
+============================HERE, ALL C++ codes==========================
+
+//char and wchar_t types
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main( ) 
+{
+const basic_string <char> str1("TEST");
+//Uses the typedef for string word
+//synonym to basic_string <char>
+string str2("TEST");
+
+//simple comparison between two 
+//objects of type basic_string
+cout<<"String str1: "<<str1<<"\nString str2: "<<str2<<endl;
+cout<<"Operation: (str1 == str2)"<<endl;
+if(str1 == str2)
+	cout<<"Strings str1 & str2 are equal."<<endl;
+else
+	cout<<"Strings str1 & str2 are not equal."<<endl;
+
+//L - literal qualifier, long
+const basic_string <wchar_t> str3(L"TESTING");
+//Uses the typedef for wstring word
+//synonym to basic_string <wchar_t>
+wstring str4(L"JUMPING");
+
+//simple comparison between two objects 
+//of type basic_string <wchar_t>
+cout<<"\nString str3: TESTING \nString str4: JUMPING"<<endl;
+cout<<"Operation: (str3 == str4)"<<endl;
+if(str3 == str4)
+	cout<<"Strings str3 & str4 are equal."<<endl;
+else
+	cout<<"Strings str3 & str4 are not equal."<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//== and != operators
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main( ) 
+{
+//Declaring an objects of type basic_string<char>
+string str1("testingone");
+string str2("testingtwo");
+cout<<"str1 string is = "<<str1<<endl;
+cout<<"str2 string is = "<<str2<<endl;
+//Declaring a C-style string
+char *str3 = "testingone";
+cout<<"C-style str3 string is = "<<str3<<endl;
+
+//Comparison between left-side object of type basic_string
+//& right-side object of type basic_string
+cout<<"\nOperation: (str1 != str2)"<<endl;
+if(str1 != str2)
+	cout<<"str1 & str2 are not equal."<<endl;
+else
+	cout<<"str1 & str2 are equal."<<endl;
+
+//Comparison between left-side object of C-style string
+//type & right-side object of type basic_string
+cout<<"\nOperation: (str3 != str2)"<<endl;
+if(str3 != str2)
+	cout<<"str3 & str2 are not equal."<<endl;
+else
+	cout<<"str3 & str2 are equal."<<endl;
+
+//Comparison between left-side object of type basic_string
+//& right-side object of C-style string type
+cout<<"\nOperation: (str1 != str3)"<<endl;
+if(str1 != str3)
+	cout<<"str1 & str3 are not equal."<<endl;
+else
+	cout<<"str1 & str3 are equal."<<endl;
+
+//Comparison between left-side object of type basic_string
+//& right-side object of type basic_string
+cout<<"\nOperation: (str1 == str2)"<<endl;
+if(str1 == str2)
+	cout<<"str1 & str2 are equal."<<endl;
+else
+	cout<<"str1 & str2 are not equal."<<endl;
+
+//Comparison between left-hand object of C-style string type
+//& right-hand object of type basic_string
+cout<<"\nOperation: (str3 == str2)"<<endl;
+if(str3 == str2)
+	cout<<"str3 & str2 are equal."<<endl;
+else
+	cout<<"str3 & str2 are not equal."<<endl;
+
+//Comparison between left-hand object of type basic_string
+//& right-hand object of C-style string type
+cout<<"\nOperation: (str1 == str3)"<<endl;
+if(str1 == str3)
+	cout<<"str1 & str3 are equal."<<endl;
+else
+	cout<<"str1 & str3 are not equal."<<endl;
+return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------
+
+//< and > operators
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+//Declaring objects of type basic_string<char>
+string str1("testingthree");
+string str2("testingtwo");
+cout<<"str1 is = "<<str1<<endl;
+cout<<"str2 is = "<<str2<<endl;
+
+//Declaring a C-style string
+char *str3 = "testingone";
+cout<<"str3 C-style string is = "<<str3<<endl;
+
+//Comparison between left-side object of type basic_string
+//& right-side object of type basic_string
+cout<<"\nOperation: (str1 < str2)"<<endl;
+if(str1 < str2)
+	cout<<"str1 is less then string str2."<<endl;
+else
+	cout<<"str1 is not less then string str2."<<endl;
+
+//Comparison between left-side object of C-style string
+//type & right-side object of type basic_string
+cout<<"\nOperation: (str3 < str2)"<<endl;
+if(str3 < str2)
+	cout<<"str3 is less then string str2."<<endl;
+else
+	cout<<"str3 is not less then string str2."<<endl;
+
+//Comparison between left-side object of type basic_string
+//& right-side object of C-style string type
+cout<<"\nOperation: (str1 < str3)"<<endl;
+if(str1 < str3)
+	cout<<"str1 is less then string str3."<<endl;
+else
+	cout<<"str1 is not less then string str3."<<endl;
+
+//Comparison between left-side object of type basic_string
+//& right-side object of type basic_string
+cout<<"\nOperation: (str1 > str2)"<<endl;
+if(str1 > str2)
+	cout<<"str1 is greater then string str2."<<endl;
+else
+	cout<<"str1 is not greater then string str2."<<endl;
+
+//Comparison between left-hand object of C-style string type
+//& right-hand object of type basic_string
+cout<<"\nOperation: (str3 > str2)"<<endl;
+if(str3 > str2)
+	cout<<"str3 is greater then string str2."<<endl;
+else
+	cout<<"str3 is not greater then string str2."<<endl;
+
+//Comparison between left-hand object of type basic_string
+//& right-hand object of C-style string type
+cout<<"\nOperation: (str1 > str3)"<<endl;
+if(str1 > str3)
+	cout<<"str1 is greater then string str3."<<endl;
+else
+	cout<<"str1 is not greater then string str3."<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//>= and <= operators
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main( ) 
+{
+//Declaring an objects of type basic_string<char>
+string str1("testingone");
+string str2("testingtwo");
+cout<<"str1 string is = "<<str1<<endl;
+cout<<"str2 string is = "<<str2<<endl;
+//Declaring a C-style string
+char *str3 = "testingone";
+cout<<"str3 C-style string is = "<<str3<<endl;
+
+//Comparison between left-side object of type basic_string
+//& right-side object of type basic_string
+cout<<"\nOperation: (str1 <= str2)"<<endl;
+if(str1 <= str2)
+	cout<<"str1 is less than or equal to str2."<<endl;
+else
+cout<<"str1 is not less than or equal to str2."<<endl;
+
+//Comparison between left-side object of C-syle string
+//type & right-side object of type basic_string
+cout<<"\nOperation: (str3 <= str2)"<<endl;
+if(str3 <= str2)
+	cout<<"str3 is less than or equal to str2."<<endl;
+else
+	cout<<"str3 is not less than or equal to str2."<<endl;
+
+//Comparison between left-side object of type basic_string
+//& right-side object of C-syle string type
+cout<<"\nOperation: (str1 <= str3)"<<endl;
+if(str1 <= str3)
+	cout<<"str1 is less than or equal to str3."<<endl;
+else
+	cout<<"str1 is not less than or equal to str3."<<endl;
+
+//Comparison between left-side object of type basic_string
+//& right-side object of type basic_string
+cout<<"\nOperation: (str1 >= str2)"<<endl;
+if(str1 >= str2)
+	cout<<"str1 is greater than or equal to str2."<<endl;
+else
+	cout<<"str1 is not greater than or equal to str2."<<endl;
+
+//Comparison between left-hand object of C-syle string type
+//& right-hand object of type basic_string
+cout<<"\nOperation: (str3 >= str2)"<<endl;
+if(str3 >= str2)
+	cout<<"str3 is greater than or equal to str2."<<endl;
+else
+	cout<<"str3 is not greater than or equal to str2."<<endl;
+
+//Comparison between left-hand object of type basic_string
+//& right-hand object of C-syle string type
+cout<<"\nOperation: (str1 >= str3)"<<endl;
+if(str1 >= str3)
+	cout<<"str1 is greater than or equal to str3."<<endl;
+else
+	cout<<"str1 is not greater than or equal to str3."<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//<< and >> operators
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+string Sample = "Testing the << and >> operators.";
+string Var1, Var2;
+
+cout<<Sample<<endl;
+cout<<"Enter a string or a word: ";
+cin>>Var1;
+cout<<"Enter another string or a word: ";
+cin>>Var2;
+cout<<"The strings entered are: "<<Var1<<" and "<<Var2<<endl;
+
+return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------
+
+//concatenating using ‘+’ operator
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+//Declaring an object of type basic_string<char>
+string str1("StringOne");
+string str2("StringTwo");
+//Declaring a C-style string
+char *str3 = "StringThree";
+//Declaring a character constant
+char chr = '?';
+
+cout<<"str1 string is = "<<str1<<endl;
+cout<<"str2 string is = "<<str2<<endl;
+cout<<"str3 C-style string is = "<<str3<<endl;
+cout<<"A character constant chr is = "<<chr<<endl;
+
+//Concatenates an object of type basic_string
+//with an object of type basic_string
+cout<<"\nOperation: str12 = str1 + str2"<<endl;
+string str12 = str1 + str2;
+cout<<"str12 = "<<str12<<endl;
+
+//Concatenates an object of type basic_string
+//with an object of C-syle string type
+cout<<"\nOperation: str13 = str1 + str3"<<endl;
+string str13 = str1 + str3;
+cout<<"str13 = "<<str13<<endl;
+
+//Concatenates an object of type basic_string
+//with a character constant
+cout<<"\nOperation: str13chr = str13 + chr"<<endl;
+string str13chr = str13 + chr;
+cout<<"str13chr = "<<str13chr<<endl;
+return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------
+
+//swap()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+//Declaring an object of type basic_string<char>
+string str1("StringOne");
+string str2("StringTwo");
+cout<<"Before swapping string str1 and str2:"<<endl;
+cout<<"str1 string is = "<<str1<<endl;
+cout<<"str2 string is = "<<str2<<endl;
+
+swap(str1, str2);
+cout<<"\nOperation: swap(str1, str2)"<<endl; 
+cout<<"After swapping string str1 and str2:"<<endl;
+cout<<"str1 string is = "<<str1<<endl;
+cout<<"str2 string is = "<<str2<<endl;
+return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------
+
+//getline()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   string str;
+   string str1;
+   string str2;
+   cout<<"Enter a line of text: ";
+   getline(cin, str);
+   cout<<"You entered: "<<str<<endl;
+   cout<<"Enter a line of text, <space> as the delimiter: "<<endl;
+   getline(cin, str1, ' ');
+   cout<<"You entered: "<<str1<<endl;
+   return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------
+
+//append()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+//appending a C-string to a string
+string str1("Playing ");
+const char *str2 = "with a string";
+
+cout<<"str1 is: "<<str1<<endl;
+cout<<"str2, C string is: "<<str2<<endl;
+str1.append(str2);
+cout<<"Operation: str1.append(str2)"<<endl;
+cout<<"Appending str2 to str1: "<<str1<<endl;
+
+//appending part of a C-string to a string
+string str3 ("Replaying ");
+const char *str4 = "the string ";
+
+cout<<"\nstr3 string is: "<<str3<<endl;
+cout<<"str4 C-string is: "<<str4<<endl;
+str3.append(str4, 6);
+cout<<"Operation: str3.append(str4, 6)"<<endl;
+cout<<"Appending part of the str4 to string str3: \n"<<str3<<endl;
+
+//appending part of one string to another
+string str5("Again "), str6("string manipulation");
+
+cout<<"\nstr5 is: "<<str5<<endl;
+cout<<"str6 is: "<<str6<<endl;
+str5.append(str6, 4, 6);
+cout<<"Operation: str5.append(str6, 4, 6)"<<endl;
+cout<<"The appended string is: "<<str5<<endl;
+
+//appending one string to another in two ways,
+//comparing append and operator []
+string str7("First "), str8("Second "), str9("Third ");
+cout<<"\nstr7 is: "<<str7<<"\nstr8 is: "<<str8<<"\nstr9 is: "<<str9<<endl;
+str7.append(str8);
+cout<<"Operation: str7.append(str8)"<<endl;
+cout<<"The appended string str7 is: "<<str7<<endl;
+str7 += str9;
+cout<<"Operation: str7 += str9"<<endl;
+cout<<"The re appended string is: "<<str7<<endl;
+
+//appending characters to a string
+string str10("What string");
+cout<<"\nstr10 string is: "<<str10<<endl;
+str10.append(3, '?');
+cout<<"Operation: str10.append(3, '?')"<<endl;
+cout<<"str10 string appended with ? is: "<<str10<<endl;
+
+//appending a range of one string to another
+string str11("Finally "), str12("comes the END ");
+cout<<"\nstr11 is: "<<str11<<" str12 is: "<<str12<<endl;
+str11.append(str12.begin() + 6, str12.end() - 1);
+cout<<"Operation:\nstr11.append(str12.begin() + 6, str12.end() - 1)"<<endl;
+cout<<"The appended str11 String is: "<<str11<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//assign(), string assignment
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+//assigning the characters of a C-string to a string
+string str1;
+const char *str2 = "StRiNg assign()";
+
+cout<<"str2, C string is: "<<str2<<endl;
+str1.assign(str2);
+cout<<"Operation: str1.assign(str2)"<<endl; 
+cout<<"Assigning the C-string str2 to str1 string: \n"<<str1<<endl;
+
+//assigning a number of a C-string characters to a string
+string  str3;
+const char *str4 = "Another StRiNg assign()";
+cout<<"\nstr4 C string is: "<<str4<<endl;
+str3.assign(str4, 11);
+cout<<"Operation: str3.assign(str4, 11)"<<endl;
+cout<<"Assigning some portion of the str4 "
+     <<"to str3 string: \n"<<str3<<endl;
+
+//assigning a number of the characters from one string to another string 
+string str5("First "), str6("Second sTrInG");
+cout<<"\nstr5 string is: "<<str5<<endl;
+cout<<"str6 string is: "<<str6<<endl;
+str5.assign(str6, 7, 6);
+cout<<"Operation: str5.assign(str6, 7, 6)"<<endl;
+cout<<"Newly assigned str5 string is: "<<str5<<endl;
+
+//assigning the characters from one string to another string
+//in two equivalent ways, comparing the assign and operator =
+string str7("First"), str8("Second"), str9("Third");
+cout<<"\nstr7 string is: "<<str7<<endl;
+cout<<"str8 string is: "<<str8<<endl;
+cout<<"str9 string is: "<<str9<<endl;
+str7.assign(str8);
+cout<<"Operation: str7.assign(str8)"<<endl;
+cout<<"Newly assigned str7 with str8 string is: "<<str7<<endl;
+str7 = str9;
+cout<<"Operation: str7 = str9"<<endl;
+cout<<"String str7 reassigned with str9 string is: "<<str7<<endl;
+
+//assigning a specific number of characters of a certain value to a string
+string str10("Working STrInG");
+cout<<"\nstr10 string is: "<<str10<<endl;
+str10.assign(3, '!');
+cout<<"Operation: str10.assign(3, '!')"<<endl;
+cout<<"str10 string assigned with character '!' is: "<<str10<<endl;
+
+//assigning a value from a range of one string to another string
+string str11("Comes "), str12("the END ");
+cout<<"\nstr11 string is: "<<str11<<endl;
+cout<<"str12 string is: "<<str12<<endl;
+str11.assign(str12.begin() + 4, str12.end() - 1);
+cout<<"Operation: str11.assign(str12.begin()+4, str12.end()-1)"<<endl;
+cout<<"str11 assigned a range of str12 string is: \n"<<str11<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//at()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+string str1("Operation"), str2("Desert Storm");
+const string  constr1("Making cakes"), constr2("Start eating");
+
+cout<<"str1 string is: "<<str1<<endl;
+cout<<"str2 string is: "<<str2<<endl;
+cout<<"constr1, const string is: "<<constr1<<endl;
+cout<<"constr2, const string is: "<<constr2<<endl;
+
+//Element access of the non const strings
+basic_string <char>::reference RefStr1 = str1[4];
+basic_string <char>::reference RefStr2 = str2.at(7);
+
+//index starts from 0 lor!
+cout<<"\n---str1[5]---"<<endl;
+cout<<"The 5th character of str1 is: "<<RefStr1<<endl;
+cout<<"---str2.at(7)---"<<endl;
+cout<<"The 7th character of str2 is: "<<RefStr2<<endl;
+
+//Element access to the const strings
+basic_string <char>::const_reference cRefStr1 = constr1[constr1.length()];
+basic_string <char>::const_reference cRefStr2 = constr2.at(8);
+
+cout<<"---constr1.length()---"<<endl;
+cout<<"The length of the constr1 string is: "<<unsigned int(constr1.length())<<endl;
+
+cout<<"\nTesting the null character..."<<endl;
+cout<<"---cRefStr1 = constr1[constr1.length()]---"<<endl;
+cout<<"Operation: (cRefStr1 == \'\\0\')"<<endl; 
+if(cRefStr1 == '\0')
+	cout<<"The null character is returned."<<endl;
+else
+	cout<<"The null character is not returned."<<endl;
+
+cout<<"\n---constr2.at(8)---"<<endl;
+cout<<"The 8th character of the constr2 is: "<<cRefStr2<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//basic_string
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+//initializing with a C-string
+const char *str1 = "The basic_string";
+basic_string <char> str2(str1, 5);
+cout<<"str1 string is: "<<str1<<endl;
+cout<<"Operation: str2(str1, 5)"<<endl;
+cout<<"str2 initialized by str1 is: "<<str2<<"\n\n";
+
+//initializing with a string
+string  str3("Initialize with a StRinG?");
+cout<<"str3 string is: "<<str3<<endl;
+basic_string <char> str4(str3, 6, 10);
+cout<<"Operation: str4(str3, 6, 10)"<<endl;
+cout<<"str4 initialized by part of the str3 string is: \n"<<str4<<"\n\n";
+
+//initializing a string with a number of characters of a specific value
+basic_string <char> str5(6, '7');
+cout<<"Operation: str5(6, '7')"<<endl;
+cout<<"str5 initialized by six number of 7s is: "<<str5<<"\n\n";
+
+//creating an empty string and string with a specified allocator
+basic_string <char> str6;
+string str7;
+//allocate a storage
+basic_string <char> str8(str7.get_allocator());
+//test the emptiness
+cout<<"Operation: str8.empty()"<<endl;
+if(str8.empty())
+	cout<<"The string str8 is empty."<<endl;
+else
+	cout<<"The string str8 is not empty."<<endl;
+
+//fill up some string
+str8 = "Not empty!";
+cout<<"Operation: str8 = Not empty!"<<endl;
+//retest again...
+if(str8.empty())
+	cout<<"The string str8 is empty."<<endl;
+else
+	cout<<"The string str8 is not empty."<<endl;
+cout<<endl;
+
+//initializing a string from another range of characters
+string str10("Test StRiNg");
+cout<<"str10 string is: "<<str10<<endl;
+cout<<"Operation: \nstr11(str10.begin()+5, str10.end())"<<endl;
+basic_string <char> str11(str10.begin()+5, str10.end());
+cout<<"str11 initialized by another range of characters is: \n"<<str11<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//begin(), end()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+   
+   string Str1("Testing the begin() and end()"), Str2;
+   basic_string <char>::iterator Str1Iter;
+   //const_iterator…
+   basic_string <char>::const_iterator Str1CIter;
+
+   //...an error because the iterator Str1CIter is const
+   //*Str1CIter = 'Z';
+   
+   cout<<"String Str1 is: "<<Str1<<endl;
+   Str1Iter = Str1.begin();
+   cout<<"Operation: Str1Iter = Str1.begin()"<<endl;
+   cout<<"The first character of the string Str1 is: "<<*Str1Iter<<"\n\n";
+   
+   
+   //using dereferenced iterator to modify a character
+   *Str1Iter = 'F';
+   cout<<"Operation: *Str1Iter = 'F'"<<endl;
+   cout<<"Now, the first character of the new Str1 is: "<<*Str1Iter<<endl;
+   cout<<"The full modified string Str1 is now: \n"<<Str1<<"\n\n";
+
+   //For an empty string, begin() == end()
+   cout<<"Operation: if(Str2.begin() == Str2.end())"<<endl;
+   if(Str2.begin() == Str2.end())
+      cout<<"The string Str2 is empty."<<endl;
+   else
+      cout<<"The string Str2 is not empty."<<endl;
+   cout<<endl;
+
+   //Fill up some string and retest...
+   Str2 = "Not empty";
+   cout<<"Operation: Str2 = \"Not empty\""<<endl;
+   if(Str2.begin() == Str2.end())
+      cout<<"Now the string Str2 is empty."<<endl;
+   else
+      cout<<"Now the string Str2 is not empty."<<endl;
+   return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//c_str(), length(), data(), strlen()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main( ) 
+{
+   string  str1("Testing the c_str");
+   cout<<"The original string object str1 is: "<<str1<<endl;
+   cout<<"Operation: str1.length()"<<endl;
+   cout<<"The length of the string object str1 = "<<str1.length()<<"\n\n";
+
+   //A string to an array of characters conversion
+   const char *ptr1 = 0;
+   ptr1= str1.data();
+   cout<<"Operation: ptr1= str1.data()"<<endl;
+   cout<<"The string object pointed by ptr1 is: \n"<<ptr1<<endl;
+   cout<<"\nOperation: strlen(ptr1)"<<endl;
+   cout<<"The length of character array str1 = "<<strlen(ptr1)<<"\n\n";
+
+   //A string to a C-style string conversion
+   const char *cstr1 = str1.c_str();
+   cout<<"Operation: *cstr1 = str1.c_str()"<<endl;
+   cout<<"The C-style string c_str1 is: "<<cstr1<<endl;
+   cout<<"\nOperation: strlen(cstr1)"<<endl;
+   cout<<"The length of C-style string str1 = "<<strlen(cstr1)<<endl;
+   return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//capacity(), size(), erase()
+//length(), max_size() 
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main( ) 
+{
+string  str1("Testing the capacity()");
+cout<<"str1 string is: "<<str1<<endl;
+
+//The size and length member functions differ in name only
+basic_string <char>::size_type SizeStr1, LenStr1;
+SizeStr1 = str1.size();
+LenStr1 = str1.length();
+
+basic_string <char>::size_type CapStr1, MaxSizeStr1;
+CapStr1 = str1.capacity();
+MaxSizeStr1 = str1.max_size();
+
+//Compare size, length, capacity & max_size of a string
+cout<<"\nOperation: str1.size()"<<endl;
+cout<<"The size of str1 is: "<<SizeStr1<<" characters"<<endl;
+cout<<"\nOperation: str1.length()"<<endl;
+cout<<"The length of str1 is: "<<LenStr1<<" characters"<<endl;
+cout<<"\nOperation: str1.capacity()"<<endl;
+cout<<"The capacity of str1 is: "<<CapStr1<<" characters"<<endl;
+cout<<"\nOperation: str1.max_size()"<<endl;
+cout<<"The max_size of str1 is: "<<MaxSizeStr1<<" characters"<<endl;
+
+//erase some characters...
+str1.erase(6, 5);
+//Re test...
+cout<<"\nOperation: str1.erase(6, 5)"<<endl;
+cout<<"The new str1 string is: "<<str1<<"\n\n";
+
+SizeStr1 = str1.size();
+LenStr1 = str1.length();
+CapStr1 = str1.capacity();
+MaxSizeStr1 = str1.max_size();
+
+//Compare size, length, capacity & max_size of a string
+//after erasing part of the original string
+cout<<"The new size of str1 is: "<<SizeStr1<<" characters"<<endl;
+cout<<"The new length of str1 is: "<<LenStr1<<" characters"<<endl;
+cout<<"The new capacity of str1 is: "<<CapStr1<<" characters"<<endl;
+cout<<"The new max_size of str1 is: "<<MaxSizeStr1<<" characters"<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//clear()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main( )
+{
+string  str1("Testing the clear()");
+basic_string <char>::iterator StrIter;
+//Normal...
+cout<<"str1 string is :"<<str1<<endl;
+//using iterator....iterate character by character...
+cout<<"str1 string is: ";
+for (StrIter = str1.begin(); StrIter != str1.end(); StrIter++)
+cout<<*StrIter;
+cout<<endl;
+
+//str1.clear();
+cout<<"\nErasing part of the string using erase(13)"<<endl;
+str1.erase(13);
+cout<<"Operation: str1.erase(13)"<<endl;
+cout<<"The modified str1 string is: ";
+//using iterator...
+for(StrIter = str1.begin(); StrIter != str1.end(); StrIter++)
+cout<<*StrIter;
+cout<<endl;
+
+//For an empty string, begin is equivalent to end
+cout<<"\nOperation: str1.begin()==str1.end()"<<endl;
+if(str1.begin() == str1.end())
+	cout<<"The str1 string is empty."<<endl;
+else
+	cout<<"The str1 string has some data"<<endl;
+
+//erasing all the data...
+cout<<"\nOperation: str1.erase(13)"<<endl;
+cout<<"Erasing all the data using erase()"<<endl;
+str1.erase();
+//re test...
+cout<<"The modified string str1 is: "<<endl;
+cout<<"\nOperation: str1.begin()==str1.end()"<<endl;
+if(str1.begin() == str1.end())
+	cout<<"The str1 string is empty."<<endl;
+else
+	cout<<"The str1 string has some data"<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//compare() program example part I
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+   
+//Comparing a string to a string...
+//the character index start from 0
+int str1;
+string str2("First");
+string str3("First");
+cout<<"str2 string is: "<<str2<<endl;
+cout<<"str3 string is: "<<str3<<endl;
+
+//compare str2 and str3 assign the result to str1
+cout<<"Operation: str2.compare(str3)"<<endl;
+str1 = str2.compare(str3);
+if(str1 < 0)
+  cout<<"The str2 string is less than the str3 string."<<endl;
+else if(str1 == 0)
+  cout<<"The str2 string is equal to the str3 string."<<endl;
+else
+  cout<<"The str2 string is greater than the str3 string."<<endl;
+cout<<endl;
+
+//Comparing part of a string to a string
+int str4, str5;
+string str6("SecondThird");
+string str7("Third");
+cout<<"str6 string is: "<<str6<<endl;
+cout<<"str7 string is: "<<str7<<endl;
+
+cout<<"Operation: str6.compare(6, 5, str7)"<<endl;
+str4 = str6.compare(6, 5, str7);
+if(str4 < 0)
+	cout<<"The last 5 characters of the str6 string are less than\n"
+    <<"the str7 string."<<endl;
+else if(str4 == 0)
+	cout<<"The last 5 characters of the str6 string are equal to\n"
+    		<<"the str7 string."<<endl;
+else
+	cout<<"The last 5 characters of the str6 string is greater than\n"
+    		<<"the str7 string."<<endl;
+cout<<endl;
+
+cout<<"Operation: str6.compare(0, 6, str7)"<<endl;
+str5 = str6.compare(0, 6, str7);
+if(str5 < 0)
+	cout<<"The first 6 characters of the str6 \nstring are less than "
+    		<<"the str7 string."<<endl;
+else if(str5 == 0)
+	cout<<"The first 6 characters of the str6 \nstring are equal to "
+    		<<"the str7 string."<<endl;
+else
+	cout<<"The first 6 characters of the str6 \nstring is greater than "
+    		<<"the str7 string."<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//compare() program example part II
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+//comparing part of a string to part of a string
+int str8;
+string str9("TestFourth");
+string str10("TFourthT");
+cout<<"str9 string is: "<<str9<<endl;
+cout<<"str10 string is: "<<str10<<endl;
+
+str8 = str9.compare(4, 6, str10, 1, 6);
+cout<<"Operation: str9.compare(4, 6, str10, 1, 6)"<<endl;
+if(str8 < 0)
+ cout<<"The 6 characters from position 4 of the str9 string \nare less than "
+      <<"the 6 characters str10 string from position 1."<<endl;
+else if(str8 == 0)
+ cout<<"The 6 characters from position 4 of the str9 string\nare equal to "
+     <<"the 6 characters str10 string from position 1."<<endl;
+else
+ cout<<"The 6 characters from position 4 of the str9 string\nis greater than "
+     <<"the 6 characters str10 string from position 1."<<endl;
+cout<<endl;
+
+//comparing a string to a C-string
+int str11;
+string str12("Fifth");
+const char* str13 = "Sixth";
+cout<<"The string str12 is: "<<str12<<endl;
+cout<<"The C-string str13 is: "<<str13<<endl;
+
+str11 = str12.compare(str13);
+cout<<"Operation: str12.compare(str13)"<<endl;
+if(str11 < 0)
+ cout<<"The str12 string is less than the str13 C-string."<<endl;
+else if(str11 == 0)
+ cout<<"The str12 string is equal to the str13 C-string."<<endl;
+else
+ cout<<"The str12 string is greater than the str13 C-string."<<endl;
+cout << endl;
+
+//Comparing part of a string to a C-string
+int str14;
+string str15("SeventhEight");
+const char* str16 = "Eight";
+cout<<"str15 string is: "<<str15<<endl;
+cout<<"str16 string is: "<<str16<<endl;
+
+str14 = str15.compare(7, 5, str16);
+cout<<"Operation: str15.compare(7, 5, str16)"<<endl;
+if(str14 < 0)
+  cout<<"The last 5 characters of the str15 \nstring are less than "
+       <<"the str16 C-string."<<endl;
+else if(str14 == 0)
+  cout<<"The last 5 characters of the str15 \nstring are equal to "
+       <<"the str16 C-string."<<endl;
+else
+  cout<<"The last 5 characters of the str15 \nstring is greater than "
+       <<"the str16 C-string."<<endl;
+cout << endl;
+
+//comparing part of a string to part of an equal length of a C-string
+int str17;
+string str18("ReTestEighth");
+const char* str19 = "TestEighth";
+cout<<"str18 string is: "<<str18<<endl;
+cout<<"str19 C-string is: "<<str19<<endl;
+
+str17 = str18.compare(2, 4, str19, 4);
+cout<<"Operation: str18.compare(4, 6, str19, 6)"<<endl;
+if(str17 < 0)
+   cout<<"The 4 characters from position 2 of the str18 string \nare less than "
+       <<"the first 4 characters of the str19 C-string."<<endl;
+else if(str17 == 0)
+   cout<<"The 4 characters from position 2 of the str18 string \nare equal to "
+       <<"the first 4 characters of the str19 C-string."<<endl;
+else
+   cout<<"The 4 characters from position 2of the str18 string \nis greater than "
+        <<"the first 4 characters of the str19 C-string."<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//copy()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   string str1("Testing the copy()");
+   basic_string <char>::iterator StrIter;
+   //declare and initialize arrays to 0
+   char Array1[20] = {0};
+   char Array2[10] = {0};
+   basic_string <char>:: pointer Array1Ptr = Array1;
+   basic_string <char>:: value_type *Array2Ptr = Array2;
+
+   //iterate character by character...
+   cout<<"str1 string is: ";
+   for(StrIter = str1.begin(); StrIter != str1.end(); StrIter++)
+      cout<<*StrIter;
+   cout<<endl;
+
+   basic_string <char>::size_type NewArray1;
+   NewArray1 = str1.copy(Array1Ptr, 18);
+   cout<<"Operation: str1.copy(Array1Ptr, 18)"<<endl; 
+   cout<<"The number of copied characters in Array1 is: "<<unsigned int(NewArray1)<<endl;
+   cout<<"Now, Array1 is: "<<Array1<<"\n\n";
+
+   basic_string <char>::size_type NewArray2;
+   NewArray2 = str1.copy(Array2Ptr, 9, 2);
+   cout<<"Operation: str1.copy(Array2Ptr, 9, 2)"<<endl;
+   cout<<"The number of copied characters in Array2 is: "<<unsigned int(NewArray2)<<endl;
+   cout<<"Now, Array2 is: "<<Array2Ptr<<endl;
+   return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//data(), length(), strlen()
+//and c_str()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+string str1("Testing the data()");
+cout<<"str1 string object is: "<<str1<<endl;
+cout<<"Operation: str1.length()"<<endl;
+cout<<"The length of str1 = "<<unsigned int(str1.length())<<"\n\n";
+
+//Converting a string to an array of characters
+const char *ptr1 = 0;
+ptr1= str1.data();
+cout<<"Operation: str1.data()"<<endl;
+cout<<"The modified ptr1 string object is: "<<ptr1<<endl;
+cout<<"Operation: strlen(ptr1)"<<endl;
+cout<<"The length of character array str1 = "<<unsigned int(strlen(ptr1))<<"\n\n";
+
+//Converting a string to a C-style string
+const char *cstr1 = str1.c_str();
+cout<<"Operation: str1.c_str()"<<endl;
+cout<<"The C-style string c_str1 is: "<<cstr1<<endl;
+cout<<"Operation: strlen(ptr1)"<<endl;
+cout<<"The length of C-style string str1 = "<<unsigned int(strlen(cstr1))<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//empty()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+bool Var1, Var2;
+string str1("Testing the empty()");
+cout<<"str1 string object is: "<<str1<<endl;
+
+Var1 = str1.empty();
+//test the emptiness
+cout<<"Operation: str1.empty()"<<endl;
+if(Var1)
+cout<<"str1 string object is empty."<<endl;
+else
+cout<<"str1 string object is not empty."<<"\n\n";
+
+//An example of an empty string object
+string str3;
+Var2 = str3.empty();
+cout<<"Operation: str3.empty()"<<endl;
+//test the emptiness
+if(Var2)
+cout<<"str3 string object is empty."<<endl;
+else
+cout<<"str3 string object is not empty."<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//begin(), end()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main( ) 
+{
+string str1("Testing the end()");
+basic_string <char>::iterator StrIter, Str1Iter;
+
+Str1Iter = str1.end();
+//minus the null character, so point to the real
+//last character in the string...
+Str1Iter--;
+cout<<"Operation: str1.end() then Str1Iter--"<<endl;
+cout<<"str1 string is: "<<str1<<endl;
+cout<<"The last character of the str1 string is: "<<*Str1Iter<<endl;
+
+//end() used to test when an iterator has reached the end of its string
+cout<<"Using forward iterator the str1 is: ";
+for(StrIter = str1.begin(); StrIter != str1.end(); StrIter++)
+cout<<*StrIter;
+cout<<"\n\n";
+
+//The dereferenced iterator can be used to modify a character
+//The last event, this pointer point to the last character in the string
+*Str1Iter = 'F';
+cout<<"Operation: *Str1Iter = 'F'"<<endl;
+cout<<"Now, the last character of the modified str1 is: "<<*Str1Iter<<endl;
+cout<<"Then the modified str1 string is: "<<str1<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//erase()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+//using a range...
+string str1("Testing the erase() part I");
+basic_string <char>::iterator Str1Iter;
+cout<<"str1 string object is: "<< str1<<endl;
+
+//don't forget the null character
+Str1Iter = str1.erase(str1.begin() + 4, str1.end() - 6);
+cout<<"Operation: str1.erase(str1.begin()+4, str1.end()-6)"<<endl;
+cout<<"The first element after those removed is: "<<*Str1Iter<<endl;
+cout<<"The modified str1 string object is: "<<str1<<endl;
+
+//erasing a char pointed to by an iterator
+string str2("Testing the erase() part II");
+basic_string <char>::iterator Str2Iter;
+
+cout<<"\nstr2 string object is: "<<str2<<endl;
+Str2Iter = str2.erase(str2.begin() + 3);
+cout<<"Operation: str2.erase(str2.begin() + 3)"<<endl;
+cout<<"The first element after those removed is: "<<*Str2Iter<<endl;
+cout<<"The modified str2 string object is: \n"<<str2<<endl;
+
+//erasing a number of chars after a char
+string str3("Testing the erase() part III"), NewStr3;
+cout<<"\nThe original string object str3 is: \n"<<str3<<endl;
+NewStr3 = str3.erase(6, 8);
+cout<<"Operation: str3.erase(6, 6)"<<endl;
+cout<<"The modified NewStr3 string object is: \n"<<NewStr3<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//find() part I
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+//don't forget the null character
+//searching for a single character in a string
+string str1("Search part I, a character in a string");
+cout<<"str1 string is: "<<str1<<endl;
+basic_string <char>::size_type index1, index2;
+static const basic_string <char>::size_type npos = -1;
+
+index1 = str1.find('r', 2);
+cout<<"Operation: str1.find('r', 2)"<<endl;
+if(index1 != npos)
+cout<<"The index of the 1st 'r' found after the 2nd"
+    <<" position in str1 is: "<<unsigned int(index1)<<endl;
+else
+cout<<"The character 'r' was not found in str1."<<endl;
+cout<<endl;
+
+index2 = str1.find('t');
+cout<<"Operation: str1.find('t')"<<endl;
+if(index2 != npos)
+cout<<"The index of the 't' found in str1 is: "<<unsigned int(index2)<<endl;
+else
+cout<<"The character 't' was not found in str1."<<endl;
+cout<<endl;
+
+//---------------------------------------------------------------------
+//searching a string for a substring as specified by a C-string
+string str2("Search part II, a substring in string");
+cout<<"str2 string is: "<<str2<<endl;
+basic_string <char>::size_type index3, index4;
+
+const char *cstr1 = "sub";
+index3 = str2.find(cstr1, 5);
+cout<<"Operation: str2.find(cstr1, 5)"<<endl;
+if(index3 != npos)
+cout<<"The index of the 1st element of 'sub' after\nthe 5th "
+<<"position in str2 is: "<<unsigned int(index3)<<endl;
+else
+cout<<"The substring 'sub' was not found in str2"<<endl;
+cout<<endl;
+
+const char *cstr2 = "bstring";
+index4 = str2.find(cstr2, 0);
+cout<<"Operation: str2.find(cstr2, 0)"<<endl;
+if(index4 != npos)
+cout<<"The index of the 1st element of 'bstring' "
+       <<"after\nthe 0th position in str2 is: "<<unsigned int(index4)<<endl;
+else
+cout<<"The substring 'bstring' was not found in str2"<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//find() part II
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+//don't forget the null character
+//searching a string for a substring as specified by a C-string
+static const basic_string <char>::size_type npos = -1;
+string str3("Again, search part III");
+cout<<"str3 string is: "<<str3<<endl;
+basic_string <char>::size_type index5, index6;
+
+const char *cstr3 = "part";
+index5 = str3.find(cstr3);
+cout<<"Operation: str3.find(cstr3)"<<endl;
+if(index5 != npos)
+  cout<<"The index of the 1st element of 'part' "
+  <<"in str3 is: "<<unsigned int(index5)<<endl;
+else
+  cout<<"The substring 'part' was not found in str3"<<endl;
+cout<<endl;
+
+const char *cstr4 = "ar";
+index6 = str3.find(cstr4, index5 + 1, 2);
+cout<<"Operation: str3.find(cstr4, index5 + 1, 2)"<<endl;
+if(index6 != npos)
+  cout<<"The index of the next occurrence of 'ar' in "
+       <<"str3 begins at: "<<unsigned int(index6)<<endl;
+else
+  cout<<"There is no next occurrence of 'ar' in str3."<<endl;
+cout<<endl;
+
+//--------------------------------------------------------------
+//searching a string for a substring as specified by a string
+string str4("Finally!, search part IV");
+cout<<"str4 string is: "<<str4<<endl;
+basic_string <char>::size_type index7, index8;
+
+string str5("part");
+index7 = str4.find(str5, 4);
+cout<<"Operation: str4.find(str5, 4)"<<endl;
+if(index7 != npos)
+  cout<<"The index of the 1st element of 'part' "
+       <<"after\nthe 4th position in str4 is: "<<unsigned int(index7)<<endl;
+else
+  cout<<"The substring 'part' was not found in str4"<<endl;
+cout<<endl;
+
+string str6("arch");
+index8 = str4.find(str6);
+cout<<"Operation: str4.find(str6)"<<endl;
+if(index8 != npos)
+  cout<<"The index of the 1st element of 'arch' in "
+		<<"str4 is: "<<unsigned int(index8)<<endl;
+else
+  cout<<"The substring 'arch' was not found in str4"<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//find_first_not_of() part I
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+//searching a single character in a string
+string str1("Testing the find_first_not_of() part 1");
+cout<<"str1 string is: "<<str1<<endl;
+basic_string <char>::size_type index1, index2;
+static const basic_string <char>::size_type npos = -1;
+
+index1 = str1.find_first_not_of('_', 3);
+cout<<"Operation: str1.find_first_not_of('_', 3)"<<endl;
+if(index1 != npos)
+  cout<<"The index of the 1st '_' found after the 3rd\nposition in str1 is: "<<unsigned int(index1)<<endl;
+else
+  cout<<"The character '_' was not found in str1"<<endl;
+
+index2 = str1.find_first_not_of('T');
+cout<<"\nOperation: str1.find_first_not_of('T')"<<endl;
+if(index2 != npos)
+   cout<<"The index of the 'non T' found in str1 is: "<<unsigned int(index2)<<endl;
+else
+   cout<<"The character 'non T' was not found in str1."<<endl;
+cout<<endl;
+
+//---------------------------------------------------------------------------
+//searching a string for a substring as specified by a C-string
+string str2("Testing the find_first_not_of() part 2");
+cout<<"str2 string is: "<<str2<<endl;
+basic_string <char>::size_type index3, index4;
+const char *cstr2 = "df";
+
+index3 = str2.find_first_not_of(cstr2, 4);
+cout<<"Operation: str2.find_first_not_of(cstr2, 4)"<<endl;
+if(index3 != npos)
+  cout<<"The index of the 1st occurrence of an element\nof 'df' in str2 after the 4th "
+      <<"position is: "<<unsigned int(index3)<<endl;
+else
+  cout<<"Elements of the substring 'df' were not\nfound in str2 after the 4th position."<<endl;
+
+
+const char *cstr3 = "gz";
+index4 = str2.find_first_not_of(cstr3);
+cout<<"\nOperation: str2.find_first_not_of(cstr3)"<<endl;
+if(index4 != npos)
+  cout<<"The index of the 1st element of 'gz' after\nthe 0th position in str2 is: "
+      <<unsigned int(index4)<<endl;
+else
+  cout<<"The substring 'gz' was not found in str2"<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//find_first_not_of() part II
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+//searching a string for a substring as specified by a C-string
+string str3("Testing the find_first_not_of() part 3");
+cout<<"str3 string is: "<<str3<<endl;
+basic_string <char>::size_type index5, index6;
+static const basic_string <char>::size_type npos = -1;
+
+const char *cstr4 = "nro";
+index5 = str3.find_first_not_of(cstr4);
+cout<<"Operation: str3.find_first_not_of(cstr4)"<<endl;
+if(index5 != npos)
+  cout<<"The index of the 1st occurrence of an "
+      <<"element in str3\nother than one of the "
+      <<"characters in 'nro' is: "<<unsigned int(index5)<<endl;
+else
+  cout<<"Elements in str3 contain only characters "
+       <<" in the string 'nro'. "<<endl;
+
+
+const char *cstr5 = "nro";
+index6 = str3.find_first_not_of(cstr5, index5+1, 2);
+cout<<"\nOperation: str3.find_first_not_of(cstr5, index5+1, 2)"<<endl;
+if(index6 != npos)
+  cout<<"The index of the second occurrence of an "
+      <<"element\nof 'nro' in str3 after the 0th "
+      <<"position is: "<<unsigned int(index6)<<endl<<endl;
+else
+  cout<<"Elements in str3 contain only characters "
+      <<" in the string 'nro'"<<endl;
+cout<<endl;
+
+//--------------------------------------------------------------------
+//searching a string for a substring as specified by a string
+string str4("Testing the find_first_not_of() part 4");
+cout<<"str4 string is: "<<str4<<endl;
+basic_string <char>::size_type index7, index8;
+
+string str5("tf7");
+index7 = str4.find_first_not_of(str5, 3);
+cout<<"Operation: str4.find_first_not_of(str5, 3)"<<endl;
+
+if(index7 != npos)
+  cout<<"The index of the 1st non occurrence of an element\nof 'tf7' "
+	  <<"in str4 after the 3rd position is: "<<unsigned int(index7)<<endl;
+else
+  cout<<"Elements other than those in the substring 'tf7' "
+	  <<"were not found in the string str4."<<endl;
+
+string str6("in");
+index8 = str4.find_first_not_of(str6);
+cout<<"\nOperation: str4.find_first_not_of(str6)"<<endl;
+
+if(index8 != npos)
+  cout<<"The index of the 1st occurrence of an "
+      <<"element of\n'in' in str4 after the 0th "
+      <<"position is: "<<unsigned int(index8)<<endl;
+else
+  cout<<"Elements other than those in the substring"
+      <<" 'in' were not found in the string str4."<<endl;
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//find_first_of() part I
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main( ) 
+{
+   //searching for a single character in a string
+   string str1("find_first_of()");
+   cout<<"str1 string is: "<<str1<<endl;
+   basic_string <char>::size_type index1, index2;
+   static const basic_string <char>::size_type npos = -1;
+
+   index1 = str1.find_first_of('r', 3);
+   cout<<"Operation: str1.find_first_of('r', 3)"<<endl;
+   if(index1 != npos)
+      cout<<"The index of the 1st 'r' found after the 3rd\n"
+           <<"position in str1 is: "<<unsigned int(index1)<<endl;
+   else
+      cout<<"The character 'r' was not found in str1"<<endl;
+
+   index2 = str1.find_first_of('z');
+   cout<<"\nOperation: str1.find_first_of('z')"<<endl;
+   if(index2 != npos)
+      cout<<"The index of the 'z' found in str1 is: "<<unsigned int(index2)<<endl;
+   else
+      cout<<"The character 'z' was not found in str1."<<endl;
+   
+   //--------------------------------------------------------
+   //searching a string for a substring as specified by a C-string
+   string str2("Testing 123...Testing 123");
+   cout<<"\nstr2 string is: "<<str2<<endl;
+   basic_string <char>::size_type index3, index4;
+
+   const char *cstr = "s1";
+   index3 = str2.find_first_of(cstr, 3);
+   cout<<"Operation: str2.find_first_of(cstr, 3)"<<endl;
+   if(index3 != npos)
+      cout<<"The index of the 1st occurrence of an "
+           <<"element\nof 's1' in str2 after the 3rd "
+           <<"position is: "<<unsigned int(index3)<<endl;
+   else
+      cout<<"Elements of the substring 's1' were not\n"
+          <<"found in str2 after the 3rd position."<<endl;
+
+   const char *cstr1 = "g3";
+   index4 = str2.find_first_of(cstr1);
+   cout<<"\nOperation: str2.find_first_of(cstr1)"<<endl;
+   if(index4 != npos)
+      cout <<"The index of the 1st element of 'g3'\n"
+           <<"after the 0th position in str2 is: "<<unsigned int(index4)<<endl;
+   else
+      cout<<"The substring 'g3' was not found in str2."<<endl;
+   return 0;
+}
+
+-----------------------------------------------------------------------------------------------
+
+//find_first_of() part II
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main( ) 
+{
+   //searching a string for a substring as specified by a C-string
+   string str3("Testing 456...Testing 456...789");
+   cout<<"str3 string is: "<<str3<<endl;
+   basic_string <char>::size_type index5, index6;
+   static const basic_string <char>::size_type npos = -1;
+
+   const char *cstr2 = "t6";
+   index5 = str3.find_first_of(cstr2);
+   cout<<"Operation: str3.find_first_of(cstr2)"<<endl;
+   if(index5 != npos)
+      cout<<"The index of the 1st occurrence of an"
+          <<"element\nof 't6' in str3 after the 0th "
+          <<"position is: "<<unsigned int(index5)<<endl;
+   else
+      cout<<"Elements of the substring 't6' were not\n"
+          <<"found in str3 after the 0th position."<<endl;
+
+   const char *cstr3 = "t68";
+   index6 = str3.find_first_of(cstr3, index5 + 1, 2);
+	cout<<"\nOperation: str3.find_first_of(cstr3, index5 + 1, 2)"<<endl;
+   if(index6 != npos)
+      cout<<"The index of the second occurrence of an"
+          <<"element\nof 't68' in str3 after the 0th "
+          <<"position is: "<<unsigned int(index6)<<endl;
+   else
+      cout<<"Elements of the substring 't68' were not\n"
+          <<"found in str3 after the first occurrence."<<endl;
+cout<<endl;
+
+//------------------------------------------------------------
+   //searching a string for a substring as specified by a string
+   string str4("find_first_of() and find_first_of()");
+   cout<<"str4 string is: "<<str4<<endl;
+   basic_string <char>::size_type index7, index8;
+
+   string str5("dfz");
+   index7 = str5.find_first_of(str5, 3);
+   cout<<"Operation: str5.find_first_of(str5, 3)"<<endl;
+   if(index7 != npos)
+      cout<<"The index of the 1st occurrence of an "
+           <<"element\nof 'dfz' in str4 after the 3rd "
+           <<"position is: "<<unsigned int(index7)<<endl;
+   else
+      cout<<"Elements of the substring 'dfz' were not\n"
+           <<"found in str4 after the 3rd position."<<endl;
+
+   string str6("fo");
+   index8 = str4.find_first_of(str6);
+   cout<<"\nOperation: str4.find_first_of(str6)"<<endl;
+   if(index8 != npos)
+      cout<<"The index of the 1st occurrence of an "
+           <<"element\nof 'fo' in str4 after the 0th "
+           <<"position is: "<<unsigned int(index8)<<endl;
+   else
+      cout<<"Elements of the substring 'fo' were not\n"
+           <<"found in str4 after the 0th position."<<endl;
+    return 0;
+}
+
+----------------------------------------USING G++----------------------------------------------------
+
+//**********string.cpp**************
+//append()
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+//appending a C-string to a string
+string str1("Playing ");
+const char *str2 = "with a string";
+
+cout<<"str1 is: "<<str1<<endl;
+cout<<"str2, C string is: "<<str2<<endl;
+str1.append(str2);
+cout<<"Operation: str1.append(str2)"<<endl;
+cout<<"Appending str2 to str1: "<<str1<<endl;
+
+//appending part of a C-string to a string
+string str3 ("Replaying ");
+const char *str4 = "the string ";
+
+cout<<"\nstr3 string is: "<<str3<<endl;
+cout<<"str4 C-string is: "<<str4<<endl;
+str3.append(str4, 6);
+cout<<"Operation: str3.append(str4, 6)"<<endl;
+cout<<"Appending part of the str4 to string str3: \n"<<str3<<endl;
+
+//appending part of one string to another
+string str5("Again "), str6("string manipulation");
+
+cout<<"\nstr5 is: "<<str5<<endl;
+cout<<"str6 is: "<<str6<<endl;
+str5.append(str6, 4, 6);
+cout<<"Operation: str5.append(str6, 4, 6)"<<endl;
+cout<<"The appended string is: "<<str5<<endl;
+
+//appending one string to another in two ways,
+//comparing append and operator []
+string str7("First "), str8("Second "), str9("Third ");
+cout<<"\nstr7 is: "<<str7<<"\nstr8 is: "<<str8<<"\nstr9 is: "<<str9<<endl;
+str7.append(str8);
+cout<<"Operation: str7.append(str8)"<<endl;
+cout<<"The appended string str7 is: "<<str7<<endl;
+str7 += str9;
+cout<<"Operation: str7 += str9"<<endl;
+cout<<"The re appended string is: "<<str7<<endl;
+
+//appending characters to a string
+string str10("What string");
+cout<<"\nstr10 string is: "<<str10<<endl;
+str10.append(3, '?');
+cout<<"Operation: str10.append(3, '?')"<<endl;
+cout<<"str10 string appended with ? is: "<<str10<<endl;
+
+//appending a range of one string to another
+string str11("Finally "), str12("comes the END ");
+cout<<"\nstr11 is: "<<str11<<" str12 is: "<<str12<<endl;
+str11.append(str12.begin() + 6, str12.end() - 1);
+cout<<"Operation:\nstr11.append(str12.begin() + 6, str12.end() - 1)"<<endl;
+cout<<"The appended str11 String is: "<<str11<<endl;
+return 0;
+}
+
+====================================================================================================

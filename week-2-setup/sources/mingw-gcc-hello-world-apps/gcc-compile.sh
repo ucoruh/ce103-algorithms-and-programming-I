@@ -1,1 +1,0 @@
-gcc-9 -I. -o Hello.out *.c

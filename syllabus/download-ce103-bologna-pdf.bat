@@ -1,2 +1,0 @@
-curl -o "ce103-algorithms-and-prgramming-I-bologna-tr.pdf" "http://ogrenci.erdogan.edu.tr/BLGNDersBilgiPaketi/PDFTumu?mufDersID=29752&dersGrubuDersID=0&dersID=16075&yilID=null&programID=1221&mufredatID=null&dilID=1"
-curl -o "ce103-algorithms-and-prgramming-I-bologna-en.pdf" "http://ogrenci.erdogan.edu.tr/BLGNDersBilgiPaketi/PDFTumu?mufDersID=29752&dersGrubuDersID=0&dersID=16075&yilID=null&programID=1221&mufredatID=null&dilID=2"

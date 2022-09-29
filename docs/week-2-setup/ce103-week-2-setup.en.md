@@ -68,7 +68,9 @@ Download [DOC](ce103-week-2-setup.en.md_doc.pdf), [SLIDE](ce103-week-2-setup.en.
 
 ## Flowgorithm
 
-http://www.flowgorithm.org/
+- http://www.flowgorithm.org/
+
+- https://github.com/timoteoponce/flowgorithm-examples
 
 ---
 
@@ -493,6 +495,9 @@ Download and install MinGW or LLVM compiler (if you downloded then skip this ste
 MinGW installer (clang)
 
 [Download MinGW-w64 - for 32 and 64 bit Windows from SourceForge.net](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download)
+- If you have problem try github builds
+  -  https://github.com/niXman/mingw-builds-binaries/releases
+    -  https://github.com/niXman/mingw-builds-binaries/releases/download/12.2.0-rt_v10-rev0/x86_64-12.2.0-release-win32-seh-rt_v10-rev0.7z
 
 LLVM installer (gcc / g++)
 

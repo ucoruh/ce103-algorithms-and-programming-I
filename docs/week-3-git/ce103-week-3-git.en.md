@@ -2,16 +2,16 @@
 marp: true
 theme: default
 style: |
-    img[alt~="center"] {
-      display: block;
-      margin: 0 auto;
-    }
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
 _class: lead
 paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
-header: 'CE103 Algorithms and Programming I'
-footer: '![height:50px](http://erdogan.edu.tr/Images/Uploads/MyContents/L_379-20170718142719217230.jpg) RTEU CE103 Week-3'
+header: "CE103 Algorithms and Programming I"
+footer: "![height:50px](http://erdogan.edu.tr/Images/Uploads/MyContents/L_379-20170718142719217230.jpg) RTEU CE103 Week-3"
 title: "CE103 Algorithms and Programming I"
 author: "Author: Asst. Prof. Dr. Uğur CORUH"
 date:
@@ -23,7 +23,7 @@ titlepage-text-color: "000000"
 titlepage-rule-color: "CCCCCC"
 titlepage-rule-height: 4
 logo: "assets/2021-10-19-15-01-36-image.png"
-logo-width: 100 
+logo-width: 100
 page-background:
 page-background-opacity:
 links-as-notes: true
@@ -39,7 +39,8 @@ footer-left: "© Dr. Uğur CORUH"
 footer-center: "License: WTFPL"
 footer-right:
 subparagraph: true
-lang: en-US 
+lang: en-US
+math: mathjax
 ---
 
 <!-- _backgroundColor: aquq -->
@@ -50,9 +51,9 @@ lang: en-US
 
 ## CE103 Algorithms and Programming I
 
-## Week-3
+### Week-3
 
-#### Fall Semester, 2021-2022
+#### Introduction to Source Code Version Management Systems
 
 Download [DOC](ce103-week-3-git.en.md_doc.pdf), [SLIDE](ce103-week-3-git.en.md_slide.pdf), [PPTX](ce103-week-3-git.en.md_slide.pptx)
 
@@ -60,9 +61,41 @@ Download [DOC](ce103-week-3-git.en.md_doc.pdf), [SLIDE](ce103-week-3-git.en.md_s
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 <!-- paginate: true -->
 
-### Introduction to Source Code Management Systems
+#### Outline
+
+- Introduction to Source Code Version Management Systems
+- Features of Source Code Management Systems
+- Why Do We Need Source Code Management Systems
+- Centralized/Distrubuted Version Control Systems
+- Introduction to Git
+- Git Installation and Configuration
+
+---
+
+<style scoped>section{ font-size: 25px; }</style>
+
+#### Outline
+
+- Git Init Repository
+- Git Add Files 
+- Git Commit Changes
+- Git Pull/Fetch Changes from Remote Repo
+- Git Push Local Changes to Remote Repo
+- Git Branching 
+- Git Merging and Conflict Solving
+- Git Rebasing
+- Git Reset
+- Git Logs and Monitoring 
+- Git Decision Tree
+- Git Visualize Logs
+
+---
+
+### Introduction to Source Code Version Management Systems
 
 #### Git, Github, Gitlab, Bitbucket, Maven, SVN, TFS
 
@@ -70,6 +103,8 @@ Source code management (SCM) is used to track modifications to a source code rep
 As software projects grow in lines of code and contributor head count, the costs of communication overhead and management complexity also grow. SCM is a critical tool to alleviate the organizational strain of growing development costs.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Features of Source Code Management Systems
 
@@ -83,11 +118,15 @@ As software projects grow in lines of code and contributor head count, the costs
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Why Do We Need Source Code Management Systems? (1)
 
 We can save the file with a different name if it’s our school project or one-time papers but for a well-equipped software development? Not a chance.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Why Do We Need Source Code Management Systems? (2)
 
@@ -103,11 +142,15 @@ Big projects need a version control system to track the changes and avoid misund
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Why Do We Need Source Code Management Systems? (3)
 
 **Backup and Restore** – Files can be saved at any moment and can be restored from the last saved.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Why Do We Need Source Code Management Systems? (4)
 
@@ -115,11 +158,15 @@ Big projects need a version control system to track the changes and avoid misund
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Why Do We Need Source Code Management Systems? (5)
 
 **Short-Term Undo** – Working with a file and messed it up. We can do a short-term undo to the last known version.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Why Do We Need Source Code Management Systems? (6)
 
@@ -127,11 +174,15 @@ Big projects need a version control system to track the changes and avoid misund
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Why Do We Need Source Code Management Systems? (7)
 
 **Track Changes**– We can track the changes as when anyone is making any change, he can leave a commit message as for why the change was done.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Why Do We Need Source Code Management Systems? (8)
 
@@ -139,11 +190,15 @@ Big projects need a version control system to track the changes and avoid misund
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Why Do We Need Source Code Management Systems? (9)
 
 **Branching and Merging** – You can create a branch of your source code and create the changes. Once the changes are approved, you can merge it with the master branch.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Why Do We Need Source Code Management Systems? (10)
 
@@ -154,11 +209,15 @@ Big projects need a version control system to track the changes and avoid misund
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Centralized Version Control (TFS, Subversion) (1)
 
 The main concept of Centralized Version Control is that it works in a client and server relationship. The repository is located in one place and allows access to multiple clients.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Centralized Version Control (TFS, Subversion) (2)
 
@@ -166,17 +225,23 @@ The main concept of Centralized Version Control is that it works in a client and
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Centralized Version Control (TFS, Subversion) (3)
 
 ![alt:"alt" height:450px center](assets/2021-10-19-20-41-08-image.png)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Centralized Version Control (TFS, Subversion) (4)
 
 It’s very similar to FTP where you have FTP clients which connect to FTP server. Here all the user changes and commits have to pass through the central server. For Ex: Subversion.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Centralized Version Control (TFS, Subversion) (5)
 
@@ -190,11 +255,13 @@ It’s very similar to FTP where you have FTP clients which connect to FTP serve
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Centralized Version Control (TFS, Subversion) (6)
 
 **We do have drawbacks also:**
 
-- It is dependent on the access to the server. 
+- It is dependent on the access to the server.
 
 - It can be slower because every command from the client has to pass the server.
 
@@ -202,11 +269,15 @@ It’s very similar to FTP where you have FTP clients which connect to FTP serve
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Distributed Version Control (Git and Mercurial) (1)
 
 These systems are newer to use. In Distributed Version Control, each user has their own copy of the entire repository as well as the files and history. For Ex: Git and Mercurial
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Distributed Version Control (Git and Mercurial) (2)
 
@@ -214,11 +285,15 @@ These systems are newer to use. In Distributed Version Control, each user has th
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Distributed Version Control (Git and Mercurial) (3)
 
 ![alt:"alt" height:450px center](assets/2021-10-19-20-45-13-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Distributed Version Control (Git and Mercurial) (4)
 
@@ -234,11 +309,15 @@ The benefits of distributed version control are:
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### List of Source Code Version Management Tools (1)
 
 ![alt:"alt" height:450px center](assets/2021-10-19-20-55-30-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### List of Source Code Version Management Tools (2)
 
@@ -254,6 +333,8 @@ The benefits of distributed version control are:
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### List of Source Code Version Management Tools (3)
 
 - Apache Allura
@@ -268,11 +349,15 @@ The benefits of distributed version control are:
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### GIT (Distributed Source Code Management) (1)
 
 ![alt:"alt" height:200px center](assets/2021-10-19-20-52-48-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### GIT (Distributed Source Code Management) (2)
 
@@ -280,17 +365,23 @@ The benefits of distributed version control are:
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### GIT (Distributed Source Code Management) (3)
 
 ![alt:"alt" height:450px center](assets/2021-10-19-20-54-22-image.png)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### GIT (Distributed Source Code Management) (4)
 
 ![alt:"alt" height:450px center](assets/2021-10-19-20-51-43-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### GIT (Distributed Source Code Management) (5)
 
@@ -305,6 +396,8 @@ The benefits of distributed version control are:
 - “Push” your changes to your master branch
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### GIT (Distributed Source Code Management) (6)
 
@@ -322,6 +415,8 @@ The benefits of distributed version control are:
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### GIT (Distributed Source Code Management) (7)
 
 ##### Some of The Basic Operations in GIT are
@@ -338,6 +433,8 @@ The benefits of distributed version control are:
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### GIT (Distributed Source Code Management) (8)
 
 ##### Some of The Basic Operations in GIT are
@@ -345,6 +442,8 @@ The benefits of distributed version control are:
 ![alt:"alt" height:450px center](assets/2021-10-19-21-10-40-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### GIT (Distributed Source Code Management) (9)
 
@@ -358,6 +457,8 @@ The benefits of distributed version control are:
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### GIT (Distributed Source Code Management) (10)
 
 ##### Some of The Basic Operations in GIT are
@@ -365,6 +466,8 @@ The benefits of distributed version control are:
 ![alt:"alt" height:450px center](assets/2021-10-19-21-11-35-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### GIT (Distributed Source Code Management) (8)
 
@@ -374,6 +477,8 @@ The benefits of distributed version control are:
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### GIT (Distributed Source Code Management) (9)
 
 ##### A brief idea about how these operations work with the Git repositories (2)
@@ -382,7 +487,7 @@ The benefits of distributed version control are:
 
 ---
 
----
+<style scoped>section{ font-size: 25px; }</style>
 
 #### GIT (Distributed Source Code Management) (10)
 
@@ -396,6 +501,8 @@ For more detailed cheetsheat please check the following interactive map
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Installation of GIT (1)
 
 Check Installation Already Completed
@@ -408,6 +515,8 @@ git --version
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Installation of GIT (2)
 
 If your console gives error about git command follow the steps in the link
@@ -418,51 +527,69 @@ In this link you will should download following setup according to your operatin
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Installation of GIT (3)
 
 ##### GIT Setup Files
 
-- [Download](http://git-scm.com/download/mac) [git](http://git-scm.com/download/mac) [for](http://git-scm.com/download/mac) [OSX](http://git-scm.com/download/mac)
-
-- [Download](http://msysgit.github.io/) [git](http://msysgit.github.io/) [for](http://msysgit.github.io/) [Windows](http://msysgit.github.io/)
-
-- [Download](http://git-scm.com/book/en/Getting-Started-Installing-Git) [git](http://git-scm.com/book/en/Getting-Started-Installing-Git) [for](http://git-scm.com/book/en/Getting-Started-Installing-Git) [Linux](http://git-scm.com/book/en/Getting-Started-Installing-Git)
+- [Download git for OSX](http://git-scm.com/download/mac)
+- [Download git for Windows](http://msysgit.github.io/)
+- [Download git for Linux](http://git-scm.com/book/en/Getting-Started-Installing-Git)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Installation of GIT (4)
 
-Download and install GIT from the following links (both have same github release path)
+- Download and install GIT from the following links (both have same github release path)
 
 [Git - Downloads](https://git-scm.com/downloads)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Installation of GIT (5)
 
-After running setup follow the steps below
+- After running setup follow the steps below
 
 ![alt:"alt" height:450px center](assets/2021-10-19-22-05-36-image.png)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Installation of GIT (6)
+
+- Select the following configurations
 
 ![alt:"alt" height:450px center](assets/2021-10-19-22-05-41-image.png)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Installation of GIT (7)
+
+- You can select to use git from Git Bash Only, Also you can use it from command-line by selecting second option. Third option override some Windows executable so your operating system can be affected from this selection. 
 
 ![alt:"alt" height:450px center](assets/2021-10-19-22-05-55-image.png)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Installation of GIT (8)
+
+- Git Credential Manager will be use to configure your remote connection.
 
 ![alt:"alt" height:450px center](assets/2021-10-19-22-06-05-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ##### Installation of GIT (9)
 
@@ -470,37 +597,62 @@ After running setup follow the steps below
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Installation of GIT (10)
+
+- MSYS2 MinTTY provide better visual and colorful console outputs
 
 ![alt:"alt" height:450px center](assets/2021-10-19-22-06-18-image.png)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Installation of GIT Extension (Windows) (1)
 
-You can install Git GUI from https://git-scm.com/downloads/guis
-I prefer to use git extension https://gitextensions.github.io/ and https://tortoisegit.org/
+- Git user interface can be installed by the following applications
+    - You can install Git GUI from https://git-scm.com/downloads/guis
+    - I prefer to use git extension https://gitextensions.github.io/ 
+    - and https://tortoisegit.org/ together
 
-Also Download KDiff3 [KDiff3 - Browse Files at SourceForge.net](https://sourceforge.net/projects/kdiff3/files/)
+- Also Download KDiff3 [KDiff3 - Browse Files at SourceForge.net](https://sourceforge.net/projects/kdiff3/files/)
 
-These extensions provide GUI for git operations to make process easier.
+- These extensions provide GUI for git operations to make process easier.
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Configuration of GIT Extension (Windows) (1)
+
+- Git extension provides you missing setups or wrong configurations. If everyting is green that mean everything should work perfectly.
 
 ![alt:"alt" height:450px center](assets/2021-10-19-23-08-51-image.png)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Configuration of GIT Extension (Windows) (2)
 
-If you install git everything should be green and this configuration is stored on  .gitconfig on your home `C:/Windows/Users/<user>/.gitconfig`
+- If you install git everything should be green and this configuration is stored on .gitconfig on your home `C:/Windows/Users/<user>/.gitconfig`
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Configuration of GIT Extension (Windows) (3)
 
+- You can use the following template and fix your settings. Git GUI edit this settings. But you can also edit them manually. 
+
+---
+
+<style scoped>section{ font-size: 25px; }</style>
+
+##### Configuration of GIT Extension (Windows) (3)
+
+**C:/Windows/Users/<user>/.gitconfig**
 ```batch
 [core]
     editor = \"C:/Program Files (x86)/GitExtensions/GitExtensions.exe\" fileeditor
@@ -542,19 +694,23 @@ If you install git everything should be green and this configuration is stored o
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Configuration of GIT Extension (Windows) (4)
 
-Also in extension you can see similar settings
+- Also in extension you can see similar settings
 
 ![alt:"alt" height:450px center](assets/2021-10-25-18-38-57-image.png)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Configuration of GIT Extension (Windows) (5)
 
 Samples
 
-MergeTool 
+MergeTool
 
 ```textile
 tortoisemerge
@@ -573,6 +729,8 @@ Mergetool command
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ##### Configuration of GIT Extension (Windows) (6)
 
@@ -596,27 +754,37 @@ Difftool command
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Configuration of GIT Extension (Windows) (7)
 
-If you see something as merge and diff tool is not configured, follow the similar settings above on your computer. If you installed kdiff3, tortoisegit and extension you will have same diff and merge tools
 
-This topic also help you 
+- If you see something as merge and diff tool is not configured, follow the similar settings above on your computer. If you installed kdiff3, tortoisegit and extension you will have same diff and merge tools
 
-[Git: How can I configure KDiff3 as a merge tool and diff tool? - Stack Overflow](https://stackoverflow.com/questions/33308482/git-how-can-i-configure-kdiff3-as-a-merge-tool-and-diff-tool)
+- This topic also help you
+    - [Git: How can I configure KDiff3 as a merge tool and diff tool? - Stack Overflow](https://stackoverflow.com/questions/33308482/git-how-can-i-configure-kdiff3-as-a-merge-tool-and-diff-tool)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Configuration of GIT Extension (Windows) (8)
+
+- Merge, Diff and Shell Tool Configuration Missing.
 
 ![alt:"alt" height:450px center](assets/2021-10-25-18-23-19-image.png)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Configuration of GIT Extension (Windows) (9)
 
-Open Git->Config, in your settings you will see path to mergetool and difftool will be empty fill settings like that below find executables in your computer and copy paths to here.
+- Open Git->Config, in your settings you will see path to mergetool and difftool will be empty fill settings like that below find executables in your computer and copy paths to here.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ##### Configuration of GIT Extension (Windows) (10)
 
@@ -624,23 +792,27 @@ Open Git->Config, in your settings you will see path to mergetool and difftool w
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Configuration of GIT Extension (Windows) (11)
 
-Also if we want to change and use different diff and merge tool then we can do this with gitbash console as below
+- Also if we want to change and use different diff and merge tool then we can do this with gitbash console as below
 
 ```batch
 C:\Program Files\TortoiseGit\bin
 ```
 
-Find TortoiseGitIDiff.exe and TortoiseGitMerge.exe
+- Find TortoiseGitIDiff.exe and TortoiseGitMerge.exe
 
 ![alt:"alt" height:150px center](assets/2021-10-25-18-24-56-image.png)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Configuration of GIT Extension (Windows) (12)
 
-Copy path of this applications
+- Copy path of this applications
 
 ```batch
 C:\Program Files\TortoiseGit\bin\TortoiseGitMerge.exe
@@ -649,9 +821,11 @@ C:\Program Files\TortoiseGit\bin\TortoiseGitIDiff.exe
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ##### Configuration of GIT Extension (Windows) (13)
 
-open a gitbash console and run following commands 
+- Open a gitbash console and run following commands
 
 ```batch
 git config --global merge.tool TortoiseGitMerge
@@ -667,6 +841,8 @@ This updates will be stored on .gitconfig
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Using the GIT Extension (1)
 
 right click in the git folder and use Git Extension menu for operations.
@@ -676,6 +852,8 @@ for sample commit click "Commit"
 ![alt:"alt" height:450px center](assets/2021-10-19-23-10-32-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Using the GIT Extension (1)
 
@@ -687,6 +865,8 @@ finally click commit to local. You can also commit&push it to remote repository.
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### GIT Installation Completed..
 
 ![alt:"alt" height:150px center](assets/2021-10-20-00-04-47-image.png)
@@ -694,6 +874,8 @@ finally click commit to local. You can also commit&push it to remote repository.
 ![alt:"alt" height:250px center](assets/2021-10-20-00-04-54-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Installation of gig (git ignore creator) (1)
 
@@ -703,7 +885,7 @@ Requirements
 
 - Internet connection
 
-https://github.com/sloria/gig 
+https://github.com/sloria/gig
 
 ```batch
 pip install -U gig
@@ -711,11 +893,15 @@ pip install -U gig
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Installation of gig (git ignore creator) (2)
 
 ![alt:"alt" height:450px center](assets/2021-10-20-00-06-35-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Installation of gig (git ignore creator) (3)
 
@@ -724,6 +910,8 @@ gig --version
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Usage of gig (1)
 
@@ -736,15 +924,19 @@ gig list -global
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Usage of gig (2)
 
-Sample gitignore for C Java and Visual Studio 
+Sample gitignore for C Java and Visual Studio
 
 ```bat
 gig C Java VisualStudio > .gitignore
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Usage of gig (3)
 
@@ -756,6 +948,8 @@ There is a portal for this also by Toptal
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Usage of gig (4)
 
 for samples you can check the following links.
@@ -765,6 +959,8 @@ https://github.com/github/gitignore
 https://dev.to/shihanng/gig-a-gitignore-generator-opc
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Configuration of GIT (1)
 
@@ -781,11 +977,15 @@ git config - - global user.email "<your email>"
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Configuration of GIT (2)
 
 ![alt:"alt" height:250px center](assets/2021-10-20-00-15-38-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Configuration of GIT (3)
 
@@ -794,6 +994,8 @@ git configuration files are located on the user folder
 ![alt:"alt" height:450px center](assets/2021-10-20-00-16-06-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Configuration of GIT (4)
 
@@ -807,6 +1009,8 @@ git config --list
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Using .gitignore files with git-extension (1)
 
 with gitignore file
@@ -814,6 +1018,8 @@ with gitignore file
 ![alt:"alt" height:450px center](assets/2021-10-20-00-51-16-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Using .gitignore files with git-extension (2)
 
@@ -823,11 +1029,15 @@ without gitignore file (just move to another location)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Github Create Repo
 
 ![alt:"alt" height:450px center](assets/2021-10-20-00-52-14-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Initilization of Repo (not existing in github)
 
@@ -843,31 +1053,39 @@ git init
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### git init
 
-![alt:"alt" height:450px center](assets/2021-10-20-00-56-52-image.png)
+![alt:"alt" height:350px center](assets/2021-10-20-00-56-52-image.png)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (1)
 
-If you enter following command in the git folder you will see nothing
+- If you enter following command in the git folder you will see nothing
 
 ```batch
 git remote -v
 ```
 
-That mean this repository do not have a remote upstream repository such as a github or bitbucket repo. 
+- That mean this repository do not have a remote upstream repository such as a github or bitbucket repo.
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (2)
 
-Open the github and bitbucket repository and copy project path from 
+Open the github and bitbucket repository and copy project path from
 
 ![alt:"alt" height:450px center](assets/2021-10-22-02-12-06-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (3)
 
@@ -879,6 +1097,8 @@ https://github.com/ucoruh/ce103-sample-text.git
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (4)
 
 copy link and use with following command
@@ -888,6 +1108,8 @@ git remote add origin https://github.com/ucoruh/ce103-sample-text.git
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (5)
 
@@ -901,19 +1123,25 @@ origin  https://github.com/ucoruh/ce103-sample-text.git (push)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (6)
 
-you can check the following sample 
+you can check the following sample
 
 [How to Add a New Remote to your Git Repo | Assembla Help Center](https://articles.assembla.com/en/articles/1136998-how-to-add-a-new-remote-to-your-git-repo)
 
 ---
 
-### *Now you can push your local changes to remote repository*
+<style scoped>section{ font-size: 25px; }</style>
 
-### *If you see a repository on Github then you can download with following operation*
+### _Now you can push your local changes to remote repository_
+
+### _If you see a repository on Github then you can download with following operation_
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Checkout a Repository (1)
 
@@ -925,6 +1153,8 @@ git clone /path/to/repository
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Checkout a Repository (2)
 
 Sample clone command
@@ -934,6 +1164,8 @@ git clone https://github.com/ucoruh/ce103-sample-text.git
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Checkout a Repository (3)
 
@@ -955,6 +1187,8 @@ git status
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Checking Repository Status (2)
 
 #### git status
@@ -962,6 +1196,8 @@ git status
 ![alt:"alt" height:450px center](assets/2021-10-20-00-57-52-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Adding Files to Index (1)
 
@@ -978,6 +1214,8 @@ git add *
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Adding Files to Index (1)
 
 #### git add
@@ -988,35 +1226,40 @@ Created two more files edureka3.txt and edureka4.txt. Let us add the files using
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Commit Changes (1)
 
 #### git commit
 
-•It refers to recording snapshots of the repository at a given time. Committed
-snapshots will never change unless done explicitly. 
+- It refers to recording snapshots of the repository at a given time. Committed
+snapshots will never change unless done explicitly.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Commit Changes (2)
 
 #### git commit
 
-Let me explain how commit
-works with the diagram below
+- Let me explain how commit works with the diagram below
 
 ![alt:"alt" height:230px center](assets/2021-10-20-01-00-44-image.png)
 
-Here, C1 is the initial commit, i.e. the snapshot of the first change from which
+- Here, C1 is the initial commit, i.e. the snapshot of the first change from which
 another snapshot is created with changes named C2. Note that the master points
 to the latest commit. Now, when I commit again, another snapshot C3 is created and now the master points to C3 instead of C2.
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Commit Changes (3)
 
 #### git commit
 
-Commands:
+- Commands:
 
 ```batch
 git commit -m "<message>"
@@ -1024,20 +1267,23 @@ git commit -m "<message>"
 
 ![alt:"alt" height:300px center](assets/2021-10-20-01-01-42-image.png)
 
-Now, if you want to commit a snapshot of all the changes in the working directory at
+- Now, if you want to commit a snapshot of all the changes in the working directory at
 once, you can use the command below
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Commit Changes (4)
 
 #### git commit
 
-Please check writing good commit messages article below
-
-[How to write a good commit message - DEV Community](https://dev.to/chrissiemhrk/git-commit-message-5e21)
+- Please check writing good commit messages article below
+    - [How to write a good commit message - DEV Community](https://dev.to/chrissiemhrk/git-commit-message-5e21)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Writing Good Commit Messages (1)
 
@@ -1050,6 +1296,8 @@ footer (optional)
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Writing Good Commit Messages (2)
 
@@ -1065,6 +1313,8 @@ footer (optional)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Writing Good Commit Messages (3)
 
 ##### 2. Subject
@@ -1072,6 +1322,8 @@ footer (optional)
 This contains a short description of the changes made. It shouldn't be greater than 50 characters, should begin with a capital letter and written in the imperative eg. Add instead of Added or Adds.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Writing Good Commit Messages (4)
 
@@ -1083,13 +1335,17 @@ A blank line between the body and the subject is required and each line should h
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Writing Good Commit Messages (5)
 
 ##### 4.Footer
 
 The footer is also optional and mainly used when you are using an issue tracker to reference the issue ID.
 
-----
+---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 #### Writing Good Commit Messages (6)
 
@@ -1127,17 +1383,35 @@ See also: #456, #789
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 #### Writing Good Commit Messages (7)
 
+- You can edit last commit with the following command 
+
 ```batch
-git commit -a
+git commit -a -m "New commit message"
+```
+
+```batch
+git commit --amend -m "New commit message"
 ```
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
+#### Writing Good Commit Messages (7)
+
+- Edit last commit output
+
+<style scoped>section{ font-size: 25px; }</style>
+
 ![alt:"alt" height:450px center](assets/2021-10-20-01-02-26-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Add Files to Index (1)
 
@@ -1151,11 +1425,15 @@ git add edureka5.txt
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Add Files to Index (2)
 
 ![alt:"alt" height:450px center](assets/2021-10-20-01-03-52-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Add Files to Index (3)
 
@@ -1163,11 +1441,15 @@ I have added edureka5.txt to the index explicitly but not edureka6.txt and made 
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Add Files to Index (4)
 
-> This command will commit a snapshot of all changes in the working directory but only includes modifications to tracked files i.e. the files that have been added with git add at some point in their history. Hence, edureka6.txt was not committed because it was not added to the index yet. But changes in all previous files present in the repository were committed, i.e. edureka1.txt, edureka2.txt, edureka3.txt, edureka4.txt and edureka5.txt.   Now I have made my desired commits in my local repository
+> This command will commit a snapshot of all changes in the working directory but only includes modifications to tracked files i.e. the files that have been added with git add at some point in their history. Hence, edureka6.txt was not committed because it was not added to the index yet. But changes in all previous files present in the repository were committed, i.e. edureka1.txt, edureka2.txt, edureka3.txt, edureka4.txt and edureka5.txt. Now I have made my desired commits in my local repository
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Add Files to Index (5)
 
@@ -1175,11 +1457,15 @@ your local repository consists of three "trees" maintained by git. the first one
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Add Files to Index (6)
 
 ![alt:"alt" height:450px center](assets/2021-10-20-01-32-48-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Update local repo before sending (1)
 
@@ -1189,6 +1475,8 @@ If we have a remote Git branch, for example a branch on Github, it can happen th
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Update local repo before sending (2)
 
 #### Fetching
@@ -1196,6 +1484,8 @@ If we have a remote Git branch, for example a branch on Github, it can happen th
 We can get these changes locally, by performing a `git fetch` on the remote branch! It doesn't affect your local branch in any way: a `fetch` simply downloads new data.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Update local repo before sending (3)
 
@@ -1205,6 +1495,8 @@ We can get these changes locally, by performing a `git fetch` on the remote bran
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Update local repo before sending (4)
 
 #### Fetching
@@ -1212,6 +1504,8 @@ We can get these changes locally, by performing a `git fetch` on the remote bran
 We can now see all the changes that have been made since we last pushed! We can decide what we want to do with the new data now that we have it locally.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Update local repo before sending (5)
 
@@ -1221,6 +1515,8 @@ Although a `git fetch` is very useful in order to get the remote information of 
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Update local repo before sending (6)
 
 #### Pulling
@@ -1229,6 +1525,8 @@ Although a `git fetch` is very useful in order to get the remote information of 
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Update local repo before sending (7)
 
 #### Pulling
@@ -1236,6 +1534,8 @@ Although a `git fetch` is very useful in order to get the remote information of 
 Awesome, we're now perfectly in sync with the remote branch and have all the latest changes!
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Update local repo before sending (8)
 
@@ -1247,6 +1547,8 @@ Note that before you affect changes to the central repository you should always 
 changes from the central repository to your local repository to get updated with the work of all the collaborators that have been contributing in the central repository. For that we will use the pull command.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Update local repo before sending (9)
 
@@ -1262,6 +1564,8 @@ git remote add origin <link of your central repository>
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Update local repo before sending (10)
 
 #### Pulling / `git pull`
@@ -1271,6 +1575,8 @@ git remote add origin <link of your central repository>
 > Now that my origin is set
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Update local repo before sending (11)
 
@@ -1284,6 +1590,8 @@ git pull origin master
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Update local repo before sending (12)
 
 #### Pulling / `git pull`
@@ -1294,6 +1602,8 @@ This command will copy all the files from the master branch of remote repository
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Update local repo before sending (13)
 
 #### Pulling / `git pull`
@@ -1301,6 +1611,8 @@ This command will copy all the files from the master branch of remote repository
 > Since my local repository was already updated with files from master branch, hence the message is Already up-to-date. Refer to the screen shot above
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Update local repo before sending (14)
 
@@ -1314,6 +1626,8 @@ git pull origin <branch-name>
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Update local repo before sending (15)
 
 #### Pulling / `git pull`
@@ -1321,6 +1635,8 @@ git pull origin <branch-name>
 > Your local Git repository is now updated with all the recent changes. It is time you make changes in the central repository by using the push command.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Send Changes to Remote Repo (1)
 
@@ -1330,6 +1646,8 @@ git pull origin <branch-name>
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Send Changes to Remote Repo (2)
 
 #### git push
@@ -1338,13 +1656,17 @@ git pull origin <branch-name>
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Send Changes to Remote Repo (3)
 
 #### git push
 
-- The use of git push is to publish your local changes to a central repository. After you’ve accumulated several local commits and are ready to share them with the rest of the team, 
+- The use of git push is to publish your local changes to a central repository. After you’ve accumulated several local commits and are ready to share them with the rest of the team,
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Send Changes to Remote Repo (4)
 
@@ -1353,10 +1675,12 @@ git pull origin <branch-name>
 you can then push them to the central repository by using the following command
 
 ```batch
-git push <remote> 
+git push <remote>
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Send Changes to Remote Repo (5)
 
@@ -1366,6 +1690,8 @@ git push <remote>
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Send Changes to Remote Repo (6)
 
 #### git push
@@ -1373,6 +1699,8 @@ git push <remote>
 - This pushes the changes from the local repository to the remote repository along with all the necessary commits and internal objects. This creates a local branch in the destination repository
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Send Changes to Remote Repo (7)
 
@@ -1382,6 +1710,8 @@ The below files are the files which we have already committed previously in the 
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Send Changes to Remote Repo (8)
 
 #### git push
@@ -1389,6 +1719,8 @@ The below files are the files which we have already committed previously in the 
 I will use the command `git push origin master` to reflect these files in the master branch of my central repository.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Send Changes to Remote Repo (9)
 
@@ -1398,6 +1730,8 @@ I will use the command `git push origin master` to reflect these files in the ma
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Send Changes to Remote Repo (10)
 
 #### git push
@@ -1405,6 +1739,8 @@ I will use the command `git push origin master` to reflect these files in the ma
 ![alt:"alt" height:300px center](assets/2021-10-20-01-12-33-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Send Changes to Remote Repo (11)
 
@@ -1414,14 +1750,18 @@ I will use the command `git push origin master` to reflect these files in the ma
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Send Changes to Remote Repo (12)
 
 #### git push
 
-> To prevent overwriting, Git does not allow push when it results in a non-fast forward merge in the 
+> To prevent overwriting, Git does not allow push when it results in a non-fast forward merge in the
 > destination repository.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Send Changes to Remote Repo (13)
 
@@ -1429,7 +1769,7 @@ I will use the command `git push origin master` to reflect these files in the ma
 
 > A non-fast forward merge means an upstream merge i.e. merging with ancestor or parent branches from a child branch
 > To enable such merge, use the command below
-> 
+>
 > ```batch
 > git push <remote> -force
 > ```
@@ -1439,6 +1779,8 @@ forward merge
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (1)
 
 #### git branch
@@ -1447,17 +1789,21 @@ Branches in Git are nothing but pointers to a specific commit. Git generally pre
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (2)
 
 #### git branch
 
-There are basically two types of branches viz. 
+There are basically two types of branches viz.
 
 - local branches
 
 - remote tracking branches.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (3)
 
@@ -1469,6 +1815,8 @@ They link your work from the local repository to the work on central repository.
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (4)
 
 #### git branch
@@ -1478,6 +1826,8 @@ They automatically detect which remote branches to get changes from, when you us
 ![alt:"alt" height:350px center](assets/2021-10-20-01-26-37-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (5)
 
@@ -1493,6 +1843,8 @@ The one mantra that you should always be chanting while branching is “branch e
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (6)
 
 #### List Local Branches
@@ -1502,6 +1854,8 @@ git branch -l
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (7)
 
@@ -1513,6 +1867,8 @@ git branch -r
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (8)
 
 ## List All Local and Remote Branches
@@ -1522,6 +1878,8 @@ git branch -a
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (9)
 
@@ -1537,6 +1895,8 @@ git remote update --prune
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (10)
 
 #### Create Branch
@@ -1551,6 +1911,8 @@ The diagram below shows the workflow when a new branch is created. When we creat
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (11)
 
 #### Create Branch
@@ -1558,6 +1920,8 @@ The diagram below shows the workflow when a new branch is created. When we creat
 ![alt:"alt" height:350px center](assets/2021-10-20-01-29-13-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (12)
 
@@ -1574,6 +1938,8 @@ git checkout -b feature_x
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (13)
 
 #### Change Branch
@@ -1586,6 +1952,8 @@ git checkout master
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (14)
 
 #### Change Branch
@@ -1595,6 +1963,8 @@ git checkout master
 > Branching includes the work of a particular commit along with all parent commits. As you can see in the diagram above, the newBranch has detached itself from the master and hence will create a different path
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (15)
 
@@ -1607,6 +1977,8 @@ git branch -d feature_x
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (16)
 
@@ -1622,6 +1994,8 @@ git push origin --delete feature_x
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (17)
 
 #### Push Specific Branch to Remote
@@ -1634,6 +2008,8 @@ git push origin <branch>
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (18)
 
@@ -1655,6 +2031,8 @@ git merge <branch>
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (19)
 
 #### Update & Merge (Conflicts)
@@ -1675,6 +2053,8 @@ git diff <source_branch> <target_branch>
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (20)
 
 #### Update & Merge (Conflicts)
@@ -1683,15 +2063,19 @@ There are two types of merges Git can perform: a **fast-forward**, or a **no-fas
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (21)
 
 #### Update & Merge (Conflicts)
 
 ##### Fast-forward (`--ff`)
 
-A **fast-forward merge** can happen when the current branch has no extra commits compared to the branch we’re merging. Git is... *lazy* and will first try to perform the easiest option: the fast-forward! This type of merge doesn’t create a new commit, but rather merges the commit(s) on the branch we’re merging right in the current branch
+A **fast-forward merge** can happen when the current branch has no extra commits compared to the branch we’re merging. Git is... _lazy_ and will first try to perform the easiest option: the fast-forward! This type of merge doesn’t create a new commit, but rather merges the commit(s) on the branch we’re merging right in the current branch
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (22)
 
@@ -1703,6 +2087,8 @@ A **fast-forward merge** can happen when the current branch has no extra commits
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (23)
 
 #### Update & Merge (Conflicts)
@@ -1711,15 +2097,19 @@ Perfect! We now have all the changes that were made on the `dev` branch availabl
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (24)
 
 #### Update & Merge (Conflicts)
 
 ##### No-fast-foward (`--no-ff`)
 
-It's great if your current branch doesn't have any extra commits compared to the branch that you want to merge, but unfortunately that's rarely the case! If we committed changes on the current branch that the branch we want to merge doesn't have, git will perform a *no-fast-forward* merge.
+It's great if your current branch doesn't have any extra commits compared to the branch that you want to merge, but unfortunately that's rarely the case! If we committed changes on the current branch that the branch we want to merge doesn't have, git will perform a _no-fast-forward_ merge.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (25)
 
@@ -1727,9 +2117,11 @@ It's great if your current branch doesn't have any extra commits compared to the
 
 ##### No-fast-foward (`--no-ff`)
 
-With a no-fast-forward merge, Git creates a new *merging commit* on the active branch. The commit's parent commits point to both the active branch and the branch that we want to merge!
+With a no-fast-forward merge, Git creates a new _merging commit_ on the active branch. The commit's parent commits point to both the active branch and the branch that we want to merge!
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (26)
 
@@ -1741,23 +2133,29 @@ With a no-fast-forward merge, Git creates a new *merging commit* on the active b
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (27)
 
 #### Update & Merge (Conflicts)
 
 ##### No-fast-foward (`--no-ff`)
 
-No big deal, a perfect merge!  The `master` branch now contains all the changes that we've made on the `dev` branch.
+No big deal, a perfect merge! The `master` branch now contains all the changes that we've made on the `dev` branch.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (28)
 
 ### Merge Conflicts
 
-Although Git is good at deciding how to merge branches and add changes to files, it cannot always make this decision all by itself  This can happen when the two branches we're trying to merge have changes on the same line in the same file, or if one branch deleted a file that another branch modified, and so on.
+Although Git is good at deciding how to merge branches and add changes to files, it cannot always make this decision all by itself This can happen when the two branches we're trying to merge have changes on the same line in the same file, or if one branch deleted a file that another branch modified, and so on.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (29)
 
@@ -1766,6 +2164,8 @@ Although Git is good at deciding how to merge branches and add changes to files,
 In that case, Git will ask you to help decide which of the two options we want to keep! Let's say that on both branches, we edited the first line in the `README.md`.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (30)
 
@@ -1777,6 +2177,8 @@ If we want to merge `dev` into `master`, this will end up in a merge conflict: w
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (31)
 
 ### Merge Conflicts
@@ -1787,13 +2189,17 @@ When trying to merge the branches, Git will show you where the conflict happens.
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (32)
 
 ### Merge Conflicts
 
-Although merge conflicts are often quite annoying, it makes total sense: Git shouldn't just *assume* which change we want to keep
+Although merge conflicts are often quite annoying, it makes total sense: Git shouldn't just _assume_ which change we want to keep
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (33)
 
@@ -1820,6 +2226,8 @@ git commit –m 'Initial list for finance team'
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (34)
 
 #### Sample Conflict -1
@@ -1831,6 +2239,8 @@ git checkout –b marketing
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (35)
 
@@ -1854,6 +2264,8 @@ git checkout master
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (36)
 
 #### Sample Conflict -1
@@ -1867,6 +2279,8 @@ git checkout marketing
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (37)
 
@@ -1887,6 +2301,8 @@ git merge master
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (38)
 
 #### Sample Conflict -1
@@ -1898,6 +2314,8 @@ Automatic merge failed; fix conflicts and then commit the result.
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (39)
 
@@ -1924,6 +2342,8 @@ Marketing team
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (40)
 
 #### Sample Conflict -1
@@ -1935,12 +2355,14 @@ this is the branch that I have currently checked out (i.e. HEAD).
 |||||||
 The common ancestor version.
 =======
-Changes made on the branch that is being merged in. This is often a 
+Changes made on the branch that is being merged in. This is often a
 feature/topic branch.
 >>>>>>>
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (41)
 
@@ -1951,6 +2373,8 @@ feature/topic branch.
 - add and commit
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (42)
 
@@ -1966,6 +2390,8 @@ git commit             # commit the merge
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (43)
 
 #### Sample Conflict -1
@@ -1979,6 +2405,8 @@ git commit             # commit the merge
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (44)
 
@@ -1997,6 +2425,8 @@ error: Entry 'filename.c' not uptodate. Cannot merge.
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (45)
 
@@ -2017,6 +2447,8 @@ Automatic merge failed; fix conflicts and then commit the result.
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Branching (46)
 
@@ -2039,6 +2471,8 @@ git commit -m "using theirs"
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Branching (47)
 
 #### Sample Conflict -2
@@ -2055,6 +2489,8 @@ Already up-to-date.
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Tagging
 
 it's recommended to create tags for software releases. this is a known concept,
@@ -2069,6 +2505,8 @@ reference with your tag. You can get the commit id by looking at the...
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Log (1)
 
 in its simplest form, you can study repository history using.. git log
@@ -2082,6 +2520,8 @@ git log --author=bob
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Log (2)
 
 To see a very compressed log where each commit is one line:
@@ -2091,6 +2531,8 @@ git log --pretty=oneline
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Log (3)
 
@@ -2102,9 +2544,11 @@ git log --graph --oneline --decorate --all
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Log (4)
 
-See only which files have changed: 
+See only which files have changed:
 
 ```batch
 git log --name-status
@@ -2112,15 +2556,19 @@ git log --name-status
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Log (5)
 
-These are just a few of the possible parameters you can use. For more, see 
+These are just a few of the possible parameters you can use. For more, see
 
 ```batch
 git log --help
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Replace Local Changes (1)
 
@@ -2136,6 +2584,8 @@ Changes already added to the index, as well as new files, will be kept.
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Replace Local Changes (2)
 
 if you use dot (.) then all local changes will be rollbacked.
@@ -2145,6 +2595,8 @@ if you use dot (.) then all local changes will be rollbacked.
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Replace Local Changes (3)
 
@@ -2159,11 +2611,15 @@ git reset --hard origin/master
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Reflog (1)
 
 Everyone makes mistakes, and that's totally okay! Sometimes it may feel like you've corrupt your git repo so badly that you just want to delete it entirely.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Reflog (2)
 
@@ -2171,11 +2627,15 @@ Everyone makes mistakes, and that's totally okay! Sometimes it may feel like you
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Reflog (3)
 
 ![alt:"alt" height:450px center](https://res.cloudinary.com/practicaldev/image/fetch/s--MMUdOS0P--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/1aqek1py1knwl926ele7.gif)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Reflog (4)
 
@@ -2185,6 +2645,8 @@ Say that we actually didn't want to merge the origin branch. When we execute the
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Reflog (5)
 
 ![alt:"alt" height:450px center](https://res.cloudinary.com/practicaldev/image/fetch/s--A1UMM2AH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/9z9rhtbw7mrigp0miijz.gif)
@@ -2193,35 +2655,51 @@ We can see that the latest action has been pushed to the `reflog`
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Resetting (1)
 
-It can happen that we committed changes that we didn't want later on. Maybe it's a `WIP` commit, or maybe a commit that introduced bugs!  In that case, we can perform a `git reset`.
+It can happen that we committed changes that we didn't want later on. Maybe it's a `WIP` commit, or maybe a commit that introduced bugs! In that case, we can perform a `git reset`.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Resetting (2)
 
 A `git reset` gets rid of all the current staged files and gives us control over where `HEAD` should point to.
 
---- 
+---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Soft Reset (1)
 
-A *soft reset* moves `HEAD` to the specified commit (or the index of the commit compared to `HEAD`), without getting rid of the changes that were introduced on the commits afterward!
+A _soft reset_ moves `HEAD` to the specified commit (or the index of the commit compared to `HEAD`), without getting rid of the changes that were introduced on the commits afterward!
 
---- 
+---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Soft Reset (2)
 
 Let's say that we don't want to keep the commit `9e78i` which added a `style.css` file, and we also don't want to keep the commit `035cc` which added an `index.js` file. However, we do want to keep the newly added `style.css` and `index.js` file! A perfect use case for a soft reset.
 
---- 
+---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Soft Reset (3)
 
-![alt:"alt" height:450px center](https://res.cloudinary.com/practicaldev/image/fetch/s---GveiZe---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/je5240aqa5uw9d8j3ibb.gif)
+![alt:"alt" height:450px center](https://res.cloudinary.com/practicaldev/image/fetch/s---
 
---- 
+<style scoped>section{ font-size: 25px; }</style>GveiZe---
+
+<style scoped>section{ font-size: 25px; }</style>/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/je5240aqa5uw9d8j3ibb.gif)
+
+---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Soft Reset (2)
 
@@ -2229,11 +2707,15 @@ When typing `git status`, you'll see that we still have access to all the change
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Hard reset (1)
 
 Sometimes, we don't want to keep the changes that were introduced by certain commits. Unlike a soft reset, we shouldn't need to have access to them any more. Git should simply reset its state back to where it was on the specified commit: this even includes the changes in your working directory and staged files!
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Hard reset (2)
 
@@ -2243,11 +2725,15 @@ Git has discarded the changes that were introduced on `9e78i` and `035cc`, and r
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Reverting (1)
 
-Another way of undoing changes is by performing a `git revert`. By reverting a certain commit, we create a *new commit* that contains the reverted changes!
+Another way of undoing changes is by performing a `git revert`. By reverting a certain commit, we create a _new commit_ that contains the reverted changes!
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Reverting (2)
 
@@ -2255,15 +2741,19 @@ Let's say that `ec5be` added an `index.js` file. Later on, we actually realize w
 
 ![alt:"alt" height:400px center](https://res.cloudinary.com/practicaldev/image/fetch/s--eckmvr2M--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/3kkd2ahn41zixs12xgpf.gif)
 
-Perfect! Commit `9e78i` reverted the changes that were introduced by the `ec5be` commit. 
+Perfect! Commit `9e78i` reverted the changes that were introduced by the `ec5be` commit.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Reverting (3)
 
-Performing a  `git revert` is very useful in order to undo a certain commit, without modifying the history of the branch.
+Performing a `git revert` is very useful in order to undo a certain commit, without modifying the history of the branch.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Cherry-picking (1)
 
@@ -2271,9 +2761,11 @@ When a certain branch contains a commit that introduced changes we need on our a
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Cherry-picking (1)
 
-Say that commit `76d12` on the `dev` branch added a change to the `index.js` file that we want in our `master` branch. We don't want the *entire* we just care about this one single commit!
+Say that commit `76d12` on the `dev` branch added a change to the `index.js` file that we want in our `master` branch. We don't want the _entire_ we just care about this one single commit!
 
 ![alt:"alt" height:350px center](https://res.cloudinary.com/practicaldev/image/fetch/s--9vWP_K4S--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/2dkjx4yeaal10xyvj29v.gif)
 
@@ -2281,15 +2773,19 @@ Cool, the master branch now contains the changes that `76d12` introduced
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Rebasing (1)
 
 We just saw how we could apply changes from one branch to another by performing a `git merge`. Another way of adding changes from one branch to another is by performing a `git rebase`.
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Rebasing (2)
 
-A `git rebase` *copies* the commits from the current branch, and puts these copied commits on top of the specified branch.
+A `git rebase` _copies_ the commits from the current branch, and puts these copied commits on top of the specified branch.
 
 ![alt:"alt" height:380px center](https://res.cloudinary.com/practicaldev/image/fetch/s--EIY4OOcE--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/dwyukhq8yj2xliq4i50e.gif)
 
@@ -2297,11 +2793,15 @@ Perfect, we now have all the changes that were made on the `master` branch avail
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Rebasing (3)
 
 A big difference compared to merging, is that Git won't try to find out which files to keep and not keep. The branch that we're rebasing always has the latest changes that we want to keep! You won't run into any merging conflicts this way, and keeps a nice linear Git history.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Rebasing (4)
 
@@ -2309,17 +2809,23 @@ This example shows rebasing on the `master` branch. In bigger projects, however,
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Rebasing (5)
 
 Rebasing is great whenever you're working on a feature branch, and the master branch has been updated. You can get all the updates on your branch, which would prevent future merging conflicts!
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Interactive Rebase (1)
 
-Before rebasing the commits, we can modify them!  We can do so with an *interactive rebase*. An interactive rebase can also be useful on the branch you're currently working on, and want to modify some commits.
+Before rebasing the commits, we can modify them! We can do so with an _interactive rebase_. An interactive rebase can also be useful on the branch you're currently working on, and want to modify some commits.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Interactive Rebase (2)
 
@@ -2334,6 +2840,8 @@ There are 6 actions we can perform on the commits we're rebasing:
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Interactive Rebase (3)
 
 Awesome! This way, we can have full control over our commits. If we want to remove a commit, we can just `drop` it.
@@ -2341,6 +2849,8 @@ Awesome! This way, we can have full control over our commits. If we want to remo
 ![alt:"alt" height:410px center](https://res.cloudinary.com/practicaldev/image/fetch/s--P6jr7igd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/msofpv7k6rcmpaaefscm.gif)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Interactive Rebase (4)
 
@@ -2352,6 +2862,8 @@ Interactive rebasing gives you a lot of control over the commits you're trying t
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Useful Hints (1)
 
 built-in git GUI
@@ -2361,6 +2873,8 @@ gitk
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Useful Hints (2)
 
@@ -2372,6 +2886,8 @@ git config color.ui true
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Useful Hints (3)
 
 show log on just one line per commit
@@ -2381,6 +2897,8 @@ git config format.pretty oneline
 ```
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Useful Hints (4)
 
@@ -2399,6 +2917,8 @@ HEAD@{2}     // reflog order
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### GIT Flow
 
 ![alt:"alt" height:450px center](assets/44cdc57b2b67fb929aa37fb006dd99b19c1b9247.png)
@@ -2407,13 +2927,11 @@ HEAD@{2}     // reflog order
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### Hotfix
 
-
-
 ![alt:"alt" height:410px center](assets/0a436e14406d5681155b331acb3c699dba2fda34.png)
-
-
 
 [OneFlow – a Git branching model and workflow | End of Line Blog](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow)
 
@@ -2421,13 +2939,18 @@ HEAD@{2}     // reflog order
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### GIT Decision Tree
 
 http://justinhileman.info/article/git-pretty/git-pretty.png
 
-![alt:"alt" height:410px center](http://justinhileman.info/article/git-pretty/git-pretty.png)
+![center height:410px](http://justinhileman.info/article/git-pretty/git-pretty.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
+
 
 ### GIT in action (1)
 
@@ -2435,11 +2958,15 @@ http://justinhileman.info/article/git-pretty/git-pretty.png
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### GIT in action (2)
 
 ![alt:"alt" height:450px center](assets/2021-10-20-02-08-09-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### GIT in action (3)
 
@@ -2447,11 +2974,15 @@ http://justinhileman.info/article/git-pretty/git-pretty.png
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### GIT in action (4)
 
 ![alt:"alt" height:450px center](assets/2021-10-20-02-08-34-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### GIT in action (5)
 
@@ -2459,17 +2990,23 @@ http://justinhileman.info/article/git-pretty/git-pretty.png
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### GIT in action (6)
 
 ![alt:"alt" height:450px center](assets/2021-10-20-02-08-51-image.png)
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### GIT in action (7)
 
 ![alt:"alt" height:450px center](assets/2021-10-20-02-10-10-image.png)
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### Gource
 
@@ -2479,9 +3016,11 @@ https://gource.io/
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### References (1)
 
-[Source Code Management | Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/source-code-management#:~:text=Source%20code%20management%20(SCM)%20is,also%20synonymous%20with%20Version%20control).
+[Source Code Management | Atlassian Git Tutorial](<https://www.atlassian.com/git/tutorials/source-code-management#:~:text=Source%20code%20management%20(SCM)%20is,also%20synonymous%20with%20Version%20control>).
 
 [What is Source Code Management or Version Control ? - The Linux Juggernaut](https://www.linuxnix.com/what-is-source-code-management-or-version-control/)
 
@@ -2492,6 +3031,8 @@ https://www.edureka.co/blog/git-tutorial/
 https://www.edureka.co/blog/install-git/
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### References (2)
 
@@ -2507,6 +3048,8 @@ https://blog.xebialabs.com/2016/06/14/periodic-table-devops-tools-v-2/
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### References (3)
 
 https://harness.io/2018/01/devops-tools-lifecycle-mesh-2018/
@@ -2518,6 +3061,8 @@ https://www.lucidchart.com/blog/devops-process-flow
 https://www.researchgate.net/publication/262450962_Rugby_An_Agile_Process_Model_Based_on_Continuous_Delivery
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 ### References (4)
 
@@ -2531,6 +3076,8 @@ https://www.researchgate.net/publication/262450962_Rugby_An_Agile_Process_Model_
 
 ---
 
+<style scoped>section{ font-size: 25px; }</style>
+
 ### References (5)
 
 https://education.github.com/git-cheat-sheet-education.pdf
@@ -2540,3 +3087,11 @@ https://education.github.com/git-cheat-sheet-education.pdf
 [Learn Git Branching](https://learngitbranching.js.org/)
 
 https://guides.github.com/introduction/git-handbook/
+
+---
+
+<style scoped>section{ font-size: 25px; }</style>
+
+$$
+End-Of-Week-3
+$$

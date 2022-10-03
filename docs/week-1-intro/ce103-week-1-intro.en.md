@@ -51,13 +51,28 @@ math: mathjax
 
 ## CE103 Algorithms and Programming I
 
-### Week-1 (Intro)
+### Week-1
 
-#### Fall Semester, 2021-2022
+#### Introduction and Developer Roadmap
 
 Download [DOC](ce103-week-1-intro.en.md_doc.pdf), [SLIDE](ce103-week-1-intro.en.md_slide.pdf), [PPTX](ce103-week-1-intro.en.md_slide.pptx)
 
 <iframe width=700, height=500 frameBorder=0 src="../ce103-week-1-intro.en.md_slide.html"></iframe>
+
+---
+
+### Outline
+
+- Computer Engineering Roles
+- Developer Roadmaps
+- Building a Social Profile and Resume
+- Job Qualifications 
+- Using Google
+- Operating Systems 
+- Introduction to Internet (IP, Port etc.)
+- Windows Helper Utilities
+- Shortcuts 
+- Command-Line Interface and Usefull Commands
 
 ---
 

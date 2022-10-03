@@ -51,9 +51,9 @@ math: mathjax
 
 ## CE103 Algorithms and Programming I
 
-## Week-2
+### Week-2
 
-#### Fall Semester, 2021-2022
+#### Software Development Environments
 
 Download [DOC](ce103-week-2-setup.en.md_doc.pdf), [SLIDE](ce103-week-2-setup.en.md_slide.pdf), [PPTX](ce103-week-2-setup.en.md_slide.pptx)
 
@@ -62,6 +62,25 @@ Download [DOC](ce103-week-2-setup.en.md_doc.pdf), [SLIDE](ce103-week-2-setup.en.
 ---
 
 <!-- paginate: true -->
+
+#### Outline
+
+- Flowgorithm
+- Introduction to Analysis of Algorithms
+- Programming Environment Setup and Configuration
+ 	- C/C++ (DevCpp,Code Blocks,MinGW,LLVM,VsCode,VisualStudio,Notepad++,Vi/Vim,Eclipse,Netbeans,Cmake/Make)
+	- Java (VsCode,Notepad++,Eclipse,Netbeans,Cmake)
+	- C# (VsCode,Notepad++,VsCode,VisualStudio,Cmake)
+
+---
+
+#### Outline
+
+- Common Tools and Platforms
+	- Fatih Kalem, Notepad++,HxD, MarktextApp,Cygwin,Dependency Walker,Doxygen,Sonarlint,
+Codepen.io, Codebeautify.org, Codeshare.io,AsciiFlow.com, Freemind, Mockflow, Wireflow, PlantUML,Drawio,Putty, MobaXterm,Teamviewer,AnyDesk,Paletton.com,Colorhunt.co,Understand,JD Project,Cutter,IDA Pro / Freeware,pythontutor,godbolt,scrcpy,Travis-CI,AppVeyor,Jenkins,Vagrant,Docker / Docker Compose / Kubernetes,Nuget,SCV Cryptomanager,Addario CryptoBench,Raymond's MD5 & SHA Checksum Utility,SlavaSoft HashCalc,Portable PGP, and more ...
+
+---
 
 ## Algorithm Basics
 
@@ -2922,7 +2941,7 @@ https://cdnvideo.eba.gov.tr/fatihkalem/fatihkalem_setup.exe
 
 <style scoped>section{ font-size: 25px; }</style>
 
-### Marktext (Markdown Syntax Editor)
+### MarktextApp (Markdown Syntax Editor)
 
 ![height:100px](assets/2022-01-29-00-30-18-image.png)
 

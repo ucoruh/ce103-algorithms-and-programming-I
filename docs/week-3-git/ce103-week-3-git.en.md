@@ -387,7 +387,7 @@ The benefits of distributed version control are:
 
 ##### A Basic Overview of How Git Works (1)
 
-- Create a “repository” (project) with a git hosting tool (like Bitbucket)
+- Create a "repository" (project) with a git hosting tool (like Bitbucket)
 
 - Copy (or clone) the repository to your local machine
 
@@ -1113,35 +1113,26 @@ https://github.com/ucoruh/ce103-sample-text.git
 
 #### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (4)
 
-copy link and use with following command
+- Copy link and use with following command
 
 ```bash
 git remote add origin https://github.com/ucoruh/ce103-sample-text.git
 ```
 
----
-
-<style scoped>section{ font-size: 25px; }</style>
-
-#### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (5)
-
-then you can check your remote setting with
+- Then verify that you correctly updated remote repository setting with the following command
 
 ```bash
 git remote -v
+```
+- You should see similar outputs
+```bash
 origin  https://github.com/ucoruh/ce103-sample-text.git (fetch)
 origin  https://github.com/ucoruh/ce103-sample-text.git (push)
 ```
 
----
+> You can check the following sample
+> [How to Add a New Remote to your Git Repo | Assembla Help Center](https://articles.assembla.com/en/articles/1136998-how-to-add-a-new-remote-to-your-git-repo)
 
-<style scoped>section{ font-size: 25px; }</style>
-
-#### Adding Initiated Repo Remote Upstream Repo (Link with Github Repo) (6)
-
-you can check the following sample
-
-[How to Add a New Remote to your Git Repo | Assembla Help Center](https://articles.assembla.com/en/articles/1136998-how-to-add-a-new-remote-to-your-git-repo)
 
 ---
 
@@ -2638,9 +2629,18 @@ git log --name-status
 
 ---
 
+### Log (5)
+
+```bash
+git log --pretty=format:"%h%x09%an%x09%ad%x09%s"
+```
+
+
+---
+
 <style scoped>section{ font-size: 25px; }</style>
 
-### Log (5)
+### Log (6)
 
 These are just a few of the possible parameters you can use. For more, see
 
@@ -3031,7 +3031,7 @@ HEAD@{2}     // reflog order
 
 ### Hotfix
 
-![alt:"alt" height:410px center](assets/0a436e14406d5681155b331acb3c699dba2fda34.png)
+![alt:"alt" height:260px center](assets/0a436e14406d5681155b331acb3c699dba2fda34.png)
 
 Reference:
  -[OneFlow – a Git branching model and workflow | End of Line Blog](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow)
@@ -3043,7 +3043,7 @@ Reference:
 
 ### GIT Decision Tree
 
-![center height:450px](assets/git-decision-tree.png)
+![bg right height:630px](assets/git-decision-tree.png)
 
 [reference url](http://justinhileman.info/article/git-pretty/git-pretty.png)
 
@@ -3053,7 +3053,7 @@ Reference:
 
 ### GIT in action (1)
 
-![alt:"alt" height:450px center](assets/2021-10-20-02-08-27-image.png)
+![alt:"alt" height:550px center](assets/2021-10-20-02-08-27-image.png)
 
 ---
 
@@ -3061,7 +3061,7 @@ Reference:
 
 ### GIT in action (2)
 
-![alt:"alt" height:450px center](assets/2021-10-20-02-08-09-image.png)
+![alt:"alt" height:550px center](assets/2021-10-20-02-08-09-image.png)
 
 ---
 
@@ -3069,7 +3069,7 @@ Reference:
 
 ### GIT in action (3)
 
-![alt:"alt" height:450px center](assets/2021-10-20-02-08-16-image.png)
+![alt:"alt" height:550px center](assets/2021-10-20-02-08-16-image.png)
 
 ---
 
@@ -3077,7 +3077,7 @@ Reference:
 
 ### GIT in action (4)
 
-![alt:"alt" height:450px center](assets/2021-10-20-02-08-34-image.png)
+![alt:"alt" height:550px center](assets/2021-10-20-02-08-34-image.png)
 
 ---
 
@@ -3085,7 +3085,7 @@ Reference:
 
 ### GIT in action (5)
 
-![alt:"alt" height:450px center](assets/2021-10-20-02-08-46-image.png)
+![alt:"alt" height:550px center](assets/2021-10-20-02-08-46-image.png)
 
 ---
 
@@ -3093,7 +3093,7 @@ Reference:
 
 ### GIT in action (6)
 
-![alt:"alt" height:450px center](assets/2021-10-20-02-08-51-image.png)
+![alt:"alt" height:550px center](assets/2021-10-20-02-08-51-image.png)
 
 ---
 
@@ -3101,7 +3101,7 @@ Reference:
 
 ### GIT in action (7)
 
-![alt:"alt" height:450px center](assets/2021-10-20-02-10-10-image.png)
+![bg right height:650px center](assets/2021-10-20-02-10-10-image.png)
 
 ---
 
@@ -3111,7 +3111,7 @@ Reference:
 
 https://gource.io/
 
-![alt:"alt" height:450px center](assets/2021-10-20-02-10-45-image.png)
+![alt:"alt" height:350px center](assets/2021-10-20-02-10-45-image.png)
 
 ---
 

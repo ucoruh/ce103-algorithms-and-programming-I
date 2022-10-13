@@ -63,7 +63,7 @@ Download [DOC](ce103-week-5-c.en.md_doc.pdf), [SLIDE](ce103-week-5-c.en.md_slide
 
 <!-- paginate: true -->
 
-# C Functional Console Programming
+## C Functional Console Programming
 
 ---
 
@@ -75,11 +75,13 @@ Download [DOC](ce103-week-5-c.en.md_doc.pdf), [SLIDE](ce103-week-5-c.en.md_slide
 
 ---
 
-# C Functional Console Programming
+## C Functional Console Programming
 
 - We will use the following course notes and examples.
 
 ---
+
+<style scoped>section{ font-size: 25px; }</style>
 
 - [Learn C Programming](https://www.programiz.com/c-programming)
 
@@ -127,7 +129,7 @@ https://c.happycodings.com/
 
 ---
 
-# C Programming
+## C Programming
 
 C is a versatile programming language. It is useful for creating software such as operating systems, databases, and compilers. For novices, C programming is a great language to learn to code in.
 
@@ -139,7 +141,7 @@ Before starting you should check your development enviroment.
 
 ---
 
-**You will open visual studio community edition and create a C++ console application then rename *.cpp file to *.c  for triggering c complier.**
+You will open visual studio community edition and create a C++ console application then rename *.cpp file to *.c  for triggering c complier.
 
 ---
 
@@ -326,7 +328,7 @@ Also you can use visual studio community edition.
 
 ---
 
-# preprocessing
+### Preprocessing
 
 ---
 
@@ -360,7 +362,7 @@ int main(void)
 
 ---
 
-# compiling
+### Compiling
 
 ---
 
@@ -395,7 +397,7 @@ main:                                   # @main
 
 ---
 
-# assembling
+### Assembling
 
 ---
 
@@ -464,92 +466,33 @@ to this
 
 ---
 
-# linking
+### Linking
 
 ---
 
-| hello.c                               | cs50.c                           | stdio.c |
-| ------------------------------------- | -------------------------------- | ------- |
-| 01111111010001010100110001000110      |                                  |         |
-| <br/>00000010000000010000000100000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000001000000000011111000000000 |                                  |         |
-| <br/>00000001000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>10100000000000100000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>01000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000100000000000000 |                                  |         |
-| <br/>00001010000000000000000100000000 |                                  |         |
-| <br/>01010101010010001000100111100101 |                                  |         |
-| <br/>01001000100000111110110000010000 |                                  |         |
-| <br/>00110001110000001000100111000111 |                                  |         |
-| <br/>01001000101111100000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000001011000000000000 |                                  |         |
-| <br/>11101000000000000000000000000000 |                                  |         |
-| <br/>00000000010010001011111100000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000001001000 |                                  |         |
-| <br/>...                              | 01111111010001010100110001000110 |         |
-| <br/>00000010000000010000000100000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000011000000000011111000000000 |                                  |         |
-| <br/>00000001000000000000000000000000 |                                  |         |
-| <br/>11000000000011110000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>01000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00101000001100100000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>01000000000000000011100000000000 |                                  |         |
-| <br/>00000111000000000100000000000000 |                                  |         |
-| <br/>00011100000000000001100100000000 |                                  |         |
-| <br/>00000001000000000000000000000000 |                                  |         |
-| <br/>00000101000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>01011100001001010000000000000000 |                                  |         |
-| <br/>00000000000000000000000000000000 |                                  |         |
-| <br/>...                              | 00101111011011000110100101100010 |         |
-| <br/>01100011001011100111001101101111 |                                  |         |
-| <br/>00101110001101100010000000101111 |                                  |         |
-| <br/>01110101011100110111001000101111 |                                  |         |
-| <br/>01101100011010010110001000101111 |                                  |         |
-| <br/>01111000001110000011011001011111 |                                  |         |
-| <br/>00110110001101000010110101101100 |                                  |         |
-| <br/>01101001011011100111010101111000 |                                  |         |
-| <br/>00101101011001110110111001110101 |                                  |         |
-| <br/>00101111011011000110100101100010 |                                  |         |
-| <br/>01100011010111110110111001101111 |                                  |         |
-| <br/>01101110011100110110100001100001 |                                  |         |
-| <br/>01110010011001010110010000101110 |                                  |         |
-| <br/>01100001001000000010000001000001 |                                  |         |
-| <br/>01010011010111110100111001000101 |                                  |         |
-| <br/>01000101010001000100010101000100 |                                  |         |
-| <br/>00100000001010000010000000101111 |                                  |         |
-| <br/>01101100011010010110001000101111 |                                  |         |
-| <br/>01111000001110000011011001011111 |                                  |         |
-| <br/>00110110001101000010110101101100 |                                  |         |
-| <br/>01101001011011100111010101111000 |                                  |         |
-| <br/>00101101011001110110111001110101 |                                  |         |
-| <br/>00101111011011000110010000101101 |                                  |         |
-| <br/>01101100011010010110111001110101 |                                  |         |
-| <br/>01111000001011010111100000111000 |                                  |         |
-| <br/>00110110001011010011011000110100 |                                  |         |
-| <br/>...                              |                                  |         |
+hello.c
 
+```bash
+01111111 01000101 01001100 01000110 00000010 00000001 00000001 00000000
+00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+...
+```
+
+stdio.c
+
+```bash
+01111111 01000101 01001100 01000110 00000010 00000001 00000001 00000000
+00000000 00000000 00000000 00000000 00000000
+...
+```
+
+cs50.c
+
+```bash
+01111111 01000101 01001100 01000110 00000010 00000001 00000001 00000000
+00000000 00000000 00000000 00000000 00000000
+...
+```
 
 ---
 
@@ -3089,9 +3032,6 @@ How return statement work?
 
 ![center height:450px](https://cdn.programiz.com/sites/tutorial2program/files/c-return-statement.jpg "Return statement of a function")
 
----
-
-Return Statement of Function
 
 ---
 
@@ -3273,7 +3213,11 @@ void checkPrimeAndDisplay(int n) {
 }
 ```
 
+---
+
 [Run Code](https://www.programiz.com/c-programming/online-compiler)
+
+---
 
 The integer value entered by the user is passed to the `checkPrimeAndDisplay()` function.
 
@@ -3437,11 +3381,9 @@ When n is equal to 0, the `if` condition fails and the `else` part is exec
 
 ---
 
-![Calculation of sum of natural number using recursion](https://cdn.programiz.com/sites/tutorial2program/files/recursion-natural-numbers.png)
+#### Sum of Natural Numbers
 
----
-
-Sum of Natural Numbers
+![bg right h:670px](https://cdn.programiz.com/sites/tutorial2program/files/recursion-natural-numbers.png)
 
 ---
 
@@ -3680,15 +3622,15 @@ Suppose you declared an array mark as above. The first element is mark[0], th
 
 ---
 
-C Array Decleration
+#### C Array Decleration
 
-![center height:450px](https://cdn.programiz.com/sites/tutorial2program/files/c-array-declaration.jpg)
+![center height:300px](https://cdn.programiz.com/sites/tutorial2program/files/c-array-declaration.jpg)
 
 ---
 
-Declare an Array
+#### Declare an Array
 
-#### **Few keynotes**:
+**Few keynotes**:
 
 - Arrays have 0 as the first index, not 1. In this example, mark[0] is the first element.
 - If the size of an array is n, to access the last element, the `n-1` index is used. In this example, mark[4]
@@ -3711,15 +3653,13 @@ You can also initialize an array like this.
 int mark[] = {19, 10, 8, 17, 9};
 ```
 
----
-
 Here, we haven't specified the size. However, the compiler knows its size is 5 as we are initializing it with 5 elements.
 
 ---
 
 Initialize Array
 
-![center height:450px](https://cdn.programiz.com/sites/tutorial2program/files/c-array-initialization.jpg)
+![center height:350px](https://cdn.programiz.com/sites/tutorial2program/files/c-array-initialization.jpg)
 
 ---
 
@@ -4816,9 +4756,9 @@ Notice that, the address of &x[0] and x is the same. It's because the variab
 
 ---
 
-Arrays as Pointers
+### Arrays as Pointers
 
-![center height:450px](https://cdn.programiz.com/sites/tutorial2program/files/array-pointers.jpg)
+![center height:300px](https://cdn.programiz.com/sites/tutorial2program/files/array-pointers.jpg)
 
 ---
 
@@ -4923,7 +4863,7 @@ And, printing `*(ptr+1)` gives us the fourth element. Similarly, printing `*(
 
 ---
 
-# C Pass Addresses and Pointers
+## C Pass Addresses and Pointers
 
 In this tutorial, you'll learn to pass addresses and pointers as arguments to functions with the help of examples.
 
@@ -5307,13 +5247,10 @@ When the compiler encounters a sequence of characters enclosed in the double quo
 
 ---
 
-Strings in memory diagram
+#### Strings in memory diagram
 
-![center height:350px](https://cdn.programiz.com/sites/tutorial2program/files/c-string.jpg )
+![center height:250px](https://cdn.programiz.com/sites/tutorial2program/files/c-string.jpg )
 
----
-
-Memory Diagram
 
 ---
 
@@ -5327,13 +5264,9 @@ char s[5];
 
 ---
 
-String declaration
-
-![center height:350px](https://cdn.programiz.com/sites/tutorial2program/files/c-string-declaration_0.jpg)
-
----
-
 String Declaration in C
+
+![center height:250px](https://cdn.programiz.com/sites/tutorial2program/files/c-string-declaration_0.jpg)
 
 ---
 
@@ -5357,13 +5290,10 @@ char c[5] = {'a', 'b', 'c', 'd', '\0'};
 
 ---
 
-String Initialization
-
-![center height:450px](https://cdn.programiz.com/sites/tutorial2program/files/c-string-initialization.jpg )
-
----
-
 String Initialization in C
+
+![center height:350px](https://cdn.programiz.com/sites/tutorial2program/files/c-string-initialization.jpg )
+
 
 ---
 
@@ -6610,12 +6540,36 @@ Opening Modes in Standard I/O
 | `r` | Open for reading. | If the file does not exist, `fopen()` returns NULL. |
 | `rb` | Open for reading in binary mode. | If the file does not exist, `fopen()` returns NULL. |
 | `w` | Open for writing. | If the file exists, its contents are overwritten.<br><br> If the file does not exist, it will be created. |
+
+---
+
+
+Opening Modes in Standard I/O
+
+| Mode | Meaning of Mode | During Inexistence of file |
+| --- | --- | --- |
 | `wb` | Open for writing in binary mode. | If the file exists, its contents are overwritten.<br><br> If the file does not exist, it will be created. |
 | `a` | Open for append.<br><br> Data is added to the end of the file. | If the file does not exist, it will be created. |
 | `ab` | Open for append in binary mode.<br><br> Data is added to the end of the file. | If the file does not exist, it will be created. |
+
+---
+
+
+Opening Modes in Standard I/O
+
+| Mode | Meaning of Mode | During Inexistence of file |
+| --- | --- | --- |
 | `r+` | Open for both reading and writing. | If the file does not exist, `fopen()` returns NULL. |
 | `rb+` | Open for both reading and writing in binary mode. | If the file does not exist, `fopen()` returns NULL. |
 | `w+` | Open for both reading and writing. | If the file exists, its contents are overwritten.<br><br> If the file does not exist, it will be created. |
+
+---
+
+
+Opening Modes in Standard I/O
+
+| Mode | Meaning of Mode | During Inexistence of file |
+| --- | --- | --- |
 | `wb+` | Open for both reading and writing in binary mode. | If the file exists, its contents are overwritten.<br><br> If the file does not exist, it will be created. |
 | `a+` | Open for both reading and appending. | If the file does not exist, it will be created. |
 | `ab+` | Open for both reading and appending in binary mode. | If the file does not exist, it will be created. |
@@ -7611,6 +7565,13 @@ Square root of 12.00 = 3.46
 | <locale.h>                                                                                            | Localization functions                |
 | [<math.h>](https://www.programiz.com/c-programming/library-function/math.h "<math.h> header file")    | Mathematics functions                 |
 | <setjmp.h>                                                                                            | Jump functions                        |
+
+---
+
+## Library Functions in Different Header Files
+
+| C Header Files                                                                                        | Description                           |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------- |
 | <signal.h>                                                                                            | Signal handling functions             |
 | <stdarg.h>                                                                                            | Variable arguments handling functions |
 | <stdio.h>                                                                                             | Standard Input/Output functions       |

@@ -62,13 +62,13 @@ math: katex
 
 #### Syllabus
 
-#### Fall Semester, 2021-2022
+#### Fall Semester, 2023-2024
 
-Download 
-[DOC](syllabus.tr.md_doc.pdf), [SLIDE](syllabus.tr.md_slide.pdf), [PPTX](syllabus.tr.md_slide.pptx)
+Download [DOC](syllabus.tr.md_doc.pdf), [SLIDE](syllabus.tr.md_slide.pdf), [PPTX](syllabus.tr.md_slide.pptx)
 
-Download 
-[WORD](2021-2022-fall-ce103-algorithms-and-programming-I-comp-eng.docx), [PDF](2021-2022-fall-ce103-algorithms-and-programming-I-comp-eng.pdf)
+<!--
+Download [WORD](2021-2022-fall-ce103-algorithms-and-programming-I-comp-eng.docx), [PDF](2021-2022-fall-ce103-algorithms-and-programming-I-comp-eng.pdf)
+-->
 
 <iframe width=700, height=500 frameBorder=0 src="../syllabus.tr.md_slide.html"></iframe>
 
@@ -76,18 +76,19 @@ Download
 
 <!-- paginate: true -->
 
-| Instructor                 | Asst. Prof. Dr. Uğur CORUH                                    |
-| -------------------------- | ------------------------------------------------------------- |
-| **Contact Information**    | ugur.coruh@erdogan.edu.tr                                     |
-| **Office No**              | F-301                                                         |
-| **Google Classroom Code**  | 3ipdtws                                                       |
-| **Lecture Hours and Days** | Monday 13:00 - 15:30 (Theory) / Wednesday 13:00 - 14:30 (Lab) |
+| Instructor                 | Asst. Prof. Dr. Uğur CORUH                                      |
+| -------------------------- | --------------------------------------------------------------- |
+| **Contact Information**    | ugur.coruh@erdogan.edu.tr                                       |
+| **Office No**              | F-301                                                           |
+| **Google Classroom Code**  | TBD                                                             |
+| **Microsoft Teams Code**   | etj1k7b                                                         |
+| **Lecture Hours and Days** | Wednesday 09:00 - 12:00 (Theory) / Thursday 13:00 - 14:30 (Lab) |
 
 ---
 
-| **Lecture Classroom** | İBBF 402 Level-4                                                                                                                                                                                                                                  |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Office Hours**      | Meetings will be scheduled over Google Meet with your university account and email and performed via demand emails. Please send emails with the subject starting with [CE103] tag for the fast response and write formal, clear, and short emails |
+| **Lecture Classroom** | İİBF-414 (Level-4)                                                                                                                                                                                                                                                          |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Office Hours**      | Scheduled through your university account, meetings will take place via Google Meet and are coordinated by request through email. To expedite responses, please initiate your email subject line with the [CE103] tag and maintain a formal, concise, and clear email body. |
 
 ---
 
@@ -105,7 +106,7 @@ Download
 
 ## A.    Course Description
 
-This course goal is to develop algorithm and programming expertise from scratch in a powerful way to provide a high-quality career path for students. The lecture will be based on expertise sharing and guiding students to find learning methods and practice for algorithm and programming topics. By making programming applications and projects in the courses, the learning process will be strengthened by practicing rather than theory. This course provides functional programming for C, C++, C#, and Java with up-to-date development environments.
+The objective of this course is to systematically build foundational skills in algorithms and programming, aimed at enhancing students' career prospects. The instructional approach focuses on the transfer of expert knowledge while guiding students in identifying effective learning techniques and practical applications within the realm of algorithms and programming. Emphasis is placed on hands-on projects and applications, fortifying the learning experience through practice over pure theory. The course covers functional programming in C, C++, C#, and Java, utilizing the latest development environments.
 
 ---
 
@@ -345,49 +346,49 @@ If deemed necessary, changes in the lecture content or course schedule can be ma
 
 | Weeks  | Dates                 | Subjects                                                                                                                                                                                                                                                            | Other Tasks |
 |:------ |:--------------------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |:----------- |
-| Week 1 | 04.10.2021 06.10.2021 | Course Plan and Communication,Grading System, Assignments, and Exams,Computer Engineering Job Qualifications and Road Map,Google Search Basics,Programming Introduction (Operating System Basics, Computer Network Basics, Numerical System Basics, Character Sets) | TBD         |
-| Week 2 | 11.10.2021 13.10.2021 | Algorithm Basics, Flowgorithm, Pseudocode, Programming Environment Setup and Configuration for C, C++, Java, and C#, Common Developer Tools, Online Programming Envoriments                                                                                         | TBD         |
+| Week 1 | 04.10.2023 05.10.2023 | Course Plan and Communication,Grading System, Assignments, and Exams,Computer Engineering Job Qualifications and Road Map,Google Search Basics,Programming Introduction (Operating System Basics, Computer Network Basics, Numerical System Basics, Character Sets) | TBD         |
+| Week 2 | 11.10.2023 12.10.2023 | Algorithm Basics, Flowgorithm, Pseudocode, Programming Environment Setup and Configuration for C, C++, Java, and C#, Common Developer Tools, Online Programming Envoriments                                                                                         | TBD         |
 
 ---
 
-| Week 3 | 18.10.2021 20.10.2021 | Source Code Sharing and Version Management.                                                                        | TBD |
+| Week 3 | 18.10.2023 19.10.2023 | Source Code Sharing and Version Management.                                                                        | TBD |
 |:------ |:--------------------- |:------------------------------------------------------------------------------------------------------------------ |:--- |
-| Week 4 | 25.10.2021 27.10.2021 | Shared Library Development and Application Test Automation for C, C++, C#  and Java, TDD (Test Driven Development) | TBD |
-| Week 5 | 01.11.2021 03.11.2021 | C Functional Console Programming                                                                                   |     |
+| Week 4 | 25.10.2023 26.10.2023 | Shared Library Development and Application Test Automation for C, C++, C#  and Java, TDD (Test Driven Development) | TBD |
+| Week 5 | 01.11.2023 02.11.2023 | C Functional Console Programming                                                                                   |     |
 
 ---
 
-| Week-6 | 08.11.2021 10.11.2021 | C++ Functional Console Programming | TBD |
+| Week-6 | 08.11.2023 09.11.2023 | C++ Functional Console Programming | TBD |
 |:------ |:--------------------- |:---------------------------------- |:--- |
-| Week-7 | 15.11.2021 17.11.2021 | C# Functional Console Programming  | TBD |
-| Week-8 | 20.11.2021 28.11.2021 | **Midterm**                        | TBD |
+| Week-7 | 15.11.2023 16.11.2023 | C# Functional Console Programming  | TBD |
+| Week-8 | TBD                   | **Midterm**                        | TBD |
 
 ---
 
-| Week-9  | 29.11.2021 01.12.2021 | Java Functional Console Programming-I   | TBD |
+| Week-9  | 29.11.2023 30.11.2023 | Java Functional Console Programming-I   | TBD |
 |:------- |:--------------------- |:--------------------------------------- |:--- |
-| Week-10 | 06.12.2021 08.12.2021 | Java Functional Console Programming-II  | TBD |
-| Week-11 | 13.12.2021 16.12.2021 | Java Functional Console Programming-III | TBD |
+| Week-10 | 06.11.2023 07.11.2023 | Java Functional Console Programming-II  | TBD |
+| Week-11 | 13.11.2023 14.11.2023 | Java Functional Console Programming-III | TBD |
 
 ---
 
-| Week-12 | 20.12.2021 22.12.2021 | C / C++ Graphical User Interface (GUI) Programming | TBD |
+| Week-12 | 20.11.2023 21.11.2023 | C / C++ Graphical User Interface (GUI) Programming | TBD |
 |:------- |:--------------------- |:-------------------------------------------------- |:--- |
-| Week-13 | 27.12.2021 29.12.2021 | C# Graphical User Interface (GUI) Programming-I    | TBD |
-| Week-14 | 03.01.2022 05.01.2022 | C# Graphical User Interface (GUI) Programming-II   | TBD |
+| Week-13 | 27.11.2023 28.11.2023 | C# Graphical User Interface (GUI) Programming-I    | TBD |
+| Week-14 | 03.12.2023 04.12.2023 | C# Graphical User Interface (GUI) Programming-II   | TBD |
 
 ---
 
-| Week-15 | 10.01.2022 12.01.2022 | Java Graphical User Interface Programming | TBD |
+| Week-15 | 10.12.2023 11.12.2023 | Java Graphical User Interface Programming | TBD |
 |:------- |:--------------------- |:----------------------------------------- |:--- |
-| Week-16 | 17.01.2022 30.01.2022 | **Final**    .                            | TBD |
+| Week-16 | TBD                   | **Final**                                 | TBD |
 
 ---
 
-### Bologna Bilgileri
+### Bologna Information
 
-<iframe width=700, height=1000 frameBorder=0 src="../ce103-algorithms-and-prgramming-I-bologna-tr.pdf"></iframe>
+<iframe width=700, height=1000 frameBorder=0 src="../ce103-algorithms-and-prgramming-I-bologna-en.pdf"></iframe>
 
 ---
 
-$CE103-Ders-İzlencesi-Sonu$
+$End-Of-CE103-Syllabus$
